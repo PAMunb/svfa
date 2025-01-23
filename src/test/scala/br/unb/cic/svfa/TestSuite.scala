@@ -1,5 +1,6 @@
 package br.unb.cic.soot
 
+import br.unb.cic.svfa.SameFlowTest
 import org.scalatest.{BeforeAndAfter, FunSuite}
 
 class TestSuite extends FunSuite with BeforeAndAfter {
@@ -159,5 +160,12 @@ class TestSuite extends FunSuite with BeforeAndAfter {
     svfa.buildSparseValueFlowGraph()
     // println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size > 0)
+  }
+
+  test("[SameFlow] We should find exactly 1 conflict") {
+    val svfa = new SameFlowTest()
+    svfa.buildSparseValueFlowGraph()
+     println(svfa.svgToDotModel())
+    assert(svfa.reportConflictsSVG().size == 1)
   }
 }
