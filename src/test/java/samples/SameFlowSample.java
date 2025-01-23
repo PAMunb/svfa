@@ -1,5 +1,8 @@
 package samples;
 
+/**
+ * It has two different paths from the same source to the same sink
+ */
 public class SameFlowSample {
 
     public static void main(String args[]) {
