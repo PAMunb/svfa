@@ -221,3 +221,23 @@ In the next tables, there is detailed information about each group of tests run.
 |    Factory2    |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 |    Factory3    |    1     |   2    |   ❌    |  1  |  1  |     -     |   -    |    -    |
 |     TOTAL      |    3     |   4    |  2/3   |  3  |  1  |   0.75    |  1.00  |  0.86   |
+
+- **InterTest** - failed: 0, passed:8, ignored: 6 of 14 tests
+
+|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
+|     Inter1     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|     Inter2     |    2     |   2    |   ✅    | 2  | 0  |     -     |   -    |    -    |
+|     Inter3     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|     Inter4     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|     Inter5     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|     Inter6     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|     Inter7     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|     Inter8     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|     Inter9     |    2     |   1    |   ❌    | 1  | 0  |     -     |   -    |    -    |
+|    Inter10     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|    Inter11     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|    Inter12     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|    Inter13     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|    Inter14     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    16    |   10   |  6/14  | 10 | 0  |     -     |   -    |    -    |
