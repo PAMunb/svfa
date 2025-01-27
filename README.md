@@ -99,9 +99,25 @@ Tests failed: 3, passed: 0, ignored: 0 of 3 test
 #### StrongUpdateTest &#9745;
 Tests failed: 1, passed: 4, ignored: 0 of 5 test
 
-## TEST METRICS ✅ ❌
+## TEST METRICS
 
-|     TOTAL      |    11    |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Test      |   TP   | FP | 
+|:-------------:|:------:|:--:|
+|   Aliasing    | 10/11  | 0  |   
+|     Array     |  0/9   | 0  |   
+|     Basic     | 57/59  | 2  |  
+|  Collection   |  2/14  | 1  |
+| DataStructure |  5/5   | 2  | 
+|    Factory    |  3/3   | 1  |  
+|     Inter     | 10/16  | 0  |  
+|    Session    |  0/3   | 0  |  
+| StrongUpdate  |  0/1   | 0  |   
+|   **TOTAL**   | 87/121 | 6  |
+
+- **Precision:** 
+- **Recall:** 
+- **F-score:** 
+
 
 In the next tables, there is detailed information about each group of tests run.
 - **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
