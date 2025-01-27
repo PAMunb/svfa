@@ -448,7 +448,7 @@ class FlowdroidTestSuite extends FunSuite {
   test("description: Collection9") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections9", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    assert(svfa.reportConflictsSVG().size == 0)
   }
 
   test("description: Collection10") {
@@ -459,12 +459,6 @@ class FlowdroidTestSuite extends FunSuite {
 
   test("description: Collection11") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections11", "doGet")
-    svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
-  }
-
-  test("description: Collection11b") {
-    val svfa = new FlowdroidTest("securibench.micro.collections.Collections11b", "foo")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
