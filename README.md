@@ -211,3 +211,13 @@ In the next tables, there is detailed information about each group of tests run.
 | DataStructure5 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 | DataStructure6 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 |     TOTAL      |    5     |   7    |  4/6   | 5  | 2  |     -     |   -    |    -    |
+
+
+- **FactoryTest** - failed: 0, passed: 2, ignored: 1 of 3 tests.
+
+|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
+|    Factory1    |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
+|    Factory2    |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
+|    Factory3    |    1     |   2    |   ❌    |  1  |  1  |     -     |   -    |    -    |
+|     TOTAL      |    3     |   4    |  2/3   |  3  |  1  |   0.75    |  1.00  |  0.86   |
