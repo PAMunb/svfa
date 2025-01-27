@@ -49,13 +49,13 @@ class FlowdroidTestSuite extends FunSuite {
   test("in the class Aliasing2 we should not detect any conflict in this false positive test case") {
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing2", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().isEmpty)
+    assert(svfa.reportConflictsSVG().size == 0)
  }
 
   test("in the class Aliasing3 we should not detect any conflict, but in Flowdroid this test case was not conclusive") {
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing3", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().isEmpty)
+    assert(svfa.reportConflictsSVG().size == 0)
   }
 
   test("in the class Aliasing4 we should detect 2 conflict") {
@@ -107,7 +107,7 @@ class FlowdroidTestSuite extends FunSuite {
   test("description: Array5") {
     val svfa = new FlowdroidTest("securibench.micro.arrays.Arrays5", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().isEmpty)
+    assert(svfa.reportConflictsSVG().size == 0)
   }
 
   test("description: Array6") {
