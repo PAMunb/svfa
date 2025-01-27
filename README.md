@@ -97,4 +97,37 @@ Tests failed: 7, passed: 7, ignored: 0 of 14 test
 #### SessionTest &#9745;
 Tests failed: 3, passed: 0, ignored: 0 of 3 test
 #### StrongUpdateTest &#9745;
-Tests failed: 1, passed: 4, ignored: 0 of 5 test 
+Tests failed: 1, passed: 4, ignored: 0 of 5 test
+
+## TEST METRICS ✅ ❌
+
+|     TOTAL      |    11    |   -    |   -    | -  | -  |     -     |   -    |    -    |
+
+In the next tables, there is detailed information about each group of tests run.
+- **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
+
+|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
+|   Aliasing1    |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|   Aliasing2    |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing3    |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing4    |    2     |   2    |   ✅    | 2  | 0  |     -     |   -    |    -    |
+|   Aliasing5    |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing6    |    7     |   7    |   ✅    | 7  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    11    |   10   |  5/6   | 10 | 0  |     -     |   -    |    -    |
+
+- **ArraysTest** - failed: 0, passed: 5, ignored: 5 of 10 test.
+
+|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
+|     Array1     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array2     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array3     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array4     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array5     |    0     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array6     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array7     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array8     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     Array9     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|    Array10     |    1     |   -    |   -    | -  | -  |     -     |   -    |    -    |
+|     TOTAL      |    9     |   -    |   -    | -  | -  |     -     |   -    |    -    |
