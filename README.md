@@ -73,13 +73,13 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 |  Collection   |  2/14  | 1  |
 | DataStructure |  5/5   | 2  | 
 |    Factory    |  3/3   | 1  |  
-|     Inter     | 11/16  | 0  |  
+|     Inter     | 10/16  | 0  |  
 |    Session    |  0/3   | 0  |  
 | StrongUpdate  |  0/1   | 0  |   
-|   **TOTAL**   | 87/121 | 6  |
+|   **TOTAL**   | 86/121 | 6  |
 
-- **Precision:** 0.94
-- **Recall:** 0.72
+- **Precision:** 0.93
+- **Recall:** 0.71
 - **F-score:** 0.81
 
 
@@ -203,7 +203,7 @@ In the next tables, there is detailed information about each group of tests run.
 |    Factory3    |    1     |   2    |   ❌    |  1  |  1  |     -     |   -    |    -    |
 |     TOTAL      |    3     |   4    |  2/3   |  3  |  1  |   0.75    |  1.00  |  0.86   |
 
-- **InterTest** - failed: 0, passed:9, ignored: 6 of 14 tests
+- **InterTest** - failed: 0, passed:8, ignored: 6 of 14 tests
 
 |  Test   | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
 |:-------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
@@ -217,11 +217,11 @@ In the next tables, there is detailed information about each group of tests run.
 | Inter8  |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 | Inter9  |    2     |   1    |   ❌    | 1  | 0  |     -     |   -    |    -    |
 | Inter10 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-| Inter11 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+| Inter11 |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 | Inter12 |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 | Inter13 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 | Inter14 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-|  TOTAL  |    16    |   11   |  9/14  | 11 | 0  |   1.00    |  0.69  |  0.81   |
+|  TOTAL  |    16    |   10   |  8/14  | 10 | 0  |   1.00    |  0.63  |  0.77   |
 
 - **SessionTest** - failed: 0, passed: 0, ignored: 3 of 3 tests.
 
@@ -246,4 +246,4 @@ In the next tables, there is detailed information about each group of tests run.
 **OBSERVATIONS**
 - Flowdroid is not taking in count the TP expected in StrongUpdate4;
 - Test Basic40 is commented in the test suite so the amount of TP differs from the original run by Flowdroid; 
-- Test Basic6 is a flaky test.
+- There are two flaky tests: Basic6 and Inter11.
