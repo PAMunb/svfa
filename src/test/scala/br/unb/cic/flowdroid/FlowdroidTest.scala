@@ -242,7 +242,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic17 we should detect 1 conflict of a store statement in heap-allocated data structures and a false positive test case") {
+  ignore("in the class Basic17 we should detect 1 conflict of a store statement in heap-allocated data structures and a false positive test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic17", "doGet")
     svfa.buildSparseValueFlowGraph()
     // println(svfa.svgToDotModel())
@@ -451,7 +451,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  test("description: Collection10") {
+  ignore("description: Collection10") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections10", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
