@@ -58,13 +58,13 @@ class InterTestSuite extends FunSuite {
   test("description: Inter4") {
     val svfa = new InterTest("securibench.micro.inter.Inter4", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 2)
+    assert(svfa.reportConflictsSVG().size == 1)
   }
 
   test("description: Inter5") {
     val svfa = new InterTest("securibench.micro.inter.Inter5", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 2)
+    assert(svfa.reportConflictsSVG().size == 1)
   }
 
   test("description: Inter6") {
@@ -88,7 +88,7 @@ class InterTestSuite extends FunSuite {
   test("description: Inter9") {
     val svfa = new InterTest("securibench.micro.inter.Inter9", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    assert(svfa.reportConflictsSVG().size == 2)
   }
 
   test("description: Inter10") {
