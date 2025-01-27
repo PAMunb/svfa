@@ -250,3 +250,14 @@ In the next tables, there is detailed information about each group of tests run.
 |    Session2    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
 |    Session3    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
 |     TOTAL      |    3     |   0    |  0/3   |  0  |  0  |     0     |   0    |    0    |
+
+- **StrongUpdateTest** - failed: 0, passed: 4, ignored: 1 of 5 tests.
+
+|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
+| StrongUpdate1  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+| StrongUpdate2  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+| StrongUpdate3  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+| StrongUpdate4  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+| StrongUpdate5  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    1     |   0    |  4/5   | 0  | 0  |     -     |   -    |    -    |
