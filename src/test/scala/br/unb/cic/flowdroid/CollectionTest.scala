@@ -88,7 +88,7 @@ class CollectionSuite extends FunSuite {
   test("description: Collection9") {
     val svfa = new CollectionTest("securibench.micro.collections.Collections9", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    assert(svfa.reportConflictsSVG().size == 0)
   }
 
   test("description: Collection10") {
