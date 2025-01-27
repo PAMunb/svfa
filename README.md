@@ -116,7 +116,7 @@ In the next tables, there is detailed information about each group of tests run.
 |   Aliasing6    |    7     |   7    |   ✅    | 7  | 0  |     -     |   -    |    -    |
 |     TOTAL      |    11    |   10   |  5/6   | 10 | 0  |     -     |   -    |    -    |
 
-- **ArraysTest** - failed: 0, passed: 5, ignored: 5 of 10 test.
+- **ArraysTest** - failed: 0, passed: 1, ignored: 9 of 10 test.
 
 |      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
@@ -178,7 +178,7 @@ In the next tables, there is detailed information about each group of tests run.
 |    Basic40     |   N/A    |  N/A   |  N/A   | N/A | N/A |    N/A    |  N/A   |   N/A   |
 |    Basic41     |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 |    Basic42     |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    59    |   59   | 38/41  | 57  |  2  |     -     |   -    |    -    |
+|     TOTAL      |    59    |   59   | 37/41  | 57  |  2  |     -     |   -    |    -    |
 
 - **CollectionTest** - failed: 0, passed: 2, ignored: 12 of 14 tests.
 
