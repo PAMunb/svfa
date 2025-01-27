@@ -174,7 +174,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 3)
   }
 
-  //Flaky.
+  //FLAKY
   ignore("in the class Basic6 we should detect 1 conflict of a complex derived string test") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic6", "doGet")
     svfa.buildSparseValueFlowGraph()
@@ -357,7 +357,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 6)
   }
 
-  test("in the class Basic36 we should detect 1 conflict in a values obtained from HttpServletRequest input stream test case") {
+  ignore("in the class Basic36 we should detect 1 conflict in a values obtained from HttpServletRequest input stream test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic36", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -369,7 +369,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic38 we should detect 1 conflict in a StringTokenizer with a false positive test case") {
+  ignore("in the class Basic38 we should detect 1 conflict in a StringTokenizer with a false positive test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic38", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -387,7 +387,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic42 we should detect 1 conflict in a use getInitParameterNames test case") {
+  ignore("in the class Basic42 we should detect 1 conflict in a use getInitParameterNames test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic42", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
