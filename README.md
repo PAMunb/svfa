@@ -241,3 +241,12 @@ In the next tables, there is detailed information about each group of tests run.
 |    Inter13     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 |    Inter14     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 |     TOTAL      |    16    |   10   |  6/14  | 10 | 0  |     -     |   -    |    -    |
+
+- **SessionTest** - failed: 0, passed: 0, ignored: 3 of 3 tests.
+
+|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
+|    Session1    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
+|    Session2    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
+|    Session3    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
+|     TOTAL      |    3     |   0    |  0/3   |  0  |  0  |     0     |   0    |    0    |
