@@ -101,7 +101,7 @@ Tests failed: 1, passed: 4, ignored: 0 of 5 test
 
 ## TEST METRICS
 
-> failed: 0, passed: 64, ignored: 39 of 103 tests.
+> failed: 0, passed: 62, ignored: 39 of 102 tests.
 
 |     Test      |   TP   | FP | 
 |:-------------:|:------:|:--:|
