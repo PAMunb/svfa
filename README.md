@@ -101,6 +101,8 @@ Tests failed: 1, passed: 4, ignored: 0 of 5 test
 
 ## TEST METRICS
 
+> failed: 0, passed: 64, ignored: 39 of 103 tests.
+
 |     Test      |   TP   | FP | 
 |:-------------:|:------:|:--:|
 |   Aliasing    | 10/11  | 0  |   
@@ -120,6 +122,7 @@ Tests failed: 1, passed: 4, ignored: 0 of 5 test
 
 
 In the next tables, there is detailed information about each group of tests run.
+
 - **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
 
 |      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
