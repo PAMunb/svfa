@@ -199,3 +199,15 @@ In the next tables, there is detailed information about each group of tests run.
 |  Collection13  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |  Collection14  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |     TOTAL      |    14    |   3    |  2/14  | 2  | 1  |     -     |   -    |    -    |
+
+- **DataStructureTest** - failed: 0, passed: 4, ignored: 2 of 6 tests.
+
+|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
+|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
+| DataStructure1 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+| DataStructure2 |    1     |   2    |   ❌    | 1  | 1  |     -     |   -    |    -    |
+| DataStructure3 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+| DataStructure4 |    0     |   1    |   ❌    | 0  | 1  |     -     |   -    |    -    |
+| DataStructure5 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+| DataStructure6 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    5     |   7    |  4/6   | 5  | 2  |     -     |   -    |    -    |
