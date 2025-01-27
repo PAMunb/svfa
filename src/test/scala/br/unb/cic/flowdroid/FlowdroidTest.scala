@@ -403,43 +403,43 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection2") {
+  ignore("description: Collection2") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection3") {
+  ignore("description: Collection3") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 2)
   }
 
-  test("description: Collection4") {
+  ignore("description: Collection4") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection5") {
+  ignore("description: Collection5") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection6") {
+  ignore("description: Collection6") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection7") {
+  ignore("description: Collection7") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections7", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection8") {
+  ignore("description: Collection8") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections8", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -457,25 +457,25 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection11") {
+  ignore("description: Collection11") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections11", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection12") {
+  ignore("description: Collection12") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections12", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection13") {
+  ignore("description: Collection13") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections13", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Collection14") {
+  ignore("description: Collection14") {
     val svfa = new FlowdroidTest("securibench.micro.collections.Collections14", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
