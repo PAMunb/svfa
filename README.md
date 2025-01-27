@@ -114,9 +114,9 @@ Tests failed: 1, passed: 4, ignored: 0 of 5 test
 | StrongUpdate  |  0/1   | 0  |   
 |   **TOTAL**   | 87/121 | 6  |
 
-- **Precision:** 
-- **Recall:** 
-- **F-score:** 
+- **Precision:** 0.94
+- **Recall:** 0.72
+- **F-score:** 0.81
 
 
 In the next tables, there is detailed information about each group of tests run.
@@ -130,7 +130,7 @@ In the next tables, there is detailed information about each group of tests run.
 |   Aliasing4    |    2     |   2    |   ✅    | 2  | 0  |     -     |   -    |    -    |
 |   Aliasing5    |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |   Aliasing6    |    7     |   7    |   ✅    | 7  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    11    |   10   |  5/6   | 10 | 0  |     -     |   -    |    -    |
+|     TOTAL      |    11    |   10   |  5/6   | 10 | 0  |     1.00     |   0.91    |    0.95    |
 
 - **ArraysTest** - failed: 0, passed: 1, ignored: 9 of 10 test.
 
@@ -146,7 +146,7 @@ In the next tables, there is detailed information about each group of tests run.
 |     Array8     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |     Array9     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |    Array10     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    9     |   0    |  1/10  | 0  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    9     |   0    |  1/10  | 0  | 0  |     0     |   0    |    0    |
 
 - **BasicTest** - failed: 0, passed: 37, ignored: 4 of 41 test.
 
@@ -194,7 +194,7 @@ In the next tables, there is detailed information about each group of tests run.
 |    Basic40     |   N/A    |  N/A   |  N/A   | N/A | N/A |    N/A    |  N/A   |   N/A   |
 |    Basic41     |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 |    Basic42     |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    59    |   59   | 37/41  | 57  |  2  |     -     |   -    |    -    |
+|     TOTAL      |    59    |   59   | 37/41  | 57  |  2  |     0.97     |   0.97    |    0.97    |
 
 - **CollectionTest** - failed: 0, passed: 2, ignored: 12 of 14 tests.
 
@@ -214,7 +214,7 @@ In the next tables, there is detailed information about each group of tests run.
 |  Collection12  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |  Collection13  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |  Collection14  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    14    |   3    |  2/14  | 2  | 1  |     -     |   -    |    -    |
+|     TOTAL      |    14    |   3    |  2/14  | 2  | 1  |     0.67     |   0.14    |    0.24    |
 
 - **DataStructureTest** - failed: 0, passed: 4, ignored: 2 of 6 tests.
 
@@ -226,7 +226,7 @@ In the next tables, there is detailed information about each group of tests run.
 | DataStructure4 |    0     |   1    |   ❌    | 0  | 1  |     -     |   -    |    -    |
 | DataStructure5 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 | DataStructure6 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    5     |   7    |  4/6   | 5  | 2  |     -     |   -    |    -    |
+|     TOTAL      |    5     |   7    |  4/6   | 5  | 2  |    0.71     |   1.00    |   0.83    |
 
 
 - **FactoryTest** - failed: 0, passed: 2, ignored: 1 of 3 tests.
@@ -256,7 +256,7 @@ In the next tables, there is detailed information about each group of tests run.
 |    Inter12     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |    Inter13     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
 |    Inter14     |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    16    |   10   |  6/14  | 10 | 0  |     -     |   -    |    -    |
+|     TOTAL      |    16    |   10   |  6/14  | 10 | 0  |     1.00     |   0.63    |    0.77    |
 
 - **SessionTest** - failed: 0, passed: 0, ignored: 3 of 3 tests.
 
@@ -276,4 +276,4 @@ In the next tables, there is detailed information about each group of tests run.
 | StrongUpdate3  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
 | StrongUpdate4  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 | StrongUpdate5  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    1     |   0    |  4/5   | 0  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    1     |   0    |  4/5   | 0  | 0  |     0     |   0    |    0    |
