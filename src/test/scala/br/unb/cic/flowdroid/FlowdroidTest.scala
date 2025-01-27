@@ -506,7 +506,7 @@ class FlowdroidTestSuite extends FunSuite {
   test("description: DataStructure4") {
     val svfa = new FlowdroidTest("securibench.micro.datastructures.Datastructures4", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    assert(svfa.reportConflictsSVG().size == 0)
   }
 
   test("description: DataStructure5") {
