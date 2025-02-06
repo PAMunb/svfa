@@ -88,3 +88,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 - Flowdroid is not taking in count the TP expected in StrongUpdate4;
 - Test Basic40 is commented in the test suite so the amount of TP differs from the original run by Flowdroid; 
 - There are two flaky tests: Basic6 and Inter11.
+
+
+## DISCLAIMER
+- The last code changes in the  for this Release were added in March, 2023.
