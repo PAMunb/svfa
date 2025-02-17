@@ -1,7 +1,11 @@
 package br.unb.cic.metrics
 
+import java.util.concurrent.TimeUnit
+
 
 trait Metrics {
+
+  var beforeExecutionTime : Long = 0.toLong
 
   def computeMetricsByResults(expected: Int, actual: Int): Unit = {
     var TP = 0.0
@@ -34,5 +38,11 @@ trait Metrics {
     println(f"precision: $precision%1.2f")
     println(f"recall: $recall%1.2f")
     println(f"fscore $fscore%1.2f")
+  }
+
+  def startExecutionTime(): Unit = beforeExecutionTime = System.nanoTime;
+
+  def endExecutionTime(): Unit = {
+    println(s"Execution time: ${TimeUnit.NANOSECONDS.toMillis(System.nanoTime - beforeExecutionTime)} ms.")
   }
 }
