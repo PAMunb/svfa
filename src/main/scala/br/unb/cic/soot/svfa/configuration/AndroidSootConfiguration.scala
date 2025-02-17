@@ -12,6 +12,7 @@ trait AndroidSootConfiguration extends SootConfiguration {
 
   def platform(): String
   override def configureSoot(): Unit = {
+    // Set up InfoflowAndroidConfiguration
     val config = new InfoflowAndroidConfiguration
     config.setCallgraphAlgorithm(InfoflowConfiguration.CallgraphAlgorithm.CHA)
     config.setCodeEliminationMode(
@@ -24,8 +25,8 @@ trait AndroidSootConfiguration extends SootConfiguration {
     config.setIgnoreFlowsInSystemPackages(true)
     config.setExcludeSootLibraryClasses(true)
 
+    // Create the data flow analyzer
     val flowDroid = new SetupApplication(config)
-
     flowDroid.constructCallgraph()
   }
 

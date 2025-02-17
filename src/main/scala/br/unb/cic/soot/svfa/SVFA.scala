@@ -22,8 +22,8 @@ abstract class SVFA extends SootConfiguration {
     svg.toDotModel()
   }
 
-  def reportConflictsSVG() = {
-    svg.reportConflicts()
+  def reportConflictsSVG(useUniquePaths: Boolean = false) = {
+    svg.reportConflicts(useUniquePaths)
   }
 
 }
