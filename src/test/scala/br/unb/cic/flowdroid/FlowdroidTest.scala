@@ -1,5 +1,6 @@
 package br.unb.cic.flowdroid
 
+import br.unb.cic.metrics.Metrics
 import br.unb.cic.soot.graph._
 import org.scalatest.FunSuite
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
@@ -34,16 +35,20 @@ class FlowdroidTest(var className: String = "", var mainMethod: String = "") ext
   }
 }
 
-class FlowdroidTestSuite extends FunSuite {
+class FlowdroidTestSuite extends FunSuite with Metrics {
 
   /**
    * ALIASING TESTs
    */
 
   test("in the class Aliasing1 we should detect 1 conflict of a simple aliasing test case") {
+    this.startExecutionTime()
+
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing1", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
+
+    this.endExecutionTime()
   }
 
   test("in the class Aliasing2 we should not detect any conflict in this false positive test case") {
