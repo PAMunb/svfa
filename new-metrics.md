@@ -99,7 +99,7 @@
 |     TOTAL      |    14    |   4    |  4/14  |  4  |  0  |   1.00    |  0.29  |  0.44   |
 
 
-- **DataStructureTest** - failed: 0, passed: 4, ignored: 2 of 6 tests.
+- **DataStructureTest** - failed: 2, passed: 4, ignored: 0 of 6 tests.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|

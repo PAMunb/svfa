@@ -96,7 +96,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 |      Array      |  5/10   |  7/9   | 4  |   
 |      Basic      |  37/42  | 57/61  | 1  |  
 |   Collection    |  4/14   |  4/14  | 0  | 
-|  DataStructure  |   0/6   |  4/5   | 1  |  
+|  DataStructure  |   4/6   |  4/5   | 1  |  
 |     Factory     |   0/3   |  3/3   | 1  |  
 |      Inter      |  0/14   | 12/16  | 0  |  
 |    ~~Pred~~     | ~~0/9~~ |   -    | -  |

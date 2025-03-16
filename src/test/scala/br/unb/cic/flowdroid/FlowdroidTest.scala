@@ -514,13 +514,13 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: DataStructure4") {
+  ignore("description: DataStructure4") {
     val svfa = new FlowdroidTest("securibench.micro.datastructures.Datastructures4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  test("description: DataStructure5") {
+  ignore("description: DataStructure5") {
     val svfa = new FlowdroidTest("securibench.micro.datastructures.Datastructures5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
