@@ -112,7 +112,7 @@
 |     TOTAL      |    5     |   5    |  4/6   |  4  |  1  |   0.80    |  0.80  |  0.80   |
 
 
-- **FactoryTest** - failed: 0, passed: 2, ignored: 1 of 3 tests.
+- **FactoryTest** - failed: 1, passed: 2, ignored: 0 of 3 tests.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
