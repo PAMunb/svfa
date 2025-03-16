@@ -88,20 +88,23 @@ To have detailed information about each group of tests run, [see here.](old-metr
 
 #### JSVFA 2.0 metrics
 
-> failed: 0, passed: 70, ignored: 32 of 102 tests
+> failed: 0, passed: 0, ignored: 0 of 103 tests
 
-|     Test      |   TP   | FP  | 
-|:-------------:|:------:|:---:|
-|   Aliasing    |  4/11  |  0  |   
-|     Array     |  7/9   |  4  |   
-|     Basic     | 57/59  |  1  |  
-|  Collection   |  4/14  |  0  | 
-| DataStructure |  4/5   |  1  |  
-|    Factory    |  3/3   |  1  |  
-|     Inter     | 12/16  |  0  |  
-|    Session    |  0/3   |  0  |  
-| StrongUpdate  |  1/1   |  2  |   
-|   **TOTAL**   | 92/121 |  9  |       
+|      Test       |    Σ    |   TP   | FP |
+|:---------------:|:-------:|:------:|:--:|
+|    Aliasing     |   0/6   |  4/11  |  0 |    
+|      Array      |  0/10   |  7/9   | 4  |   
+|      Basic      |  0/42   | 57/61  | 1  |  
+|   Collection    |  0/14   |  4/14  | 0  | 
+|  DataStructure  |   0/6   |  4/5   | 1  |  
+|     Factory     |   0/3   |  3/3   | 1  |  
+|      Inter      |  0/14   | 12/16  | 0  |  
+|    ~~Pred~~     | ~~0/9~~ |   -    | -  |
+| ~~Reflection~~  | ~~0/4~~ |   -    | -  |
+| ~~Sanitizers~~  | ~~0/6~~ |   -    | -  |
+|     Session     |   0/3   |  0/3   | 0  | 
+|  StrongUpdate   |   0/5   |  1/1   | 2  |   
+|    **TOTAL**    |  0/103  | 92/123 | 9  |     
 
 - **Precision:** 0.91
 - **Recall:** 0.76
