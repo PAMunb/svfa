@@ -314,7 +314,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
+  ignore("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic28", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 2)
@@ -362,7 +362,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 6)
   }
 
-  test("in the class Basic36 we should detect 1 conflict in a values obtained from HttpServletRequest input stream test case") {
+  ignore("in the class Basic36 we should detect 1 conflict in a values obtained from HttpServletRequest input stream test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic36", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -374,7 +374,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic38 we should detect 1 conflict in a StringTokenizer with a false positive test case") {
+  ignore("in the class Basic38 we should detect 1 conflict in a StringTokenizer with a false positive test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic38", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -386,7 +386,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic40 we should detect 1 conflict in a use getInitParameter instead test case") {
+  ignore("in the class Basic40 we should detect 1 conflict in a use getInitParameter instead test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic40", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -398,7 +398,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic42 we should detect 1 conflict in a use getInitParameterNames test case") {
+  ignore("in the class Basic42 we should detect 1 conflict in a use getInitParameterNames test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic42", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)

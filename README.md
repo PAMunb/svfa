@@ -94,7 +94,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 |:---------------:|:-------:|:------:|:--:|
 |    Aliasing     |   4/6   |  4/11  | 0  |    
 |      Array      |  5/10   |  7/9   | 4  |   
-|      Basic      |  0/42   | 57/61  | 1  |  
+|      Basic      |  37/42  | 57/61  | 1  |  
 |   Collection    |  0/14   |  4/14  | 0  | 
 |  DataStructure  |   0/6   |  4/5   | 1  |  
 |     Factory     |   0/3   |  3/3   | 1  |  
