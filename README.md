@@ -67,23 +67,24 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 
 |      Test       |    Σ    |   TP   | FP |
 |:---------------:|:-------:|:------:|:--:|
-|    Aliasing     |   0/6   | 10/11  | 0  |   
-|      Array      |  0/10   |  0/9   | 0  | 
-|      Basic      |  0/42   | 56/61  | 2  |  
-|   Collection    |  0/14   |  2/14  | 1  |
-|  DataStructure  |   0/6   |  5/5   | 2  | 
-|     Factory     |   0/3   |  3/3   | 1  |  
-|      Inter      |  0/14   | 10/16  | 0  | 
+|    Aliasing     |   5/6   | 10/11  | 0  |   
+|      Array      |  1/10   |  0/9   | 0  | 
+|      Basic      |  35/42  | 56/61  | 2  |  
+|   Collection    |  2/14   |  2/14  | 1  |
+|  DataStructure  |   4/6   |  5/5   | 2  | 
+|     Factory     |   2/3   |  3/3   | 1  |  
+|      Inter      |  8/14   | 10/16  | 0  | 
 |    ~~Pred~~     | ~~0/9~~ |   -    | -  |
 | ~~Reflection~~  | ~~0/4~~ |   -    | -  |
 | ~~Sanitizers~~  | ~~0/6~~ |   -    | -  |
 |     Session     |   0/3   |  0/3   | 0  | 
-|  StrongUpdate   |   0/5   |  0/1   | 0  |
-|    **TOTAL**    |  0/103  | 86/123 | 6  |
+|  StrongUpdate   |   4/5   |  0/1   | 0  |
+|    **TOTAL**    | 61/103  | 86/123 | 6  |
 
 - **Precision:** 
 - **Recall:** 
 - **F-score:** 
+- **Pass Rate:** 59.22%
 
 To have detailed information about each group of tests run, [see here.](old-metrics)
 
