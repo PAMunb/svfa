@@ -76,11 +76,11 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 |     Inter     | 10/16  | 0  |  
 |    Session    |  0/3   | 0  |  
 | StrongUpdate  |  0/1   | 0  |   
-|   **TOTAL**   | 86/121 | 6  |
+|   **TOTAL**   | 86/123 | 6  |
 
-- **Precision:** 0.93
-- **Recall:** 0.71
-- **F-score:** 0.81
+- **Precision:** 
+- **Recall:** 
+- **F-score:** 
 
 To have detailed information about each group of tests run, [see here.](old-metrics)
 
