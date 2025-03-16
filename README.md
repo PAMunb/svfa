@@ -61,25 +61,28 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 
 #### JSVFA metrics (old)
 
-> failed: 0, passed: 63, ignored: 39 of 102 tests.
+> failed: 0, passed: 63, ignored: 39 of 103 tests.
 
-|     Test      |   TP   | FP |
-|:-------------:|:------:|:--:|
-|   Aliasing    | 10/11  | 0  |   
-|     Array     |  0/9   | 0  |   
-|     Basic     | 56/59  | 2  |  
-|  Collection   |  2/14  | 1  |
-| DataStructure |  5/5   | 2  |
-|    Factory    |  3/3   | 1  |  
-|     Inter     | 10/16  | 0  |  
-|    Session    |  0/3   | 0  |  
-| StrongUpdate  |  0/1   | 0  |   
-|   **TOTAL**   | 86/121 | 6  |
+|      Test       |    Σ    |   TP   | FP |
+|:---------------:|:-------:|:------:|:--:|
+|    Aliasing     |   5/6   | 10/11  | 0  |   
+|      Array      |  1/10   |  0/9   | 0  | 
+|      Basic      |  35/42  | 56/61  | 2  |  
+|   Collection    |  2/14   |  2/14  | 1  |
+|  DataStructure  |   4/6   |  5/5   | 2  | 
+|     Factory     |   2/3   |  3/3   | 1  |  
+|      Inter      |  8/14   | 10/16  | 0  | 
+|    ~~Pred~~     | ~~0/9~~ |   -    | -  |
+| ~~Reflection~~  | ~~0/4~~ |   -    | -  |
+| ~~Sanitizers~~  | ~~0/6~~ |   -    | -  |
+|     Session     |   0/3   |  0/3   | 0  | 
+|  StrongUpdate   |   4/5   |  0/1   | 0  |
+|    **TOTAL**    | 61/103  | 86/123 | 6  |
 
 - **Precision:** 0.93
-- **Recall:** 0.71
-- **F-score:** 0.81
-- **Pass Rate:** 61.76%
+- **Recall:** 0.70
+- **F-score:** 0.80
+- **Pass Rate:** 59.22%
 
 To have detailed information about each group of tests run, [see here.](old-metrics) (*computed in in March, 2023.*)
 
