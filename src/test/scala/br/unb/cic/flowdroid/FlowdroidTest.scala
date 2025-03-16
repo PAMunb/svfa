@@ -312,7 +312,7 @@ class FlowdroidTestSuite extends FunSuite {
   test("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic28", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    assert(svfa.reportConflictsSVG().size == 2)
   }
 
   test("in the class Basic29 we should detect 2 conflicts in a recursive data structures test case") {
@@ -377,6 +377,12 @@ class FlowdroidTestSuite extends FunSuite {
 
   test("in the class Basic39 we should detect 1 conflict in a StringTokenizer test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic39", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  ignore("in the class Basic40 we should detect 1 conflict in a use getInitParameter instead test case") {
+    val svfa = new FlowdroidTest("securibench.micro.basic.Basic40", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }

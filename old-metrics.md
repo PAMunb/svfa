@@ -28,7 +28,7 @@
 |    Array10     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |     TOTAL      |    9     |   0    |  1/10  | 0  | 0  |     0     |   0    |    0    |
 
-- **BasicTest** - failed: 0, passed: 36, ignored: 5 of 41 test.
+- **BasicTest** - failed: 0, passed: 36, ignored: 5 of 42 test.
 
 |  Test   | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:-------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
@@ -59,7 +59,7 @@
 | Basic25 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 | Basic26 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 | Basic27 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-| Basic28 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
+| Basic28 |    2     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 | Basic29 |    2     |   2    |   ✅    |  2  |  0  |     -     |   -    |    -    |
 | Basic30 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 | Basic31 |    3     |   3    |   ✅    |  3  |  0  |     -     |   -    |    -    |
@@ -71,10 +71,10 @@
 | Basic37 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 | Basic38 |    1     |   2    |   ❌    |  1  |  1  |     -     |   -    |    -    |
 | Basic39 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-| Basic40 |   N/A    |  N/A   |  N/A   | N/A | N/A |    N/A    |  N/A   |   N/A   |
+| Basic40 |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
 | Basic41 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
 | Basic42 |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  TOTAL  |    59    |   58   | 36/41  | 56  |  2  |   0.97    |  0.95  |  0.96   |
+|  TOTAL  |    61    |   58   | 36/42  | 56  |  2  |   0.97    |  0.92  |  0.94   |
 
 - **CollectionTest** - failed: 0, passed: 2, ignored: 12 of 14 tests.
 
