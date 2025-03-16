@@ -12,7 +12,7 @@
 |   Aliasing6    |    7     |   1    |   ❌    |  1  |  0  |     -     |   -    |    -    |
 |     TOTAL      |    11    |   4    |  4/6   |  4  |  0  |   1.00    |  0.36  |  0.53   |
 
-- **ArraysTest** - failed: 0, passed: 5, ignored: 5 of 10 test.
+- **ArraysTest** - failed: 5, passed: 5, ignored: 0 of 10 test.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
