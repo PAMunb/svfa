@@ -1,6 +1,6 @@
 #### JSVFA metrics
 
-- **AliasingTest** - failed: 0, passed: 4, ignored: 2 of 6 test.
+- **AliasingTest** - failed: 2, passed: 4, ignored: 0 of 6 test.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|

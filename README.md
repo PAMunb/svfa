@@ -92,7 +92,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 
 |      Test       |    Σ    |   TP   | FP |
 |:---------------:|:-------:|:------:|:--:|
-|    Aliasing     |   0/6   |  4/11  |  0 |    
+|    Aliasing     |   4/6   |  4/11  | 0  |    
 |      Array      |  0/10   |  7/9   | 4  |   
 |      Basic      |  0/42   | 57/61  | 1  |  
 |   Collection    |  0/14   |  4/14  | 0  | 

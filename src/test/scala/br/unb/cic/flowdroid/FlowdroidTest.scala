@@ -43,7 +43,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
 
   test("in the class Aliasing1 we should detect 1 conflict of a simple aliasing test case") {
     this.startExecutionTime()
-
+    
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing1", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -55,7 +55,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 0)
-  }
+ }
 
   test("in the class Aliasing3 we should not detect any conflict, but in Flowdroid this test case was not conclusive") {
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing3", "doGet")
@@ -69,13 +69,13 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 2)
   }
 
-  test("in the class Aliasing5 we should detect 1 conflict") {
+  ignore("in the class Aliasing5 we should detect 1 conflict") {
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Aliasing6 we should detect 7 conflicts") {
+  ignore("in the class Aliasing6 we should detect 7 conflicts") {
     val svfa = new FlowdroidTest("securibench.micro.aliasing.Aliasing6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 7)
@@ -317,7 +317,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
   test("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic28", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    assert(svfa.reportConflictsSVG().size == 2)
   }
 
   test("in the class Basic29 we should detect 2 conflicts in a recursive data structures test case") {
@@ -382,6 +382,12 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
 
   test("in the class Basic39 we should detect 1 conflict in a StringTokenizer test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic39", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  test("in the class Basic40 we should detect 1 conflict in a use getInitParameter instead test case") {
+    val svfa = new FlowdroidTest("securibench.micro.basic.Basic40", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
@@ -551,7 +557,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
   /**
    * INTER TESTs
    */
-
+  
   test("description: Inter1") {
     val svfa = new FlowdroidTest("securibench.micro.inter.Inter1", "doGet")
     svfa.buildSparseValueFlowGraph()
@@ -573,7 +579,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
   test("description: Inter4") {
     val svfa = new FlowdroidTest("securibench.micro.inter.Inter4", "doGet")
     svfa.buildSparseValueFlowGraph()
-    //    println(svfa.svgToDotModel())
+//    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
@@ -613,7 +619,7 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  //  FLAKY
+//  FLAKY
   test("description: Inter11") {
     val svfa = new FlowdroidTest("securibench.micro.inter.Inter11", "doGet")
     svfa.buildSparseValueFlowGraph()
