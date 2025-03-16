@@ -78,7 +78,7 @@
 |     TOTAL      |    61    |   58   | 37/42  | 57 |  1  |   0.98    |  0.97  |  0.97   |
 
 
-- **CollectionTest** - failed: 0, passed: 4, ignored: 10 of 14 tests.
+- **CollectionTest** - failed: 10, passed: 4, ignored: 0 of 14 tests.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
