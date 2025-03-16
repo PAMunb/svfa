@@ -69,7 +69,7 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 |:-------------:|:------:|:--:|
 |   Aliasing    | 10/11  | 0  |   
 |     Array     |  0/9   | 0  |   
-|     Basic     | 56/59  | 2  |  
+|     Basic     | 56/61  | 2  |  
 |  Collection   |  2/14  | 1  |
 | DataStructure |  5/5   | 2  | 
 |    Factory    |  3/3   | 1  |  
