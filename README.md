@@ -81,9 +81,9 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 |  StrongUpdate   |   4/5   |  0/1   | 0  |
 |    **TOTAL**    | 61/103  | 86/123 | 6  |
 
-- **Precision:** 
-- **Recall:** 
-- **F-score:** 
+- **Precision:** 0.93
+- **Recall:** 0.70
+- **F-score:** 0.80
 - **Pass Rate:** 59.22%
 
 To have detailed information about each group of tests run, [see here.](old-metrics)
