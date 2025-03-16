@@ -63,20 +63,23 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 
 ## TEST METRICS
 
-> failed: 0, passed: 63, ignored: 39 of 102 tests.
+> failed: 0, passed: 63, ignored: 39 of 103 tests.
 
-|     Test      |   TP   | FP | 
-|:-------------:|:------:|:--:|
-|   Aliasing    | 10/11  | 0  |   
-|     Array     |  0/9   | 0  |   
-|     Basic     | 56/61  | 2  |  
-|  Collection   |  2/14  | 1  |
-| DataStructure |  5/5   | 2  | 
-|    Factory    |  3/3   | 1  |  
-|     Inter     | 10/16  | 0  |  
-|    Session    |  0/3   | 0  |  
-| StrongUpdate  |  0/1   | 0  |   
-|   **TOTAL**   | 86/123 | 6  |
+|      Test       |    Σ    |   TP   | FP |
+|:---------------:|:-------:|:------:|:--:|
+|    Aliasing     |   0/6   | 10/11  | 0  |   
+|      Array      |  0/10   |  0/9   | 0  | 
+|      Basic      |  0/42   | 56/61  | 2  |  
+|   Collection    |  0/14   |  2/14  | 1  |
+|  DataStructure  |   0/6   |  5/5   | 2  | 
+|     Factory     |   0/3   |  3/3   | 1  |  
+|      Inter      |  0/14   | 10/16  | 0  | 
+|    ~~Pred~~     | ~~0/9~~ |   -    | -  |
+| ~~Reflection~~  | ~~0/4~~ |   -    | -  |
+| ~~Sanitizers~~  | ~~0/6~~ |   -    | -  |
+|     Session     |   0/3   |  0/3   | 0  | 
+|  StrongUpdate   |   0/5   |  0/1   | 0  |
+|    **TOTAL**    |  0/103  | 86/123 | 6  |
 
 - **Precision:** 
 - **Recall:** 
