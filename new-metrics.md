@@ -153,7 +153,7 @@
 |     TOTAL      |    3     |   0    |  0/3   |  0  |  0  |     0     |   0    |    0    |
 
 
-- **StrongUpdateTest** - failed: 0, passed: 3, ignored: 2 of 5 tests.
+- **StrongUpdateTest** - failed: 2, passed: 3, ignored: 0 of 5 tests.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|

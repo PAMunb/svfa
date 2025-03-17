@@ -103,7 +103,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 | ~~Reflection~~  | ~~0/4~~ |   -    | -  |
 | ~~Sanitizers~~  | ~~0/6~~ |   -    | -  |
 |     Session     |   0/3   |  0/3   | 0  | 
-|  StrongUpdate   |   0/5   |  1/1   | 2  |   
+|  StrongUpdate   |   3/5   |  1/1   | 2  |   
 |    **TOTAL**    |  0/103  | 92/123 | 9  |     
 
 - **Precision:** 0.91
