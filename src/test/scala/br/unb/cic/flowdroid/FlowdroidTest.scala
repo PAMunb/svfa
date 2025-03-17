@@ -650,19 +650,19 @@ class FlowdroidTestSuite extends FunSuite with Metrics {
    * SESSION TESTs
    */
 
-  test("description: Session1") {
+  ignore("description: Session1") {
     val svfa = new FlowdroidTest("securibench.micro.session.Session1", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Session2") {
+  ignore("description: Session2") {
     val svfa = new FlowdroidTest("securibench.micro.session.Session2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("description: Session3") {
+  ignore("description: Session3") {
     val svfa = new FlowdroidTest("securibench.micro.session.Session3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)

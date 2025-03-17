@@ -143,7 +143,7 @@
 |     TOTAL      |    16    |   12   | 10/14  | 12  |  0  |   1.00    |  0.75  |  0.86   |
 
 
-- **SessionTest** - failed: 0, passed: 0, ignored: 3 of 3 tests.
+- **SessionTest** - failed: 3, passed: 0, ignored: 0 of 3 tests.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
