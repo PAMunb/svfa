@@ -122,7 +122,7 @@
 |     TOTAL      |    3     |   4    |  2/3   |  3  |  1  |   0.75    |  1.00  |  0.86   |
 
 
-- **InterTest** - failed: 0, passed:10, ignored: 4 of 14 tests
+- **InterTest** - failed: 4, passed:10, ignored: 0 of 14 tests
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
