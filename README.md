@@ -88,7 +88,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 
 #### JSVFA 2.0 metrics
 
-> failed: 0, passed: 0, ignored: 0 of 103 tests
+> failed: 34, passed: 69, ignored: 0 of 103 tests
 
 |      Test       |    Σ    |   TP   | FP |
 |:---------------:|:-------:|:------:|:--:|
@@ -98,18 +98,18 @@ To have detailed information about each group of tests run, [see here.](old-metr
 |   Collection    |  4/14   |  4/14  | 0  | 
 |  DataStructure  |   4/6   |  4/5   | 1  |  
 |     Factory     |   2/3   |  3/3   | 1  |  
-|      Inter      |  4/14   | 12/16  | 0  |  
+|      Inter      |  10/14  | 12/16  | 0  |  
 |    ~~Pred~~     | ~~0/9~~ |   -    | -  |
 | ~~Reflection~~  | ~~0/4~~ |   -    | -  |
 | ~~Sanitizers~~  | ~~0/6~~ |   -    | -  |
 |     Session     |   0/3   |  0/3   | 0  | 
 |  StrongUpdate   |   3/5   |  1/1   | 2  |   
-|    **TOTAL**    |  0/103  | 92/123 | 9  |     
+|    **TOTAL**    | 69/103  | 92/123 | 9  |     
 
 - **Precision:** 0.91
-- **Recall:** 0.76
-- **F-score:** 0.83
-- **Pass Rate:** 68.62%
+- **Recall:** 0.75
+- **F-score:** 0.82
+- **Pass Rate:** 66.99%
 
 To have detailed information about each group of tests run, [see here.](new-metrics)
 
