@@ -30,6 +30,7 @@
 | StrongUpdate  |    1     | 0      | 0  | 0  |     0     |   0    |    0    |
 |   **TOTAL**   |   123    | 92     | 86 | 6  |   0.93    |  0.70  |  0.80   |
 
+> Details
 
 - **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
 
