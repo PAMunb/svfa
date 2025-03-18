@@ -15,6 +15,22 @@
 | StrongUpdate  |    5     |   4    |   1    |    80%    |       
 |   **TOTAL**   |   103    |   61   |   42   |  59.22%   |
 
+> Metrics for Precision, Recall and F-score.
+
+|     Test      | Expected | Actual | TP | FP | Precision | Recall | F-score |
+|:-------------:|:--------:|:-------|:--:|:--:|:---------:|:------:|:-------:|
+|   Aliasing    |    11    | 10     | 10 | 0  |   1.00    |  0.91  |  0.95   |
+|     Array     |    9     | 0      | 0  | 0  |     0     |   0    |    0    |
+|     Basic     |    61    | 58     | 56 | 2  |   0.97    |  0.92  |  0.94   |
+|  Collection   |    14    | 3      | 2  | 1  |   0.67    |  0.14  |  0.24   |
+| DataStructure |    5     | 7      | 5  | 2  |   0.71    |  1.00  |  0.83   |
+|    Factory    |    3     | 4      | 3  | 1  |   0.75    |  1.00  |  0.86   |
+|     Inter     |    16    | 10     | 10 | 0  |   1.00    |  0.63  |  0.77   |
+|    Session    |    3     | 0      | 0  | 0  |     0     |   0    |    0    |
+| StrongUpdate  |    1     | 0      | 0  | 0  |     0     |   0    |    0    |
+|   **TOTAL**   |   123    | 92     | 86 | 6  |   0.93    |  0.70  |  0.80   |
+
+
 - **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
 
 |      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
