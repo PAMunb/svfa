@@ -1,5 +1,20 @@
 #### JSVFA old metrics
 
+> Metrics for Pass Rate
+
+|     Test      | Expected | Passed | Failed | Pass Rate |
+|:-------------:|:--------:|:------:|:------:|:---------:|
+|   Aliasing    |    6     |   5    |   1    |  83.33%   |    
+|     Array     |    10    |   1    |   9    |    10%    |    
+|     Basic     |    42    |   35   |   7    |  83.33%   |      
+|  Collection   |    14    |   2    |   12   |  14.29%   |    
+| DataStructure |    6     |   4    |   2    |  66.67%   |      
+|    Factory    |    3     |   2    |   1    |  66.67%   |    
+|     Inter     |    14    |   8    |   6    |  57.14%   |     
+|    Session    |    3     |   0    |   3    |    0%     |      
+| StrongUpdate  |    5     |   4    |   1    |    80%    |       
+|   **TOTAL**   |   103    |   61   |   42   |  59.22%   |
+
 - **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
 
 |      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
