@@ -1,5 +1,37 @@
 #### JSVFA metrics
 
+> Metrics for Pass Rate
+
+|     Test      | Expected | Passed | Failed | Pass Rate |
+|:-------------:|:--------:|:------:|:------:|:---------:|
+|   Aliasing    |    6     |   0    |   0    |    0%     |    
+|     Array     |    10    |   0    |   0    |    0%     |   
+|     Basic     |    42    |   0    |   0    |    0%     |      
+|  Collection   |    14    |   0    |   0    |    0%     |   
+| DataStructure |    6     |   0    |   0    |    0%     |    
+|    Factory    |    3     |   0    |   0    |    0%     |    
+|     Inter     |    14    |   0    |   0    |    0%     |     
+|    Session    |    3     |   0    |   0    |    0%     |      
+| StrongUpdate  |    5     |   0    |   0    |    0%     |       
+|   **TOTAL**   |   103    |   0    |   0    |    0%     |
+
+> Metrics for Precision, Recall and F-score.
+
+|     Test      | Expected | Actual | TP | FP | Precision | Recall | F-score |
+|:-------------:|:--------:|:-------|:--:|:--:|:---------:|:------:|:-------:|
+|   Aliasing    |    11    | 0      | 0  | 0  |     0     |   0    |    0    |
+|     Array     |    9     | 0      | 0  | 0  |     0     |   0    |    0    |
+|     Basic     |    61    | 0      | 0  | 0  |     0     |   0    |    0    |
+|  Collection   |    14    | 0      | 0  | 0  |     0     |   0    |    0    |
+| DataStructure |    5     | 0      | 0  | 0  |     0     |   0    |    0    |
+|    Factory    |    3     | 0      | 0  | 0  |     0     |   0    |    0    |
+|     Inter     |    16    | 0      | 0  | 0  |     0     |   0    |    0    |
+|    Session    |    3     | 0      | 0  | 0  |     0     |   0    |    0    |
+| StrongUpdate  |    1     | 0      | 0  | 0  |     0     |   0    |    0    |
+|   **TOTAL**   |   123    | 0      | 0  | 0  |     0     |   0    |    0    |
+
+> Details
+
 - **AliasingTest** - failed: 2, passed: 4, ignored: 0 of 6 test.
 
 |      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
