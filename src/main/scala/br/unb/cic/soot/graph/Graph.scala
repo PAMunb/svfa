@@ -122,7 +122,11 @@ case class StringLabel(label: String) extends EdgeLabel {
   override val labelType: LabelType = SimpleLabel
 }
 
-case class ContextSensitiveRegion(statement: Statement, calleeMethod: String, context: Set[String])
+case class ContextSensitiveRegion(
+    statement: Statement,
+    calleeMethod: String,
+    context: Set[String]
+)
 
 case class CallSiteLabel(
     csRegion: ContextSensitiveRegion,
@@ -484,8 +488,8 @@ class Graph() {
     })
 
     // check if there path has only one context
-    if (! isValidContext(csOpen, csClose)) {
-        return false
+    if (!isValidContext(csOpen, csClose)) {
+      return false
     }
 
     // Get all the cs) without a (cs
@@ -511,7 +515,10 @@ class Graph() {
     return validCS
   }
 
-  def isValidContext(csOpen: List[CallSiteLabel], csClose: List[CallSiteLabel]): Boolean = {
+  def isValidContext(
+      csOpen: List[CallSiteLabel],
+      csClose: List[CallSiteLabel]
+  ): Boolean = {
     var cs: Set[String] = Set()
 
     val csOpenAndClose = csOpen ++ csClose
@@ -525,7 +532,8 @@ class Graph() {
     cs.size <= 1
   }
 
-  def nodes(): scala.collection.Set[GraphNode] = graph.nodes.map(node => node.toOuter).toSet
+  def nodes(): scala.collection.Set[GraphNode] =
+    graph.nodes.map(node => node.toOuter).toSet
 
   def edges(): scala.collection.Set[GraphEdge] = graph.edges
     .map(edge => {
@@ -609,9 +617,14 @@ class Graph() {
         "\"" + e.from.show() + "\"" + " -> " + "\"" + e.to.show() + "\""
       var l = e.label
       val label: String = e.label match {
-        case c: CallSiteLabel =>  {
-          if (c.labelType == CallSiteOpenLabel) { s"""[label="CS([${ if (c.value.context.nonEmpty) c.value.context.head }]"]""" }
-          else { s"""[label="CS)[${ if (c.value.context.nonEmpty) c.value.context.head }]"]""" }
+        case c: CallSiteLabel => {
+          if (c.labelType == CallSiteOpenLabel) {
+            s"""[label="CS([${if (c.value.context.nonEmpty)
+                c.value.context.head}]"]"""
+          } else {
+            s"""[label="CS)[${if (c.value.context.nonEmpty)
+                c.value.context.head}]"]"""
+          }
 //          if (c.labelType == CallSiteOpenLabel) { s"""[label="CS(${c.value.statement.stmt} [${c.value.context.head}]"]""" }
 //          else { s"""[label="CS)${c.value.statement.stmt} [${c.value.context.head}]"]""" }
         }
