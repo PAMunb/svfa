@@ -131,6 +131,7 @@ To have detailed information about each group of tests run, [see here.](new-metr
 - **Precision:** 0.93
 - **Recall:** 0.97
 - **F-score:** 0.95
+- **Pass Rate:** 87.38%
 
 **OBSERVATIONS**
 - Flowdroid is not taking in count the TP expected in StrongUpdate4;
@@ -142,7 +143,7 @@ To have detailed information about each group of tests run, [see here.](new-metr
 |:----------:|:---------:|:------:|:-------:|----------:|
 |   JSVFA    |   0.93    |  0.71  |  0.81   |    61.76% | 
 | JSVFA 2.0  |   0.91    |  0.75  |  0.82   |    66.99% | 
-| FlowDroid  |   0.93    |  0.94  |  0.94   |    87.38% | 
+| FlowDroid  |   0.93    |  0.97  |  0.95   |    87.38% | 
 |   Joana    |   0.86    |  0.74  |  0.79   |    69.90% | 
 
 ### Taintbench: (WIP) 
