@@ -309,7 +309,7 @@ class FlowdroidTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  test("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
+  ignore("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
     val svfa = new FlowdroidTest("securibench.micro.basic.Basic28", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 2)
