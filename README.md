@@ -63,7 +63,7 @@ This project use some of the [FlowDroid](https://github.com/secure-software-engi
 
 ## TEST METRICS
 
-> failed: 0, passed: 63, ignored: 39 of 103 tests.
+> failed: 0, passed: 61, ignored: 42 of 103 tests.
 
 |      Test       |    Σ    |   TP   | FP |
 |:---------------:|:-------:|:------:|:--:|
