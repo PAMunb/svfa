@@ -61,7 +61,7 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 
 #### JSVFA metrics (old)
 
-> failed: 0, passed: 63, ignored: 39 of 103 tests.
+> failed: 0, passed: 61, ignored: 42 of 103 tests.
 
 |      Test       |    Σ    |   TP   | FP |
 |:---------------:|:-------:|:------:|:--:|
