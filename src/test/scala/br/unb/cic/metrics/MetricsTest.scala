@@ -7,17 +7,18 @@ import org.scalatest.FunSuite
 class MetricsTest extends FunSuite with Metrics {
 
     test("metrics") {
-      val expected = 203
-      val actual = 41
+      val expected = 7
+      val actual = 1
 
       this.computeMetricsByResults(expected, actual)
     }
 
     test("computeMetricsByCriterions") {
-      val P = 186
-      val TP = 43
-      val FP = 14
+      val P = 0
+      val TP = 2
+      val FP = 2
+      val FN = 7
 
-      this.computeMetricsByCriterions(P, TP, FP)
+      this.computeMetricsByCriterions(TP, FP, FN)
     }
 }

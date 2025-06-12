@@ -10,30 +10,31 @@ trait Metrics {
   def computeMetricsByResults(expected: Int, actual: Int): Unit = {
     var TP = 0.0
     var FP = 0.0
-    var P = 0.0
+    var FN = 0.0
 
     // Compute expected and unexpected flows
-    P = expected
     if (actual > expected) {
-      TP = expected
-      FP = (actual - expected)
+      FP = actual - expected
+    }
+    else if (actual < expected){
+      FN = expected - actual
     }
     else {
-      TP = actual
+      TP = expected
     }
 
     // Compute Metrics
-    computeMetricsByCriterions(P,TP, FP)
+    computeMetricsByCriterions(TP, FP, FN)
   }
 
-  def computeMetricsByCriterions(P: Double, TP: Double, FP: Double): Unit = {
+  def computeMetricsByCriterions(TP: Double, FP: Double, FN: Double): Unit = {
     val precision = TP / (TP + FP)
-    val recall = TP / P
+    val recall = TP / (TP + FN)
     val fscore = (2 * precision * recall) / (precision + recall)
 
-    println(s"P: $P")
     println(s"TP: $TP")
     println(s"FP: $FP")
+    println(s"FP: $FN")
 
     println(f"precision: $precision%1.2f")
     println(f"recall: $recall%1.2f")
