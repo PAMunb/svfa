@@ -15,6 +15,14 @@
 | StrongUpdate  |    5     |   3    |   2    |    60%    |       
 |   **TOTAL**   |   103    |   69   |   34   |  66.99%   |
 
+> Pass Rate metric for additional (unused) tests.
+
+|     Test     | Expected | Passed | Failed | Pass Rate |
+|:------------:|:--------:|:------:|:------:|:---------:| 
+|    Pred~~    |    9     |   6    |   3    |  66.67%   |   
+| Reflection~~ |    4     |   2    |   2    |    50%    |   
+| Sanitizer~~  |    6     |   4    |   2    |  66.67%   |
+
 > Metrics for Precision, Recall and F-score.
 
 |     Test      | Expected | Actual | TP | FP | Precision | Recall | F-score |
