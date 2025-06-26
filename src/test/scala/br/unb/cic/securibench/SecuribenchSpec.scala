@@ -1,8 +1,8 @@
-package br.unb.cic.flowdroid
+package br.unb.cic.securibench
 
 import br.unb.cic.soot.JSVFATest
 
-abstract class FlowdroidSpec extends JSVFATest {
+abstract class SecuribenchSpec extends JSVFATest {
   val sinkList: Seq[String] = List(
     "<java.io.PrintWriter: void println(java.lang.String)>",
     "<java.io.PrintWriter: void println(java.lang.Object)>",
