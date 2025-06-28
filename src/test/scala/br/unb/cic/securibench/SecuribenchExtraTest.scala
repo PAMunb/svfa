@@ -88,4 +88,43 @@ class SecuribenchExtraTest extends FunSuite {
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
+
+  /**
+   * SANITIZERS TESTs
+   */
+  ignore("in the class Sanitizers1 we should detect 1 conflict(s) of a Sanitizers test case") {
+    val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers1", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  ignore("in the class Sanitizers2 we should detect 1 conflict(s) of a Sanitizers test case") {
+    val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers2", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  test("in the class Sanitizers3 we should detect 0 conflict(s) of a Sanitizers test case") {
+    val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers3", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 0)
+  }
+
+  ignore("in the class Sanitizers4 we should detect 2 conflict(s) of a Sanitizers test case") {
+    val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers4", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 2)
+  }
+
+  ignore("in the class Sanitizers5 we should detect 1 conflict(s) of a Sanitizers test case") {
+    val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers5", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  ignore("in the class Sanitizers6 we should detect 1 conflict(s) of a Sanitizers test case") {
+    val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers6", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
 }
