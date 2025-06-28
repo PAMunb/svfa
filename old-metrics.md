@@ -1,5 +1,15 @@
 #### JSVFA old metrics
 
+> Pass Rate metric for additional (unused) tests.
+
+|    Test    | Expected | Passed | Failed | Pass Rate |
+|:----------:|:--------:|:------:|:------:|:---------:| 
+|    Pred    |    9     |   6    |   3    |  66.67%   |   
+| Reflection |    4     |   0    |   4    |    0%     |   
+| Sanitizer  |    6     |   1    |   5    |  16.67%   |
+
+> Details
+
 - **AliasingTest** - failed: 0, passed: 5, ignored: 1 of 6 tests.
 
 |      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
