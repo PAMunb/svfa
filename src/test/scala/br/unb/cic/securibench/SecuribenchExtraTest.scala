@@ -61,4 +61,31 @@ class SecuribenchExtraTest extends FunSuite {
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
+
+  /**
+   * REFLECTION TESTs
+   */
+  ignore("in the class Refl1 we should detect 1 conflict(s) of a Reflection test case") {
+    val svfa = new SecuribenchTest("securibench.micro.reflection.Refl1", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  ignore("in the class Refl2 we should detect 1 conflict(s) of a Reflection test case") {
+    val svfa = new SecuribenchTest("securibench.micro.reflection.Refl2", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  ignore("in the class Refl3 we should detect 1 conflict(s) of a Reflection test case") {
+    val svfa = new SecuribenchTest("securibench.micro.reflection.Refl3", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  ignore("in the class Refl4 we should detect 1 conflict(s) of a Reflection test case") {
+    val svfa = new SecuribenchTest("securibench.micro.reflection.Refl4", "doGet")
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
 }
