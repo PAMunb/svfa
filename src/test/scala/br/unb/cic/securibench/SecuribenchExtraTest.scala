@@ -92,7 +92,7 @@ class SecuribenchExtraTest extends FunSuite {
   /**
    * SANITIZERS TESTs
    */
-  ignore("in the class Sanitizers1 we should detect 1 conflict(s) of a Sanitizers test case") {
+  test("in the class Sanitizers1 we should detect 1 conflict(s) of a Sanitizers test case") {
     val svfa = new SecuribenchTest("securibench.micro.sanitizers.Sanitizers1", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
