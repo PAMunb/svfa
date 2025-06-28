@@ -17,11 +17,11 @@
 
 > Pass Rate metric for additional (unused) tests.
 
-|     Test     | Expected | Passed | Failed | Pass Rate |
-|:------------:|:--------:|:------:|:------:|:---------:| 
-|    Pred~~    |    9     |   6    |   3    |  66.67%   |   
-| Reflection~~ |    4     |   2    |   2    |    50%    |   
-| Sanitizer~~  |    6     |   4    |   2    |  66.67%   |
+|    Test    | Expected | Passed | Failed | Pass Rate |
+|:----------:|:--------:|:------:|:------:|:---------:| 
+|    Pred    |    9     |   6    |   3    |  66.67%   |   
+| Reflection |    4     |   0    |   4    |    0%     |   
+| Sanitizer  |    6     |   2    |   4    |  33.33%   |
 
 > Metrics for Precision, Recall and F-score.
 
