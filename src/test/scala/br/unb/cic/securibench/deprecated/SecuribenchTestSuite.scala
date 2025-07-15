@@ -1,8 +1,7 @@
-package br.unb.cic.securibench
+package br.unb.cic.securibench.deprecated
 
-import br.unb.cic.soot.graph._
+import br.unb.cic.securibench.SecuribenchTest
 import org.scalatest.FunSuite
-import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
 class SecuribenchTestSuite extends FunSuite {
 
