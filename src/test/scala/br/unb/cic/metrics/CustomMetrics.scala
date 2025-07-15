@@ -1,95 +1,87 @@
 package br.unb.cic.metrics
+import scala.collection.mutable
 
 trait CustomMetrics {
 
-  var testName: String = ""
-  var truePositives: Int = 0
-  var falsePositives: Int = 0
-  var falseNegatives: Int = 0
-  var trueNegatives: Int = 0
-  var passedTests: Int = 0
-  var failedTests: Int = 0
-  var expected: Int = 0
-  var found: Int = 0
+  private val metricsByTest = mutable.Map[String, Metrics]()
 
-  def reportTruePositives(truePositives: Int): Unit = {
-    this.truePositives += truePositives
+  private def getOrCreateMetrics(testName: String): Metrics =
+    metricsByTest.getOrElseUpdate(testName, Metrics())
+
+  def reportTruePositives(testName: String, truePositives: Int): Unit = {
+    getOrCreateMetrics(testName).truePositives += truePositives
   }
 
-  def reportFalsePositives(falsePositives: Int): Unit = {
-    this.falsePositives += falsePositives
+  def reportFalsePositives(testName: String, falsePositives: Int): Unit = {
+    getOrCreateMetrics(testName).falsePositives += falsePositives
   }
 
-  def reportFalseNegatives(falseNegatives: Int): Unit = {
-    this.falseNegatives += falseNegatives
+  def reportFalseNegatives(testName: String, falseNegatives: Int): Unit = {
+    getOrCreateMetrics(testName).falseNegatives += falseNegatives
   }
 
-  def reportTrueNegatives(): Unit = {
-    this.trueNegatives += 1
+  def reportTrueNegatives(testName: String): Unit = {
+    getOrCreateMetrics(testName).trueNegatives += 1
   }
 
-  def reportPassedTest(): Unit = {
-    this.passedTests += 1
+  def reportPassedTest(testName: String): Unit = {
+    getOrCreateMetrics(testName).passedTests += 1
   }
 
-  def reportFailedTest(): Unit = {
-    this.failedTests += 1
+  def reportFailedTest(testName: String): Unit = {
+    getOrCreateMetrics(testName).failedTests += 1
   }
 
-  def reportExpected(expected: Int): Unit = {
-    this.expected += expected
+  def reportExpected(testName: String, expected: Int): Unit = {
+    getOrCreateMetrics(testName).expected += expected
   }
 
-  def reportFound(found: Int): Unit = {
-    this.found += found
-  }
-
-  def getTestName(): String = {
-    this.testName.split('.').last
+  def reportFound(testName: String, found: Int): Unit = {
+    getOrCreateMetrics(testName).found += found
   }
 
   def compute(expected: Int, found: Int, testName: String): Unit = {
-    this.testName = testName
-    this.reportExpected(expected)
-    this.reportFound(found)
-
+    reportExpected(testName, expected)
+    reportFound(testName, found)
     (expected, found) match {
       case (e, f) if e == f && e == 0 =>
-        this.reportPassedTest()
-        this.reportTrueNegatives()
+        reportPassedTest(testName)
+        reportTrueNegatives(testName)
       case (e, f) if e == f =>
-        this.reportPassedTest()
-        this.reportTruePositives(e)
+        reportPassedTest(testName)
+        reportTruePositives(testName, e)
       case (e, f) if f > e =>
-        this.reportFailedTest()
-        this.reportFalsePositives(f - e)
+        reportFailedTest(testName)
+        reportFalsePositives(testName, f - e)
       case (e, f) if e > f =>
-        this.reportFailedTest()
-        this.reportFalseNegatives(e - f)
+        reportFailedTest(testName)
+        reportFalseNegatives(testName, e - f)
     }
   }
 
-  def precision: Double = {
-    val denom = this.truePositives + this.falsePositives
+  def precision(testName: String): Double = {
+    val m = getOrCreateMetrics(testName)
+    val denom = m.truePositives + m.falsePositives
     val value = denom match {
       case 0 => 0.0
-      case d => (this.truePositives * 1.0) / d
+      case d => (m.truePositives * 1.0) / d
     }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def recall: Double = {
-    val denom = this.truePositives + this.falseNegatives
+  def recall(testName: String): Double = {
+    val m = getOrCreateMetrics(testName)
+    val denom = m.truePositives + m.falseNegatives
     val value = denom match {
       case 0 => 0.0
-      case d => (this.truePositives * 1.0) / d
+      case d => (m.truePositives * 1.0) / d
     }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def f1Score: Double = {
-    val p = precision
-    val r = recall
+  def f1Score(testName: String): Double = {
+    val p = precision(testName)
+    val r = recall(testName)
     val value = (p + r) match {
       case 0.0 => 0.0
       case s => 2 * (p * r) / s
@@ -97,26 +89,33 @@ trait CustomMetrics {
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def passRate: Double = {
-    val denom = this.passedTests + this.failedTests
+  def passRate(testName: String): Double = {
+    val m = getOrCreateMetrics(testName)
+    val denom = m.passedTests + m.failedTests
     val value = denom match {
       case 0 => 0.0
-      case d => (this.passedTests * 1.0) / d * 100
+      case d => (m.passedTests * 1.0) / d * 100
     }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def vulnerabilities: Int = this.expected
+  def vulnerabilities(testName: String): Int = getOrCreateMetrics(testName).expected
+  def vulnerabilitiesFound(testName: String): Int = getOrCreateMetrics(testName).found
 
-  def vulnerabilitiesFound: Int = this.found
+  def metricsFor(testName: String): Metrics = getOrCreateMetrics(testName)
 
-  def report(): Unit = {
+  def report(testName: String): Unit = {
+    val m = getOrCreateMetrics(testName)
     println("----------------------------------------------------------------------------------------------------------------")
-    println(s"Metrics for test: $getTestName")
-    println(s"failed = ${this.failedTests}, passed = ${this.passedTests} of = ${this.passedTests + this.failedTests} tests.")
-    println(s"Pass Rate = ${this.passRate}%")
-    println(s"Expecting ${this.vulnerabilities} of ${this.vulnerabilitiesFound} warnings.")
-    println(s"TP = ${this.truePositives} FP = ${this.falsePositives} FN = ${this.falseNegatives} TN = ${this.trueNegatives}")
-    println(s"Precision = ${this.precision}% Recall = ${this.recall}% F-score = ${this.f1Score}%")
+    println(s"Metrics for test: $testName")
+    println(s"failed = ${m.failedTests}, passed = ${m.passedTests} of = ${m.passedTests + m.failedTests} tests.")
+    println(s"Pass Rate = ${passRate(testName)}%")
+    println(s"Expecting ${vulnerabilities(testName)} of ${vulnerabilitiesFound(testName)} warnings.")
+    println(s"TP = ${m.truePositives} FP = ${m.falsePositives} FN = ${m.falseNegatives} TN = ${m.trueNegatives}")
+    println(s"Precision = ${precision(testName)}% Recall = ${recall(testName)}% F-score = ${f1Score(testName)}%")
+  }
+
+  def reportAll(): Unit = {
+    metricsByTest.keys.foreach(report)
   }
 }
