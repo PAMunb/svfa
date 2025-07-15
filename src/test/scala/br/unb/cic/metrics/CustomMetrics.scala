@@ -145,43 +145,36 @@ trait CustomMetrics {
   }
 
   def reportSummary(): Unit = {
-    val total = metricsByTest.values.foldLeft(Metrics()) { (acc, m) =>
-      acc.truePositives += m.truePositives
-      acc.falsePositives += m.falsePositives
-      acc.falseNegatives += m.falseNegatives
-      acc.trueNegatives += m.trueNegatives
-      acc.passedTests += m.passedTests
-      acc.failedTests += m.failedTests
-      acc.expected += m.expected
-      acc.found += m.found
-      acc
+    val header = "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |"
+    val sep    = "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|"
+    println(header)
+    println(sep)
+    var totalFound = 0
+    var totalExpected = 0
+    var totalPassed = 0
+    var totalTests = 0
+    var totalTP = 0
+    var totalFP = 0
+    var totalFN = 0
+    metricsByTest.foreach { case (testName, m) =>
+      val status = s"${m.passedTests}/${m.passedTests + m.failedTests}"
+      val prec = precision(testName)
+      val rec = recall(testName)
+      val f1 = f1Score(testName)
+      val shortTestName = testName.split('.').last.padTo(14, ' ')
+      println(f"| $shortTestName| ${m.found}%5d | ${m.expected}%8d | ${status}%6s | ${m.truePositives}%2d | ${m.falsePositives}%2d | ${m.falseNegatives}%3d | ${prec}%9.2f | ${rec}%6.2f | ${f1}%7.2f |")
+      totalFound += m.found
+      totalExpected += m.expected
+      totalPassed += m.passedTests
+      totalTests += m.passedTests + m.failedTests
+      totalTP += m.truePositives
+      totalFP += m.falsePositives
+      totalFN += m.falseNegatives
     }
-    val denomPrecision = total.truePositives + total.falsePositives
-    val precision = denomPrecision match {
-      case 0 => 0.0
-      case d => (total.truePositives * 1.0) / d
-    }
-    val denomRecall = total.truePositives + total.falseNegatives
-    val recall = denomRecall match {
-      case 0 => 0.0
-      case d => (total.truePositives * 1.0) / d
-    }
-    val f1 = (precision + recall) match {
-      case 0.0 => 0.0
-      case s => 2 * (precision * recall) / s
-    }
-    val denomPassRate = total.passedTests + total.failedTests
-    val passRate = denomPassRate match {
-      case 0 => 0.0
-      case d => (total.passedTests * 1.0) / d * 100
-    }
-    println("================================================================================================================")
-    println("Summary of all metrics:")
-    println(s"Total failed = ${total.failedTests}, passed = ${total.passedTests} of = ${total.passedTests + total.failedTests} tests.")
-    println(f"Total Pass Rate = ${BigDecimal(passRate).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f%%")
-    println(s"Total Expecting ${total.expected} of ${total.found} warnings.")
-    println(s"Total TP = ${total.truePositives} FP = ${total.falsePositives} FN = ${total.falseNegatives} TN = ${total.trueNegatives}")
-    println(f"Total Precision = ${BigDecimal(precision).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f Recall = ${BigDecimal(recall).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f F-score = ${BigDecimal(f1).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f")
-    println("================================================================================================================")
+    val totalPrec = precision()
+    val totalRec = recall()
+    val totalF1 = f1Score()
+    val totalStatus = s"${totalPassed}/${totalTests}"
+    println(f"|     TOTAL      | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f |")
   }
 }
