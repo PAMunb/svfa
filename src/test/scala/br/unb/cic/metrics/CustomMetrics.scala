@@ -175,6 +175,6 @@ trait CustomMetrics {
     val totalRec = recall()
     val totalF1 = f1Score()
     val totalStatus = s"${totalPassed}/${totalTests}"
-    println(f"|     TOTAL      | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f |")
+    println(f"| TOTAL         | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f |")
   }
 }
