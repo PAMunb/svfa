@@ -118,4 +118,45 @@ trait CustomMetrics {
   def reportAll(): Unit = {
     metricsByTest.keys.foreach(report)
   }
+
+  def reportSummary(): Unit = {
+    val total = metricsByTest.values.foldLeft(Metrics()) { (acc, m) =>
+      acc.truePositives += m.truePositives
+      acc.falsePositives += m.falsePositives
+      acc.falseNegatives += m.falseNegatives
+      acc.trueNegatives += m.trueNegatives
+      acc.passedTests += m.passedTests
+      acc.failedTests += m.failedTests
+      acc.expected += m.expected
+      acc.found += m.found
+      acc
+    }
+    val denomPrecision = total.truePositives + total.falsePositives
+    val precision = denomPrecision match {
+      case 0 => 0.0
+      case d => (total.truePositives * 1.0) / d
+    }
+    val denomRecall = total.truePositives + total.falseNegatives
+    val recall = denomRecall match {
+      case 0 => 0.0
+      case d => (total.truePositives * 1.0) / d
+    }
+    val f1 = (precision + recall) match {
+      case 0.0 => 0.0
+      case s => 2 * (precision * recall) / s
+    }
+    val denomPassRate = total.passedTests + total.failedTests
+    val passRate = denomPassRate match {
+      case 0 => 0.0
+      case d => (total.passedTests * 1.0) / d * 100
+    }
+    println("================================================================================================================")
+    println("Summary of all metrics:")
+    println(s"Total failed = ${total.failedTests}, passed = ${total.passedTests} of = ${total.passedTests + total.failedTests} tests.")
+    println(f"Total Pass Rate = ${BigDecimal(passRate).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f%%")
+    println(s"Total Expecting ${total.expected} of ${total.found} warnings.")
+    println(s"Total TP = ${total.truePositives} FP = ${total.falsePositives} FN = ${total.falseNegatives} TN = ${total.trueNegatives}")
+    println(f"Total Precision = ${BigDecimal(precision).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f Recall = ${BigDecimal(recall).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f F-score = ${BigDecimal(f1).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble}%2.2f")
+    println("================================================================================================================")
+  }
 }
