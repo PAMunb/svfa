@@ -67,23 +67,27 @@ trait CustomMetrics {
 
   def precision: Double = {
     val denom = this.truePositives + this.falsePositives
-    if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+    val value = if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+    BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def recall: Double = {
     val denom = this.truePositives + this.falseNegatives
-    if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+    val value = if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+    BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def f1Score: Double = {
     val p = precision
     val r = recall
-    if (p + r == 0) 0.0 else 2 * (p * r) / (p + r)
+    val value = if (p + r == 0) 0.0 else 2 * (p * r) / (p + r)
+    BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def passRate: Double = {
     val denom = this.passedTests + this.failedTests
-    if (denom == 0) 0.0 else (this.passedTests * 1.0) / denom * 100
+    val value = if (denom == 0) 0.0 else (this.passedTests * 1.0) / denom * 100
+    BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def vulnerabilities: Int = this.expected
@@ -93,9 +97,9 @@ trait CustomMetrics {
   def report(): Unit = {
     println("----------------------------------------------------------------------------------------------------------------")
     println(s"failed = ${this.failedTests}, passed = ${this.passedTests} of = ${this.passedTests + this.failedTests} tests.")
-    println(f"Pass Rate = ${this.passRate}%.2f")
+    println(s"Pass Rate = ${this.passRate}%")
     println(s"Expecting ${this.vulnerabilities} of ${this.vulnerabilitiesFound} warnings.")
     println(s"TP = ${this.truePositives} FP = ${this.falsePositives} FN = ${this.falseNegatives} TN = ${this.trueNegatives}")
-    println(f"Precision = ${this.precision}%.2f Recall = ${this.recall}%.2f F-score = ${this.f1Score}%.2f")
+    println(s"Precision = ${this.precision}% Recall = ${this.recall}% F-score = ${this.f1Score}%")
   }
 }
