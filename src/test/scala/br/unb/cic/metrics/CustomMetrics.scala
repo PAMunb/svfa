@@ -47,22 +47,20 @@ trait CustomMetrics {
     this.reportExpected(expected)
     this.reportFound(found)
 
-    if (expected == found) {
-      this.reportPassedTest()
-      if (expected == 0) {
+    (expected, found) match {
+      case (e, f) if e == f && e == 0 =>
+        this.reportPassedTest()
         this.reportTrueNegatives()
-        return
-      }
-      this.reportTruePositives(expected)
-      return
+      case (e, f) if e == f =>
+        this.reportPassedTest()
+        this.reportTruePositives(e)
+      case (e, f) if f > e =>
+        this.reportFailedTest()
+        this.reportFalsePositives(f - e)
+      case (e, f) if e > f =>
+        this.reportFailedTest()
+        this.reportFalseNegatives(e - f)
     }
-
-    this.reportFailedTest()
-    if (found > expected) {
-      this.reportFalsePositives(found - expected)
-      return
-    }
-    this.reportFalseNegatives(expected - found)
   }
 
   def precision: Double = {
