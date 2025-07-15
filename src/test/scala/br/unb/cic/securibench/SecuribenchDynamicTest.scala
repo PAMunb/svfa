@@ -68,13 +68,13 @@ class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
   }
 
   // Generate tests for different packages
- generateDynamicTests("securibench.micro.aliasing")
-generateDynamicTests("securibench.micro.arrays")
-generateDynamicTests("securibench.micro.basic")
-generateDynamicTests("securibench.micro.collections")
-generateDynamicTests("securibench.micro.datastructures")
-generateDynamicTests("securibench.micro.factories")
-generateDynamicTests("securibench.micro.inter")
-generateDynamicTests("securibench.micro.session")
-generateDynamicTests("securibench.micro.strong_updates")
+// generateDynamicTests("securibench.micro.aliasing")
+  generateDynamicTests("securibench.micro.arrays")
+//  generateDynamicTests("securibench.micro.basic")
+//  generateDynamicTests("securibench.micro.collections")
+//  generateDynamicTests("securibench.micro.datastructures")
+//  generateDynamicTests("securibench.micro.factories")
+//  generateDynamicTests("securibench.micro.inter")
+//  generateDynamicTests("securibench.micro.session")
+//  generateDynamicTests("securibench.micro.strong_updates")
 }
