@@ -3,7 +3,7 @@ package br.unb.cic.securibench.deprecated
 import br.unb.cic.securibench.SecuribenchTest
 import org.scalatest.FunSuite
 
-class SecuribenchExtraTest extends FunSuite {
+class SecuribenchDeprecatedExtraTest extends FunSuite {
 
   /**
    * PRED TESTs
