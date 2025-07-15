@@ -67,26 +67,38 @@ trait CustomMetrics {
 
   def precision: Double = {
     val denom = this.truePositives + this.falsePositives
-    val value = if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+    val value = denom match {
+      case 0 => 0.0
+      case d => (this.truePositives * 1.0) / d
+    }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def recall: Double = {
     val denom = this.truePositives + this.falseNegatives
-    val value = if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+    val value = denom match {
+      case 0 => 0.0
+      case d => (this.truePositives * 1.0) / d
+    }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def f1Score: Double = {
     val p = precision
     val r = recall
-    val value = if (p + r == 0) 0.0 else 2 * (p * r) / (p + r)
+    val value = (p + r) match {
+      case 0.0 => 0.0
+      case s => 2 * (p * r) / s
+    }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def passRate: Double = {
     val denom = this.passedTests + this.failedTests
-    val value = if (denom == 0) 0.0 else (this.passedTests * 1.0) / denom * 100
+    val value = denom match {
+      case 0 => 0.0
+      case d => (this.passedTests * 1.0) / d * 100
+    }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
