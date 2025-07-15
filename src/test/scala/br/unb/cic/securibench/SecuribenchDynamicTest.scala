@@ -60,16 +60,16 @@ class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
 
       this.compute(expected, found, className)
     }
-    this.reportAll()
+    this.reportSummary()
 
     test(s"running tests at $packageName") {
-//      assert(this.vulnerabilities == this.vulnerabilitiesFound)
+      assert(this.vulnerabilities() == this.vulnerabilitiesFound())
     }
   }
 
   // Generate tests for different packages
-   generateDynamicTests("securibench.micro.aliasing")
-  generateDynamicTests("securibench.micro.arrays")
+ generateDynamicTests("securibench.micro.aliasing")
+ generateDynamicTests("securibench.micro.arrays")
  generateDynamicTests("securibench.micro.basic")
  generateDynamicTests("securibench.micro.collections")
  generateDynamicTests("securibench.micro.datastructures")
