@@ -51,7 +51,7 @@ class MetricsTest extends FunSuite with CustomMetrics {
     this.failedTests = 0
     this.expected = 0
     this.found = 0
-    compute(5, 5)
+    compute(5, 5, "")
     assert(this.truePositives == 5)
     assert(this.passedTests == 1)
     assert(this.failedTests == 0)
@@ -67,7 +67,7 @@ class MetricsTest extends FunSuite with CustomMetrics {
     this.failedTests = 0
     this.expected = 0
     this.found = 0
-    compute(0, 0)
+    compute(0, 0, "")
     assert(this.trueNegatives == 1)
     assert(this.passedTests == 1)
     assert(this.failedTests == 0)
@@ -83,7 +83,7 @@ class MetricsTest extends FunSuite with CustomMetrics {
     this.failedTests = 0
     this.expected = 0
     this.found = 0
-    compute(2, 5)
+    compute(2, 5, "")
     assert(this.falsePositives == 3)
     assert(this.failedTests == 1)
     assert(this.passedTests == 0)
@@ -98,7 +98,7 @@ class MetricsTest extends FunSuite with CustomMetrics {
     this.failedTests = 0
     this.expected = 0
     this.found = 0
-    compute(5, 2)
+    compute(5, 2, "")
     assert(this.falseNegatives == 3)
     assert(this.failedTests == 1)
     assert(this.passedTests == 0)

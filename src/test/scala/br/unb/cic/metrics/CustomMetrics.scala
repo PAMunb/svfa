@@ -2,6 +2,7 @@ package br.unb.cic.metrics
 
 trait CustomMetrics {
 
+  var testName: String = ""
   var truePositives: Int = 0
   var falsePositives: Int = 0
   var falseNegatives: Int = 0
@@ -43,7 +44,12 @@ trait CustomMetrics {
     this.found += found
   }
 
-  def compute(expected: Int, found: Int): Unit = {
+  def getTestName(): String = {
+    this.testName.split('.').last
+  }
+
+  def compute(expected: Int, found: Int, testName: String): Unit = {
+    this.testName = testName
     this.reportExpected(expected)
     this.reportFound(found)
 
@@ -106,6 +112,7 @@ trait CustomMetrics {
 
   def report(): Unit = {
     println("----------------------------------------------------------------------------------------------------------------")
+    println(s"Metrics for test: $getTestName")
     println(s"failed = ${this.failedTests}, passed = ${this.passedTests} of = ${this.passedTests + this.failedTests} tests.")
     println(s"Pass Rate = ${this.passRate}%")
     println(s"Expecting ${this.vulnerabilities} of ${this.vulnerabilitiesFound} warnings.")
