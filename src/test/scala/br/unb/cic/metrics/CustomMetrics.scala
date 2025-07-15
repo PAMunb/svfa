@@ -59,27 +59,39 @@ trait CustomMetrics {
     }
   }
 
-  def precision(testName: String): Double = {
-    val m = getOrCreateMetrics(testName)
-    val denom = m.truePositives + m.falsePositives
+  def precision(testName: String = null): Double = {
+    val (tp, fp) = Option(testName) match {
+      case Some(name) =>
+        val m = getOrCreateMetrics(name)
+        (m.truePositives, m.falsePositives)
+      case None =>
+        metricsByTest.values.foldLeft((0, 0)) { case ((accTP, accFP), m) => (accTP + m.truePositives, accFP + m.falsePositives) }
+    }
+    val denom = tp + fp
     val value = denom match {
       case 0 => 0.0
-      case d => (m.truePositives * 1.0) / d
+      case d => (tp * 1.0) / d
     }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def recall(testName: String): Double = {
-    val m = getOrCreateMetrics(testName)
-    val denom = m.truePositives + m.falseNegatives
+  def recall(testName: String = null): Double = {
+    val (tp, fn) = Option(testName) match {
+      case Some(name) =>
+        val m = getOrCreateMetrics(name)
+        (m.truePositives, m.falseNegatives)
+      case None =>
+        metricsByTest.values.foldLeft((0, 0)) { case ((accTP, accFN), m) => (accTP + m.truePositives, accFN + m.falseNegatives) }
+    }
+    val denom = tp + fn
     val value = denom match {
       case 0 => 0.0
-      case d => (m.truePositives * 1.0) / d
+      case d => (tp * 1.0) / d
     }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def f1Score(testName: String): Double = {
+  def f1Score(testName: String = null): Double = {
     val p = precision(testName)
     val r = recall(testName)
     val value = (p + r) match {
@@ -89,18 +101,31 @@ trait CustomMetrics {
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def passRate(testName: String): Double = {
-    val m = getOrCreateMetrics(testName)
-    val denom = m.passedTests + m.failedTests
+  def passRate(testName: String = null): Double = {
+    val (passed, failed) = Option(testName) match {
+      case Some(name) =>
+        val m = getOrCreateMetrics(name)
+        (m.passedTests, m.failedTests)
+      case None =>
+        metricsByTest.values.foldLeft((0, 0)) { case ((accPassed, accFailed), m) => (accPassed + m.passedTests, accFailed + m.failedTests) }
+    }
+    val denom = passed + failed
     val value = denom match {
       case 0 => 0.0
-      case d => (m.passedTests * 1.0) / d * 100
+      case d => (passed * 1.0) / d * 100
     }
     BigDecimal(value).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
-  def vulnerabilities(testName: String): Int = getOrCreateMetrics(testName).expected
-  def vulnerabilitiesFound(testName: String): Int = getOrCreateMetrics(testName).found
+  def vulnerabilities(testName: String = null): Int = Option(testName) match {
+    case Some(name) => getOrCreateMetrics(name).expected
+    case None => metricsByTest.values.map(_.expected).sum
+  }
+
+  def vulnerabilitiesFound(testName: String = null): Int = Option(testName) match {
+    case Some(name) => getOrCreateMetrics(name).found
+    case None => metricsByTest.values.map(_.found).sum
+  }
 
   def metricsFor(testName: String): Metrics = getOrCreateMetrics(testName)
 
