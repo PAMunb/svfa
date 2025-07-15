@@ -14,13 +14,13 @@
 
 |      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
 |:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
-|   Aliasing1    |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-|   Aliasing2    |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-|   Aliasing3    |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-|   Aliasing4    |    2     |   2    |   ✅    | 2  | 0  |     -     |   -    |    -    |
+|   Aliasing1    |    1     |   1    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing2    |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing3    |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing4    |    1     |   2    |   ❌    | 0  | 0  |     -     |   -    |    -    |
 |   Aliasing5    |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|   Aliasing6    |    7     |   7    |   ✅    | 7  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    11    |   10   |  5/6   | 10 | 0  |   1.00    |  0.91  |  0.95   |
+|   Aliasing6    |    7     |   7    |   ✅    | 0  | 0  |     -     |   -    |    -    |
+|     TOTAL      |    12    |   10   |  2/6   | 0  | 0  |     0     |   0    |    0    |
 
 - **ArraysTest** - failed: 0, passed: 1, ignored: 9 of 10 test.
 
