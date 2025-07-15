@@ -5,7 +5,7 @@ import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchTest(var className: String = "", var mainMethod: String = "") extends SecuribenchSpec {
+class SecuribenchBaseTest(var className: String = "", var mainMethod: String = "") extends SecuribenchSpec {
   override def getClassName(): String = className
 
   override def getMainMethod(): String = mainMethod

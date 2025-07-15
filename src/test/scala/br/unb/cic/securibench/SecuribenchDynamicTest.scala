@@ -50,7 +50,7 @@ class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
       val fileName = file.toString.split("/").last.replace(".class", "")
       val className = s"$packageName.$fileName"
 
-      val svfa = new SecuribenchTest(className, "doGet")
+      val svfa = new SecuribenchBaseTest(className, "doGet")
       svfa.buildSparseValueFlowGraph()
       val conflicts = svfa.reportConflictsSVG()
 
