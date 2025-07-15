@@ -157,7 +157,7 @@ trait CustomMetrics {
     var totalFP = 0
     var totalFN = 0
     metricsByTest.toSeq.sortBy(_._1).foreach { case (testName, m) =>
-      val status = s"${m.passedTests}/${m.passedTests + m.failedTests}"
+      val status = if (m.found == m.expected) "✅" else "❌"
       val prec = precision(testName)
       val rec = recall(testName)
       val f1 = f1Score(testName)
