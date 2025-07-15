@@ -65,13 +65,26 @@ trait CustomMetrics {
     this.reportFalseNegatives(expected - found)
   }
 
-  def precision: Double = (this.truePositives * 1.0) / ((this.truePositives + this.falsePositives) * 1.0)
+  def precision: Double = {
+    val denom = this.truePositives + this.falsePositives
+    if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+  }
 
-  def recall: Double = (this.truePositives * 1.0) / ((this.truePositives + this.falseNegatives) * 1.0)
+  def recall: Double = {
+    val denom = this.truePositives + this.falseNegatives
+    if (denom == 0) 0.0 else (this.truePositives * 1.0) / denom
+  }
 
-  def f1Score: Double = 2 * (precision * recall) / (precision + recall)
+  def f1Score: Double = {
+    val p = precision
+    val r = recall
+    if (p + r == 0) 0.0 else 2 * (p * r) / (p + r)
+  }
 
-  def passRate: Double = ((this.passedTests * 1.0) / (this.passedTests + this.failedTests * 1.0)) * 100
+  def passRate: Double = {
+    val denom = this.passedTests + this.failedTests
+    if (denom == 0) 0.0 else (this.passedTests * 1.0) / denom * 100
+  }
 
   def vulnerabilities: Int = this.expected
 
