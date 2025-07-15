@@ -144,7 +144,10 @@ trait CustomMetrics {
     metricsByTest.keys.foreach(report)
   }
 
-  def reportSummary(): Unit = {
+  def reportSummary(reportName: String): Unit = {
+
+    println(s"- **$reportName** - failed: ${metricsByTest.values.count(_.failedTests > 0)}, passed: ${metricsByTest.values.count(_.passedTests > 0)} of ${metricsByTest.values.size} tests - (${passRate()}%)")
+
     val header = "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |"
     val sep    = "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|"
     println(header)
@@ -156,6 +159,7 @@ trait CustomMetrics {
     var totalTP = 0
     var totalFP = 0
     var totalFN = 0
+
     metricsByTest.toSeq.sortBy(_._1).foreach { case (testName, m) =>
       val status = if (m.found == m.expected) "✅" else "❌"
       val prec = precision(testName)
@@ -171,6 +175,7 @@ trait CustomMetrics {
       totalFP += m.falsePositives
       totalFN += m.falseNegatives
     }
+
     val totalPrec = precision()
     val totalRec = recall()
     val totalF1 = f1Score()
