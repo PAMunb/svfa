@@ -19,7 +19,7 @@
 |   Aliasing3    |   0   |    1     |   ❌    | 0  | 0  | 1  |     -     |   -    |    -    |
 |   Aliasing4    |   2   |    1     |   ❌    | 0  | 1  | 0  |     -     |   -    |    -    |
 |   Aliasing5    |   0   |    1     |   ❌    | 0  | 0  | 1  |     -     |   -    |    -    |
-|   Aliasing6    |   7   |    7     |   ✅    | 1  | 0  | 0  |     -     |   -    |    -    |
+|   Aliasing6    |   7   |    7     |   ✅    | 7  | 0  | 0  |     -     |   -    |    -    |
 |     TOTAL      |  12   |    10    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
 
 - **ArraysTest** - failed: 0, passed: 1, ignored: 9 of 10 test.
