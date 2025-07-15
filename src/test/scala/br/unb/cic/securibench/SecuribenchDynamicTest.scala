@@ -1,11 +1,13 @@
 package br.unb.cic.securibench
 
+import br.unb.cic.metrics.CustomMetrics
 import br.unb.cic.soot.graph._
+import jdk.internal.platform.Metrics
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchDynamicTest extends FunSuite {
+class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
 
   def getJavaFilesFromPackage(packageName: String): List[AnyRef] = {
     import java.io.File
@@ -47,27 +49,32 @@ class SecuribenchDynamicTest extends FunSuite {
     files.foreach { file =>
       val fileName = file.toString.split("/").last.replace(".class", "")
       val className = s"$packageName.$fileName"
-      
-      test(s"execute $fileName test") {
-          val svfa = new SecuribenchTest(className, "doGet")
-          svfa.buildSparseValueFlowGraph()
-          val conflicts = svfa.reportConflictsSVG()
 
-          val clazz = Class.forName(className)
-          val expectedCount = clazz.getMethod("getVulnerabilityCount").invoke(clazz.getDeclaredConstructor().newInstance()).asInstanceOf[Int]
-          assert(conflicts.size == expectedCount)
-      }
+      val svfa = new SecuribenchTest(className, "doGet")
+      svfa.buildSparseValueFlowGraph()
+      val conflicts = svfa.reportConflictsSVG()
+
+      val clazz = Class.forName(className)
+      val expected = clazz.getMethod("getVulnerabilityCount").invoke(clazz.getDeclaredConstructor().newInstance()).asInstanceOf[Int]
+      val found = conflicts.size
+
+      this.compute(expected, found)
+    }
+    this.report()
+
+    test(s"running tests at $packageName") {
+      assert(this.vulnerabilities == this.vulnerabilitiesFound)
     }
   }
 
   // Generate tests for different packages
    generateDynamicTests("securibench.micro.aliasing")
    generateDynamicTests("securibench.micro.arrays")
-   generateDynamicTests("securibench.micro.basic")
-   generateDynamicTests("securibench.micro.collections")
-   generateDynamicTests("securibench.micro.datastructures")
-   generateDynamicTests("securibench.micro.factories")
-   generateDynamicTests("securibench.micro.inter")
-   generateDynamicTests("securibench.micro.session")
-   generateDynamicTests("securibench.micro.strong_updates")
+  generateDynamicTests("securibench.micro.basic")
+  generateDynamicTests("securibench.micro.collections")
+  generateDynamicTests("securibench.micro.datastructures")
+  generateDynamicTests("securibench.micro.factories")
+  generateDynamicTests("securibench.micro.inter")
+  generateDynamicTests("securibench.micro.session")
+  generateDynamicTests("securibench.micro.strong_updates")
 }
