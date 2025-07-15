@@ -22,21 +22,21 @@
 | Aliasing6 |   7   |    7     |   ✅    | 7  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |   TOTAL   |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
 
-- **ArraysTest** - failed: 0, passed: 1, ignored: 9 of 10 test.
+- **securibench.micro.arrays** - failed: 9, passed: 1 of 10 tests - (10.0%)
 
-|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
-|     Array1     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array2     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array3     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array4     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array5     |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-|     Array6     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array7     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array8     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     Array9     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|    Array10     |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    9     |   0    |  1/10  | 0  | 0  |     0     |   0    |    0    |
+|   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Arrays1  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays10 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays2  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays3  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays4  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays5  |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| Arrays6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|  TOTAL   |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   |
 
 - **BasicTest** - failed: 0, passed: 35, ignored: 7 of 42 test.
 
@@ -86,25 +86,25 @@
 | Basic42 |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
 |  TOTAL  |    61    |   58   | 35/42  | 56  |  2  |   0.97    |  0.92  |  0.94   |
 
-- **CollectionTest** - failed: 0, passed: 2, ignored: 12 of 14 tests.
+- **securibench.micro.collections** - failed: 12, passed: 2 of 14 tests - (14.29%)
 
-|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
-|  Collection1   |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-|  Collection2   |    1     |   2    |   ❌    | 1  | 1  |     -     |   -    |    -    |
-|  Collection3   |    2     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection4   |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection5   |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection6   |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection7   |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection8   |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection9   |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-|  Collection10  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection11  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection12  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection13  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|  Collection14  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    14    |   3    |  2/14  | 2  | 1  |   0.67    |  0.14  |  0.24   |
+|     Test      | Found | Expected | Status | TP | FP | FN  | Precision | Recall | F-score |
+|:-------------:|:-----:|:--------:|:------:|:--:|:--:|:----|:---------:|:------:|:-------:|
+| Collections1  |   1   |    1     |   ✅    | 1  | 0  | 0   |   1.00    |  1.00  |  1.00   |
+| Collections10 |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections11 |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections12 |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections13 |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections14 |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections2  |   2   |    1     |   ❌    | 0  | 1  | 0   |   0.00    |  0.00  |  0.00   |
+| Collections3  |   0   |    2     |   ❌    | 0  | 0  | 2   |   0.00    |  0.00  |  0.00   |
+| Collections4  |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections5  |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1   |   0.00    |  0.00  |  0.00   |
+| Collections9  |   0   |    0     |   ✅    | 0  | 0  | 0   |   0.00    |  0.00  |  0.00   |
+|     TOTAL     |   3   |    14    |  2/14  | 1  | 1  | 12  |   0.50    |  0.08  |  0.14   |
 
 - **DataStructureTest** - failed: 0, passed: 4, ignored: 2 of 6 tests.
 
