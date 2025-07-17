@@ -7,7 +7,11 @@ import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
+abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
+
+  def basePackage(): String
+
+  def entryPointMethod(): String
 
   def getJavaFilesFromPackage(packageName: String): List[AnyRef] = {
     import java.io.File
@@ -50,7 +54,7 @@ class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
       val fileName = file.toString.split("/").last.replace(".class", "")
       val className = s"$packageName.$fileName"
 
-      val svfa = new SecuribenchBaseTest(className, "doGet")
+      val svfa = new SecuribenchBaseTest(className, entryPointMethod())
       svfa.buildSparseValueFlowGraph()
       val conflicts = svfa.reportConflictsSVG()
 
@@ -61,15 +65,15 @@ class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
       this.compute(expected, found, className)
     }
     this.reportSummary(packageName)
-
-    test(s"running tests at $packageName") {
-      assert(this.vulnerabilities() == this.vulnerabilitiesFound())
-    }
   }
 
+    test(s"running testsuite from ${basePackage()}") {
+      generateDynamicTests(basePackage())
+      assert(this.vulnerabilities() == this.vulnerabilitiesFound())
+    }
+
   // Generate tests for different packages
-// generateDynamicTests("securibench.micro.aliasing")
-  generateDynamicTests("securibench.micro.arrays")
+//  generateDynamicTests("securibench.micro.arrays")
 //  generateDynamicTests("securibench.micro.basic")
 //  generateDynamicTests("securibench.micro.collections")
 //  generateDynamicTests("securibench.micro.datastructures")
