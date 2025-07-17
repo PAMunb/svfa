@@ -109,17 +109,17 @@
 |     TOTAL     |   3   |    14    |  2/14  | 1  | 1  | 12 |   0.50    |  0.08  |  0.14   |
 
 
-- **DataStructureTest** - failed: 0, passed: 4, ignored: 2 of 6 tests.
+- **securibench.micro.datastructures** - failed: 2, passed: 4 of 6 tests - (66.67%)
 
-|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
-| DataStructure1 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-| DataStructure2 |    1     |   2    |   ❌    | 1  | 1  |     -     |   -    |    -    |
-| DataStructure3 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-| DataStructure4 |    0     |   1    |   ❌    | 0  | 1  |     -     |   -    |    -    |
-| DataStructure5 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-| DataStructure6 |    1     |   1    |   ✅    | 1  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    5     |   7    |  4/6   | 5  | 2  |   0.71    |  1.00  |  0.83   |
+|      Test       | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:---------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Datastructures1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Datastructures2 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Datastructures3 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Datastructures4 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Datastructures5 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Datastructures6 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+|      TOTAL      |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |
 
 
 - **FactoryTest** - failed: 0, passed: 2, ignored: 1 of 3 tests.
