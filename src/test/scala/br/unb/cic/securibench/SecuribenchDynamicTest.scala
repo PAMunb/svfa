@@ -67,18 +67,8 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
     this.reportSummary(packageName)
   }
 
-    test(s"running testsuite from ${basePackage()}") {
-      generateDynamicTests(basePackage())
-      assert(this.vulnerabilities() == this.vulnerabilitiesFound())
-    }
-
-  // Generate tests for different packages
-//  generateDynamicTests("securibench.micro.arrays")
-//  generateDynamicTests("securibench.micro.basic")
-//  generateDynamicTests("securibench.micro.collections")
-//  generateDynamicTests("securibench.micro.datastructures")
-//  generateDynamicTests("securibench.micro.factories")
-//  generateDynamicTests("securibench.micro.inter")
-//  generateDynamicTests("securibench.micro.session")
-//  generateDynamicTests("securibench.micro.strong_updates")
+  test(s"running testsuite from ${basePackage()}") {
+    generateDynamicTests(basePackage())
+    assert(this.vulnerabilities() == this.vulnerabilitiesFound())
+  }
 }
