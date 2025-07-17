@@ -163,16 +163,16 @@
 |  TOTAL   |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 
 
-- **StrongUpdateTest** - failed: 0, passed: 4, ignored: 1 of 5 tests.
+- **securibench.micro.strong_updates** - failed: 1, passed: 4 of 5 tests - (80.0%)
 
-|      Test      | Expected | Actual | Status | TP | FP | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
-| StrongUpdate1  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-| StrongUpdate2  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-| StrongUpdate3  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-| StrongUpdate4  |    1     |   0    |   ❌    | 0  | 0  |     -     |   -    |    -    |
-| StrongUpdate5  |    0     |   0    |   ✅    | 0  | 0  |     -     |   -    |    -    |
-|     TOTAL      |    1     |   0    |  4/5   | 0  | 0  |     0     |   0    |    0    |
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| StrongUpdates1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates2 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates3 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates4 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates5 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+|     TOTAL      |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 
 **OBSERVATIONS**
 - Flowdroid is not taking in count the TP expected in StrongUpdate4;
