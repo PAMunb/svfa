@@ -122,14 +122,15 @@
 |      TOTAL      |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |
 
 
-- **FactoryTest** - failed: 0, passed: 2, ignored: 1 of 3 tests.
+- **securibench.micro.factories** - failed: 1, passed: 2 of 3 tests - (66.67%)
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-|    Factory1    |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|    Factory2    |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|    Factory3    |    1     |   2    |   ❌    |  1  |  1  |     -     |   -    |    -    |
-|     TOTAL      |    3     |   4    |  2/3   |  3  |  1  |   0.75    |  1.00  |  0.86   |
+|    Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:----------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Factories1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Factories2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Factories3 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+|   TOTAL    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
+
 
 - **InterTest** - failed: 0, passed:8, ignored: 6 of 14 tests
 
