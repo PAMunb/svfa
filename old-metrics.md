@@ -152,14 +152,16 @@
 | Inter9  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 |  TOTAL  |  10   |    16    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
 
-- **SessionTest** - failed: 0, passed: 0, ignored: 3 of 3 tests.
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-|    Session1    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|    Session2    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|    Session3    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    3     |   0    |  0/3   |  0  |  0  |     0     |   0    |    0    |
+- **securibench.micro.session** - failed: 3, passed: 0 of 3 tests - (0.0%)
+
+|   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Session1 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Session2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Session3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|  TOTAL   |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
+
 
 - **StrongUpdateTest** - failed: 0, passed: 4, ignored: 1 of 5 tests.
 
