@@ -1,11 +1,8 @@
 package br.unb.cic.securibench
 
 import br.unb.cic.metrics.CustomMetrics
-import br.unb.cic.soot.graph._
-import jdk.internal.platform.Metrics
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
-import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
 abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
 
@@ -25,20 +22,22 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
       val fullPath = Paths.get(path, packagePath)
       if (Files.exists(fullPath) && Files.isDirectory(fullPath)) {
         Files.walk(fullPath)
-          .filter(_.toString.endsWith(".class"))
-          .map[String](_.toString)
-           .filter(path => {
-             try {
-               val className = path.split("/").last.replace(".class", "")
-               val fullClassName = s"${packageName}.$className"
-               val clazz = Class.forName(fullClassName)
-               classOf[MicroTestCase].isAssignableFrom(clazz) && 
-               ! clazz.isInterface && 
-               ! java.lang.reflect.Modifier.isAbstract(clazz.getModifiers)
-             } catch {
-               case _ => false
-             }
-           })
+          .filter {
+//            case f if Files.isDirectory(f) => getJavaFilesFromPackage(s"$packageName.${f.getFileName.toString}")
+            case f if f.toString.endsWith(".class") => {
+              try {
+                val className = f.getFileName.toString.split("/").last.replace(".class", "")
+                val fullClassName = s"${packageName}.$className"
+                val clazz = Class.forName(fullClassName)
+                classOf[MicroTestCase].isAssignableFrom(clazz) &&
+                  ! clazz.isInterface &&
+                  ! java.lang.reflect.Modifier.isAbstract(clazz.getModifiers)
+              } catch {
+                case _ => false
+              }
+            }
+            case _ => false
+          }
           .toArray
           .toList
       } else {
