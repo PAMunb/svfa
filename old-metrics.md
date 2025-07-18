@@ -8,6 +8,23 @@
 | Reflection |    4     |   0    |   4    |    0%     |   
 | Sanitizer  |    6     |   1    |   5    |  16.67%   |
 
+> Metrics
+- **securibench.micro** - failed: 44, passed: 59 of 103 tests - (57.28%)
+
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+|    aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
+|     arrays     |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   | 
+|     basic      |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |
+|  collections   |   3   |    14    |  2/14  | 1  | 1  | 12 |   0.50    |  0.08  |  0.14   |
+| datastructures |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |
+|   factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
+|     inter      |  10   |    16    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
+|    session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
+| strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|     TOTAL      |  94   |   123    | 59/103 | 76 | 8  | 37 |   0.90    |  0.67  |  0.77   |
+
+
 > Details
 
 - **securibench.micro.aliasing** - failed: 4, passed: 2 of 6 tests - (33.33%)
