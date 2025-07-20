@@ -22,15 +22,9 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
       if (Files.exists(fullPath) && Files.isDirectory(fullPath)) {
 
         val filesBySubdir: List[AnyRef] = Files.walk(fullPath)
-          .filter {
-            case f if Files.isDirectory(f) => true
-            case _ => false
-          }
+          .filter(Files.isDirectory(_))
           .map[List[AnyRef]](d => getJavaFilesFromPackage(s"$packageName.${d.getFileName.toString}"))
-          .filter{
-              case f if f.nonEmpty => true
-              case _ => false
-          }
+          .filter(_.nonEmpty)
           .toArray
           .toList
 
