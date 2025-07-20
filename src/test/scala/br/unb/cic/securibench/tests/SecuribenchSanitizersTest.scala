@@ -1,8 +1,8 @@
 package br.unb.cic.securibench.tests
 
-import br.unb.cic.securibench.SecuribenchDynamicTest
+import br.unb.cic.securibench.SecuribenchTest
 
-class SecuribenchSanitizersTest extends SecuribenchDynamicTest {
+class SecuribenchSanitizersTest extends SecuribenchTest {
    def basePackage(): String = "securibench.micro.sanitizers"
 
    def entryPointMethod(): String = "doGet"

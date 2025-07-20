@@ -1,8 +1,8 @@
 package br.unb.cic.securibench.tests
 
-import br.unb.cic.securibench.SecuribenchDynamicTest
+import br.unb.cic.securibench.SecuribenchTest
 
-class SecuribenchStrongUpdatesTest extends SecuribenchDynamicTest {
+class SecuribenchStrongUpdatesTest extends SecuribenchTest {
    def basePackage(): String = "securibench.micro.strong_updates"
 
    def entryPointMethod(): String = "doGet"

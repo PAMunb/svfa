@@ -1,8 +1,8 @@
 package br.unb.cic.securibench.tests
 
-import br.unb.cic.securibench.SecuribenchDynamicTest
+import br.unb.cic.securibench.SecuribenchTest
 
-class SecuribenchDatastructuresTest extends SecuribenchDynamicTest {
+class SecuribenchDatastructuresTest extends SecuribenchTest {
    def basePackage(): String = "securibench.micro.datastructures"
 
    def entryPointMethod(): String = "doGet"
