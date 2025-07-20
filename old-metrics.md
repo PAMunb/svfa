@@ -224,3 +224,7 @@ These tests are not executed by Flowdroid
 | Refl3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Refl4 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | TOTAL |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |
+
+
+- **securibench.micro.sanitizers** - failed: 6, passed: 0 of 6 tests - (0.0%)
+An exception is thrown when the tests run so it was not possible to compute metrics.
