@@ -1,5 +1,7 @@
 package br.unb.cic.securibench
 
+import java.io.File
+import java.nio.file.{Files, Paths}
 import br.unb.cic.metrics.CustomMetrics
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
@@ -11,9 +13,6 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
   def entryPointMethod(): String
 
   def getJavaFilesFromPackage(packageName: String): List[AnyRef] = {
-    import java.io.File
-    import java.nio.file.{Files, Paths}
-    
     val classPath = System.getProperty("java.class.path")
     val paths = classPath.split(File.pathSeparator)
     
@@ -21,9 +20,22 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
       val packagePath = packageName.replace('.', '/')
       val fullPath = Paths.get(path, packagePath)
       if (Files.exists(fullPath) && Files.isDirectory(fullPath)) {
-        Files.walk(fullPath)
+
+        val filesBySubdir: List[AnyRef] = Files.walk(fullPath)
           .filter {
-//            case f if Files.isDirectory(f) => getJavaFilesFromPackage(s"$packageName.${f.getFileName.toString}")
+            case f if Files.isDirectory(f) => true
+            case _ => false
+          }
+          .map[List[AnyRef]](d => getJavaFilesFromPackage(s"$packageName.${d.getFileName.toString}"))
+          .filter{
+              case f if f.nonEmpty => true
+              case _ => false
+          }
+          .toArray
+          .toList
+
+        val filesByDir = Files.walk(fullPath)
+          .filter {
             case f if f.toString.endsWith(".class") => {
               try {
                 val className = f.getFileName.toString.split("/").last.replace(".class", "")
@@ -38,8 +50,9 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
             }
             case _ => false
           }
-          .toArray
-          .toList
+        .toArray
+        .toList
+        filesByDir ++ filesBySubdir
       } else {
         List.empty[String]
       }
@@ -48,23 +61,33 @@ abstract class SecuribenchDynamicTest extends FunSuite with CustomMetrics {
 
   def generateDynamicTests(packageName: String): Unit = {
     val files = getJavaFilesFromPackage(packageName)
-    
-    files.foreach { file =>
-      val fileName = file.toString.split("/").last.replace(".class", "")
-      val className = s"$packageName.$fileName"
+    this.generateDynamicTests(files, packageName)
+    this.reportSummary(packageName)
+  }
+
+  def generateDynamicTests(files: List[AnyRef], packageName: String): Unit = {
+    files.foreach {
+      case list: List[AnyRef] => this.generateDynamicTests(list, packageName)
+      case list : java.nio.file.Path => generateDynamicTests(list, packageName)
+      case _ =>
+    }
+  }
+
+  def generateDynamicTests(file: AnyRef, packageName: String): Unit = {
+      var fileName = file.toString.replace(".class", "").replace("/",".")
+      fileName = fileName.split(packageName).last;
+      val className = s"$packageName$fileName"
+      val clazz = Class.forName(className)
 
       val svfa = new SecuribenchBaseTest(className, entryPointMethod())
       svfa.buildSparseValueFlowGraph()
       val conflicts = svfa.reportConflictsSVG()
 
-      val clazz = Class.forName(className)
       val expected = clazz.getMethod("getVulnerabilityCount").invoke(clazz.getDeclaredConstructor().newInstance()).asInstanceOf[Int]
       val found = conflicts.size
 
       this.compute(expected, found, className)
     }
-    this.reportSummary(packageName)
-  }
 
   test(s"running testsuite from ${basePackage()}") {
     generateDynamicTests(basePackage())
