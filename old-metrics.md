@@ -195,3 +195,21 @@
 - Flowdroid is not taking in count the TP expected in StrongUpdate4;
 - Test Basic40 is commented in the test suite so the amount of TP differs from the original run by Flowdroid; 
 - There are two flaky tests: Basic6 and Inter11.
+
+> Extra Test
+These tests are not executed by Flowdroid
+
+- **securibench.micro.pred** - failed: 3, passed: 6 of 9 tests - (66.67%)
+
+| Test  | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:-----:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Pred1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| Pred2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Pred3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Pred4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Pred5 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Pred6 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Pred7 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Pred8 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Pred9 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| TOTAL |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |
