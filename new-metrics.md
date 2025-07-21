@@ -140,17 +140,17 @@
 |     TOTAL     |   4   |    15    |  3/14  | 3  | 0  | 11 |   1.00    |  0.21  |  0.35   |
 
 
-- **DataStructureTest** - failed: 2, passed: 4, ignored: 0 of 6 tests.
+- **DataStructureTest** - failed: 2, passed: 4 of 6 tests - (66.67%)
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-| DataStructure1 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-| DataStructure2 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-| DataStructure3 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-| DataStructure4 |    0     |   1    |   ❌    |  0  |  1  |     -     |   -    |    -    |
-| DataStructure5 |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-| DataStructure6 |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    5     |   5    |  4/6   |  4  |  1  |   0.80    |  0.80  |  0.80   |
+|      Test       | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:---------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Datastructures1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Datastructures2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Datastructures3 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Datastructures4 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Datastructures5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Datastructures6 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+|      TOTAL      |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
 
 
 - **FactoryTest** - failed: 1, passed: 2, ignored: 0 of 3 tests.
