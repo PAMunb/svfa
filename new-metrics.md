@@ -1,36 +1,5 @@
 ## JSVFA metrics
 
-> Metrics for Pass Rate
-
-|     Test      | Expected | Passed | Failed | Pass Rate |
-|:-------------:|:--------:|:------:|:------:|:---------:|
-|   Aliasing    |    6     |   4    |   2    |  66.67%   |    
-|     Array     |    10    |   5    |   5    |    50%    |   
-|     Basic     |    42    |   37   |   5    |  88.10%   |      
-|  Collection   |    14    |   4    |   10   |  28.57%   |   
-| DataStructure |    6     |   4    |   2    |  66.67%   |    
-|    Factory    |    3     |   2    |   1    |  66.67%   |    
-|     Inter     |    14    |   10   |   4    |  71.43%   |     
-|    Session    |    3     |   0    |   3    |    0%     |      
-| StrongUpdate  |    5     |   3    |   2    |    60%    |       
-|   **TOTAL**   |   103    |   69   |   34   |  66.99%   |
-
-
-> Metrics for Precision, Recall and F-score.
-
-|     Test      | Expected | Actual | TP | FP | Precision | Recall | F-score |
-|:-------------:|:--------:|:-------|:--:|:--:|:---------:|:------:|:-------:|
-|   Aliasing    |    11    | 4      | 4  | 0  |   1.00    |  0.36  |  0.53   |
-|     Array     |    9     | 11     | 7  | 4  |   0.64    |  0.78  |  0.70   |
-|     Basic     |    61    | 58     | 57 | 1  |   0.98    |  0.97  |  0.97   |
-|  Collection   |    14    | 4      | 4  | 0  |   1.00    |  0.29  |  0.44   |
-| DataStructure |    5     | 5      | 4  | 1  |   0.80    |  0.80  |  0.80   |
-|    Factory    |    3     | 4      | 3  | 1  |   0.75    |  1.00  |  0.86   |
-|     Inter     |    16    | 12     | 12 | 0  |   1.00    |  0.75  |  0.86   |
-|    Session    |    3     | 0      | 0  | 0  |     0     |   0    |    0    |
-| StrongUpdate  |    1     | 3      | 1  | 2  |   0.33    |  1.00  |  0.50   |
-|   **TOTAL**   |   123    | 101    | 92 | 9  |   0.91    |  0.75  |  0.82   |
-
 > SUMMARY
 
 - **securibench.micro** - failed: 40, passed: 63 of 103 tests - (61.17%)
@@ -47,6 +16,7 @@
 |    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 |     TOTAL      |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |
+
 
 > Details
 
@@ -214,3 +184,4 @@
 | StrongUpdates4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
 |     TOTAL      |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
+
