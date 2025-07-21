@@ -114,6 +114,24 @@ To have detailed information about each group of tests run, [see here.](new-metr
 | StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
 | TOTAL          | 98    | 123      | 70/103 | 79 | 9  | 34 | 0.90      | 0.70   | 0.79 |
 
+#### JOANA
+
+> failed: 31, passed: 72 of 103 tests. `(69.90%)`
+
+| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
+|----------------|-------|----------|--------|----|----|----|-----------|--------|------|
+| Aliasing       | 6     | 11       | 2/6    | 2  | 2  | 7  | 0.50      | 0.22   | 0.31 |
+| Arrays         | 10    | 9        | 9/10   | 9  | 1  | 0  | 0.90      | 1.00   | 0.95 |
+| Basic          | 45    | 61       | 25/42  | 26 | 6  | 22 | 0.81      | 0.54   | 0.65 |
+| Collections    | 15    | 14       | 13/14  | 14 | 1  | 0  | 0.93      | 1.00   | 0.96 |
+| Datastructures | 6     | 5        | 5/6    | 5  | 1  | 0  | 0.83      | 1.00   | 0.91 |
+| Factories      | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00 |
+| Inter          | 13    | 16       | 11/14  | 11 | 0  | 3  | 1.00      | 0.79   | 0.88 |
+| Session        | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00 |
+| StrongUpdates  | 5     | 1        | 1/5    | 1  | 4  | 0  | 0.20      | 1.00   | 0.33 |
+| TOTAL          | 106   | 123      | 72/103 | 74 | 15 | 32 | 0.83      | 0.70   | 0.76 |
+
+
 #### METRICS SUMMARY
 
 | Frameworks | Precision | Recall | F-score | Pass Rate |
@@ -128,6 +146,7 @@ To have detailed information about each group of tests run, [see here.](new-metr
 |   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 | JSVFA 2.0 |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |
 | Flowdroid |  98   |   123    | 70/103 | 79 | 9  | 34 |   0.90    |  0.70  |  0.79   |
+|   Joana   |  106  |   123    | 72/103 | 74 | 15 | 32 |   0.83    |  0.70  |  0.76   |
 
 
 ### Taintbench: (WIP) 
