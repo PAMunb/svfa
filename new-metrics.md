@@ -119,25 +119,25 @@
 |  TOTAL  |  59   |    60    | 37/42  | 53 | 2  | 3  |   0.96    |  0.95  |  0.95   |
 
 
-- **CollectionTest** - failed: 10, passed: 4, ignored: 0 of 14 tests.
+- **CollectionTest** - failed: 11, passed: 3 of 14 tests - (21.43%)
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-|  Collection1   |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|  Collection2   |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|  Collection3   |    2     |   1    |   ❌    |  1  |  0  |     -     |   -    |    -    |
-|  Collection4   |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection5   |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection6   |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection7   |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection8   |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection9   |    0     |   0    |   ✅    |  0  |  0  |     -     |   -    |    -    |
-|  Collection10  |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection11  |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection12  |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection13  |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|  Collection14  |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    14    |   4    |  4/14  |  4  |  0  |   1.00    |  0.29  |  0.44   |
+|     Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:-------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Collections1  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Collections10 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections11 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections13 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections14 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Collections2  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Collections3  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections4  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections5  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|     TOTAL     |   4   |    15    |  3/14  | 3  | 0  | 11 |   1.00    |  0.21  |  0.35   |
 
 
 - **DataStructureTest** - failed: 2, passed: 4, ignored: 0 of 6 tests.
