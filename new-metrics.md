@@ -185,3 +185,6 @@
 | StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
 |     TOTAL      |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 
+> Extra Test 
+ 
+These tests are not executed by Flowdroid
