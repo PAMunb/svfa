@@ -41,6 +41,6 @@ public class Collections9 extends BasicTestCase implements MicroTestCase {
     }
     
     public int getVulnerabilityCount() {
-        return 0;
+        return 1;
     }
 }
