@@ -40,17 +40,18 @@
 
 > Details
 
-- **AliasingTest** - failed: 2, passed: 4, ignored: 0 of 6 test.
+- **AliasingTest** - failed: 5, passed: 1 of 6 tests - (16.67%)
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-|   Aliasing1    |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-|   Aliasing2    |    0     |   0    |   ✅    |  0  |  0  |     -     |   -    |    -    |
-|   Aliasing3    |    0     |   0    |   ✅    |  0  |  0  |     -     |   -    |    -    |
-|   Aliasing4    |    2     |   2    |   ✅    |  2  |  0  |     -     |   -    |    -    |
-|   Aliasing5    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|   Aliasing6    |    7     |   1    |   ❌    |  1  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    11    |   4    |  4/6   |  4  |  0  |   1.00    |  0.36  |  0.53   |
+|   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Aliasing1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Aliasing2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Aliasing3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Aliasing4 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Aliasing5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Aliasing6 |   1   |    7     |   ❌    | 0  | 0  | 6  |   0.00    |  0.00  |  0.00   |
+|   TOTAL   |   4   |    12    |  1/6   | 1  | 1  | 9  |   0.50    |  0.10  |  0.17   |
+
 
 - **ArraysTest** - failed: 5, passed: 5, ignored: 0 of 10 test.
 
