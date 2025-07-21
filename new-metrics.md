@@ -1,4 +1,4 @@
-#### JSVFA metrics
+## JSVFA metrics
 
 > Metrics for Pass Rate
 
@@ -15,13 +15,6 @@
 | StrongUpdate  |    5     |   3    |   2    |    60%    |       
 |   **TOTAL**   |   103    |   69   |   34   |  66.99%   |
 
-> Pass Rate metric for additional (unused) tests.
-
-|    Test    | Expected | Passed | Failed | Pass Rate |
-|:----------:|:--------:|:------:|:------:|:---------:| 
-|    Pred    |    9     |   6    |   3    |  66.67%   |   
-| Reflection |    4     |   0    |   4    |    0%     |   
-| Sanitizer  |    6     |   2    |   4    |  33.33%   |
 
 > Metrics for Precision, Recall and F-score.
 
@@ -37,6 +30,23 @@
 |    Session    |    3     | 0      | 0  | 0  |     0     |   0    |    0    |
 | StrongUpdate  |    1     | 3      | 1  | 2  |   0.33    |  1.00  |  0.50   |
 |   **TOTAL**   |   123    | 101    | 92 | 9  |   0.91    |  0.75  |  0.82   |
+
+> SUMMARY
+
+- **securibench.micro** - failed: 40, passed: 63 of 103 tests - (61.17%)
+
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+|    Aliasing    |   4   |    12    |  1/6   | 1  | 1  | 9  |   0.50    |  0.10  |  0.17   |
+|     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |
+|     Basic      |  59   |    60    | 37/42  | 53 | 2  | 3  |   0.96    |  0.95  |  0.95   |
+|  Collections   |   4   |    15    |  3/14  | 3  | 0  | 11 |   1.00    |  0.21  |  0.35   |
+| Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
+|   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
+|     Inter      |  13   |    18    |  9/14  | 10 | 0  | 5  |   1.00    |  0.67  |  0.80   |
+|    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
+|     TOTAL      |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |
 
 > Details
 
