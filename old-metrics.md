@@ -97,7 +97,7 @@
 |  TOTAL  |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |
 
 
-- **securibench.micro.collections** - failed: 12, passed: 2 of 14 tests - (14.29%)
+- **securibench.micro.collections** - failed: 13, passed: 1 of 14 tests - (7.14%)
 
 |     Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:-------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -114,8 +114,8 @@
 | Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections9  |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
-|     TOTAL     |   3   |    14    |  2/14  | 1  | 1  | 12 |   0.50    |  0.08  |  0.14   |
+| Collections9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|     TOTAL     |   3   |    15    |  1/14  | 1  | 1  | 13 |   0.50    |  0.07  |  0.12   |
 
 
 - **securibench.micro.datastructures** - failed: 2, passed: 4 of 6 tests - (66.67%)
@@ -141,7 +141,7 @@
 |   TOTAL    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
 
 
-- **securibench.micro.inter** - failed: 6, passed: 8 of 14 tests - (57.14%)
+- **securibench.micro.inter** - failed: 7, passed: 7 of 14 tests - (50.0%)
 
 |  Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:-------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -153,13 +153,13 @@
 | Inter14 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter2  |   2   |    2     |   ✅    | 2  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter3  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Inter4  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Inter5  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Inter4  |   0   |    2     |   ❌    | 0  | 0  | 2  |   0.00    |  0.00  |  0.00   |
+| Inter5  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Inter6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Inter7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Inter8  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter9  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-|  TOTAL  |  10   |    16    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
+|  TOTAL  |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |
 
 
 - **securibench.micro.session** - failed: 3, passed: 0 of 3 tests - (0.0%)
