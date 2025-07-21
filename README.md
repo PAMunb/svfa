@@ -97,29 +97,22 @@ To have detailed information about each group of tests run, [see here.](old-metr
 
 To have detailed information about each group of tests run, [see here.](new-metrics)
 
-#### FLOWDROID metrics from [Paper](https://www.bodden.de/pubs/far+14flowdroid.pdf)
+#### FLOWDROID 
 
-|     Test      |   TP    | FP  | 
-|:-------------:|:-------:|:---:|
-|   Aliasing    |  11/11  |  0  |   
-|     Array     |   9/9   |  4  |   
-|     Basic     |  58/60  |  1  |  
-|  Collection   |  14/14  |  0  | 
-| DataStructure |   5/5   |  1  |  
-|    Factory    |   3/3   |  1  |  
-|     Inter     |  14/16  |  0  |  
-|    Session    |   3/3   |  0  |  
-| StrongUpdate  |   0/0   |  2  |   
-|   **TOTAL**   | 117/121 |  9  |   
+- failed: 33, passed: 70 of 103 tests. `(67.96%)`
 
-- **Precision:** 0.93
-- **Recall:** 0.97
-- **F-score:** 0.95
-- **Pass Rate:** 87.38%
-
-**OBSERVATIONS**
-- Flowdroid is not taking in count the TP expected in StrongUpdate4;
-- Test Basic40 is commented in the test suite so the amount of TP differs from the original run by Flowdroid;
+| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
+|----------------|-------|----------|--------|----|----|----|-----------|--------|------|
+| Aliasing       | 11    | 11       | 4/6    | 9  | 1  | 1  | 0.90      | 0.90   | 0.90 |
+| Arrays         | 14    | 9        | 6/10   | 6  | 5  | 0  | 0.55      | 1.00   | 0.71 |
+| Basic          | 38    | 61       | 26/42  | 33 | 1  | 24 | 0.97      | 0.58   | 0.73 |
+| Collections    | 14    | 14       | 12/14  | 12 | 1  | 1  | 0.92      | 0.92   | 0.92 |
+| Datastructures | 5     | 5        | 4/6    | 3  | 1  | 1  | 0.75      | 0.75   | 0.75 |
+| Factories      | 1     | 3        | 1/3    | 1  | 0  | 2  | 1.00      | 0.33   | 0.50 |
+| Inter          | 15    | 16       | 13/14  | 15 | 0  | 1  | 1.00      | 0.94   | 0.97 |
+| Session        | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 |
+| StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
+| TOTAL          | 98    | 123      | 70/103 | 79 | 9  | 34 | 0.90      | 0.70   | 0.79 |
 
 #### METRICS SUMMARY
 
@@ -134,6 +127,7 @@ To have detailed information about each group of tests run, [see here.](new-metr
 |:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 |   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 | JSVFA 2.0 |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |
+| Flowdroid |  98   |   123    | 70/103 | 79 | 9  | 34 |   0.90    |  0.70  |  0.79   |
 
 
 ### Taintbench: (WIP) 
