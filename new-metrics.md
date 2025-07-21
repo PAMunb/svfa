@@ -184,15 +184,14 @@
 |  TOTAL  |  13   |    18    |  9/14  | 10 | 0  | 5  |   1.00    |  0.67  |  0.80   |
 
 
-- **SessionTest** - failed: 3, passed: 0, ignored: 0 of 3 tests.
+- **SessionTest** - failed: 3, passed: 0 of 3 tests - (0.0%)
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-|    Session1    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|    Session2    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|    Session3    |    1     |   0    |   ❌    |  0  |  0  |     -     |   -    |    -    |
-|     TOTAL      |    3     |   0    |  0/3   |  0  |  0  |     0     |   0    |    0    |
-
+|   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Session1 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Session2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Session3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|  TOTAL   |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 
 - **StrongUpdateTest** - failed: 2, passed: 3, ignored: 0 of 5 tests.
 
