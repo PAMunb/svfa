@@ -193,13 +193,14 @@
 | Session3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 |  TOTAL   |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 
-- **StrongUpdateTest** - failed: 2, passed: 3, ignored: 0 of 5 tests.
 
-|      Test      | Expected | Actual | Status | TP  | FP  | Precision | Recall | F-score |
-|:--------------:|:--------:|:------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-| StrongUpdate1  |    0     |   0    |   ✅    |  0  |  0  |     -     |   -    |    -    |
-| StrongUpdate2  |    0     |   0    |   ✅    |  0  |  0  |     -     |   -    |    -    |
-| StrongUpdate3  |    0     |   1    |   ❌    |  0  |  1  |     -     |   -    |    -    |
-| StrongUpdate4  |    1     |   1    |   ✅    |  1  |  0  |     -     |   -    |    -    |
-| StrongUpdate5  |    0     |   1    |   ❌    |  0  |  1  |     -     |   -    |    -    |
-|     TOTAL      |    1     |   3    |  3/5   |  1  |  2  |   0.33    |  1.00  |  0.50   |
+- **StrongUpdateTest** - failed: 2, passed: 3 of 5 tests - (60.0%)
+
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| StrongUpdates1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates2 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+|     TOTAL      |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
