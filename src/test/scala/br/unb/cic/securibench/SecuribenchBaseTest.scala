@@ -1,11 +1,10 @@
 package br.unb.cic.securibench
 
+import br.unb.cic.soot.JSVFATest
 import br.unb.cic.soot.graph._
-import org.scalatest.FunSuite
-import securibench.micro.MicroTestCase
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchBaseTest(var className: String = "", var mainMethod: String = "") extends SecuribenchSpec {
+class SecuribenchBaseTest(var className: String = "", var mainMethod: String = "") extends JSVFATest with SecuribenchSpec {
   override def getClassName(): String = className
 
   override def getMainMethod(): String = mainMethod
@@ -33,4 +32,11 @@ class SecuribenchBaseTest(var className: String = "", var mainMethod: String = "
     }
     SimpleNode
   }
+
+  override def getIncludeList(): List[String] = List(
+    "java.lang.*",
+    "javax.servlet.*",
+    "java.util.*",
+    "java.io.*"
+  )
 }
