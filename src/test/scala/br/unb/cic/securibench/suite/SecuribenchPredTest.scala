@@ -1,4 +1,4 @@
-package br.unb.cic.securibench.tests
+package br.unb.cic.securibench.suite
 
 import br.unb.cic.securibench.SecuribenchTest
 
