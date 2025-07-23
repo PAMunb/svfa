@@ -1,8 +1,8 @@
 package br.unb.cic.securibench.suite
 
-import br.unb.cic.securibench.SecuribenchSuiteTest
+import br.unb.cic.securibench.SecuribenchRuntimeTest
 
-class SecuribenchAliasingTest extends SecuribenchSuiteTest {
+class SecuribenchAliasingTest extends SecuribenchRuntimeTest {
    def basePackage(): String = "securibench.micro.aliasing"
 
    def entryPointMethod(): String = "doGet"

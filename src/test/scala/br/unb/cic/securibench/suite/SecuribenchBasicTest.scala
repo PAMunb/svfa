@@ -1,8 +1,8 @@
 package br.unb.cic.securibench.suite
 
-import br.unb.cic.securibench.SecuribenchSuiteTest
+import br.unb.cic.securibench.SecuribenchRuntimeTest
 
-class SecuribenchBasicTest extends SecuribenchSuiteTest {
+class SecuribenchBasicTest extends SecuribenchRuntimeTest {
    def basePackage(): String = "securibench.micro.basic"
 
    def entryPointMethod(): String = "doGet"

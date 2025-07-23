@@ -6,7 +6,7 @@ import br.unb.cic.metrics.CustomMetrics
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 
-abstract class SecuribenchSuiteTest extends FunSuite with CustomMetrics {
+abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
 
   def basePackage(): String
 
@@ -53,21 +53,21 @@ abstract class SecuribenchSuiteTest extends FunSuite with CustomMetrics {
     }.toList
   }
 
-  def generateDynamicTests(packageName: String): Unit = {
+  def generateRuntimeTests(packageName: String): Unit = {
     val files = getJavaFilesFromPackage(packageName)
-    this.generateDynamicTests(files, packageName)
+    this.generateRuntimeTests(files, packageName)
     this.reportSummary(packageName)
   }
 
-  def generateDynamicTests(files: List[AnyRef], packageName: String): Unit = {
+  def generateRuntimeTests(files: List[AnyRef], packageName: String): Unit = {
     files.foreach {
-      case list: List[AnyRef] => this.generateDynamicTests(list, packageName)
-      case list : java.nio.file.Path => generateDynamicTests(list, packageName)
+      case list: List[AnyRef] => this.generateRuntimeTests(list, packageName)
+      case list : java.nio.file.Path => generateRuntimeTests(list, packageName)
       case _ =>
     }
   }
 
-  def generateDynamicTests(file: AnyRef, packageName: String): Unit = {
+  def generateRuntimeTests(file: AnyRef, packageName: String): Unit = {
       var fileName = file.toString.replace(".class", "").replace("/",".")
       fileName = fileName.split(packageName).last;
       val className = s"$packageName$fileName"
@@ -84,7 +84,7 @@ abstract class SecuribenchSuiteTest extends FunSuite with CustomMetrics {
     }
 
   test(s"running testsuite from ${basePackage()}") {
-    generateDynamicTests(basePackage())
+    generateRuntimeTests(basePackage())
     assert(this.vulnerabilities() == this.vulnerabilitiesFound())
   }
 }
