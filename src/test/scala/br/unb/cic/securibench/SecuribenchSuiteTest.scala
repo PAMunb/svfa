@@ -73,7 +73,7 @@ abstract class SecuribenchSuiteTest extends FunSuite with CustomMetrics {
       val className = s"$packageName$fileName"
       val clazz = Class.forName(className)
 
-      val svfa = new SecuribenchBaseTest(className, entryPointMethod())
+      val svfa = new SecuribenchTest(className, entryPointMethod())
       svfa.buildSparseValueFlowGraph()
       val conflicts = svfa.reportConflictsSVG()
 

@@ -4,7 +4,7 @@ import br.unb.cic.soot.JSVFATest
 import br.unb.cic.soot.graph._
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchBaseTest(var className: String = "", var mainMethod: String = "") extends JSVFATest with SecuribenchSpec {
+class SecuribenchTest(var className: String = "", var mainMethod: String = "") extends JSVFATest with SecuribenchSpec {
   override def getClassName(): String = className
 
   override def getMainMethod(): String = mainMethod
