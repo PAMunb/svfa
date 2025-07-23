@@ -1,10 +1,11 @@
-package br.unb.cic.securibench
+package br.unb.cic.securibench.deprecated
 
+import br.unb.cic.securibench.SecuribenchSpec
 import br.unb.cic.soot.JSVFATest
 import br.unb.cic.soot.graph._
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchBaseTest(var className: String = "", var mainMethod: String = "") extends JSVFATest with SecuribenchSpec {
+class SecuribenchDeprecatedTest(var className: String = "", var mainMethod: String = "") extends JSVFATest with SecuribenchSpec {
   override def getClassName(): String = className
 
   override def getMainMethod(): String = mainMethod
