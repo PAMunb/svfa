@@ -1,8 +1,8 @@
 package br.unb.cic.securibench.suite
 
-import br.unb.cic.securibench.SecuribenchTest
+import br.unb.cic.securibench.SecuribenchSuiteTest
 
-class SecuribenchSessionTest extends SecuribenchTest {
+class SecuribenchSessionTest extends SecuribenchSuiteTest {
    def basePackage(): String = "securibench.micro.session"
 
    def entryPointMethod(): String = "doGet"

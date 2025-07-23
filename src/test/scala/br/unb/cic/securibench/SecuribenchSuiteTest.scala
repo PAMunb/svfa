@@ -6,7 +6,7 @@ import br.unb.cic.metrics.CustomMetrics
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 
-abstract class SecuribenchTest extends FunSuite with CustomMetrics {
+abstract class SecuribenchSuiteTest extends FunSuite with CustomMetrics {
 
   def basePackage(): String
 
