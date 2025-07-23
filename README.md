@@ -99,7 +99,7 @@ To have detailed information about each group of tests run, [see here.](new-metr
 
 #### FLOWDROID 
 
-- failed: 33, passed: 70 of 103 tests. `(67.96%)`
+- failed: 36, passed: 67 of 103 tests. `(65.05%)`
 
 | Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
 |----------------|-------|----------|--------|----|----|----|-----------|--------|------|
@@ -112,7 +112,7 @@ To have detailed information about each group of tests run, [see here.](new-metr
 | Inter          | 15    | 16       | 13/14  | 15 | 0  | 1  | 1.00      | 0.94   | 0.97 |
 | Session        | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 |
 | StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
-| TOTAL          | 98    | 123      | 70/103 | 79 | 9  | 34 | 0.90      | 0.70   | 0.79 |
+| TOTAL          | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 |
 
 #### JOANA
 
@@ -139,7 +139,7 @@ To have detailed information about each group of tests run, [see here.](joana-me
 |:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|-----------:|
 |   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |     55.34% |
 | JSVFA 2.0 |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |     61.17% |
-| Flowdroid |  
+| Flowdroid |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |     65.05% |
 |   Joana   |  106  |   126    | 71/103 | 73 | 14 | 34 |   0.84    |  0.68  |  0.75   |     68.93% |
 
 
