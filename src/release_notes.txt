@@ -4,4 +4,4 @@ v0.3.1
 
 v0.3.2
 - Create arquitecture to compute metrics,
-- Document measure from JSVFA, Flowdroid and Joana. 
+- Document measures from JSVFA, Flowdroid and Joana. 
