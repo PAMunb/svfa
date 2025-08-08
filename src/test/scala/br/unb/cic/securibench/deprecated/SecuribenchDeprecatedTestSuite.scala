@@ -541,7 +541,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
   ignore("description: Inter4") {
-    val svfa = new SecuribenchTest("securibench.micro.inter.Inter4", "doGet")
+    val svfa = new FlowdroidTest("securibench.micro.inter.Inter4", "doGet")
     svfa.buildSparseValueFlowGraph()
 //    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == 1)
@@ -655,7 +655,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
   ignore("description: StrongUpdate4") {
-    val svfa = new SecuribenchTest("securibench.micro.strong_updates.StrongUpdates4", "doGet")
+    val svfa = new FlowdroidTest("securibench.micro.strong_updates.StrongUpdates4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
