@@ -16,7 +16,7 @@ import securibench.micro.MicroTestCase;
 
 /** 
  *  @servlet description="simple nexted data (false positive)" 
- *  @servlet vuln_count = "1" 
+ *  @servlet vuln_count = "0"
  *  */
 public class Datastructures4 extends BasicTestCase implements MicroTestCase {
     public class C {
@@ -50,6 +50,6 @@ public class Datastructures4 extends BasicTestCase implements MicroTestCase {
     }
     
     public int getVulnerabilityCount() {
-        return 1;
+        return 0;
     }
 }
