@@ -1,6 +1,7 @@
 #### JSVFA old metrics
 
-> Metrics
+> SUMMARY (*computed in March 2023.*)
+
 - **securibench.micro** - failed: 46, passed: 57 of 103 tests - (55.34%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
@@ -17,7 +18,7 @@
 |     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 
 
-> Details
+> Details (*computed in June, 2025.*)
 
 - **securibench.micro.aliasing** - failed: 4, passed: 2 of 6 tests - (33.33%)
 

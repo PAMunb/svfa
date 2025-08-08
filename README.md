@@ -76,7 +76,7 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 | strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 |     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 
-To have detailed information about each group of tests run, [see here.](old-metrics) (*computed in in March, 2023.*)
+To have detailed information about each group of tests run, [see here.](old-metrics) (*computed in March 2023.*)
 
 #### JSVFA 2.0 metrics
 
@@ -95,7 +95,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 |     TOTAL      |  103  |   126    | 64/103 | 79 | 11 | 34 |   0.88    |  0.70  |  0.78   |
 
-To have detailed information about each group of tests run, [see here.](new-metrics)
+To have detailed information about each group of tests run, [see here.](new-metrics) (*computed in June 2025.*)
 
 #### FLOWDROID 
 
