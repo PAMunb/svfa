@@ -80,7 +80,7 @@ To have detailed information about each group of tests run, [see here.](old-metr
 
 #### JSVFA 2.0 metrics
 
-> failed: 40, passed: 63 of 103 tests - (61.17%)
+> failed: 39, passed: 64 of 103 tests - (62.14%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -90,10 +90,10 @@ To have detailed information about each group of tests run, [see here.](old-metr
 |  Collections   |   4   |    15    |  3/14  | 3  | 0  | 11 |   1.00    |  0.21  |  0.35   |
 | Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
 |   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
-|     Inter      |  13   |    18    |  9/14  | 10 | 0  | 5  |   1.00    |  0.67  |  0.80   |
+|     Inter      |  14   |    18    | 10/14  | 12 | 0  | 4  |   1.00    |  0.75  |  0.86   |
 |    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
-|     TOTAL      |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |
+|     TOTAL      |  103  |   126    | 64/103 | 79 | 11 | 34 |   0.88    |  0.70  |  0.78   |
 
 To have detailed information about each group of tests run, [see here.](new-metrics)
 
@@ -135,12 +135,12 @@ To have detailed information about each group of tests run, [see here.](joana-me
 
 #### METRICS SUMMARY
 
-|   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |  Pass Rate |
-|:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|-----------:|
-|   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |     55.34% |
-| JSVFA 2.0 |  102  |   126    | 63/103 | 78 | 11 | 35 |   0.88    |  0.69  |  0.77   |     61.17% |
-| Flowdroid |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |     65.05% |
-|   Joana   |  106  |   126    | 71/103 | 73 | 14 | 34 |   0.84    |  0.68  |  0.75   |     68.93% |
+|   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
+|   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |    55.34% |
+| JSVFA 2.0 |  103  |   126    | 64/103 | 79 | 11 | 34 |   0.88    |  0.70  |  0.78   |    62.14% |
+| Flowdroid |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
+|   Joana   |  106  |   126    | 71/103 | 73 | 14 | 34 |   0.84    |  0.68  |  0.75   |    68.93% |
 
 
 ### Taintbench: (WIP) 
