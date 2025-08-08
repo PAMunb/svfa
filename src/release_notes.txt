@@ -1,3 +1,7 @@
 v0.3.1
 - Fork repository from https://github.com/rbonifacio/svfa-scala,
 - Skipped tests to have a clean pipeline.
+
+v0.3.2
+- Create arquitecture to compute metrics,
+- Document measure from JSVFA, Flowdroid and Joana. 
