@@ -2,7 +2,7 @@
 
 > SUMMARY
 
-- **securibench.micro** - 
+- **securibench.micro** - failed: 38, passed: 65 of 103 tests - (63.11%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -15,7 +15,7 @@
 |     Inter      |  12   |    18    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
 |    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
-|     TOTAL      |  
+|     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
 
 > Details
