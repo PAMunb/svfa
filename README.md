@@ -80,20 +80,20 @@ To have detailed information about each group of tests run, [see here.](docs-met
 
 #### JSVFA 2.0 metrics (v0.3.2)
 
-> failed: 39, passed: 64 of 103 tests - (62.14%)
+> failed: 38, passed: 65 of 103 tests - (63.11%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 |    Aliasing    |   4   |    12    |  1/6   | 1  | 1  | 9  |   0.50    |  0.10  |  0.17   |
 |     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |
 |     Basic      |  59   |    60    | 37/42  | 53 | 2  | 3  |   0.96    |  0.95  |  0.95   |
-|  Collections   |   4   |    15    |  3/14  | 3  | 0  | 11 |   1.00    |  0.21  |  0.35   |
+|  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |
 | Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
 |   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
-|     Inter      |  14   |    18    | 10/14  | 12 | 0  | 4  |   1.00    |  0.75  |  0.86   |
+|     Inter      |  12   |    18    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
 |    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
-|     TOTAL      |  103  |   126    | 64/103 | 79 | 11 | 34 |   0.88    |  0.70  |  0.78   |
+|     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
 To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.2.md) (*computed in June 2025.*)
 
