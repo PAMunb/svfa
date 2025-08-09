@@ -78,7 +78,7 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 
 To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
 
-#### JSVFA 2.0 metrics (v0.3.2)
+#### JSVFA 2.0 metrics (v0.3.3)
 
 > failed: 38, passed: 65 of 103 tests - (63.11%)
 
