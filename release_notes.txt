@@ -3,5 +3,5 @@ v0.3.1
 - Skipped tests to have a clean pipeline.
 
 v0.3.2
-- Create arquitecture to compute metrics,
+- Create architecture to compute metrics,
 - Document measures from JSVFA, Flowdroid and Joana. 
