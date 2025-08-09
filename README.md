@@ -95,7 +95,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 |     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.2.md) (*computed in June 2025.*)
+To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.3.md) (*computed in August 2025.*)
 
 #### FLOWDROID 
 
@@ -140,7 +140,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 |   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
 |   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |    55.34% |
-| JSVFA 2.0 |  103  |   126    | 64/103 | 79 | 11 | 34 |   0.88    |  0.70  |  0.78   |    62.14% |
+| JSVFA 2.0 |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |    63.11% |
 | Flowdroid |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
 |   Joana   |  106  |   126    | 71/103 | 73 | 14 | 34 |   0.84    |  0.68  |  0.75   |    68.93% |
 
