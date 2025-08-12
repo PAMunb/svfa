@@ -1,7 +1,7 @@
 package br.unb.cic.android
 
 import br.unb.cic.android.specs.{BackFlashSpec, BeitaComBeitaContactSpec, CajinoBaiduSpec, ChatHookSpec, ChuliaSpec, DeathRingMaterialflowSpec, DsencryptSampSpec, ExprespamSpec, FakeappstoreSpec, FakebankAndroidSampSpec, FakedaumSpec, FakemartSpec, FakeplaySpec, FaketaobaoSpec, GodwonSampSpec, HummingbadAndroidSampSpec, JollyservSpec, OverlayAndroidSampSpec, Overlaylocker2AndroidSampSpec, PhospySpec, ProxySampSpec, RemoteControlSmackSpec, RepaneSpec, RoidSecSpec, SamsapoSpec, SaveMeSpec, ScipiexSpec, SlockerAndroidSampSpec, SmsGoogleSpec, SmsSendLockerQqmagicSpec, SmssendPackageInstallerSpec, SmssilienceFakeVertuSpec, SmsstealerKysnAssassincreedAndroidSampSpec, StelsFlashplayerAndroidUpdateSpec, TetusSpec, TheInterviewMovieShowSpec, ThreatjapanUractoSpec, VibleakerAndroidSampSpec, XbotAndroidSampSpec}
-import br.unb.cic.metrics.Metrics
+import br.unb.cic.metrics.CustomMetrics
 import org.scalatest.FunSuite
 
 /**
@@ -9,7 +9,7 @@ import org.scalatest.FunSuite
  * Each test is run with its associated list of sources and sinks
  * We do it injecting the "trait" that contents these list at the instance of the object
  */
-class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
+class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with CustomMetrics {
 
   test("in the APK backflash, we should detect 13 flow") {
     val expected = 13;
@@ -17,9 +17,9 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     val svfa = new AndroidTaintBenchTest("backflash") with BackFlashSpec
     svfa.buildSparseValueFlowGraph()
 
-    val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
-    assert(actual == expected)
+    val found = svfa.reportConflictsSVG(true).size
+    this.compute(expected, found, "backflash")
+    assert(found == expected)
   }
 
   test("in the APK beita_com_beita_contact, we should detect 3 flow") {
@@ -29,7 +29,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -40,7 +40,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -51,7 +51,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -62,7 +62,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -73,7 +73,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -84,7 +84,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -95,7 +95,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -106,7 +106,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -117,7 +117,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -128,7 +128,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -139,7 +139,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -150,7 +150,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -161,7 +161,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -172,7 +172,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -183,7 +183,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -194,7 +194,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -205,7 +205,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -216,7 +216,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -227,7 +227,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -238,7 +238,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -249,7 +249,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -260,7 +260,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -271,7 +271,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -282,7 +282,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -293,7 +293,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -304,7 +304,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -315,7 +315,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -326,7 +326,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -337,7 +337,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -348,7 +348,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -359,7 +359,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -370,7 +370,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -381,7 +381,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -392,7 +392,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -403,7 +403,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -414,7 +414,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -425,7 +425,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 
@@ -436,7 +436,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with Metrics {
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.computeMetricsByResults(expected, actual)
+    this.compute(expected, actual, "xxx")
     assert(actual == expected)
   }
 }
