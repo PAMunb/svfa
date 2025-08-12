@@ -61,82 +61,89 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 
 #### JSVFA metrics (old)
 
-> failed: 0, passed: 63, ignored: 39 of 102 tests.
+> failed: 46, passed: 57 of 103 tests - (55.34%)
 
-|     Test      |   TP   | FP |
-|:-------------:|:------:|:--:|
-|   Aliasing    | 10/11  | 0  |   
-|     Array     |  0/9   | 0  |   
-|     Basic     | 56/59  | 2  |  
-|  Collection   |  2/14  | 1  |
-| DataStructure |  5/5   | 2  |
-|    Factory    |  3/3   | 1  |  
-|     Inter     | 10/16  | 0  |  
-|    Session    |  0/3   | 0  |  
-| StrongUpdate  |  0/1   | 0  |   
-|   **TOTAL**   | 86/121 | 6  |
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+|    aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
+|     arrays     |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   | 
+|     basic      |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |
+|  collections   |   3   |    15    |  1/14  | 1  | 1  | 13 |   0.50    |  0.07  |  0.12   |
+| datastructures |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |
+|   factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
+|     inter      |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |
+|    session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
+| strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+|     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 
-- **Precision:** 0.93
-- **Recall:** 0.71
-- **F-score:** 0.81
-- **Pass Rate:** 61.76%
+To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
 
-To have detailed information about each group of tests run, [see here.](old-metrics) (*computed in in March, 2023.*)
+#### JSVFA 2.0 metrics (v0.3.3)
 
-#### JSVFA 2.0 metrics
+> failed: 38, passed: 65 of 103 tests - (63.11%)
 
-> failed: 0, passed: 70, ignored: 32 of 102 tests
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+|    Aliasing    |   4   |    12    |  1/6   | 1  | 1  | 9  |   0.50    |  0.10  |  0.17   |
+|     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |
+|     Basic      |  59   |    60    | 37/42  | 53 | 2  | 3  |   0.96    |  0.95  |  0.95   |
+|  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |
+| Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
+|   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
+|     Inter      |  12   |    18    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
+|    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
+|     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
-|     Test      |   TP   | FP  | 
-|:-------------:|:------:|:---:|
-|   Aliasing    |  4/11  |  0  |   
-|     Array     |  7/9   |  4  |   
-|     Basic     | 57/59  |  1  |  
-|  Collection   |  4/14  |  0  | 
-| DataStructure |  4/5   |  1  |  
-|    Factory    |  3/3   |  1  |  
-|     Inter     | 12/16  |  0  |  
-|    Session    |  0/3   |  0  |  
-| StrongUpdate  |  1/1   |  2  |   
-|   **TOTAL**   | 92/121 |  9  |       
+To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.3.md) (*computed in August 2025.*)
 
-- **Precision:** 0.91
-- **Recall:** 0.76
-- **F-score:** 0.83
-- **Pass Rate:** 68.62%
+#### FLOWDROID 
 
-To have detailed information about each group of tests run, [see here.](new-metrics)
+- failed: 36, passed: 67 of 103 tests. `(65.05%)`
 
-#### FLOWDROID metrics from [Paper](https://www.bodden.de/pubs/far+14flowdroid.pdf)
+| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
+|----------------|-------|----------|--------|----|----|----|-----------|--------|------|
+| Aliasing       | 11    | 11       | 4/6    | 9  | 1  | 1  | 0.90      | 0.90   | 0.90 |
+| Arrays         | 14    | 9        | 6/10   | 6  | 5  | 0  | 0.55      | 1.00   | 0.71 |
+| Basic          | 38    | 61       | 26/42  | 33 | 1  | 24 | 0.97      | 0.58   | 0.73 |
+| Collections    | 14    | 14       | 12/14  | 12 | 1  | 1  | 0.92      | 0.92   | 0.92 |
+| Datastructures | 5     | 5        | 4/6    | 3  | 1  | 1  | 0.75      | 0.75   | 0.75 |
+| Factories      | 1     | 3        | 1/3    | 1  | 0  | 2  | 1.00      | 0.33   | 0.50 |
+| Inter          | 15    | 16       | 13/14  | 15 | 0  | 1  | 1.00      | 0.94   | 0.97 |
+| Session        | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 |
+| StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
+| TOTAL          | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 |
 
-|     Test      |   TP    | FP  | 
-|:-------------:|:-------:|:---:|
-|   Aliasing    |  11/11  |  0  |   
-|     Array     |   9/9   |  4  |   
-|     Basic     |  58/60  |  1  |  
-|  Collection   |  14/14  |  0  | 
-| DataStructure |   5/5   |  1  |  
-|    Factory    |   3/3   |  1  |  
-|     Inter     |  14/16  |  0  |  
-|    Session    |   3/3   |  0  |  
-| StrongUpdate  |   0/0   |  2  |   
-|   **TOTAL**   | 117/121 |  9  |   
+To have detailed information about each group of tests run, [see here.](docs-metrics/flowdroid/flowdroid-metrics.md)
 
-- **Precision:** 0.93
-- **Recall:** 0.97
-- **F-score:** 0.95
+#### JOANA
 
-**OBSERVATIONS**
-- Flowdroid is not taking in count the TP expected in StrongUpdate4;
-- Test Basic40 is commented in the test suite so the amount of TP differs from the original run by Flowdroid;
+> failed: 32, passed: 71 of 103 tests. `(68.93%)`
+
+| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
+|----------------|-------|----------|--------|----|----|----|-----------|--------|------|
+| Aliasing       | 6     | 11       | 2/6    | 2  | 2  | 7  | 0.50      | 0.22   | 0.31 |
+| Arrays         | 10    | 9        | 9/10   | 9  | 1  | 0  | 0.90      | 1.00   | 0.95 |
+| Basic          | 45    | 61       | 25/42  | 26 | 6  | 22 | 0.81      | 0.54   | 0.65 |
+| Collections    | 15    | 15       | 14/14  | 15 | 0  | 0  | 1.00      | 1.00   | 1.00 |
+| Datastructures | 6     | 5        | 5/6    | 5  | 1  | 0  | 0.83      | 1.00   | 0.91 |
+| Factories      | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00 |
+| Inter          | 13    | 18       | 9/14   | 9  | 0  | 5  | 1.00      | 0.64   | 0.78 |
+| Session        | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00 |
+| StrongUpdates  | 5     | 1        | 1/5    | 1  | 4  | 0  | 0.20      | 1.00   | 0.33 |
+| TOTAL          | 106   | 126      | 71/103 | 73 | 14 | 34 | 0.84      | 0.68   | 0.75 |
+
+To have detailed information about each group of tests run, [see here.](docs-metrics/joana/joana-metrics.md)
 
 #### METRICS SUMMARY
 
-| Frameworks | Precision | Recall | F-score | Pass Rate |
-|:----------:|:---------:|:------:|:-------:|----------:|
-|   JSVFA    |   0.93    |  0.71  |  0.81   |    61.76% | 
-| JSVFA 2.0  |   0.91    |  0.76  |  0.83   |    68.62% | 
-| FlowDroid  |   0.93    |  0.97  |  0.95   |         - | 
+|   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
+|   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |    55.34% |
+| JSVFA 2.0 |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |    63.11% |
+| Flowdroid |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
+|   Joana   |  106  |   126    | 71/103 | 73 | 14 | 34 |   0.84    |  0.68  |  0.75   |    68.93% |
+
 
 ### TAINTBENCH:
 
