@@ -179,7 +179,7 @@ The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://git
 and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.scala`.
 
 As a result, we got `37 failed and 2 passed of 39 tests` and comparing to FLOWDROID we detected the same amount of `TP(41)`
-but less amount of `FP(9)` and about metrics, we got a better `precision(0.82)`, the same `recall(0.22)` value
+but less amount of `FP(9)` so we computed the next metrics: a better `precision(0.82)`, the same `recall(0.22)` value
 and a slightly better `F-score(0.35)`.
 
 - JSVFA metrics, to have detailed information about each group of tests run, [see here.](taintbench-experiment-I.md)
