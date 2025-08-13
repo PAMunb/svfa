@@ -14,7 +14,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 13
     val nameAPK="backflash";
 
-    val svfa = new AndroidTaintBenchTest("backflash")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -27,7 +27,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 3
     val nameAPK = "beita_com_beita_contact"
 
-    val svfa = new AndroidTaintBenchTest("beita_com_beita_contact")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -40,7 +40,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 12
     val nameAPK = "cajino_baidu"
 
-    val svfa = new AndroidTaintBenchTest("cajino_baidu")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -53,7 +53,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 12
     val nameAPK = "chat_hook"
 
-    val svfa = new AndroidTaintBenchTest("chat_hook")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -66,7 +66,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 4
     val nameAPK = "chulia"
 
-    val svfa = new AndroidTaintBenchTest("chulia")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -79,7 +79,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 1
     val nameAPK = "death_ring_materialflow"
 
-    val svfa = new AndroidTaintBenchTest("death_ring_materialflow")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -92,7 +92,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 1
     val nameAPK = "dsencrypt_samp"
 
-    val svfa = new AndroidTaintBenchTest("dsencrypt_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -105,7 +105,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "exprespam"
 
-    val svfa = new AndroidTaintBenchTest("exprespam")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -118,7 +118,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 3
     val nameAPK = "fakeappstore"
 
-    val svfa = new AndroidTaintBenchTest("fakeappstore")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -131,7 +131,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 5
     val nameAPK = "fakebank_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("fakebank_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -144,7 +144,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "fakedaum"
 
-    val svfa = new AndroidTaintBenchTest("fakedaum")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -157,7 +157,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "fakemart"
 
-    val svfa = new AndroidTaintBenchTest("fakemart")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -170,7 +170,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "fakeplay"
 
-    val svfa = new AndroidTaintBenchTest("fakeplay")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -183,7 +183,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 4
     val nameAPK = "faketaobao"
 
-    val svfa = new AndroidTaintBenchTest("faketaobao")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -196,7 +196,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 6
     val nameAPK = "godwon_samp"
 
-    val svfa = new AndroidTaintBenchTest("godwon_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -209,7 +209,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "hummingbad_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("hummingbad_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -222,7 +222,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 1
     val nameAPK = "jollyserv"
 
-    val svfa = new AndroidTaintBenchTest("jollyserv")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -235,7 +235,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 4
     val nameAPK = "overlay_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("overlay_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -248,7 +248,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 7
     val nameAPK = "overlaylocker2_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("overlaylocker2_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -261,7 +261,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "phospy"
 
-    val svfa = new AndroidTaintBenchTest("phospy")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -274,7 +274,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 17
     val nameAPK = "proxy_samp"
 
-    val svfa = new AndroidTaintBenchTest("proxy_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -287,7 +287,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 17
     val nameAPK = "remote_control_smack"
 
-    val svfa = new AndroidTaintBenchTest("remote_control_smack")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -300,7 +300,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 1
     val nameAPK = "repane"
 
-    val svfa = new AndroidTaintBenchTest("repane")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -313,7 +313,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 6
     val nameAPK = "roidsec"
 
-    val svfa = new AndroidTaintBenchTest("roidsec")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -326,7 +326,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 4
     val nameAPK = "samsapo"
 
-    val svfa = new AndroidTaintBenchTest("samsapo")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -339,7 +339,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 25
     val nameAPK = "save_me"
 
-    val svfa = new AndroidTaintBenchTest("save_me")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -352,7 +352,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 3
     val nameAPK = "scipiex"
 
-    val svfa = new AndroidTaintBenchTest("scipiex")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -365,7 +365,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 5
     val nameAPK = "slocker_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("slocker_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -378,7 +378,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 4
     val nameAPK = "sms_google"
 
-    val svfa = new AndroidTaintBenchTest("sms_google")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -391,7 +391,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 6
     val nameAPK = "sms_send_locker_qqmagic"
 
-    val svfa = new AndroidTaintBenchTest("sms_send_locker_qqmagic")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -404,7 +404,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 5
     val nameAPK = "smssend_packageInstaller"
 
-    val svfa = new AndroidTaintBenchTest("smssend_packageInstaller")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -417,7 +417,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "smssilience_fake_vertu"
 
-    val svfa = new AndroidTaintBenchTest("smssilience_fake_vertu")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -430,7 +430,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 5
     val nameAPK = "smsstealer_kysn_assassincreed_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("smsstealer_kysn_assassincreed_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -443,7 +443,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 3
     val nameAPK = "stels_flashplayer_android_update"
 
-    val svfa = new AndroidTaintBenchTest("stels_flashplayer_android_update")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -456,7 +456,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "tetus"
 
-    val svfa = new AndroidTaintBenchTest("tetus")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -469,7 +469,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 1
     val nameAPK = "the_interview_movieshow"
 
-    val svfa = new AndroidTaintBenchTest("the_interview_movieshow")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -482,7 +482,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 2
     val nameAPK = "threatjapan_uracto"
 
-    val svfa = new AndroidTaintBenchTest("threatjapan_uracto")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -495,7 +495,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 4
     val nameAPK = "vibleaker_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("vibleaker_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -508,7 +508,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 3
     val nameAPK = "xbot_android_samp"
 
-    val svfa = new AndroidTaintBenchTest("xbot_android_samp")
+    val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
@@ -516,23 +516,4 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
 
     assert(actual == expected)
   }
-
-//  test("metrics") {
-//    val expected = 203
-//    val actual = 41
-//
-//    this.compute(expected, actual, "xxx")
-//
-//    assert(true)
-//  }
-//
-//  test("computeMetricsByCriterions") {
-//    val P = 186
-//    val TP = 43
-//    val FP = 14
-//
-//    this.computeMetricsByCriterions(P, TP, FP)
-//
-//    assert(true)
-//  }
 }
