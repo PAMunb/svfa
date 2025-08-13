@@ -29,8 +29,7 @@ The GitHub Actions workflow (`.github/workflows/test.yml`) will:
 1. Trigger on pull requests to `master` or `develop` branches
 2. Set up Java 8 and SBT
 3. Cache dependencies for faster builds
-4. Run all tests with `sbt test`
-5. Run specific test suites:
+4. Run specific test suites:
    - `SecuribenchAliasingTest`
    - `SecuribenchArraysTest`
 

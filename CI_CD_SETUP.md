@@ -10,18 +10,18 @@ The project uses GitHub Actions to automatically run tests on pull requests to t
 
 ### GitHub Actions Workflow
 
-The workflow is defined in `.github/workflows/test.yml` and includes:
+The workflow is defined in `.github/workflows/test_suite.yml` and includes:
 
 - **Triggers**: Pull requests to `master` or `develop` branches
 - **Environment**: Ubuntu latest with Java 8
 - **Build Tool**: SBT (Scala Build Tool)
 - **Caching**: Dependencies are cached for faster builds
-- **Tests**: Runs all tests plus specific test suites
+- **Tests**: Runs specific test suites
 
 ### Test Suites
 
 The workflow runs the following test suites:
-
+TO-DO
 1. **All tests**: `sbt test`
 2. **SecuribenchAliasingTest**: Tests for aliasing scenarios
 3. **SecuribenchArraysTest**: Tests for array-related scenarios
@@ -47,12 +47,8 @@ To enforce that tests must pass before merging:
 Before pushing changes, you can run the same tests locally:
 
 ```bash
-# Run all tests
-sbt test
-
 # Run specific test suites
-sbt "testOnly br.unb.cic.securibench.suite.SecuribenchAliasingTest"
-sbt "testOnly br.unb.cic.securibench.suite.SecuribenchArraysTest"
+sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
 
 # Or use the provided script
 ./scripts/test-local.sh
@@ -63,7 +59,7 @@ sbt "testOnly br.unb.cic.securibench.suite.SecuribenchArraysTest"
 1. **Checkout**: Clones the repository
 2. **Setup Java**: Installs Java 8 (Temurin distribution)
 3. **Cache Dependencies**: Caches SBT dependencies for faster builds
-4. **Run Tests**: Executes all tests and specific test suites
+4. **Run Tests**: Executes specific test suites
 5. **Status Check**: Reports pass/fail status to GitHub
 
 ## Troubleshooting
