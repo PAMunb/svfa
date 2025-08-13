@@ -9,41 +9,44 @@ import org.scalatest.FunSuite
  * Each test is run with its associated list of sources and sinks
  * We do it injecting the "trait" that contents these list at the instance of the object
  */
-class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with CustomMetrics {
+  class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with CustomMetrics {
 
   test("in the APK backflash, we should detect 13 flow") {
+    val nameAPK="backflash";
     val expected = 13;
 
-    val svfa = new AndroidTaintBenchTest("backflash") with BackFlashSpec
+    val svfa = new AndroidTaintBenchTest(nameAPK) with BackFlashSpec
     svfa.buildSparseValueFlowGraph()
 
     val found = svfa.reportConflictsSVG(true).size
-    this.compute(expected, found, "backflash")
+    this.compute(expected, found, nameAPK)
     assert(found == expected)
   }
 
   test("in the APK beita_com_beita_contact, we should detect 3 flow") {
     val expected = 3
+    val nameAPK="beita_com_beita_contact";
 
-    val svfa = new AndroidTaintBenchTest("beita_com_beita_contact") with BeitaComBeitaContactSpec
+    val svfa = new AndroidTaintBenchTest(nameAPK) with BeitaComBeitaContactSpec
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.compute(expected, actual, "xxx")
+    this.compute(expected, actual, nameAPK)
     assert(actual == expected)
   }
 
   test("in the APK cajino_baidu, we should detect 12 flow") {
     val expected = 12
+    val nameAPK="cajino_baidu";
 
-    val svfa = new AndroidTaintBenchTest("cajino_baidu") with CajinoBaiduSpec
+    val svfa = new AndroidTaintBenchTest(nameAPK) with CajinoBaiduSpec
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG(true).size
-    this.compute(expected, actual, "xxx")
+    this.compute(expected, actual, nameAPK)
     assert(actual == expected)
   }
-
+  
   test("in the APK chat_hook, we should detect 12 flow") {
     val expected = 12
 
