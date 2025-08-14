@@ -11,7 +11,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Set up JDK 8
       uses: actions/setup-java@v4
       with:
@@ -37,5 +39,7 @@ jobs:
         key: ${{ runner.os }}-sbt-cache-v2-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('project/build.properties') }}
 
     - name: Run specific test suites
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
