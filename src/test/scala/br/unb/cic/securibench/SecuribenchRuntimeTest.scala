@@ -39,7 +39,7 @@ abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
                   ! clazz.isInterface &&
                   ! java.lang.reflect.Modifier.isAbstract(clazz.getModifiers)
               } catch {
-                case _ => false
+                case _ : Throwable => false
               }
             }
             case _ => false
