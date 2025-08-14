@@ -45,6 +45,9 @@ jobs:
           ~/AppData/Local/Coursier/Cache/v1
         key: ${{ runner.os }}-sbt-cache-v2-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('project/build.properties') }}
 
+    - name: Install library dependencies
+      run: sbt update
+
     - name: Run specific test suites
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
