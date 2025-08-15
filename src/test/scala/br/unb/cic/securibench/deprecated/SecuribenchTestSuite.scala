@@ -10,9 +10,13 @@ class SecuribenchTestSuite extends FunSuite {
    */
 
   test("in the class Aliasing1 we should detect 1 conflict of a simple aliasing test case") {
-    val svfa = new SecuribenchTest("securibench.micro.aliasing.Aliasing1", "doGet")
+    val testName = "Aliasing1"
+    val expectedConflicts = 1
+
+    val svfa = new SecuribenchTest(s"securibench.micro.aliasing.$testName", "doGet")
     svfa.buildSparseValueFlowGraph()
-    assert(svfa.reportConflictsSVG().size == 1)
+    
+    assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
   test("in the class Aliasing2 we should not detect any conflict in this false positive test case") {
