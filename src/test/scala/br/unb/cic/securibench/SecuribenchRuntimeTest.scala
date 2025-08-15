@@ -61,7 +61,7 @@ abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
 
   def generateRuntimeTests(files: List[AnyRef], packageName: String): Unit = {
     files.foreach {
-      case list: List[AnyRef] => this.generateRuntimeTests(list, packageName)
+      case list: List[_] => this.generateRuntimeTests(list.asInstanceOf[List[AnyRef]], packageName)
       case list : java.nio.file.Path => generateRuntimeTests(list, packageName)
       case _ =>
     }
