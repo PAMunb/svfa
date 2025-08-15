@@ -1,0 +1,55 @@
+name: JSVFA_pipeline
+
+on:
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  test-suite:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        git config --global github.token "${{ secrets.GITHUB_TOKEN }}"
+        
+    - name: Set up JDK 8
+      uses: actions/setup-java@v4
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+        
+    - name: Install SBT
+      run: |
+        curl -L -o sbt.deb https://repo.scala-sbt.org/scalasbt/debian/sbt-1.9.7.deb
+        sudo dpkg -i sbt.deb
+        sudo apt-get update
+        sudo apt-get install -f
+        
+    - name: Cache SBT dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.sbt
+          ~/.ivy2/cache
+          ~/.coursier/cache/v1
+          ~/.cache/coursier/v1
+          ~/AppData/Local/Coursier/Cache/v1
+        key: ${{ runner.os }}-sbt-cache-v2-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('project/build.properties') }}
+
+    - name: Install library dependencies
+      run: sbt update
+
+    - name: Run specific test suites
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
