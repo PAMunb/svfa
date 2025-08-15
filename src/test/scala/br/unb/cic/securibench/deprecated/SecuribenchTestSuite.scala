@@ -68,7 +68,7 @@ class SecuribenchTestSuite extends FunSuite {
    * ARRAY TESTs
    */
 
-  test("description: Array1") {
+  test("in the class Arrays1 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays1"
     val expectedConflicts = 1
 
@@ -77,7 +77,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Array2") {
+  ignore("in the class Arrays2 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays2"
     val expectedConflicts = 1
 
@@ -86,7 +86,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Array3") {
+  test("in the class Arrays3 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays3"
     val expectedConflicts = 1
 
@@ -95,7 +95,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Array4") {
+  test("in the class Arrays4 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays4"
     val expectedConflicts = 1
 
@@ -104,7 +104,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Array5") {
+  ignore("in the class Arrays5 we should detect 0 conflict of a simple array test case") {
     val testName = "Arrays5"
     val expectedConflicts = 0
 
@@ -113,7 +113,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Array6") {
+  test("in the class Arrays6 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays6"
     val expectedConflicts = 1
 
@@ -122,7 +122,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Array7") {
+  test("in the class Arrays7 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays7"
     val expectedConflicts = 1
 
@@ -131,7 +131,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Array8") {
+  ignore("in the class Arrays8 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays8"
     val expectedConflicts = 1
 
@@ -140,7 +140,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Array9") {
+  ignore("in the class Arrays9 we should detect 1 conflict of a simple array test case") {
     val testName = "Arrays9"
     val expectedConflicts = 1
 
@@ -149,7 +149,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Array10") {
+  ignore("in the class Arrays10 we should detect 0 conflict of a simple array test case") {
     val testName = "Arrays10"
     val expectedConflicts = 1
 
@@ -546,7 +546,7 @@ class SecuribenchTestSuite extends FunSuite {
    * COLLECTION TESTs
    */
 
-  test("description: Collection1") {
+  test("in the class Collections1 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections1"
     val expectedConflicts = 1
 
@@ -555,7 +555,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Collection2") {
+  test("in the class Collections2 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections2"
     val expectedConflicts = 1
 
@@ -564,7 +564,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection3") {
+  ignore("in the class Collections3 we should detect 2 conflicts of a simple collection test case") {
     val testName = "Collections3"
     val expectedConflicts = 2
 
@@ -573,7 +573,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Collection4") {
+  test("in the class Collections4 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections4"
     val expectedConflicts = 1
 
@@ -582,7 +582,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection5") {
+  ignore("in the class Collections5 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections5"
     val expectedConflicts = 1
 
@@ -591,7 +591,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection6") {
+  ignore("in the class Collections6 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections6"
     val expectedConflicts = 1
 
@@ -600,7 +600,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection7") {
+  ignore("in the class Collections7 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections7"
     val expectedConflicts = 1
 
@@ -609,7 +609,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection8") {
+  ignore("in the class Collections8 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections8"
     val expectedConflicts = 1
 
@@ -618,7 +618,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection9") {
+  ignore("in the class Collections9 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections9"
     val expectedConflicts = 1
 
@@ -627,7 +627,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection10") {
+  ignore("in the class Collections10 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections10"
     val expectedConflicts = 1
 
@@ -636,7 +636,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Collection11") {
+  test("in the class Collections11 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections11"
     val expectedConflicts = 1
 
@@ -645,7 +645,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection12") {
+  ignore("in the class Collections12 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections12"
     val expectedConflicts = 1
 
@@ -654,7 +654,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Collection13") {
+  ignore("in the class Collections13 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections13"
     val expectedConflicts = 1
 
@@ -663,7 +663,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Collection14") {
+  test("in the class Collections14 we should detect 1 conflict of a simple collection test case") {
     val testName = "Collections14"
     val expectedConflicts = 1
 
@@ -676,7 +676,7 @@ class SecuribenchTestSuite extends FunSuite {
    * DATASTRUCTURE TESTs
    */
 
-  test("description: DataStructure1") {
+  test("in the class Datastructures1 we should detect 1 conflict of a simple data structure test case") {
     val testName = "Datastructures1"
     val expectedConflicts = 1
 
@@ -685,7 +685,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: DataStructure2") {
+  test("in the class Datastructures2 we should detect 1 conflict of a simple data structure test case") {
     val testName = "Datastructures2"
     val expectedConflicts = 1
 
@@ -694,7 +694,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: DataStructure3") {
+  test("in the class Datastructures3 we should detect 1 conflict of a simple data structure test case") {
     val testName = "Datastructures3"
     val expectedConflicts = 1
 
@@ -703,7 +703,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: DataStructure4") {
+  ignore("in the class Datastructures4 we should detect 0 conflict of a simple data structure test case") {
     val testName = "Datastructures4"
     val expectedConflicts = 0
 
@@ -712,7 +712,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: DataStructure5") {
+  ignore("in the class Datastructures5 we should detect 1 conflict of a simple data structure test case") {
     val testName = "Datastructures5"
     val expectedConflicts = 1
 
@@ -721,7 +721,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: DataStructure6") {
+  test("in the class Datastructures6 we should detect 1 conflict of a simple data structure test case") {
     val testName = "Datastructures6"
     val expectedConflicts = 1
 
@@ -734,7 +734,7 @@ class SecuribenchTestSuite extends FunSuite {
    * FACTORY TESTs
    */
 
-  test("description: Factory1") {
+  test("in the class Factories1 we should detect 1 conflict of a simple factory test case") {
     val testName = "Factories1"
     val expectedConflicts = 1
 
@@ -743,7 +743,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Factory2") {
+  test("in the class Factories2 we should detect 1 conflict of a simple factory test case") {
     val testName = "Factories2"
     val expectedConflicts = 1
 
@@ -752,7 +752,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Factory3") {
+  ignore("in the class Factories3 we should detect 1 conflict of a simple factory test case") {
     val testName = "Factories3"
     val expectedConflicts = 1
 
@@ -765,7 +765,7 @@ class SecuribenchTestSuite extends FunSuite {
    * INTER TESTs
    */
   
-  test("description: Inter1") {
+  test("in the class Inter1 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter1"
     val expectedConflicts = 1
 
@@ -774,7 +774,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Inter2") {
+  test("in the class Inter2 we should detect 2 conflicts of a simple inter test case") {
     val testName = "Inter2"
     val expectedConflicts = 2
 
@@ -783,7 +783,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Inter3") {
+  test("in the class Inter3 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter3"
     val expectedConflicts = 1
 
@@ -792,7 +792,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Inter4") {
+  ignore("in the class Inter4 we should detect 2 conflicts of a simple inter test case") {
     val testName = "Inter4"
     val expectedConflicts = 2
 
@@ -802,7 +802,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Inter5") {
+  ignore("in the class Inter5 we should detect 2 conflicts of a simple inter test case") {
     val testName = "Inter5"
     val expectedConflicts = 2
 
@@ -811,7 +811,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Inter6") {
+  ignore("in the class Inter6 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter6"
     val expectedConflicts = 1
 
@@ -820,7 +820,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Inter7") {
+  test("in the class Inter7 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter7"
     val expectedConflicts = 1
 
@@ -829,7 +829,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Inter8") {
+  test("in the class Inter8 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter8"
     val expectedConflicts = 1
 
@@ -838,7 +838,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Inter9") {
+  ignore("in the class Inter9 we should detect 2 conflicts of a simple inter test case") {
     val testName = "Inter9"
     val expectedConflicts = 2
 
@@ -847,7 +847,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: Inter10") {
+  test("in the class Inter10 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter10"
     val expectedConflicts = 1
 
@@ -857,7 +857,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
 //  FLAKY
-  ignore("description: Inter11") {
+  ignore("in the class Inter11 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter11"
     val expectedConflicts = 1
 
@@ -866,7 +866,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Inter12") {
+  ignore("in the class Inter12 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter12"
     val expectedConflicts = 1
 
@@ -876,7 +876,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
 
-  test("description: Inter13") {
+  test("in the class Inter13 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter13"
     val expectedConflicts = 1
 
@@ -886,7 +886,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
 
-  test("description: Inter14") {
+  test("in the class Inter14 we should detect 1 conflict of a simple inter test case") {
     val testName = "Inter14"
     val expectedConflicts = 1
 
@@ -899,7 +899,7 @@ class SecuribenchTestSuite extends FunSuite {
    * SESSION TESTs
    */
 
-  ignore("description: Session1") {
+  ignore("in the class Session1 we should detect 1 conflict of a simple session test case") {
     val testName = "Session1"
     val expectedConflicts = 1
 
@@ -908,7 +908,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Session2") {
+  ignore("in the class Session2 we should detect 1 conflict of a simple session test case") {
     val testName = "Session2"
     val expectedConflicts = 1
 
@@ -917,7 +917,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: Session3") {
+  ignore("in the class Session3 we should detect 1 conflict of a simple session test case") {
     val testName = "Session3"
     val expectedConflicts = 1
 
@@ -930,7 +930,7 @@ class SecuribenchTestSuite extends FunSuite {
    * STRONG UPDATE TESTs
    */
 
-  test("description: StrongUpdate1") {
+  test("in the class StrongUpdates1 we should detect 0 conflict of a simple strong update test case") {
     val testName = "StrongUpdates1"
     val expectedConflicts = 0
 
@@ -939,7 +939,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: StrongUpdate2") {
+  test("in the class StrongUpdates2 we should detect 0 conflict of a simple strong update test case") {
     val testName = "StrongUpdates2"
     val expectedConflicts = 0
 
@@ -948,7 +948,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: StrongUpdate3") {
+  ignore("in the class StrongUpdates3 we should detect 0 conflict of a simple strong update test case") {
     val testName = "StrongUpdates3"
     val expectedConflicts = 0
 
@@ -957,7 +957,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test("description: StrongUpdate4") {
+  test("in the class StrongUpdates4 we should detect 1 conflict of a simple strong update test case") {
     val testName = "StrongUpdates4"
     val expectedConflicts = 1
 
@@ -966,7 +966,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("description: StrongUpdate5") {
+  ignore("in the class StrongUpdates5 we should detect 0 conflict of a simple strong update test case") {
     val testName = "StrongUpdates5"
     val expectedConflicts = 0
 
