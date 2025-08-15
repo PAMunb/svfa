@@ -33,13 +33,13 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 2)
   }
 
-  ignore("in the class Aliasing5 we should detect 1 conflict") {
+  test("in the class Aliasing5 we should detect 1 conflict") {
     val svfa = new SecuribenchTest("securibench.micro.aliasing.Aliasing5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("in the class Aliasing6 we should detect 7 conflicts") {
+  test("in the class Aliasing6 we should detect 7 conflicts") {
     val svfa = new SecuribenchTest("securibench.micro.aliasing.Aliasing6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 7)
@@ -49,61 +49,61 @@ class SecuribenchTestSuite extends FunSuite {
    * ARRAY TESTs
    */
 
-  ignore("description: Array1") {
+  test("description: Array1") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays1", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array2") {
+  test("description: Array2") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array3") {
+  test("description: Array3") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array4") {
+  test("description: Array4") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array5") {
+  test("description: Array5") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  ignore("description: Array6") {
+  test("description: Array6") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array7") {
+  test("description: Array7") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays7", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array8") {
+  test("description: Array8") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays8", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array9") {
+  test("description: Array9") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays9", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Array10") {
+  test("description: Array10") {
     val svfa = new SecuribenchTest("securibench.micro.arrays.Arrays10", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -144,7 +144,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
   //FLAKY
-  ignore("in the class Basic6 we should detect 1 conflict of a complex derived string test") {
+  test("in the class Basic6 we should detect 1 conflict of a complex derived string test") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -211,7 +211,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("in the class Basic17 we should detect 1 conflict of a store statement in heap-allocated data structures and a false positive test case") {
+  test("in the class Basic17 we should detect 1 conflict of a store statement in heap-allocated data structures and a false positive test case") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic17", "doGet")
     svfa.buildSparseValueFlowGraph()
     // println(svfa.svgToDotModel())
@@ -278,7 +278,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
+  test("in the class Basic28 we should detect 2 conflicts in a complicated control flow test case") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic28", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 2)
@@ -326,7 +326,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 6)
   }
 
-  ignore("in the class Basic36 we should detect 1 conflict in a values obtained from HttpServletRequest input stream test case") {
+  test("in the class Basic36 we should detect 1 conflict in a values obtained from HttpServletRequest input stream test case") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic36", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -338,7 +338,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("in the class Basic38 we should detect 1 conflict in a StringTokenizer with a false positive test case") {
+  test("in the class Basic38 we should detect 1 conflict in a StringTokenizer with a false positive test case") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic38", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -350,7 +350,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("in the class Basic40 we should detect 1 conflict in a use getInitParameter instead test case") {
+  test("in the class Basic40 we should detect 1 conflict in a use getInitParameter instead test case") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic40", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -362,7 +362,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("in the class Basic42 we should detect 1 conflict in a use getInitParameterNames test case") {
+  test("in the class Basic42 we should detect 1 conflict in a use getInitParameterNames test case") {
     val svfa = new SecuribenchTest("securibench.micro.basic.Basic42", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -378,43 +378,43 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection2") {
+  test("description: Collection2") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection3") {
+  test("description: Collection3") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 2)
   }
 
-  ignore("description: Collection4") {
+  test("description: Collection4") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection5") {
+  test("description: Collection5") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection6") {
+  test("description: Collection6") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection7") {
+  test("description: Collection7") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections7", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection8") {
+  test("description: Collection8") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections8", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -426,31 +426,31 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  ignore("description: Collection10") {
+  test("description: Collection10") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections10", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection11") {
+  test("description: Collection11") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections11", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection12") {
+  test("description: Collection12") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections12", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection13") {
+  test("description: Collection13") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections13", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Collection14") {
+  test("description: Collection14") {
     val svfa = new SecuribenchTest("securibench.micro.collections.Collections14", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -466,7 +466,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: DataStructure2") {
+  test("description: DataStructure2") {
     val svfa = new SecuribenchTest("securibench.micro.datastructures.Datastructures2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -478,13 +478,13 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: DataStructure4") {
+  test("description: DataStructure4") {
     val svfa = new SecuribenchTest("securibench.micro.datastructures.Datastructures4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  ignore("description: DataStructure5") {
+  test("description: DataStructure5") {
     val svfa = new SecuribenchTest("securibench.micro.datastructures.Datastructures5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -512,7 +512,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Factory3") {
+  test("description: Factory3") {
     val svfa = new SecuribenchTest("securibench.micro.factories.Factories3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -540,7 +540,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Inter4") {
+  test("description: Inter4") {
     val svfa = new SecuribenchTest("securibench.micro.inter.Inter4", "doGet")
     svfa.buildSparseValueFlowGraph()
 //    println(svfa.svgToDotModel())
@@ -553,13 +553,13 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Inter6") {
+  test("description: Inter6") {
     val svfa = new SecuribenchTest("securibench.micro.inter.Inter6", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Inter7") {
+  test("description: Inter7") {
     val svfa = new SecuribenchTest("securibench.micro.inter.Inter7", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -571,7 +571,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Inter9") {
+  test("description: Inter9") {
     val svfa = new SecuribenchTest("securibench.micro.inter.Inter9", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 2)
@@ -584,13 +584,13 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
 //  FLAKY
-  ignore("description: Inter11") {
+  test("description: Inter11") {
     val svfa = new SecuribenchTest("securibench.micro.inter.Inter11", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Inter12") {
+  test("description: Inter12") {
     val svfa = new SecuribenchTest("securibench.micro.inter.Inter12", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -614,19 +614,19 @@ class SecuribenchTestSuite extends FunSuite {
    * SESSION TESTs
    */
 
-  ignore("description: Session1") {
+  test("description: Session1") {
     val svfa = new SecuribenchTest("securibench.micro.session.Session1", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Session2") {
+  test("description: Session2") {
     val svfa = new SecuribenchTest("securibench.micro.session.Session2", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: Session3") {
+  test("description: Session3") {
     val svfa = new SecuribenchTest("securibench.micro.session.Session3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
@@ -648,19 +648,19 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  ignore("description: StrongUpdate3") {
+  test("description: StrongUpdate3") {
     val svfa = new SecuribenchTest("securibench.micro.strong_updates.StrongUpdates3", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 0)
   }
 
-  ignore("description: StrongUpdate4") {
+  test("description: StrongUpdate4") {
     val svfa = new SecuribenchTest("securibench.micro.strong_updates.StrongUpdates4", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
-  ignore("description: StrongUpdate5") {
+  test("description: StrongUpdate5") {
     val svfa = new SecuribenchTest("securibench.micro.strong_updates.StrongUpdates5", "doGet")
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == 0)
