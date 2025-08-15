@@ -1,11 +1,11 @@
-name: test-suite
+name: JSVFA_pipeline
 
 on:
   pull_request:
     branches: [ master, develop ]
 
 jobs:
-  test:
+  test-suite:
     runs-on: ubuntu-latest
     
     steps:
