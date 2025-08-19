@@ -76,7 +76,7 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 | strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 |     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
+To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
 
 #### JSVFA 2.0 metrics (v0.3.3)
 
@@ -95,7 +95,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 |     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/jsvfa/jsvfa-metrics-v0.3.3.md) (*computed in August 2025.*)
+To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.3.md) (*computed in August 2025.*)
 
 #### FLOWDROID 
 
@@ -114,7 +114,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
 | TOTAL          | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/flowdroid/flowdroid-metrics.md)
+To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/flowdroid/flowdroid-metrics.md)
 
 #### JOANA
 
@@ -133,7 +133,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  | 5     | 1        | 1/5    | 1  | 4  | 0  | 0.20      | 1.00   | 0.33 |
 | TOTAL          | 106   | 126      | 71/103 | 73 | 14 | 34 | 0.84      | 0.68   | 0.75 |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/joana/joana-metrics.md)
+To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/joana/joana-metrics.md)
 
 #### METRICS SUMMARY
 
