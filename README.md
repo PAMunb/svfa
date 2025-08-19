@@ -182,7 +182,7 @@ As a result, we got `37 failed and 2 passed of 39 tests` and comparing to FLOWDR
 but less amount of `FP(9)` so we computed the next metrics: a better `precision(0.82)`, the same `recall(0.22)` value
 and a slightly better `F-score(0.35)`.
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](taintbench-experiment-I.md)
+- JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-I.md)
 
 | Expected | Actual | TP | FP | Precision | Recall | F-score  |
 |:--------:|:------:|:--:|:--:|:---------:|:------:|:--------:|
@@ -213,7 +213,7 @@ As a result, we got `38 failed and 1 passed of 39 test` and comparing to FLOWDRO
 but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
 a good `recall(0.73)` value and a better `F-score(0.42)`.
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](taintbench-experiment-II.md)
+- JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-II.md)
 
 
 | Expected | Actual | TP  | FP  | Precision | Recall | F-score |
