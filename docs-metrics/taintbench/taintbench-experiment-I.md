@@ -5,12 +5,12 @@ This case emulates **Experiment 2 - TB2** that states:
 
 ### SUMMARY
 
-|                      APK                      | Expected | Actual | Status |   TP   |  FP   | Precision |  Recall  | F-score  |
+|                      APK                      | Actual   | Expected | Status |   TP   |  FP   | Precision |  Recall  | F-score  |
 |:---------------------------------------------:|:--------:|:------:|:------:|:------:|:-----:|:---------:|:--------:|:--------:| 
-|                   backflash                   |    13    |   1    | FAILED |   1    |   0   |     1     |   0.08   |   0.14   |
-|            beita_com_beita_contact            |    3     |   0    | FAILED |   0    |   0   |     0     |    0     |    0     |
-|                 cajino_baidu                  |    12    |   8    | FAILED |   8    |   0   |     1     |   0.67   |   0.80   |
-|                   chat_hook                   |    12    |   6    | FAILED |   6    |   0   |     1     |   0.50   |   0.67   |
+|                   backflash                   |    1     |   13    | FAILED |   1    |   0   |     1     |   0.08   |   0.14   |
+|            beita_com_beita_contact            |    0     |   3    | FAILED |   0    |   0   |     0     |    0     |    0     |
+|                 cajino_baidu                  |    8     |  12     | FAILED |   8    |   0   |     1     |   0.67   |   0.80   |
+|                   chat_hook                   |    6     |   12    | FAILED |   6    |   0   |     1     |   0.50   |   0.67   |
 |                    chulia                     |    4     |   0    | FAILED |   0    |   0   |     0     |    0     |    0     |
 |            death_ring_materialflow            |    1     |   9    | FAILED |   1    |   8   |   0.11    |   1.00   |   0.20   |
 |                dsencrypt_samp                 |    1     |   1    | PASSED |   1    |   0   |     1     |    1     |    1     |
