@@ -13,7 +13,6 @@ class TestSuite extends FunSuite with BeforeAndAfter {
   ignore("we should correctly compute the number of nodes and edges in the BlackBoardTest sample") {
     val svfa = new BlackBoardTest()
     svfa.buildSparseValueFlowGraph()
-    print(svfa.svgToDotModel())
     assert(svfa.svg.nodes.size == 10)
     assert(svfa.svg.numberOfEdges() == 12)
   }

@@ -49,6 +49,7 @@ Before pushing changes, you can run the same tests locally:
 ```bash
 # Run specific test suites
 sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
+sbt "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperimentXTest"
 
 # Or use the provided script
 ./scripts/test-local.sh

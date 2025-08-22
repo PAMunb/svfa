@@ -8,19 +8,15 @@ import scala.io.Source
 import java.util.Properties
 import java.io.File
 import java.io.FileInputStream
-
 import soot._
 import soot.jimple._
-
-import  br.unb.cic.soot.graph._
-
+import br.unb.cic.soot.graph._
 
 import java.nio.file.Paths
-
 import br.unb.cic.soot.svfa.configuration.AndroidSootConfiguration
 
 class AndroidTaintBenchTest(apk: String) extends JSVFA
-    with RoidSecSpec
+    with TaintBenchSpec
     with AndroidSootConfiguration
     with Interprocedural
     with FieldSensitive

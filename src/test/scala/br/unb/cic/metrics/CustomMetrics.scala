@@ -57,6 +57,7 @@ trait CustomMetrics {
         reportFailedTest(testName)
         reportFalseNegatives(testName, e - f)
     }
+    //this.reportSummary(testName)
   }
 
   def precision(testName: String = null): Double = {
