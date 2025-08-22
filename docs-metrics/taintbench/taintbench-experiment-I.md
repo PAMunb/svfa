@@ -5,7 +5,7 @@ This case emulates **Experiment 2 - TB2** that states:
 
 ### SUMMARY
 
-|         APK                                | Found  | Expected | Status |   TP   |  FP   | FN | Precision |  Recall  | F-score  |
+|                    APK                     | Found  | Expected | Status |   TP   |  FP   | FN | Precision |  Recall  | F-score  |
 |:------------------------------------------:|:------:|:--------:|:------:|:------:|:-----:|:--:|:---------:|:--------:|:--------:| 
 |                 backflash                  |   1    |    13    | FAILED |   1    |   0   | 0  |     1     |   0.08   |   0.14   |
 |          beita_com_beita_contact           |   0    |    3     | FAILED |   0    |   0   | 0  |     0     |    0     |    0     |
