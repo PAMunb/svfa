@@ -208,24 +208,21 @@ of sources and sinks
 The mentioned lists can be found in https://taintbench.github.io/taintbenchSuite/, and we have stored them by individual
 files in `src/test/scala/br/unb/cic/android/specs`.
 
-As a result, we got `38 failed and 1 passed of 39 test` and comparing to FLOWDROID we detect a several better amount of `TP(135)`
-but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
-a good `recall(0.73)` value and a better `F-score(0.42)`.
+As a result, we got `38 failed and 1 passed of 39 test` and comparing to FLOWDROID
+~~awe detect a several better amount of `TP(135)` but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
+a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 
 - JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-II.md)
 
-
-| Expected | Actual | TP  | FP  | Precision | Recall | F-score |
-|:--------:|:------:|:---:|:---:|:---------:|:------:|:-------:|
-|   186    |  442   | 133 | 309 |   0.30    |  0.72  |  0.42   |
-
+| Found | Expected | Status | TP | FP  | FN | Precision | Recall | F-score | Pass Rate |
+|:-----:|:--------:|:------:|:--:|:---:|:--:|:---------:|:------:|:-------:|:---------:|
+|  446  |   203    |  1/39  | 2  | 312 | 69 |   0.01    |  0.03  |  0.01   |  2.56%    |
 
 - FLOWDROID metrics from Paper https://doi.org/10.1007/s10664-021-10013-5
 
-| Expected | Actual | TP | FP | Precision | Recall | F-score |
-|:--------:|:------:|:--:|:--:|:---------:|:------:|:-------:|
-|   186    |   57   | 43 | 14 |   0.75    |  0.23  |  0.35   |
-
+| Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:-----:|:--------:|:------:|:--:|:--:|:--:|:---------:|:------:|:-------:|:---------:|
+|  57   |   186    |   ?    | 43 | 14 | ?  |   0.75    |  0.23  |  0.35   |     ?     |
 
 ##### Observation
 - We got a big amount of FP.
