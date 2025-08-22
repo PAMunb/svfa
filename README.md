@@ -178,21 +178,20 @@ This case emulates **Experiment 2 - TB2** that states:
 The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/master/TB_SourcesAndSinks.txt), 
 and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.scala`.
 
-As a result, we got `37 failed and 2 passed of 39 tests` and comparing to FLOWDROID we detected the same amount of `TP(41)`
-but less amount of `FP(9)` so we computed the next metrics: a better `precision(0.82)`, the same `recall(0.22)` value
-and a slightly better `F-score(0.35)`.
+As a result, we got `37 failed and 2 passed of 39 tests` and comparing to FLOWDROID we computed the next metrics:
+~~a better `precision(0.82)`, the same `recall(0.22)` value and a slightly better `F-score(0.35)`.~~
 
 - JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-I.md)
 
-| Expected | Actual | TP | FP | Precision | Recall | F-score  |
-|:--------:|:------:|:--:|:--:|:---------:|:------:|:--------:|
-|   186    |   50   | 41 | 9  |   0.82    |  0.22  |   0.35   |
+| Found | Expected | Status | TP | FP | FN  | Precision | Recall | F-score | Pass Rate |
+|:-----:|:--------:|:------:|:--:|:--:|:---:|:---------:|:------:|:-------:|:---------:| 
+|  49   |   203    |  2/39  | 3  | 9  | 163 |   0.25    |  0.02  |  0.04   |   5.13%   |
 
 - FLOWDROID metrics from [Paper](https://doi.org/10.1007/s10664-021-10013-5)
 
-| Expected | Actual | TP | FP | Precision | Recall | F-score  |
-|:--------:|:------:|:--:|:--:|:---------:|:------:|:--------:|
-|   186    |   55   | 41 | 14 |   0.75    |  0.22  |   0.34   |
+| Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:-----:|:--------:|:------:|:--:|:--:|:--:|:---------:|:------:|:-------:|:---------:| 
+|  55   |   186    |   ?    | 41 | 14 | ?  |   0.75    |  0.22  |  0.34   |     ?     |
 
 ##### Observation
 - From the 37 failing tests, 28 of them reported zero flows.
