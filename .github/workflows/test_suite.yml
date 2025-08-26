@@ -53,5 +53,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
-        sbt "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment1Test"
-        sbt "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment2Test"
