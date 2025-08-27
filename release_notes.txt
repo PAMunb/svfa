@@ -8,3 +8,6 @@ v0.3.2
 
 v0.3.3
 - Compute JSVFA metrics according new changes introduced by commit "ae3bfa15a5ccd3e12490ec601d44dfaa5a3d8852"
+
+v0.3.4
+- TO-DO
