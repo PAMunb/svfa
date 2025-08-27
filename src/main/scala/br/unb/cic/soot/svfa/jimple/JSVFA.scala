@@ -105,13 +105,17 @@ abstract class JSVFA
 
         if (base.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
-          localDefs.getDefsOfAt(local, invokeStmt).forEach(sourceStmt => {
-            val sourceNode = createNode(sootMethod, sourceStmt)
-            localDefs.getDefsOfAt(localBase, invokeStmt).forEach(targetStmt =>{
-              val targetNode = createNode(sootMethod, targetStmt)
-              updateGraph(sourceNode, targetNode) // add comment
+          localDefs
+            .getDefsOfAt(local, invokeStmt)
+            .forEach(sourceStmt => {
+              val sourceNode = createNode(sootMethod, sourceStmt)
+              localDefs
+                .getDefsOfAt(localBase, invokeStmt)
+                .forEach(targetStmt => {
+                  val targetNode = createNode(sootMethod, targetStmt)
+                  updateGraph(sourceNode, targetNode) // add comment
+                })
             })
-          })
         }
       }
     }
@@ -152,11 +156,13 @@ abstract class JSVFA
         val local = invokeStmt.asInstanceOf[jimple.AssignStmt].getLeftOp
         if (base.isInstanceOf[Local] && local.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
-          localDefs.getDefsOfAt(localBase, invokeStmt).forEach(source => {
-            val sourceNode = createNode(sootMethod, source)
-            val targetNode = createNode(sootMethod, invokeStmt)
-            updateGraph(sourceNode, targetNode) // add comment
-          })
+          localDefs
+            .getDefsOfAt(localBase, invokeStmt)
+            .forEach(source => {
+              val sourceNode = createNode(sootMethod, source)
+              val targetNode = createNode(sootMethod, invokeStmt)
+              updateGraph(sourceNode, targetNode) // add comment
+            })
         }
       }
     }
@@ -179,11 +185,13 @@ abstract class JSVFA
       if (invokeStmt.isInstanceOf[JAssignStmt] && srcArg.isInstanceOf[Local]) {
         val local = srcArg.asInstanceOf[Local]
         val targetStmt = invokeStmt.asInstanceOf[jimple.AssignStmt]
-        localDefs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-          val source = createNode(sootMethod, sourceStmt)
-          val target = createNode(sootMethod, targetStmt)
-          updateGraph(source, target) // add comment
-        })
+        localDefs
+          .getDefsOfAt(local, targetStmt)
+          .forEach(sourceStmt => {
+            val source = createNode(sootMethod, sourceStmt)
+            val target = createNode(sootMethod, targetStmt)
+            updateGraph(source, target) // add comment
+          })
       }
     }
   }
@@ -210,13 +218,17 @@ abstract class JSVFA
       val srcArg = invokeStmt.getInvokeExpr.getArg(from)
       val destArg = invokeStmt.getInvokeExpr.getArg(target)
       if (srcArg.isInstanceOf[Local] && destArg.isInstanceOf[Local]) {
-        localDefs.getDefsOfAt(srcArg.asInstanceOf[Local], invokeStmt).forEach(sourceStmt => {
-          val sourceNode = createNode(sootMethod, sourceStmt)
-          localDefs.getDefsOfAt(destArg.asInstanceOf[Local], invokeStmt).forEach(targetStmt => {
-            val targetNode = createNode(sootMethod, targetStmt)
-            updateGraph(sourceNode, targetNode) // add comment
+        localDefs
+          .getDefsOfAt(srcArg.asInstanceOf[Local], invokeStmt)
+          .forEach(sourceStmt => {
+            val sourceNode = createNode(sootMethod, sourceStmt)
+            localDefs
+              .getDefsOfAt(destArg.asInstanceOf[Local], invokeStmt)
+              .forEach(targetStmt => {
+                val targetNode = createNode(sootMethod, targetStmt)
+                updateGraph(sourceNode, targetNode) // add comment
+              })
           })
-        })
       }
     }
   }
@@ -260,10 +272,13 @@ abstract class JSVFA
       pointsToAnalysis = Scene.v().getPointsToAnalysis
       initAllocationSites()
 //      println(allocationSites.foreach(println(_)))
-      Scene.v().getEntryPoints.forEach(method => {
-        traverse(method)
-        methods = methods + 1
-      })
+      Scene
+        .v()
+        .getEntryPoints
+        .forEach(method => {
+          traverse(method)
+          methods = methods + 1
+        })
     }
   }
 
@@ -279,8 +294,6 @@ abstract class JSVFA
     traversedMethods.add(method)
 
     val body = method.retrieveActiveBody()
-
-    println(body)
 
     val graph = new ExceptionalUnitGraph(body)
     val defs = new SimpleLocalDefs(graph)
@@ -307,15 +320,31 @@ abstract class JSVFA
     val right = assignStmt.stmt.getRightOp
 
     (left, right) match {
-      case (p: Local, q: InstanceFieldRef) => loadRule(assignStmt.stmt, q, method, defs)
+      case (p: Local, q: InstanceFieldRef) =>
+        loadRule(assignStmt.stmt, q, method, defs)
       case (p: Local, q: StaticFieldRef) => loadRule(assignStmt.stmt, q, method)
-      case (p: Local, q: ArrayRef) => loadArrayRule(assignStmt.stmt, q, method, defs)
-      case (p: Local, q: InvokeExpr) => invokeRule(assignStmt, q, method, defs) // call a method
+      case (p: Local, q: ArrayRef) =>
+        loadArrayRule(assignStmt.stmt, q, method, defs)
+      case (p: Local, q: InvokeExpr) =>
+        invokeRule(assignStmt, q, method, defs) // call a method
       case (p: Local, q: Local) => copyRule(assignStmt.stmt, q, method, defs)
-      case (p: Local, _) => copyRuleInvolvingExpressions(assignStmt.stmt, method, defs)
-      case (p: InstanceFieldRef, _: Local) => storeRule(assignStmt.stmt, p, method, defs) // update 'edge' FROM stmt where right value was instanced TO current stmt
-      case (_: StaticFieldRef, _: Local) => storeRule(assignStmt.stmt, method, defs)
-      case (p: JArrayRef, _) => storeArrayRule(assignStmt, method, defs) // create 'edge(s)' FROM the stmt where the variable on the right was defined TO the current stmt
+      case (p: Local, _) =>
+        copyRuleInvolvingExpressions(assignStmt.stmt, method, defs)
+      case (p: InstanceFieldRef, _: Local) =>
+        storeRule(
+          assignStmt.stmt,
+          p,
+          method,
+          defs
+        ) // update 'edge' FROM stmt where right value was instanced TO current stmt
+      case (_: StaticFieldRef, _: Local) =>
+        storeRule(assignStmt.stmt, method, defs)
+      case (p: JArrayRef, _) =>
+        storeArrayRule(
+          assignStmt,
+          method,
+          defs
+        ) // create 'edge(s)' FROM the stmt where the variable on the right was defined TO the current stmt
       case _ =>
     }
   }
@@ -353,25 +382,45 @@ abstract class JSVFA
       caller: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
-    val callee: soot.SootMethod =
-      try { exp.getMethod }
-      catch {
-        case _: Throwable => null
-      }
+    val edges = Scene.v().getCallGraph.edgesOutOf(callStmt.base)
+
+    if(!edges.hasNext) {
+      invokeRule(callStmt, exp, caller, exp.getMethod, defs)
+    }
+    while (edges.hasNext) {
+      val e = edges.next
+      invokeRule(callStmt, exp, caller, e.getTgt.method(), defs)
+    }
+  }
+  private def invokeRule(
+      callStmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      callee: SootMethod,
+      defs: SimpleLocalDefs
+  ): Unit = {
 
     if (callee == null) {
       return
     }
 
-    if(analyze(callStmt.base) == SinkNode) {
-      defsToCallOfSinkMethod(callStmt, exp, caller, defs) // update 'edge(s)' FROM "declaration stmt(s) for args" TO "call-site stmt" (current stmt)
-      return  // TODO: we are not exploring the body of a sink method.
+    if (analyze(callStmt.base) == SinkNode) {
+      defsToCallOfSinkMethod(
+        callStmt,
+        exp,
+        caller,
+        defs
+      ) // update 'edge(s)' FROM "declaration stmt(s) for args" TO "call-site stmt" (current stmt)
+      return // TODO: we are not exploring the body of a sink method.
       //       For this reason, we only find one path in the
       //       FieldSample test case, instead of two.
     }
 
-    if(analyze(callStmt.base) == SourceNode) {
-      val source = createNode(caller, callStmt.base) // create a 'node' from stmt that calls the source method (call-site stmt)
+    if (analyze(callStmt.base) == SourceNode) {
+      val source = createNode(
+        caller,
+        callStmt.base
+      ) // create a 'node' from stmt that calls the source method (call-site stmt)
       svg.addNode(source)
     }
 
@@ -390,18 +439,44 @@ abstract class JSVFA
     val calleeDefs = new SimpleLocalDefs(g)
 
     body.getUnits.forEach(s => {
-      if(isThisInitStmt(exp, s)) { // this := @this: className
-        defsToThisObject(callStmt, caller, defs, s, exp, callee) // create 'Edge' FROM the stmt where the object that calls the method was instanced TO the this definition in callee method
-      }
-      else if(isParameterInitStmt(exp, pmtCount, s)) {  // <variable> := @parameter#: <variable-type>
-        defsToFormalArgs(callStmt, caller, defs, s, exp, callee, pmtCount) // create an 'edge' FROM stmt(s) where the variable is defined TO stmt where the variable is loaded
+      if (isThisInitStmt(exp, s)) { // this := @this: className
+        defsToThisObject(
+          callStmt,
+          caller,
+          defs,
+          s,
+          exp,
+          callee
+        ) // create 'Edge' FROM the stmt where the object that calls the method was instanced TO the this definition in callee method
+      } else if (isParameterInitStmt(exp, pmtCount, s)) { // <variable> := @parameter#: <variable-type>
+        defsToFormalArgs(
+          callStmt,
+          caller,
+          defs,
+          s,
+          exp,
+          callee,
+          pmtCount
+        ) // create an 'edge' FROM stmt(s) where the variable is defined TO stmt where the variable is loaded
         pmtCount = pmtCount + 1
-      }
-      else if(isAssignReturnLocalStmt(callStmt.base, s)) { // return "<variable>"
-        defsToCallSite(caller, callee, calleeDefs, callStmt.base, s, callStmt, defs, exp) // create an 'edge' FROM the stmt where the return variable is defined TO "call site stmt"
-      }
-      else if(isReturnStringStmt(callStmt.base, s)) { // return "<string>"
-        stringToCallSite(caller, callee, callStmt.base, s) // create an 'edge' FROM "return string stmt" TO "call site stmt"
+      } else if (isAssignReturnLocalStmt(callStmt.base, s)) { // return "<variable>"
+        defsToCallSite(
+          caller,
+          callee,
+          calleeDefs,
+          callStmt.base,
+          s,
+          callStmt,
+          defs,
+          exp
+        ) // create an 'edge' FROM the stmt where the return variable is defined TO "call site stmt"
+      } else if (isReturnStringStmt(callStmt.base, s)) { // return "<string>"
+        stringToCallSite(
+          caller,
+          callee,
+          callStmt.base,
+          s
+        ) // create an 'edge' FROM "return string stmt" TO "call site stmt"
       }
     })
 
@@ -417,30 +492,39 @@ abstract class JSVFA
     val srcArg = exp.getArg(0)
     val destArg = exp.getArg(2)
     if (srcArg.isInstanceOf[Local] && destArg.isInstanceOf[Local]) {
-      defs.getDefsOfAt(srcArg.asInstanceOf[Local], callStmt.base).forEach(srcArgDefStmt => {
-        val sourceNode = createNode(caller, srcArgDefStmt)
-        val allocationNodes = findAllocationSites(destArg.asInstanceOf[Local])
-        allocationNodes.foreach(targetNode => {
-          updateGraph(sourceNode, targetNode) // add comment
+      defs
+        .getDefsOfAt(srcArg.asInstanceOf[Local], callStmt.base)
+        .forEach(srcArgDefStmt => {
+          val sourceNode = createNode(caller, srcArgDefStmt)
+          val allocationNodes = findAllocationSites(destArg.asInstanceOf[Local])
+          allocationNodes.foreach(targetNode => {
+            updateGraph(sourceNode, targetNode) // add comment
+          })
         })
-      })
     }
   }
 
   /*
-     * This rule deals with the following situation:
-     *
-     * (*) p = q
-     *
-     * In this case, we create an edge from defs(q)
-     * to the statement p = q.
-     */
-  protected def copyRule(targetStmt: soot.Unit, local: Local, method: SootMethod, defs: SimpleLocalDefs) = {
-    defs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-      val source = createNode(method, sourceStmt)
-      val target = createNode(method, targetStmt)
-      updateGraph(source, target) // add comment
-    })
+   * This rule deals with the following situation:
+   *
+   * (*) p = q
+   *
+   * In this case, we create an edge from defs(q)
+   * to the statement p = q.
+   */
+  protected def copyRule(
+      targetStmt: soot.Unit,
+      local: Local,
+      method: SootMethod,
+      defs: SimpleLocalDefs
+  ) = {
+    defs
+      .getDefsOfAt(local, targetStmt)
+      .forEach(sourceStmt => {
+        val source = createNode(method, sourceStmt)
+        val target = createNode(method, targetStmt)
+        updateGraph(source, target) // add comment
+      })
   }
 
   /*
@@ -478,26 +562,31 @@ abstract class JSVFA
     val base = ref.getBase
     // value field of a string.
     val className = ref.getFieldRef.declaringClass().getName
-    if((className == "java.lang.String") && ref.getFieldRef.name == "value") {
-      if(base.isInstanceOf[Local]) {
-        defs.getDefsOfAt(base.asInstanceOf[Local], stmt).forEach(source => {
-          val sourceNode = createNode(method, source)
-          val targetNode = createNode(method, stmt)
+    if ((className == "java.lang.String") && ref.getFieldRef.name == "value") {
+      if (base.isInstanceOf[Local]) {
+        defs
+          .getDefsOfAt(base.asInstanceOf[Local], stmt)
+          .forEach(source => {
+            val sourceNode = createNode(method, source)
+            val targetNode = createNode(method, stmt)
 //          updateGraph(sourceNode, targetNode) // add comment
-        })
+          })
       }
       return;
     }
     // default case
-    if(base.isInstanceOf[Local]) {
-      var allocationNodes = findFieldStores(base.asInstanceOf[Local], ref.getField)
+    if (base.isInstanceOf[Local]) {
+      var allocationNodes =
+        findFieldStores(base.asInstanceOf[Local], ref.getField)
 
       if (allocationNodes.isEmpty) {
-        allocationNodes = findAllocationSites(base.asInstanceOf[Local], false, ref.getField)
+        allocationNodes =
+          findAllocationSites(base.asInstanceOf[Local], false, ref.getField)
       }
 
       if (allocationNodes.isEmpty) {
-        allocationNodes = findAllocationSites(base.asInstanceOf[Local], false, ref.getField)
+        allocationNodes =
+          findAllocationSites(base.asInstanceOf[Local], false, ref.getField)
       }
 
       if (allocationNodes.isEmpty) {
@@ -507,7 +596,10 @@ abstract class JSVFA
 
       allocationNodes.foreach(source => {
         val target = createNode(method, stmt)
-        updateGraph(source, target) // update 'edge' FROM allocationNode? stmt TO load rule stmt (current stmt)
+        updateGraph(
+          source,
+          target
+        ) // update 'edge' FROM allocationNode? stmt TO load rule stmt (current stmt)
 //        svg.getAdjacentNodes(source).get.foreach(s => {
 //            updateGraph(s, target) // update 'edge' FROM adjacent node of allocationNode? stmt TO load rule stmt (current stmt)
 //        }) // add comment
@@ -517,63 +609,92 @@ abstract class JSVFA
       // if an object is tainted, we should propagate the taint to all
       // fields as well. Not completely sure if this should be
       // the case.
-      if(propagateObjectTaint()) {
-        defs.getDefsOfAt(base.asInstanceOf[Local], stmt).forEach(source => {
-          val sourceNode = createNode(method, source)
-          val targetNode = createNode(method, stmt)
-          updateGraph(sourceNode, targetNode) // update 'edge' FROM stmt where object (that calls load attribute) is instanced TO load rule stmt (current stmt)
-        })
+      if (propagateObjectTaint()) {
+        defs
+          .getDefsOfAt(base.asInstanceOf[Local], stmt)
+          .forEach(source => {
+            val sourceNode = createNode(method, source)
+            val targetNode = createNode(method, stmt)
+            updateGraph(
+              sourceNode,
+              targetNode
+            ) // update 'edge' FROM stmt where object (that calls load attribute) is instanced TO load rule stmt (current stmt)
+          })
       }
     }
   }
 
   /*
- * This rule deals with the following situation 
- * when "f" is an static variable (StaticFieldRef)
- *
- *  p = f
- */
-  private def loadRule(stmt: soot.Unit, ref: StaticFieldRef, method: SootMethod) : Unit = {
+   * This rule deals with the following situation
+   * when "f" is an static variable (StaticFieldRef)
+   *
+   *  p = f
+   */
+  private def loadRule(
+      stmt: soot.Unit,
+      ref: StaticFieldRef,
+      method: SootMethod
+  ): Unit = {
 
-      val findFieldStoresNodes = findFieldStores(ref) // find fields stores for StaticFieldRef
+    val findFieldStoresNodes = findFieldStores(
+      ref
+    ) // find fields stores for StaticFieldRef
 
-      findFieldStoresNodes.foreach(source => {
-        val target = createNode(method, stmt)
-        updateGraph(source, target) // update 'edge' FROM allocationNode? stmt TO load rule stmt (current stmt)
-        svg.getAdjacentNodes(source).get.foreach(s => {
-          updateGraph(s, target) // update 'edge' FROM adjacent node of allocationNode? stmt TO load rule stmt (current stmt)
+    findFieldStoresNodes.foreach(source => {
+      val target = createNode(method, stmt)
+      updateGraph(
+        source,
+        target
+      ) // update 'edge' FROM allocationNode? stmt TO load rule stmt (current stmt)
+      svg
+        .getAdjacentNodes(source)
+        .get
+        .foreach(s => {
+          updateGraph(
+            s,
+            target
+          ) // update 'edge' FROM adjacent node of allocationNode? stmt TO load rule stmt (current stmt)
         })
-      })
+    })
   }
 
-  protected def loadArrayRule(targetStmt: soot.Unit, ref: ArrayRef, method: SootMethod, defs: SimpleLocalDefs) : Unit = {
+  protected def loadArrayRule(
+      targetStmt: soot.Unit,
+      ref: ArrayRef,
+      method: SootMethod,
+      defs: SimpleLocalDefs
+  ): Unit = {
     val base = ref.getBase
 
     if (base.isInstanceOf[Local]) {
       val local = base.asInstanceOf[Local]
 
-      defs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-        val source = createNode(method, sourceStmt)
-        val target = createNode(method, targetStmt)
-        updateGraph(source, target) // add comment
+      defs
+        .getDefsOfAt(local, targetStmt)
+        .forEach(sourceStmt => {
+          val source = createNode(method, sourceStmt)
+          val target = createNode(method, targetStmt)
+          updateGraph(source, target) // add comment
 
-        // create edges FROM arrays indexes assignments TO where the array is accessed
-        val stmt = Statement.convert(sourceStmt)
-        stmt match {
-          case AssignStmt(base) => {
-            val rightOp = AssignStmt(base).stmt.getRightOp
-            if (rightOp.isInstanceOf[Local]) {
-              arrayStores.getOrElseUpdate(rightOp.asInstanceOf[Local], List()).foreach(storeStmt => {
-                val source = createNode(method, storeStmt)
-                val target = createNode(method, sourceStmt)
-                updateGraph(source, target) // add comment
-              })
+          // create edges FROM arrays indexes assignments TO where the array is accessed
+          val stmt = Statement.convert(sourceStmt)
+          stmt match {
+            case AssignStmt(base) => {
+              val rightOp = AssignStmt(base).stmt.getRightOp
+              if (rightOp.isInstanceOf[Local]) {
+                arrayStores
+                  .getOrElseUpdate(rightOp.asInstanceOf[Local], List())
+                  .foreach(storeStmt => {
+                    val source = createNode(method, storeStmt)
+                    val target = createNode(method, sourceStmt)
+                    updateGraph(source, target) // add comment
+                  })
+              }
             }
+            case _ =>
           }
-          case _ =>
-        }
 
-      })
+        })
 
       val stores = arrayStores.getOrElseUpdate(local, List())
       stores.foreach(sourceStmt => {
@@ -590,40 +711,49 @@ abstract class JSVFA
    * (*) p.f = expression
    */
 
-  /**
-   * CASE 1
-   * ??
-   *
-   * CASE 2
-   * CREATE EDGE(S)
-   * FROM stmt(s) where right value was instanced
-   * TO: stmt load store stmt (current stmt)
-   */
-  private def storeRule(targetStmt: jimple.AssignStmt, fieldRef: InstanceFieldRef, method: SootMethod, defs: SimpleLocalDefs) = {
+  /** CASE 1 ??
+    *
+    * CASE 2 CREATE EDGE(S) FROM stmt(s) where right value was instanced TO:
+    * stmt load store stmt (current stmt)
+    */
+  private def storeRule(
+      targetStmt: jimple.AssignStmt,
+      fieldRef: InstanceFieldRef,
+      method: SootMethod,
+      defs: SimpleLocalDefs
+  ) = {
     val local = targetStmt.getRightOp.asInstanceOf[Local]
     if (fieldRef.getBase.isInstanceOf[Local]) {
       val base = fieldRef.getBase.asInstanceOf[Local]
-      if (fieldRef.getField.getDeclaringClass.getName == "java.lang.String" && fieldRef.getField.getName == "value") {
-        defs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-          val source = createNode(method, sourceStmt)
-          val allocationNodes = findAllocationSites(base)
-          allocationNodes.foreach(targetNode => {
-            updateGraph(source, targetNode) // add comment
+      if (
+        fieldRef.getField.getDeclaringClass.getName == "java.lang.String" && fieldRef.getField.getName == "value"
+      ) {
+        defs
+          .getDefsOfAt(local, targetStmt)
+          .forEach(sourceStmt => {
+            val source = createNode(method, sourceStmt)
+            val allocationNodes = findAllocationSites(base)
+            allocationNodes.foreach(targetNode => {
+              updateGraph(source, targetNode) // add comment
+            })
           })
-        })
-      }
-      else {
+      } else {
         // CASE 2
         //        val allocationNodes = findAllocationSites(base)
 
         //        val allocationNodes = findAllocationSites(base, true, fieldRef.getField)
         //        if(!allocationNodes.isEmpty) {
         //          allocationNodes.foreach(targetNode => {
-        defs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-          val source = createNode(method, sourceStmt)
-          val target = createNode(method, targetStmt)
-          updateGraph(source, target) // update 'edge' FROM stmt where right value was instanced TO current stmt
-        })
+        defs
+          .getDefsOfAt(local, targetStmt)
+          .forEach(sourceStmt => {
+            val source = createNode(method, sourceStmt)
+            val target = createNode(method, targetStmt)
+            updateGraph(
+              source,
+              target
+            ) // update 'edge' FROM stmt where right value was instanced TO current stmt
+          })
         //          })
         //        }
       }
@@ -638,26 +768,31 @@ abstract class JSVFA
    *
    * This behavior is like a simple CopyRule, so that method is called here.
    */
-  private def storeRule(stmt: jimple.AssignStmt, method: SootMethod, defs: SimpleLocalDefs) = {
+  private def storeRule(
+      stmt: jimple.AssignStmt,
+      method: SootMethod,
+      defs: SimpleLocalDefs
+  ) = {
     val local = stmt.getRightOp.asInstanceOf[Local]
     copyRule(stmt, local, method, defs)
   }
 
-  /**
-   * array[0] = <variable>
-   *
-   * CASE 1
-   *
-   * Store
-   *
-   * CASE 2
-   *
-   * Create EDGE(S)
-   * "FROM" each stmt where the variables on the right are defined.
-   * "TO" current stmt.
-   *
-   */
-  def storeArrayRule(assignStmt: AssignStmt, method: SootMethod, defs: SimpleLocalDefs) {
+  /** array[0] = <variable>
+    *
+    * CASE 1
+    *
+    * Store
+    *
+    * CASE 2
+    *
+    * Create EDGE(S) "FROM" each stmt where the variables on the right are
+    * defined. "TO" current stmt.
+    */
+  def storeArrayRule(
+      assignStmt: AssignStmt,
+      method: SootMethod,
+      defs: SimpleLocalDefs
+  ) {
     val left = assignStmt.stmt.getLeftOp
     val right = assignStmt.stmt.getRightOp
 
@@ -671,30 +806,41 @@ abstract class JSVFA
 
     if (right.isInstanceOf[Local]) {
       val rightLocal = right.asInstanceOf[Local]
-      defs.getDefsOfAt(rightLocal, assignStmt.stmt). forEach(sourceStmt => {
-        val source = createNode(method, sourceStmt)
-        val target = createNode(method, assignStmt.stmt)
-        svg.addEdge(source, target) // create 'Edge' FROM the stmt where the variable on the right was defined TO the current stmt
-      })
+      defs
+        .getDefsOfAt(rightLocal, assignStmt.stmt)
+        .forEach(sourceStmt => {
+          val source = createNode(method, sourceStmt)
+          val target = createNode(method, assignStmt.stmt)
+          svg.addEdge(
+            source,
+            target
+          ) // create 'Edge' FROM the stmt where the variable on the right was defined TO the current stmt
+        })
     }
   }
 
-  /**
-   * CASE 1
-   *
-   * Create EDGE(S)
-   * "FROM" each stmt where the variable returned is defined.
-   * "TO" call site stmt.
-   *
-   * An CS for "close" is added
-   *  - Caller method
-   *  - stmt from the callee method is called (stmt is in caller method)
-   *  - Callee method
-   *
-   * CASE 2
-   * ??
-   */
-  private def defsToCallSite(caller: SootMethod, callee: SootMethod, calleeDefs: SimpleLocalDefs, callStmt: soot.Unit, retStmt: soot.Unit, stmt: Statement, defs: SimpleLocalDefs, exp: InvokeExpr) = {
+  /** CASE 1
+    *
+    * Create EDGE(S) "FROM" each stmt where the variable returned is defined.
+    * "TO" call site stmt.
+    *
+    * An CS for "close" is added
+    *   - Caller method
+    *   - stmt from the callee method is called (stmt is in caller method)
+    *   - Callee method
+    *
+    * CASE 2 ??
+    */
+  private def defsToCallSite(
+      caller: SootMethod,
+      callee: SootMethod,
+      calleeDefs: SimpleLocalDefs,
+      callStmt: soot.Unit,
+      retStmt: soot.Unit,
+      stmt: Statement,
+      defs: SimpleLocalDefs,
+      exp: InvokeExpr
+  ) = {
 
     // CASE 1
     val target = createNode(caller, callStmt)
@@ -702,50 +848,73 @@ abstract class JSVFA
 
     val allocationSites = getAllocationSites(exp)
 
-    calleeDefs.getDefsOfAt(local, retStmt).forEach(sourceStmt => {
-      val source = createNode(callee, sourceStmt)
+    calleeDefs
+      .getDefsOfAt(local, retStmt)
+      .forEach(sourceStmt => {
+        val source = createNode(callee, sourceStmt)
 
-      if (allocationSites.nonEmpty) {
-        allocationSites.foreach(al => {
-          val csCloseLabel = createCSCloseLabel(caller, callStmt, callee, Set(al.show()))
-          svg.addEdge(source, target, csCloseLabel) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
-        })
-      } else {
+        if (allocationSites.nonEmpty) {
+          allocationSites.foreach(al => {
+            val csCloseLabel =
+              createCSCloseLabel(caller, callStmt, callee, Set(al.show()))
+            svg.addEdge(
+              source,
+              target,
+              csCloseLabel
+            ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
+          })
+        } else {
           val csCloseLabel = createCSCloseLabel(caller, callStmt, callee, Set())
-          svg.addEdge(source, target, csCloseLabel) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
-      }
+          svg.addEdge(
+            source,
+            target,
+            csCloseLabel
+          ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
+        }
 
-      // CASE 2
-      if(local.getType.isInstanceOf[ArrayType]) {
-        val stores = arrayStores.getOrElseUpdate(local, List())
-        stores.foreach(sourceStmt => {
-          val source = createNode(callee, sourceStmt)
-          val csCloseLabel = createCSCloseLabel(caller, callStmt, callee, Set())
-          svg.addEdge(source, target, csCloseLabel) // add comment
-        })
-      }
-    })
+        // CASE 2
+        if (local.getType.isInstanceOf[ArrayType]) {
+          val stores = arrayStores.getOrElseUpdate(local, List())
+          stores.foreach(sourceStmt => {
+            val source = createNode(callee, sourceStmt)
+            val csCloseLabel =
+              createCSCloseLabel(caller, callStmt, callee, Set())
+            svg.addEdge(source, target, csCloseLabel) // add comment
+          })
+        }
+      })
   }
 
-  /**
-   * CREATE EDGE
-   * FROM: return stmt.
-   * TO: call site stmt.
-   */
-  private def stringToCallSite(caller: SootMethod, callee: SootMethod, callStmt: soot.Unit, retStmt: soot.Unit): Unit = {
+  /** CREATE EDGE FROM: return stmt. TO: call site stmt.
+    */
+  private def stringToCallSite(
+      caller: SootMethod,
+      callee: SootMethod,
+      callStmt: soot.Unit,
+      retStmt: soot.Unit
+  ): Unit = {
     val target = createNode(caller, callStmt)
     val source = createNode(callee, retStmt)
-    svg.addEdge(source, target) // create an 'edge' FROM "return stmt " TO "call site stmt"
+    svg.addEdge(
+      source,
+      target
+    ) // create an 'edge' FROM "return stmt " TO "call site stmt"
   }
 
-  /**
-   * CREATE EDGE(s)
-   * FROM: stmt where the object that calls the method was instanced
-   * TO: the 'this' definition in constructor (init) from callee method
-   *
-   * OPEN CS:
-   */
-  private def defsToThisObject(callStatement: Statement, caller: SootMethod, calleeDefs: SimpleLocalDefs, targetStmt: soot.Unit, expr: InvokeExpr, callee: SootMethod) : Unit = {
+  /** CREATE EDGE(s) FROM: stmt where the object that calls the method was
+    * instanced TO: the 'this' definition in constructor (init) from callee
+    * method
+    *
+    * OPEN CS:
+    */
+  private def defsToThisObject(
+      callStatement: Statement,
+      caller: SootMethod,
+      calleeDefs: SimpleLocalDefs,
+      targetStmt: soot.Unit,
+      expr: InvokeExpr,
+      callee: SootMethod
+  ): Unit = {
 
     // Check if the current expression belong to invokeExpr
     val invokeExpr = expr match {
@@ -766,106 +935,147 @@ abstract class JSVFA
 
 //        val al = getAllocationSites(callStatement, expr, calleeDefs)
 
-        calleeDefs.getDefsOfAt(base, callStatement.base).forEach(sourceStmt => {
-          val source = createNode(caller, sourceStmt)
-          val csOpenLabel = createCSOpenLabel(caller, callStatement.base, callee, Set())
-          svg.addEdge(source, target, csOpenLabel) // create 'Edge' FROM the stmt where the object that calls the method was instanced TO the this definition in callee method
-        })
+        calleeDefs
+          .getDefsOfAt(base, callStatement.base)
+          .forEach(sourceStmt => {
+            val source = createNode(caller, sourceStmt)
+            val csOpenLabel =
+              createCSOpenLabel(caller, callStatement.base, callee, Set())
+            svg.addEdge(
+              source,
+              target,
+              csOpenLabel
+            ) // create 'Edge' FROM the stmt where the object that calls the method was instanced TO the this definition in callee method
+          })
       }
     }
   }
 
-  /**
-   * Create EDGE(S)
-   * "FROM" each stmt where the variable, passed as a parameter, is defined.
-   * "TO" stmt where the variable is loaded inside the method.
-   *
-   * An "open" CS is added
-   *  - Caller method
-   *  - stmt where the callee method is called (it is in caller method)
-   *  - Callee method
-   */
-  private def defsToFormalArgs(stmt: Statement, caller: SootMethod, defs: SimpleLocalDefs, assignStmt: soot.Unit, exp: InvokeExpr, callee: SootMethod, pmtCount: Int) = {
+  /** Create EDGE(S) "FROM" each stmt where the variable, passed as a parameter,
+    * is defined. "TO" stmt where the variable is loaded inside the method.
+    *
+    * An "open" CS is added
+    *   - Caller method
+    *   - stmt where the callee method is called (it is in caller method)
+    *   - Callee method
+    */
+  private def defsToFormalArgs(
+      stmt: Statement,
+      caller: SootMethod,
+      defs: SimpleLocalDefs,
+      assignStmt: soot.Unit,
+      exp: InvokeExpr,
+      callee: SootMethod,
+      pmtCount: Int
+  ) = {
     val target = createNode(callee, assignStmt)
 
     val local = exp.getArg(pmtCount).asInstanceOf[Local]
 
     val allocationSites = getAllocationSites(exp)
 
-    defs.getDefsOfAt(local, stmt.base).forEach(sourceStmt => {
-      val source = createNode(caller, sourceStmt)
+    defs
+      .getDefsOfAt(local, stmt.base)
+      .forEach(sourceStmt => {
+        val source = createNode(caller, sourceStmt)
 
-      if (allocationSites.nonEmpty) {
-        allocationSites.foreach(al => {
-          val csOpenLabel = createCSOpenLabel(caller, stmt.base, callee, Set(al.show())) //
-          svg.addEdge(source, target, csOpenLabel) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
-        })
-      } else {
-        val csOpenLabel = createCSOpenLabel(caller, stmt.base, callee, Set()) //
-        svg.addEdge(source, target, csOpenLabel) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
-      }
-    })
+        if (allocationSites.nonEmpty) {
+          allocationSites.foreach(al => {
+            val csOpenLabel =
+              createCSOpenLabel(caller, stmt.base, callee, Set(al.show())) //
+            svg.addEdge(
+              source,
+              target,
+              csOpenLabel
+            ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
+          })
+        } else {
+          val csOpenLabel =
+            createCSOpenLabel(caller, stmt.base, callee, Set()) //
+          svg.addEdge(
+            source,
+            target,
+            csOpenLabel
+          ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
+        }
+      })
   }
 
-  private def getAllocationSites(invokeExpr: InvokeExpr): ListBuffer[GraphNode] = invokeExpr match {
-    case exp: VirtualInvokeExpr => exp.getBase match {
-      case base: Local => getAllocationSites(base)
-      case _ => ListBuffer[GraphNode]()
-    }
+  private def getAllocationSites(
+      invokeExpr: InvokeExpr
+  ): ListBuffer[GraphNode] = invokeExpr match {
+    case exp: VirtualInvokeExpr =>
+      exp.getBase match {
+        case base: Local => getAllocationSites(base)
+        case _           => ListBuffer[GraphNode]()
+      }
     case _ => ListBuffer[GraphNode]()
   }
 
-  private def getAllocationSites(base: Local): ListBuffer[GraphNode] = findAllocationSites(base, false) match {
-    case v if v.isEmpty => findAllocationSites(base)
-    case v => v
-  }
+  private def getAllocationSites(base: Local): ListBuffer[GraphNode] =
+    findAllocationSites(base, false) match {
+      case v if v.isEmpty => findAllocationSites(base)
+      case v              => v
+    }
 
-  /**
-   * CASE 1:
-   * UPDATE EDGE(S)
-   * "FROM" each stmt where the variable, passed as an argument, is defined.
-   * "TO" stmt where the method is called (call-site stmt).
-   *
-   * CASE 2:
-   * ???
-   *
-   * CASE 2:
-   * ???
-   */
-  private def defsToCallOfSinkMethod(stmt: Statement, exp: InvokeExpr, caller: SootMethod, defs: SimpleLocalDefs) = {
+  /** CASE 1: UPDATE EDGE(S) "FROM" each stmt where the variable, passed as an
+    * argument, is defined. "TO" stmt where the method is called (call-site
+    * stmt).
+    *
+    * CASE 2: ???
+    *
+    * CASE 2: ???
+    */
+  private def defsToCallOfSinkMethod(
+      stmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      defs: SimpleLocalDefs
+  ) = {
 
     // CASE 1
-    exp.getArgs.stream().filter(a => a.isInstanceOf[Local]).forEach(a => {
-      val local = a.asInstanceOf[Local]
-      val targetStmt = stmt.base
-      defs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-        val source = createNode(caller, sourceStmt)
-        val target = createNode(caller, targetStmt)
-        updateGraph(source, target) // update 'edge(s)' FROM "declaration stmt(s) for args" TO "call-site stmt" (current stmt)
-      })
+    exp.getArgs
+      .stream()
+      .filter(a => a.isInstanceOf[Local])
+      .forEach(a => {
+        val local = a.asInstanceOf[Local]
+        val targetStmt = stmt.base
+        defs
+          .getDefsOfAt(local, targetStmt)
+          .forEach(sourceStmt => {
+            val source = createNode(caller, sourceStmt)
+            val target = createNode(caller, targetStmt)
+            updateGraph(
+              source,
+              target
+            ) // update 'edge(s)' FROM "declaration stmt(s) for args" TO "call-site stmt" (current stmt)
+          })
 
-      //CASE 2
-      if(local.getType.isInstanceOf[ArrayType]) {
-        val stores = arrayStores.getOrElseUpdate(local, List())
-        stores.foreach(sourceStmt => {
-          val source = createNode(caller, sourceStmt)
-          val target = createNode(caller, targetStmt)
-          updateGraph(source, target) // add comment
-        })
-      }
-    })
+        // CASE 2
+        if (local.getType.isInstanceOf[ArrayType]) {
+          val stores = arrayStores.getOrElseUpdate(local, List())
+          stores.foreach(sourceStmt => {
+            val source = createNode(caller, sourceStmt)
+            val target = createNode(caller, targetStmt)
+            updateGraph(source, target) // add comment
+          })
+        }
+      })
 
     // CASE 3
     // edges from definition to base object of an invoke expression
-    if(isFieldSensitiveAnalysis() && exp.isInstanceOf[InstanceInvokeExpr]) {
-      if(exp.asInstanceOf[InstanceInvokeExpr].getBase.isInstanceOf[Local]) {
-        val local = exp.asInstanceOf[InstanceInvokeExpr].getBase.asInstanceOf[Local]
+    if (isFieldSensitiveAnalysis() && exp.isInstanceOf[InstanceInvokeExpr]) {
+      if (exp.asInstanceOf[InstanceInvokeExpr].getBase.isInstanceOf[Local]) {
+        val local =
+          exp.asInstanceOf[InstanceInvokeExpr].getBase.asInstanceOf[Local]
         val targetStmt = stmt.base
-        defs.getDefsOfAt(local, targetStmt).forEach(sourceStmt => {
-          val source = createNode(caller, sourceStmt)
-          val target = createNode(caller, targetStmt)
-          updateGraph(source, target) // add comment
-        })
+        defs
+          .getDefsOfAt(local, targetStmt)
+          .forEach(sourceStmt => {
+            val source = createNode(caller, sourceStmt)
+            val target = createNode(caller, targetStmt)
+            updateGraph(source, target) // add comment
+          })
       }
     }
   }
@@ -876,17 +1086,44 @@ abstract class JSVFA
   def createNode(method: SootMethod, stmt: soot.Unit): StatementNode =
     svg.createNode(method, stmt, analyze)
 
-
-  def createCSOpenLabel(method: SootMethod, stmt: soot.Unit, callee: SootMethod, context: Set[String]): CallSiteLabel = {
-    val statement = br.unb.cic.soot.graph.Statement(method.getDeclaringClass.toString, method.getSignature, stmt.toString,
-      stmt.getJavaSourceStartLineNumber, stmt, method)
-    CallSiteLabel(ContextSensitiveRegion(statement, callee.toString, context), CallSiteOpenLabel)
+  def createCSOpenLabel(
+      method: SootMethod,
+      stmt: soot.Unit,
+      callee: SootMethod,
+      context: Set[String]
+  ): CallSiteLabel = {
+    val statement = br.unb.cic.soot.graph.Statement(
+      method.getDeclaringClass.toString,
+      method.getSignature,
+      stmt.toString,
+      stmt.getJavaSourceStartLineNumber,
+      stmt,
+      method
+    )
+    CallSiteLabel(
+      ContextSensitiveRegion(statement, callee.toString, context),
+      CallSiteOpenLabel
+    )
   }
 
-  def createCSCloseLabel(method: SootMethod, stmt: soot.Unit, callee: SootMethod, context: Set[String]): CallSiteLabel = {
-    val statement = br.unb.cic.soot.graph.Statement(method.getDeclaringClass.toString, method.getSignature, stmt.toString,
-      stmt.getJavaSourceStartLineNumber, stmt, method)
-    CallSiteLabel(ContextSensitiveRegion(statement, callee.toString, context), CallSiteCloseLabel)
+  def createCSCloseLabel(
+      method: SootMethod,
+      stmt: soot.Unit,
+      callee: SootMethod,
+      context: Set[String]
+  ): CallSiteLabel = {
+    val statement = br.unb.cic.soot.graph.Statement(
+      method.getDeclaringClass.toString,
+      method.getSignature,
+      stmt.toString,
+      stmt.getJavaSourceStartLineNumber,
+      stmt,
+      method
+    )
+    CallSiteLabel(
+      ContextSensitiveRegion(statement, callee.toString, context),
+      CallSiteCloseLabel
+    )
   }
 
   def isThisInitStmt(expr: InvokeExpr, unit: soot.Unit): Boolean =
@@ -1015,10 +1252,23 @@ abstract class JSVFA
     for (node <- svg.nodes()) {
       if (node.unit().isInstanceOf[soot.jimple.AssignStmt]) {
         val assignment = node.unit().asInstanceOf[soot.jimple.AssignStmt]
-        if(assignment.getLeftOp.isInstanceOf[InstanceFieldRef]) {
-          val base = assignment.getLeftOp.asInstanceOf[InstanceFieldRef].getBase.asInstanceOf[Local]
-          if(pointsToAnalysis.reachingObjects(base).hasNonEmptyIntersection(pointsToAnalysis.reachingObjects(local)) || areThisFromSameClass(base, local)) {
-            if(field.equals(assignment.getLeftOp.asInstanceOf[InstanceFieldRef].getField)) {
+        if (assignment.getLeftOp.isInstanceOf[InstanceFieldRef]) {
+          val base = assignment.getLeftOp
+            .asInstanceOf[InstanceFieldRef]
+            .getBase
+            .asInstanceOf[Local]
+          if (
+            pointsToAnalysis
+              .reachingObjects(base)
+              .hasNonEmptyIntersection(
+                pointsToAnalysis.reachingObjects(local)
+              ) || areThisFromSameClass(base, local)
+          ) {
+            if (
+              field.equals(
+                assignment.getLeftOp.asInstanceOf[InstanceFieldRef].getField
+              )
+            ) {
               res += createNode(node.method(), node.unit())
             }
           }
@@ -1029,16 +1279,16 @@ abstract class JSVFA
   }
 
   // findFieldStores for static variables
-  private def findFieldStores(field: StaticFieldRef) : ListBuffer[GraphNode] = {
+  private def findFieldStores(field: StaticFieldRef): ListBuffer[GraphNode] = {
     val res: ListBuffer[GraphNode] = new ListBuffer[GraphNode]()
-    for(node <- svg.nodes()) {
-      if(node.unit().isInstanceOf[soot.jimple.AssignStmt]) {
+    for (node <- svg.nodes()) {
+      if (node.unit().isInstanceOf[soot.jimple.AssignStmt]) {
         val assignment = node.unit().asInstanceOf[soot.jimple.AssignStmt]
-        if(assignment.getLeftOp.isInstanceOf[StaticFieldRef]) {
+        if (assignment.getLeftOp.isInstanceOf[StaticFieldRef]) {
           val base = assignment.getLeftOp.asInstanceOf[StaticFieldRef]
-            if(field.getFieldRef.equals(base.getFieldRef)) {
-              res += createNode(node.method(), node.unit())
-            }
+          if (field.getFieldRef.equals(base.getFieldRef)) {
+            res += createNode(node.method(), node.unit())
+          }
         }
       }
     }
@@ -1046,7 +1296,8 @@ abstract class JSVFA
   }
 
   private def areThisFromSameClass(base: Local, local: Local): Boolean = {
-    base.getName == local.getName && base.getType == local.getType && base.getName.equals("this")
+    base.getName == local.getName && base.getType == local.getType && base.getName
+      .equals("this")
   }
 
   //  /*
