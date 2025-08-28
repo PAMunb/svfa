@@ -323,7 +323,7 @@ abstract class JSVFA
       case (p: Local, q: InstanceFieldRef) =>
         loadRule(assignStmt.stmt, q, method, defs)
       case (p: Local, q: StaticFieldRef) => loadRule(assignStmt.stmt, q, method)
-      case (p: Local, q: ArrayRef) =>
+      case (p: Local, q: ArrayRef) => // p = q[i]
         loadArrayRule(assignStmt.stmt, q, method, defs)
       case (p: Local, q: InvokeExpr) =>
         invokeRule(assignStmt, q, method, defs) // call a method
@@ -658,6 +658,9 @@ abstract class JSVFA
     })
   }
 
+  /**
+    Evaluates statements: p = q[i]
+  */
   protected def loadArrayRule(
       targetStmt: soot.Unit,
       ref: ArrayRef,
@@ -669,14 +672,22 @@ abstract class JSVFA
     if (base.isInstanceOf[Local]) {
       val local = base.asInstanceOf[Local]
 
+      /**
+      For each definition of the "base" variable (an array), 
+      creates an edge FROM the definition statement TO the current array access statement
+      */
       defs
         .getDefsOfAt(local, targetStmt)
         .forEach(sourceStmt => {
           val source = createNode(method, sourceStmt)
           val target = createNode(method, targetStmt)
-          updateGraph(source, target) // add comment
+          updateGraph(source, target)
 
-          // create edges FROM arrays indexes assignments TO where the array is accessed
+          /**
+            Handle special cases where the right-hand side of array indexes assignments
+            involves other local variables,
+            so it creates edges FROM those variable TO the source statement.
+          */
           val stmt = Statement.convert(sourceStmt)
           stmt match {
             case AssignStmt(base) => {
@@ -687,7 +698,7 @@ abstract class JSVFA
                   .foreach(storeStmt => {
                     val source = createNode(method, storeStmt)
                     val target = createNode(method, sourceStmt)
-                    updateGraph(source, target) // add comment
+                    updateGraph(source, target)
                   })
               }
             }
@@ -696,6 +707,10 @@ abstract class JSVFA
 
         })
 
+      /**
+        If there are any array store operations for the array 
+        it creates edges FROM those stores to the current statement
+      */
       val stores = arrayStores.getOrElseUpdate(local, List())
       stores.foreach(sourceStmt => {
         val source = createNode(method, sourceStmt)
