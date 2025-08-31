@@ -339,7 +339,7 @@ abstract class JSVFA
         ) // update 'edge' FROM stmt where right value was instanced TO current stmt
       case (_: StaticFieldRef, _: Local) =>
         storeRule(assignStmt.stmt, method, defs)
-      case (p: JArrayRef, _) =>
+      case (p: JArrayRef, _) => // p[i] = q
         storeArrayRule(
           assignStmt,
           method,
@@ -792,16 +792,13 @@ abstract class JSVFA
     copyRule(stmt, local, method, defs)
   }
 
-  /** array[0] = <variable>
+  /** 
+    * statement: array[i] = <variable>
     *
     * CASE 1
     *
-    * Store
-    *
-    * CASE 2
-    *
-    * Create EDGE(S) "FROM" each stmt where the variables on the right are
-    * defined. "TO" current stmt.
+    * Create EDGE(S) "FROM" each stmt where the variable on the right is
+    * defined "TO" current stmt.
     */
   def storeArrayRule(
       assignStmt: AssignStmt,
@@ -813,12 +810,13 @@ abstract class JSVFA
 
     // stores all the place where the array was assigned
     val local = left.asInstanceOf[JArrayRef].getBase.asInstanceOf[Local]
-
     val stores = assignStmt.stmt :: arrayStores.getOrElseUpdate(local, List())
     arrayStores.put(local, stores)
 
-//    println(arrayStores)
-
+    /**
+      If the right-hand side is a local variable, 
+      create edges from all definitions of that variable to the current statement
+    */
     if (right.isInstanceOf[Local]) {
       val rightLocal = right.asInstanceOf[Local]
       defs
