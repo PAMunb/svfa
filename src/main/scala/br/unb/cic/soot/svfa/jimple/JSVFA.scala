@@ -384,13 +384,18 @@ abstract class JSVFA
   ): Unit = {
     val edges = Scene.v().getCallGraph.edgesOutOf(callStmt.base)
 
-    if(!edges.hasNext) {
+    if(! edges.hasNext) {
       invokeRule(callStmt, exp, caller, exp.getMethod, defs)
     }
-    while (edges.hasNext) {
+
+    var depth = 0
+    val maxDepth = 2
+    while (edges.hasNext && depth < maxDepth) {
       val e = edges.next
       invokeRule(callStmt, exp, caller, e.getTgt.method(), defs)
+      depth += 1
     }
+
   }
   private def invokeRule(
       callStmt: Statement,
