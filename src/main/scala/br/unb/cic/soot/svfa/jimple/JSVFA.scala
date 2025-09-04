@@ -384,8 +384,12 @@ abstract class JSVFA
   ): Unit = {
     val edges = Scene.v().getCallGraph.edgesOutOf(callStmt.base)
 
-    if(! edges.hasNext) {
-      invokeRule(callStmt, exp, caller, exp.getMethod, defs)
+    // Avoid infinite recursion: only call invokeRule if callee is different from caller
+    if (!edges.hasNext) {
+      val callee = exp.getMethod
+      if (callee != null && callee != caller) {
+        invokeRule(callStmt, exp, caller, callee, defs)
+      }
     }
 
     var depth = 0
