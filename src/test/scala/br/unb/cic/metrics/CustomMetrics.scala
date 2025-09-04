@@ -170,7 +170,7 @@ trait CustomMetrics {
     println(s"- **$reportName** - failed: ${metricsByTest.values.count(_.failedTests > 0)}, passed: ${metricsByTest.values.count(_.passedTests > 0)} of ${metricsByTest.values.size} tests - (${passRate()}%)")
 
     val header = "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Execution Time |"
-    val sep    = "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|"
+    val sep    = "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:--------------:|"
     println(header)
     println(sep)
     var totalFound = 0
