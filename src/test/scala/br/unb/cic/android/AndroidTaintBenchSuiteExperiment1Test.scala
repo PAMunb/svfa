@@ -14,16 +14,12 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     val expected = 13
     val nameAPK = "backflash"
 
-    val startTime = System.nanoTime()
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
     val actual = svfa.reportConflictsSVG().size
-    val endTime = System.nanoTime()
-    val durationMs = (endTime - startTime) / 1000000
+    val executionTime = svfa.executionTime()
 
-    println(s"Execution time for $nameAPK: $durationMs ms")
-
-    this.compute(expected, actual, nameAPK, true)
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -36,7 +32,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -49,7 +46,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -62,7 +60,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -75,7 +74,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -88,7 +88,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -101,7 +102,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -114,7 +116,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -127,7 +130,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -140,7 +144,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -153,7 +158,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -166,7 +172,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -179,7 +186,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -192,7 +200,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -205,7 +214,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -218,7 +228,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -231,7 +242,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -244,7 +256,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -257,7 +270,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -270,7 +284,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -283,7 +298,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -296,7 +312,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -309,7 +326,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -322,7 +340,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -335,7 +354,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -348,7 +368,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -361,7 +382,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -374,7 +396,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -387,7 +410,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -400,7 +424,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -413,7 +438,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -426,7 +452,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -439,7 +466,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -452,7 +480,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -465,7 +494,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -478,7 +508,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -491,7 +522,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -504,7 +536,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
@@ -517,7 +550,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     svfa.buildSparseValueFlowGraph()
 
     val actual = svfa.reportConflictsSVG().size
-    this.compute(expected, actual, nameAPK, true)
+    val executionTime = svfa.executionTime()
+    this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
   }
