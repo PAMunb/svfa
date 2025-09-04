@@ -12,12 +12,17 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
 
   test("in the APK backflash, we should detect 13 flow") {
     val expected = 13
-    val nameAPK="backflash";
+    val nameAPK = "backflash"
 
+    val startTime = System.nanoTime()
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
-
     val actual = svfa.reportConflictsSVG().size
+    val endTime = System.nanoTime()
+    val durationMs = (endTime - startTime) / 1000000
+
+    println(s"Execution time for $nameAPK: $durationMs ms")
+
     this.compute(expected, actual, nameAPK, true)
 
     assert(actual == expected)
