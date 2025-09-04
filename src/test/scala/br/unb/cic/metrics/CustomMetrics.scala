@@ -40,7 +40,7 @@ trait CustomMetrics {
     getOrCreateMetrics(testName).found += found
   }
 
-  def compute(expected: Int, found: Int, testName: String): Unit = {
+  def compute(expected: Int, found: Int, testName: String, showReportSummary: Boolean = false): Unit = {
     reportExpected(testName, expected)
     reportFound(testName, found)
     (expected, found) match {
@@ -57,7 +57,10 @@ trait CustomMetrics {
         reportFailedTest(testName)
         reportFalseNegatives(testName, e - f)
     }
-    //this.reportSummary(testName)
+
+    if (showReportSummary) {
+      this.reportSummary(testName)
+    }
   }
 
   def precision(testName: String = null): Double = {
