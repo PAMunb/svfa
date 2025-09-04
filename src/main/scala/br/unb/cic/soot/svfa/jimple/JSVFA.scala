@@ -376,31 +376,45 @@ abstract class JSVFA
     })
   }
 
+  /**
+   * Handles invocation rules for a call statement by traversing the call graph.
+   * This method avoids infinite recursion and limits the traversal depth for performance.
+   */
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
       caller: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
-    val edges = Scene.v().getCallGraph.edgesOutOf(callStmt.base)
+    val callGraph = Scene.v().getCallGraph
+    val edges = callGraph.edgesOutOf(callStmt.base)
 
-    // Avoid infinite recursion: only call invokeRule if callee is different from caller
+    // Track visited callees to avoid infinite recursion
+    val visited = scala.collection.mutable.Set[SootMethod]()
+    val maxDepth = 2
+
     if (!edges.hasNext) {
+      // No outgoing edges, fallback to direct method from expression if not recursive
       val callee = exp.getMethod
       if (callee != null && callee != caller) {
         invokeRule(callStmt, exp, caller, callee, defs)
       }
+    } else {
+      // There are outgoing edges, traverse them up to maxDepth
+        var depth = 0
+        while (edges.hasNext && depth < maxDepth) {
+          val edge = edges.next()
+          val callee = edge.getTgt.method()
+          // Only process if callee is not the same as caller and not already visited
+          if (callee != null && callee != caller && !visited.contains(callee)) {
+            visited += callee
+            invokeRule(callStmt, exp, caller, callee, defs)
+          }
+          depth += 1
+        }
     }
-
-    var depth = 0
-    val maxDepth = 2
-    while (edges.hasNext && depth < maxDepth) {
-      val e = edges.next
-      invokeRule(callStmt, exp, caller, e.getTgt.method(), defs)
-      depth += 1
-    }
-
   }
+
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
