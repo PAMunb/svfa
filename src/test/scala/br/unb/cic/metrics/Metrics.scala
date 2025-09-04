@@ -8,5 +8,6 @@ case class Metrics(
   var passedTests: Int = 0,
   var failedTests: Int = 0,
   var expected: Int = 0,
-  var found: Int = 0
+  var found: Int = 0,
+  var executionTime: Double = 0.0,
 )

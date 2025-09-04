@@ -40,7 +40,18 @@ trait CustomMetrics {
     getOrCreateMetrics(testName).found += found
   }
 
-  def compute(expected: Int, found: Int, testName: String, showReportSummary: Boolean = false): Unit = {
+  def reportExecutionTime(testName: String, executionTime: Double): Unit = {
+    getOrCreateMetrics(testName).executionTime += executionTime
+  }
+
+  def compute(
+    expected: Int,
+    found: Int,
+    testName: String,
+    executionTime: Double = 0.0,
+    showReportSummary: Boolean = false
+  ): Unit = {
+    reportExecutionTime(testName, executionTime)
     reportExpected(testName, expected)
     reportFound(testName, found)
     (expected, found) match {
@@ -131,6 +142,11 @@ trait CustomMetrics {
     case None => metricsByTest.values.map(_.found).sum
   }
 
+  def executionTime(testName: String = null): Double = Option(testName) match {
+    case Some(name) => getOrCreateMetrics(name).executionTime
+    case None => metricsByTest.values.map(_.executionTime).sum
+  }
+
   def metricsFor(testName: String): Metrics = getOrCreateMetrics(testName)
 
   def report(testName: String): Unit = {
@@ -142,6 +158,7 @@ trait CustomMetrics {
     println(s"Expecting ${vulnerabilities(testName)} of ${vulnerabilitiesFound(testName)} warnings.")
     println(s"TP = ${m.truePositives} FP = ${m.falsePositives} FN = ${m.falseNegatives} TN = ${m.trueNegatives}")
     println(s"Precision = ${precision(testName)}% Recall = ${recall(testName)}% F-score = ${f1Score(testName)}%")
+    println(s"Execution time = ${executionTime(testName)} ms")
   }
 
   def reportAll(): Unit = {
@@ -152,7 +169,7 @@ trait CustomMetrics {
 
     println(s"- **$reportName** - failed: ${metricsByTest.values.count(_.failedTests > 0)}, passed: ${metricsByTest.values.count(_.passedTests > 0)} of ${metricsByTest.values.size} tests - (${passRate()}%)")
 
-    val header = "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |"
+    val header = "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Execution Time |"
     val sep    = "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|"
     println(header)
     println(sep)
@@ -163,6 +180,7 @@ trait CustomMetrics {
     var totalTP = 0
     var totalFP = 0
     var totalFN = 0
+    var totalExecutionTime = 0.0
 
     metricsByTest.toSeq.sortBy(_._1).foreach { case (testName, m) =>
       val status = if (m.found == m.expected) "✅" else "❌"
@@ -170,7 +188,7 @@ trait CustomMetrics {
       val rec = recall(testName)
       val f1 = f1Score(testName)
       val shortTestName = testName.split('.').last.padTo(14, ' ')
-      println(f"| $shortTestName| ${m.found}%5d | ${m.expected}%8d | ${status}%6s | ${m.truePositives}%2d | ${m.falsePositives}%2d | ${m.falseNegatives}%3d | ${prec}%9.2f | ${rec}%6.2f | ${f1}%7.2f |")
+      println(f"| $shortTestName| ${m.found}%5d | ${m.expected}%8d | ${status}%6s | ${m.truePositives}%2d | ${m.falsePositives}%2d | ${m.falseNegatives}%3d | ${prec}%9.2f | ${rec}%6.2f | ${f1}%7.2f | ${m.executionTime}%9.2f ms |")
       totalFound += m.found
       totalExpected += m.expected
       totalPassed += m.passedTests
@@ -178,12 +196,13 @@ trait CustomMetrics {
       totalTP += m.truePositives
       totalFP += m.falsePositives
       totalFN += m.falseNegatives
+      totalExecutionTime += m.executionTime
     }
 
     val totalPrec = precision()
     val totalRec = recall()
     val totalF1 = f1Score()
     val totalStatus = s"${totalPassed}/${totalTests}"
-    println(f"| TOTAL         | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f |")
+    println(f"| TOTAL         | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f | ${totalExecutionTime}%9.2f ms |")
   }
 }
