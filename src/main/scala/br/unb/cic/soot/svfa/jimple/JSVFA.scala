@@ -1173,10 +1173,11 @@ abstract class JSVFA
       pmtCount: Int,
       unit: soot.Unit
   ): Boolean =
-    unit.isInstanceOf[IdentityStmt] && unit
-      .asInstanceOf[IdentityStmt]
-      .getRightOp
-      .isInstanceOf[ParameterRef] && expr.getArg(pmtCount).isInstanceOf[Local]
+    unit.isInstanceOf[IdentityStmt] &&
+    unit.asInstanceOf[IdentityStmt].getRightOp.isInstanceOf[ParameterRef] &&
+    pmtCount >= 0 &&
+    pmtCount < expr.getArgCount &&
+    expr.getArg(pmtCount).isInstanceOf[Local]
 
   def isAssignReturnLocalStmt(callSite: soot.Unit, unit: soot.Unit): Boolean =
     unit.isInstanceOf[ReturnStmt] && unit
