@@ -76,11 +76,12 @@ abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
       val svfa = new SecuribenchTest(className, entryPointMethod())
       svfa.buildSparseValueFlowGraph()
       val conflicts = svfa.reportConflictsSVG()
+      val executionTime = svfa.executionTime()
 
       val expected = clazz.getMethod("getVulnerabilityCount").invoke(clazz.getDeclaredConstructor().newInstance()).asInstanceOf[Int]
       val found = conflicts.size
 
-      this.compute(expected, found, className)
+      this.compute(expected, found, className, executionTime)
     }
 
   test(s"running testsuite from ${basePackage()}") {
