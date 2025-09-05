@@ -1,7 +1,7 @@
 package br.unb.cic.metrics
 import scala.collection.mutable
 
-trait CustomMetrics {
+trait TestResult {
 
   private val metricsByTest = mutable.Map[String, Metrics]()
 
@@ -206,3 +206,15 @@ trait CustomMetrics {
     println(f"| TOTAL         | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f | ${totalExecutionTime}%9.2f ms |")
   }
 }
+
+case class Metrics(
+  var truePositives: Int = 0,
+  var falsePositives: Int = 0,
+  var falseNegatives: Int = 0,
+  var trueNegatives: Int = 0,
+  var passedTests: Int = 0,
+  var failedTests: Int = 0,
+  var expected: Int = 0,
+  var found: Int = 0,
+  var executionTime: Double = 0.0,
+)

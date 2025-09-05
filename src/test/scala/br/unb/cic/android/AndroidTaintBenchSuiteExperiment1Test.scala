@@ -1,6 +1,6 @@
 package br.unb.cic.android
 
-import br.unb.cic.metrics.CustomMetrics
+import br.unb.cic.metrics.TestResult
 import org.scalatest.FunSuite
 
 /**
@@ -8,7 +8,7 @@ import org.scalatest.FunSuite
  * All tests are configured with sources and sinks defined in benchmark suite.
  * We do it using a unique "trait" that contents these lists.
  */
-class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics {
+class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
   test("in the APK backflash, we should detect 13 flow") {
     val expected = 13

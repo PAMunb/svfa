@@ -1,7 +1,7 @@
 package br.unb.cic.android
 
 import br.unb.cic.android.specs.{BackFlashSpec, BeitaComBeitaContactSpec, CajinoBaiduSpec, ChatHookSpec, ChuliaSpec, DeathRingMaterialflowSpec, DsencryptSampSpec, ExprespamSpec, FakeappstoreSpec, FakebankAndroidSampSpec, FakedaumSpec, FakemartSpec, FakeplaySpec, FaketaobaoSpec, GodwonSampSpec, HummingbadAndroidSampSpec, JollyservSpec, OverlayAndroidSampSpec, Overlaylocker2AndroidSampSpec, PhospySpec, ProxySampSpec, RemoteControlSmackSpec, RepaneSpec, RoidSecSpec, SamsapoSpec, SaveMeSpec, ScipiexSpec, SlockerAndroidSampSpec, SmsGoogleSpec, SmsSendLockerQqmagicSpec, SmssendPackageInstallerSpec, SmssilienceFakeVertuSpec, SmsstealerKysnAssassincreedAndroidSampSpec, StelsFlashplayerAndroidUpdateSpec, TetusSpec, TheInterviewMovieShowSpec, ThreatjapanUractoSpec, VibleakerAndroidSampSpec, XbotAndroidSampSpec}
-import br.unb.cic.metrics.CustomMetrics
+import br.unb.cic.metrics.TestResult
 import org.scalatest.FunSuite
 
 /**
@@ -9,7 +9,7 @@ import org.scalatest.FunSuite
  * Each test is run with its associated list of sources and sinks
  * We do it injecting the "trait" that contents these list at the instance of the object
  */
-  class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with CustomMetrics {
+  class AndroidTaintBenchSuiteExperiment2Test extends FunSuite with TestResult {
 
   test("in the APK backflash, we should detect 13 flow") {
     val nameAPK="backflash";

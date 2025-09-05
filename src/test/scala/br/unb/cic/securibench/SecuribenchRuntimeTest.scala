@@ -2,11 +2,11 @@ package br.unb.cic.securibench
 
 import java.io.File
 import java.nio.file.{Files, Paths}
-import br.unb.cic.metrics.CustomMetrics
+import br.unb.cic.metrics.TestResult
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 
-abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
+abstract class SecuribenchRuntimeTest extends FunSuite with TestResult {
 
   def basePackage(): String
 
