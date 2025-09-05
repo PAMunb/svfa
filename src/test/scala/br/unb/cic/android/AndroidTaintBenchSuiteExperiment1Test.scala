@@ -542,15 +542,18 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with CustomMetrics 
     assert(actual == expected)
   }
 
+  /**
+   * DISABLE this test because it is using a lot of memory.
+   */
   test("in the APK xbot_android_samp, we should detect 3 flows") {
     val expected = 3
     val nameAPK = "xbot_android_samp"
 
-    val svfa = new AndroidTaintBenchTest(nameAPK)
-    svfa.buildSparseValueFlowGraph()
+//    val svfa = new AndroidTaintBenchTest(nameAPK)
+//    svfa.buildSparseValueFlowGraph()
 
-    val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
+    val actual = 0
+    val executionTime = 0.0
     this.compute(expected, actual, nameAPK, executionTime, showReportSummary = true)
 
     assert(actual == expected)
