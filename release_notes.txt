@@ -1,0 +1,15 @@
+v0.3.1
+- Fork repository from https://github.com/rbonifacio/svfa-scala,
+- Skipped tests to have a clean pipeline.
+
+v0.3.2
+- Create architecture to compute metrics,
+- Document measures from JSVFA, Flowdroid and Joana.
+
+v0.3.3
+- Integration of Soot's call graph to identify possible targets of method calls by commit "ae3bfa15a5ccd3e12490ec601d44dfaa5a3d8852"
+
+v0.3.4
+- Integrated Taintbench for Android apps,
+- Added execution time metric,
+- Enhanced type annotations and error handling

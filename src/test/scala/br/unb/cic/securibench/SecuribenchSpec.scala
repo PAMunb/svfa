@@ -1,8 +1,8 @@
-package br.unb.cic.flowdroid
+package br.unb.cic.securibench
 
 import br.unb.cic.soot.JSVFATest
 
-abstract class FlowdroidSpec extends JSVFATest {
+trait SecuribenchSpec {
   val sinkList: Seq[String] = List(
     "<java.io.PrintWriter: void println(java.lang.String)>",
     "<java.io.PrintWriter: void println(java.lang.Object)>",
@@ -50,12 +50,4 @@ abstract class FlowdroidSpec extends JSVFATest {
     "<javax.servlet.ServletRequest: javax.servlet.ServletInputStream getInputStream()>",
     "<com.oreilly.servlet.MultipartRequest: java.lang.String getParameter(java.lang.String)>"
   )
-
-  override def getIncludeList(): List[String] = List(
-      "java.lang.*",
-      "javax.servlet.*",
-      "java.util.*",
-      "java.io.*"
-    )
-
 }

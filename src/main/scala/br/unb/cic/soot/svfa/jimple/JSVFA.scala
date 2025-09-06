@@ -323,7 +323,7 @@ abstract class JSVFA
       case (p: Local, q: InstanceFieldRef) =>
         loadRule(assignStmt.stmt, q, method, defs)
       case (p: Local, q: StaticFieldRef) => loadRule(assignStmt.stmt, q, method)
-      case (p: Local, q: ArrayRef) =>
+      case (p: Local, q: ArrayRef) => // p = q[i]
         loadArrayRule(assignStmt.stmt, q, method, defs)
       case (p: Local, q: InvokeExpr) =>
         invokeRule(assignStmt, q, method, defs) // call a method
@@ -339,7 +339,7 @@ abstract class JSVFA
         ) // update 'edge' FROM stmt where right value was instanced TO current stmt
       case (_: StaticFieldRef, _: Local) =>
         storeRule(assignStmt.stmt, method, defs)
-      case (p: JArrayRef, _) =>
+      case (p: JArrayRef, _) => // p[i] = q
         storeArrayRule(
           assignStmt,
           method,
@@ -376,22 +376,45 @@ abstract class JSVFA
     })
   }
 
+  /**
+   * Handles invocation rules for a call statement by traversing the call graph.
+   * This method avoids infinite recursion and limits the traversal depth for performance.
+   */
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
       caller: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
-    val edges = Scene.v().getCallGraph.edgesOutOf(callStmt.base)
+    val callGraph = Scene.v().getCallGraph
+    val edges = callGraph.edgesOutOf(callStmt.base)
 
-    if(!edges.hasNext) {
-      invokeRule(callStmt, exp, caller, exp.getMethod, defs)
-    }
-    while (edges.hasNext) {
-      val e = edges.next
-      invokeRule(callStmt, exp, caller, e.getTgt.method(), defs)
+    // Track visited callees to avoid infinite recursion
+    val visited = scala.collection.mutable.Set[SootMethod]()
+    val maxDepth = 2
+
+    if (!edges.hasNext) {
+      // No outgoing edges, fallback to direct method from expression if not recursive
+      val callee = exp.getMethod
+      if (callee != null && callee != caller) {
+        invokeRule(callStmt, exp, caller, callee, defs)
+      }
+    } else {
+      // There are outgoing edges, traverse them up to maxDepth
+        var depth = 0
+        while (edges.hasNext && depth < maxDepth) {
+          val edge = edges.next()
+          val callee = edge.getTgt.method()
+          // Only process if callee is not the same as caller and not already visited
+          if (callee != null && callee != caller && !visited.contains(callee)) {
+            visited += callee
+            invokeRule(callStmt, exp, caller, callee, defs)
+          }
+          depth += 1
+        }
     }
   }
+
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
@@ -658,6 +681,9 @@ abstract class JSVFA
     })
   }
 
+  /**
+    Evaluates statements: p = q[i]
+  */
   protected def loadArrayRule(
       targetStmt: soot.Unit,
       ref: ArrayRef,
@@ -669,14 +695,22 @@ abstract class JSVFA
     if (base.isInstanceOf[Local]) {
       val local = base.asInstanceOf[Local]
 
+      /**
+      For each definition of the "base" variable (an array), 
+      creates an edge FROM the definition statement TO the current array access statement
+      */
       defs
         .getDefsOfAt(local, targetStmt)
         .forEach(sourceStmt => {
           val source = createNode(method, sourceStmt)
           val target = createNode(method, targetStmt)
-          updateGraph(source, target) // add comment
+          updateGraph(source, target)
 
-          // create edges FROM arrays indexes assignments TO where the array is accessed
+          /**
+            Handle special cases where the right-hand side of array indexes assignments
+            involves other local variables,
+            so it creates edges FROM those variable TO the source statement.
+          */
           val stmt = Statement.convert(sourceStmt)
           stmt match {
             case AssignStmt(base) => {
@@ -687,7 +721,7 @@ abstract class JSVFA
                   .foreach(storeStmt => {
                     val source = createNode(method, storeStmt)
                     val target = createNode(method, sourceStmt)
-                    updateGraph(source, target) // add comment
+                    updateGraph(source, target)
                   })
               }
             }
@@ -696,6 +730,10 @@ abstract class JSVFA
 
         })
 
+      /**
+        If there are any array store operations for the array 
+        it creates edges FROM those stores to the current statement
+      */
       val stores = arrayStores.getOrElseUpdate(local, List())
       stores.foreach(sourceStmt => {
         val source = createNode(method, sourceStmt)
@@ -777,16 +815,13 @@ abstract class JSVFA
     copyRule(stmt, local, method, defs)
   }
 
-  /** array[0] = <variable>
+  /** 
+    * statement: array[i] = <variable>
     *
     * CASE 1
     *
-    * Store
-    *
-    * CASE 2
-    *
-    * Create EDGE(S) "FROM" each stmt where the variables on the right are
-    * defined. "TO" current stmt.
+    * Create EDGE(S) "FROM" each stmt where the variable on the right is
+    * defined "TO" current stmt.
     */
   def storeArrayRule(
       assignStmt: AssignStmt,
@@ -798,12 +833,13 @@ abstract class JSVFA
 
     // stores all the place where the array was assigned
     val local = left.asInstanceOf[JArrayRef].getBase.asInstanceOf[Local]
-
     val stores = assignStmt.stmt :: arrayStores.getOrElseUpdate(local, List())
     arrayStores.put(local, stores)
 
-//    println(arrayStores)
-
+    /**
+      If the right-hand side is a local variable, 
+      create edges from all definitions of that variable to the current statement
+    */
     if (right.isInstanceOf[Local]) {
       val rightLocal = right.asInstanceOf[Local]
       defs
@@ -1137,10 +1173,11 @@ abstract class JSVFA
       pmtCount: Int,
       unit: soot.Unit
   ): Boolean =
-    unit.isInstanceOf[IdentityStmt] && unit
-      .asInstanceOf[IdentityStmt]
-      .getRightOp
-      .isInstanceOf[ParameterRef] && expr.getArg(pmtCount).isInstanceOf[Local]
+    unit.isInstanceOf[IdentityStmt] &&
+    unit.asInstanceOf[IdentityStmt].getRightOp.isInstanceOf[ParameterRef] &&
+    pmtCount >= 0 &&
+    pmtCount < expr.getArgCount &&
+    expr.getArg(pmtCount).isInstanceOf[Local]
 
   def isAssignReturnLocalStmt(callSite: soot.Unit, unit: soot.Unit): Boolean =
     unit.isInstanceOf[ReturnStmt] && unit

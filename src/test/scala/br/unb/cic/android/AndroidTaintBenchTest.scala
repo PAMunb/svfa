@@ -4,19 +4,19 @@ import br.unb.cic.soot.svfa.jimple.JSVFA
 import br.unb.cic.soot.svfa.configuration.AndroidSootConfiguration
 import br.unb.cic.soot.svfa.jimple.{FieldSensitive, Interprocedural, JSVFA, PropagateTaint}
 
-
+import scala.io.Source
+import java.util.Properties
+import java.io.File
+import java.io.FileInputStream
 import soot._
 import soot.jimple._
-
-import  br.unb.cic.soot.graph._
-
+import br.unb.cic.soot.graph._
 
 import java.nio.file.Paths
-
 import br.unb.cic.soot.svfa.configuration.AndroidSootConfiguration
 
 class AndroidTaintBenchTest(apk: String) extends JSVFA
-    with RoidSecSpec
+    with TaintBenchSpec
     with AndroidSootConfiguration
     with Interprocedural
     with FieldSensitive
@@ -35,7 +35,7 @@ class AndroidTaintBenchTest(apk: String) extends JSVFA
         throw new RuntimeException(s"Environment variable $key is not set. Please set it before executing the test cases." +
           s"\n\nYou can set it by:\n" +
           s"1. Export it: export $key=/path/to/$key\n" +
-          s"2. Use SBT custom tasks: sbt 'roidsecTest --android-sdk=/path/to/sdk --taint-bench=/path/to/taintbench'\n" +
+          s"2. Use SBT custom tasks: sbt 'testRoidsec --android-sdk=/path/to/sdk --taint-bench=/path/to/taintbench'\n" +
           s"3. Pass directly: $key=/path/to/$key sbt 'testOnly br.unb.cic.android.RoidsecTest'")
     }
   }
