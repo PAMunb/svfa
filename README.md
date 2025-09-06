@@ -78,7 +78,7 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 
 To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
 
-#### JSVFA 2.0 metrics (v0.3.3)
+#### JSVFA 2.0 metrics (v0.3.4)
 
 > failed: 38, passed: 65 of 103 tests - (63.11%)
 
@@ -95,7 +95,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 |     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.3.md) (*computed in August 2025.*)
+To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.4.md) (*computed in September 2025.*)
 
 #### FLOWDROID 
 
@@ -178,14 +178,14 @@ This case emulates **Experiment 2 - TB2** that states:
 The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/master/TB_SourcesAndSinks.txt), 
 and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.scala`.
 
-As a result, we got `37 failed and 2 passed of 39 tests` and comparing to FLOWDROID we computed the next metrics:
+As a result, we got `36, passed: 3 of 39 tests` and comparing to FLOWDROID we computed the next metrics:
 ~~a better `precision(0.82)`, the same `recall(0.22)` value and a slightly better `F-score(0.35)`.~~
 
 - JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-I.md)
 
 | Found | Expected | Status | TP | FP | FN  | Precision | Recall | F-score | Pass Rate |
 |:-----:|:--------:|:------:|:--:|:--:|:---:|:---------:|:------:|:-------:|:---------:| 
-|  49   |   203    |  2/39  | 3  | 9  | 163 |   0.25    |  0.02  |  0.04   |   5.13%   |
+|  60   |   203    |  3/39  | 4  | 12 | 155 |   0.25    |  0.03  |  0.05   |   7.69%   |
 
 - FLOWDROID metrics from [Paper](https://doi.org/10.1007/s10664-021-10013-5)
 
@@ -208,7 +208,7 @@ of sources and sinks
 The mentioned lists can be found in https://taintbench.github.io/taintbenchSuite/, and we have stored them by individual
 files in `src/test/scala/br/unb/cic/android/specs`.
 
-As a result, we got `38 failed and 1 passed of 39 test` and comparing to FLOWDROID
+As a result, we got `failed: 35, passed: 4 of 39 tests` and comparing to FLOWDROID
 ~~awe detect a several better amount of `TP(135)` but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
 a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 
@@ -216,7 +216,7 @@ a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 
 | Found | Expected | Status | TP | FP  | FN | Precision | Recall | F-score | Pass Rate |
 |:-----:|:--------:|:------:|:--:|:---:|:--:|:---------:|:------:|:-------:|:---------:|
-|  446  |   203    |  1/39  | 2  | 312 | 69 |   0.01    |  0.03  |  0.01   |  2.56%    |
+|  620  |   203    |  4/39  | 29 | 463 | 46 |   0.06    |  0.39  |  0.10   |  10.26%   |
 
 - FLOWDROID metrics from Paper https://doi.org/10.1007/s10664-021-10013-5
 
@@ -229,22 +229,40 @@ a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 
 ## Tasks
 ### WIP
-- [ ] Create Git Action flow.
+- [ ] Add set up project documentation.
+- [ ] Fix bugs for Securibench in folders
+    - [ ] Datastructure
+    - [ ] Factory
+    - [ ] Session
+    - [ ] Strong Update
+    - [ ] Aliasing
 
 ### TO-DO
-- [ ] Finish integration of Taintbench.
-- [ ] Check if each test in Securibench has the right expected values.
-- [ ] Add set up project documentation.
-- [ ] Integrate Securibench as a submodule.
-- [ ] Compute metrics for Securibench results.
-- [ ] Fix bugs for Securibench in folders
-  - [ ] Datastructure
-  - [ ] Factory
-  - [ ] Session
-  - [ ] Strong Update
-  - [ ] Aliasing
+-
 
 ### DONE
-- [X] Integration of Taintbench.
+- [X] Create Git Action flow.
+- [X] Integrate Taintbench.
 
-[//]: # (## License)
+## License
+This project is licensed under the MIT License.
+
+Copyright (c) 2023-2024 CIC-UnB José C. Tafur and contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
