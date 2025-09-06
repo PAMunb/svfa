@@ -68,7 +68,7 @@ jobs:
     - name: Download TaintBench suite
       run: |
         curl -L -o TaintBench.zip https://github.com/TaintBench/TaintBench/releases/download/TaintBenchSuite/TaintBench.zip
-        unzip -q TaintBench.zip -d $RUNNER_TEMP
+        unzip -q TaintBench.zip -d $RUNNER_TEMP/TaintBench
 
     - name: Configure taintbench.properties
       run: |
