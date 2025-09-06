@@ -115,11 +115,55 @@ and the tests cases are in `src/test/java/securibench`.
 ### Taintbench: (WIP) 
 
 [Taintbench](https://github.com/TaintBench/TaintBench/releases/download/TaintBenchSuite/TaintBench.zip) contains a set o Android Apks that are old malware apps.
-We have created a file `taintbench.properties` in `src/test/resources` to set the configurations.
+
+#### Environment Setup
+
+The tests require environment variables to be set for configuration:
+
+- `ANDROID_SDK`: Path to your Android SDK (e.g., `/home/user/Android/Sdk/`)
+- `TAINT_BENCH`: Path to your TaintBench directory (e.g., `/home/user/Documents/taint-bench`)
+
+#### Running Android Tests
+
+You can run Android tests in several ways:
+
+**1. Using the convenience shell script (Recommended):**
+```bash
+./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
+./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
+./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
+```
+
+**2. Using environment variables:**
+```bash
+export ANDROID_SDK=/path/to/android/sdk
+export TAINT_BENCH=/path/to/taintbench
+sbt test
+# Or run specific tests:
+sbt testRoidsec
+sbt testAndroid
+```
+
+**3. Using SBT system properties:**
+```bash
+sbt -Dandroid.sdk=/path/to/android/sdk -Dtaint.bench=/path/to/taintbench testRoidsec
+```
+
+**4. Using inline environment variables:**
+```bash
+ANDROID_SDK=/path/to/android/sdk TAINT_BENCH=/path/to/taintbench sbt testRoidsec
+```
+
+**5. Using SBT testOnly command:**
+```bash
+ANDROID_SDK=/path/to/android/sdk TAINT_BENCH=/path/to/taintbench sbt "testOnly br.unb.cic.android.RoidsecTest"
+```
+
+#### Test Results
 
 > failed: ?, passed: 1, ignored: ? of 39 test (?%)
 
-- [Roidsec]
+- [Roidsec] ✅
 - [ ]
 - [ ]
 

@@ -4,10 +4,6 @@ import br.unb.cic.soot.svfa.jimple.JSVFA
 import br.unb.cic.soot.svfa.configuration.AndroidSootConfiguration
 import br.unb.cic.soot.svfa.jimple.{FieldSensitive, Interprocedural, JSVFA, PropagateTaint}
 
-import scala.io.Source
-import java.util.Properties
-import java.io.File
-import java.io.FileInputStream
 
 import soot._
 import soot.jimple._
@@ -26,27 +22,22 @@ class AndroidTaintBenchTest(apk: String) extends JSVFA
     with FieldSensitive
     with PropagateTaint
 {
-  def getApkPath(): String = readProperty("taint-bench") + (s"/$apk.apk")
+  def getApkPath(): String = readEnvironmentVariable("TAINT_BENCH") + (s"/$apk.apk")
 
   def apk(): String = getApkPath()
 
-  def platform(): String = readProperty("sdk") + "/platforms/"
+  def platform(): String = readEnvironmentVariable("ANDROID_SDK") + "/platforms/"
 
-  private def readProperty(key: String) : String = {
-    val url = getClass.getResource("/taintbench.properties")
-    
-    if(url == null) {
-      throw new RuntimeException("File taintbench.properties does not exist. Please, make sure to correctly setup this file before executing the test cases.")
+  private def readEnvironmentVariable(key: String): String = {
+    scala.util.Properties.envOrNone(key) match {
+      case Some(value) => value
+      case None => 
+        throw new RuntimeException(s"Environment variable $key is not set. Please set it before executing the test cases." +
+          s"\n\nYou can set it by:\n" +
+          s"1. Export it: export $key=/path/to/$key\n" +
+          s"2. Use SBT custom tasks: sbt 'roidsecTest --android-sdk=/path/to/sdk --taint-bench=/path/to/taintbench'\n" +
+          s"3. Pass directly: $key=/path/to/$key sbt 'testOnly br.unb.cic.android.RoidsecTest'")
     }
-    val source = Source.fromURL(url)
-
-    for(s <- source.getLines()) {
-      val Array(k, v) = s.split("=")
-      if(k == key) {
-        return v
-      }
-    }
-    throw new RuntimeException(s"Property $key not set in the file 'taintbench.properties'")
   }
 
   

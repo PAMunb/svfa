@@ -3,7 +3,7 @@ scalaVersion := "2.12.20"
 name := "svfa-scala"
 organization := "br.unb.cic"
 
-version := "0.3.1"
+version := "0.3.3"
 
 githubOwner := "rbonifacio"
 githubRepository := "svfa-scala"
@@ -13,6 +13,16 @@ publishConfiguration := publishConfiguration.value.withOverwrite(true)
 publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
 
 parallelExecution in Test := false
+
+// Custom test tasks that support environment variables from command line
+Test / envVars := Map(
+  "ANDROID_SDK" -> sys.env.get("ANDROID_SDK").orElse(sys.props.get("android.sdk")),
+  "TAINT_BENCH" -> sys.env.get("TAINT_BENCH").orElse(sys.props.get("taint.bench"))
+).collect { case (k, Some(v)) => (k, v) }
+
+// Define custom commands for easier testing
+addCommandAlias("testRoidsec", "testOnly br.unb.cic.android.RoidsecTest")
+addCommandAlias("testAndroid", "testOnly br.unb.cic.android.*")
 
 
 resolvers += "Local maven repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
