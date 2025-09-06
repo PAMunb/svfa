@@ -6,14 +6,33 @@ import soot.jimple.infoflow.android.{
   SetupApplication
 }
 
+sealed trait AndroidCallGraph
+
+case object AndroidCHA extends AndroidCallGraph
+case object AndroidRTA extends AndroidCallGraph  
+case object AndroidVTA extends AndroidCallGraph
+case object AndroidSPARK extends AndroidCallGraph
+
 trait AndroidSootConfiguration extends SootConfiguration {
 
   def apk: String
 
   def platform(): String
+  
+  def callGraphAlgorithm(): AndroidCallGraph = AndroidCHA
+  
+  private def mapToInfoflowAlgorithm(androidCG: AndroidCallGraph): InfoflowConfiguration.CallgraphAlgorithm = {
+    androidCG match {
+      case AndroidCHA => InfoflowConfiguration.CallgraphAlgorithm.CHA
+      case AndroidRTA => InfoflowConfiguration.CallgraphAlgorithm.RTA
+      case AndroidVTA => InfoflowConfiguration.CallgraphAlgorithm.VTA
+      case AndroidSPARK => InfoflowConfiguration.CallgraphAlgorithm.SPARK
+    }
+  }
+  
   override def configureSoot(): Unit = {
     val config = new InfoflowAndroidConfiguration
-    config.setCallgraphAlgorithm(InfoflowConfiguration.CallgraphAlgorithm.CHA)
+    config.setCallgraphAlgorithm(mapToInfoflowAlgorithm(callGraphAlgorithm()))
     config.setCodeEliminationMode(
       InfoflowConfiguration.CodeEliminationMode.NoCodeElimination
     )
