@@ -5,8 +5,8 @@ organization := "br.unb.cic"
 
 version := "0.3.4-SNAPSHOT"
 
-githubOwner := "rbonifacio"
-githubRepository := "svfa-scala"
+githubOwner := "PAMunb"
+githubRepository := "svfa"
 githubTokenSource := TokenSource.GitConfig("github.token")
 
 publishConfiguration := publishConfiguration.value.withOverwrite(true)

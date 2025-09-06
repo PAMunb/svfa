@@ -247,7 +247,7 @@ a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 ## License
 This project is licensed under the MIT License.
 
-Copyright (c) 2023-2024 CIC-UnB José C. Tafur and contributors
+Copyright (c) 2023-2024 Program Analysis and Manipulation Group at University of Brasília  and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
