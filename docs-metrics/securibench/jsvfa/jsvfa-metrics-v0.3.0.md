@@ -4,18 +4,18 @@
 
 - **securibench.micro** - failed: 46, passed: 57 of 103 tests - (55.34%)
 
-|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
-|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
-|    aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
-|     arrays     |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   | 
-|     basic      |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |
-|  collections   |   3   |    15    |  1/14  | 1  | 1  | 13 |   0.50    |  0.07  |  0.12   |
-| datastructures |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |
-|   factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
-|     inter      |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |
-|    session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
-| strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-|     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
+|    aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |   33.33   |
+|     arrays     |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   |    10     |
+|     basic      |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |   85.71   |
+|  collections   |   3   |    15    |  1/14  | 1  | 1  | 13 |   0.50    |  0.07  |  0.12   |   7.14    |
+| datastructures |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |   66.67   |
+|   factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |   66.67   |
+|     inter      |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |    50     |
+|    session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |     0     |
+| strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |    80     |
+|     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |   55.34   |
 
 
 > Details (*computed in June, 2025.*)
@@ -32,7 +32,7 @@
 | Aliasing6 |   7   |    7     |   ✅    | 7  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |   TOTAL   |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
 
-- **securibench.micro.arrays** - failed: 9, passed: 1 of 10 tests - (10.0%)
+- **securibench.micro.arrays** - failed: 9, passed: 1 of 10 tests - (10%)
 
 |   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -142,7 +142,7 @@
 |   TOTAL    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
 
 
-- **securibench.micro.inter** - failed: 7, passed: 7 of 14 tests - (50.0%)
+- **securibench.micro.inter** - failed: 7, passed: 7 of 14 tests - (50%)
 
 |  Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:-------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -163,7 +163,7 @@
 |  TOTAL  |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |
 
 
-- **securibench.micro.session** - failed: 3, passed: 0 of 3 tests - (0.0%)
+- **securibench.micro.session** - failed: 3, passed: 0 of 3 tests - (0%)
 
 |   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
@@ -173,7 +173,7 @@
 |  TOTAL   |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 
 
-- **securibench.micro.strong_updates** - failed: 1, passed: 4 of 5 tests - (80.0%)
+- **securibench.micro.strong_updates** - failed: 1, passed: 4 of 5 tests - (80%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|

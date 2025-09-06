@@ -2,11 +2,11 @@ package br.unb.cic.securibench
 
 import java.io.File
 import java.nio.file.{Files, Paths}
-import br.unb.cic.metrics.CustomMetrics
+import br.unb.cic.metrics.TestResult
 import org.scalatest.FunSuite
 import securibench.micro.MicroTestCase
 
-abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
+abstract class SecuribenchRuntimeTest extends FunSuite with TestResult {
 
   def basePackage(): String
 
@@ -39,7 +39,7 @@ abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
                   ! clazz.isInterface &&
                   ! java.lang.reflect.Modifier.isAbstract(clazz.getModifiers)
               } catch {
-                case _ => false
+                case _ : Throwable => false
               }
             }
             case _ => false
@@ -61,7 +61,7 @@ abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
 
   def generateRuntimeTests(files: List[AnyRef], packageName: String): Unit = {
     files.foreach {
-      case list: List[AnyRef] => this.generateRuntimeTests(list, packageName)
+      case list: List[_] => this.generateRuntimeTests(list.asInstanceOf[List[AnyRef]], packageName)
       case list : java.nio.file.Path => generateRuntimeTests(list, packageName)
       case _ =>
     }
@@ -76,11 +76,12 @@ abstract class SecuribenchRuntimeTest extends FunSuite with CustomMetrics {
       val svfa = new SecuribenchTest(className, entryPointMethod())
       svfa.buildSparseValueFlowGraph()
       val conflicts = svfa.reportConflictsSVG()
+      val executionTime = svfa.executionTime()
 
       val expected = clazz.getMethod("getVulnerabilityCount").invoke(clazz.getDeclaredConstructor().newInstance()).asInstanceOf[Int]
       val found = conflicts.size
 
-      this.compute(expected, found, className)
+      this.compute(expected, found, className, executionTime)
     }
 
   test(s"running testsuite from ${basePackage()}") {

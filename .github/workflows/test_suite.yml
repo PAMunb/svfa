@@ -1,0 +1,90 @@
+name: JSVFA_pipeline
+
+on:
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  test-suite:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        git config --global github.token "${{ secrets.GITHUB_TOKEN }}"
+        
+    - name: Set up JDK 8
+      uses: actions/setup-java@v4
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+        
+    - name: Install SBT
+      run: |
+        curl -L -o sbt.deb https://repo.scala-sbt.org/scalasbt/debian/sbt-1.9.7.deb
+        sudo dpkg -i sbt.deb
+        sudo apt-get update
+        sudo apt-get install -f
+        
+    - name: Cache SBT dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.sbt
+          ~/.ivy2/cache
+          ~/.coursier/cache/v1
+          ~/.cache/coursier/v1
+          ~/AppData/Local/Coursier/Cache/v1
+        key: ${{ runner.os }}-sbt-cache-v2-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('project/build.properties') }}
+
+    - name: Install library dependencies
+      run: sbt update
+
+    - name: Install system tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y unzip
+
+    - name: Set up Android SDK
+      env:
+        ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
+      run: |
+        mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
+        # Downgraded to commandlinetools-linux-7583922_latest.zip for Java 8 compatibility
+
+        # Use cache for Android command line tools
+        if [ ! -f "$RUNNER_TEMP/cmdline-tools.zip" ]; then
+          curl -fo "$RUNNER_TEMP/cmdline-tools.zip" https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+        fi
+        unzip -q -o "$RUNNER_TEMP/cmdline-tools.zip" -d "$ANDROID_SDK_ROOT/cmdline-tools"
+        mv "$ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools" "$ANDROID_SDK_ROOT/cmdline-tools/latest"
+        yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses
+        "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+    - name: Download TaintBench suite
+      run: |
+        # Use cache for TaintBench.zip
+        if [ ! -f "$RUNNER_TEMP/TaintBench.zip" ]; then
+          curl -L -o "$RUNNER_TEMP/TaintBench.zip" https://github.com/TaintBench/TaintBench/releases/download/TaintBenchSuite/TaintBench.zip
+        fi
+        unzip -q -o "$RUNNER_TEMP/TaintBench.zip" -d $RUNNER_TEMP/TaintBench
+
+    - name: Configure taintbench.properties
+      run: |
+        echo "sdk=$RUNNER_TEMP/android-sdk" > src/test/resources/taintbench.properties
+        echo "taint-bench=$RUNNER_TEMP/TaintBench" >> src/test/resources/taintbench.properties
+
+    - name: Run specific test suites
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
+        sbt "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment1Test"

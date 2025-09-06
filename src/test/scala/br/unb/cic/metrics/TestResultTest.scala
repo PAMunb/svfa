@@ -3,7 +3,7 @@ package br.unb.cic.metrics
 import org.scalatest.FunSuite
 
 
-class MetricsTest extends FunSuite with CustomMetrics {
+class TestResultTest extends FunSuite with TestResult {
 
   test("precision returns 0.0 when denominator is zero") {
     val testName = "precisionZeroDenom"
