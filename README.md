@@ -6,49 +6,178 @@ This is a scala implementation of a framework that builds a sparse-value flow gr
 
    * Experimental.
 
-## Usage
+## Architecture
 
-   * Clone this repository or download a stable release.
-   * Add a GitHub token to your **~/.gitconfig**.
-     ```
-     [github]
-             token = TOKEN
-     ```
-   * Build this project using sbt (`sbt compile test`)
-   * Publish the artifact as a JAR file in your m2 repository (`sbt publish`)
-   * Create a dependency to the svfa-scala artifact in your maven project. 
+This project follows a **modular architecture** with three focused modules:
 
-```{xml}
-<dependency>	
+- **`core`**: Essential SVFA framework + Android analysis support
+- **`securibench`**: Java security vulnerability analysis benchmarks  
+- **`taintbench`**: Android malware analysis benchmarks
+
+## Quick Start
+
+### For Library Users
+
+#### Using svfa-core in Scala Projects
+
+Add to your `build.sbt`:
+```scala
+resolvers += Resolver.githubPackages("PAMunb", "svfa")
+libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.5.0"
+```
+
+#### Using svfa-core in Java/Maven Projects
+
+Add to your `pom.xml`:
+```xml
+<repositories>
+  <repository>
+    <id>github</id>
+    <url>https://maven.pkg.github.com/PAMunb/svfa</url>
+  </repository>
+</repositories>
+
+<dependency>
   <groupId>br.unb.cic</groupId>
-  <artifactId>svfa-scala_2.12</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
- </dependency>
+  <artifactId>svfa-core_2.12</artifactId>
+  <version>0.5.0</version>
+</dependency>
 ```
 
-   * Implement a class that extends the `JSVFA class` (see some examples in the scala tests). you must provide implementations to the following methods.
-      * `getEntryPoints()` to set up the "main" methods. This implementation must return a list of Soot methods.
-      * `sootClassPath()` to set up the soot classpath. This implementation must return a string.
-      * `analyze(unit)` to identify the type of a node  (source, sink, simple node) in the graph; given a statement (soot unit).
+#### Using svfa-core in Gradle Projects
 
-## Installation
+Add to your `build.gradle`:
+```gradle
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/PAMunb/svfa")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
+    }
+}
 
-- Install Scala Plugin in IntelliJ IDEA.
-- Install Java 8 (Java JDK Path `/usr/lib/jvm/java-8-openjdk-amd64`).
-```{bash}
-  sudo apt install openjdk-8-jre-headless
-  sudo apt install openjdk-8-jdk
+dependencies {
+    implementation 'br.unb.cic:svfa-core_2.12:0.5.0'
+}
 ```
-- Clone the project:
-```{bash}
-    git clone https://github.com/rbonifacio/svfa-scala
+
+### For Developers
+
+#### Installation
+
+- Install Java 8 (required)
+- Install sbt (Scala Build Tool)
+- Clone this repository:
+```bash
+git clone https://github.com/PAMunb/svfa
+cd svfa
 ```
-- Add GitHub token in `~/.gitconfig`.
-- IDE
-  - Reload `sbt` .
-  - Set Project's settings to work with Java 8.
-  - Build Project.
-  - Run test.
+
+#### Building
+
+```bash
+# Compile all modules
+sbt compileAll
+
+# Run tests for all modules
+sbt testCore
+sbt testSecuribench
+sbt testTaintbench
+```
+
+#### Publishing (Maintainers)
+
+1. **Setup GitHub Token**:
+   ```bash
+   git config --global github.token YOUR_GITHUB_TOKEN
+   ```
+
+2. **Publish Core Module**:
+   ```bash
+   sbt publishCore
+   ```
+
+3. **Publish All Modules Locally**:
+   ```bash
+   sbt publishAllLocal
+   ```
+
+## API Usage
+
+Implement a class that extends the `JSVFA class` (see examples in the tests). You must provide implementations for:
+
+* `getEntryPoints()` - Set up the "main" methods (returns List of Soot methods)
+* `sootClassPath()` - Set up the soot classpath (returns String)  
+* `analyze(unit)` - Identify node types (source, sink, simple node) in the graph
+
+### Example Usage
+
+```scala
+import br.unb.cic.soot.JSVFATest
+
+class MyAnalysis extends JSVFATest {
+  override def getEntryPoints(): List[SootMethod] = {
+    // Define your entry points
+  }
+  
+  override def sootClassPath(): String = {
+    // Return your classpath
+  }
+  
+  override def analyze(unit: Unit): NodeType = {
+    // Analyze statements and return Source, Sink, or SimpleNode
+  }
+}
+```
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `sbt testCore` | Run core SVFA tests |
+| `sbt testSecuribench` | Run security vulnerability tests (93 test cases) |
+| `sbt testTaintbench` | Run Android malware tests |
+| `sbt testRoidsec` | Run specific Roidsec test |
+| `sbt compileAll` | Compile all modules |
+| `sbt publishCore` | Publish core module to GitHub Packages |
+| `sbt publishAllLocal` | Publish all modules to local Maven repository |
+
+## Scripts
+
+Enhanced scripts are available for convenient testing:
+
+```bash
+# Core tests (no dependencies)
+./scripts/run-core-tests.sh
+
+# Security vulnerability analysis  
+./scripts/run-securibench.sh
+
+# Android malware analysis (requires environment setup)
+./scripts/run-taintbench.sh --help
+./scripts/run-taintbench.sh --check-env
+./scripts/run-taintbench.sh roidsec
+```
+
+## Installation (Ubuntu/Debian)
+
+For Ubuntu/Debian systems:
+```bash
+# Install Java 8
+sudo apt install openjdk-8-jre-headless openjdk-8-jdk
+
+# Install sbt
+echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
+curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
+sudo apt-get update && sudo apt-get install sbt
+
+# Clone and build
+git clone https://github.com/PAMunb/svfa
+cd svfa
+sbt compileAll
+```
 
 
 ## Benchmark
@@ -218,7 +347,7 @@ This case emulates **Experiment 2 - TB2** that states:
 
 >All tools are configured with sources and sinks defined in benchmark suite.
 
-The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/master/TB_SourcesAndSinks.txt), 
+The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/main/TB_SourcesAndSinks.txt), 
 and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.scala`.
 
 As a result, we got `36, passed: 3 of 39 tests` and comparing to FLOWDROID we computed the next metrics:
