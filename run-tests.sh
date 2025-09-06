@@ -122,15 +122,15 @@ echo ""
 case $TEST_NAME in
     roidsec)
         echo -e "${YELLOW}Running RoidsecTest...${NC}"
-        sbt "testOnly br.unb.cic.android.RoidsecTest"
+        sbt "taintbench/testOnly br.unb.cic.android.RoidsecTest"
         ;;
     android)
         echo -e "${YELLOW}Running all Android tests...${NC}"
-        sbt "testOnly br.unb.cic.android.*"
+        sbt "taintbench/testOnly br.unb.cic.android.*"
         ;;
     all)
         echo -e "${YELLOW}Running all tests...${NC}"
-        sbt test
+        sbt taintbench/test
         ;;
     *)
         echo -e "${RED}Unknown test name: $TEST_NAME${NC}"
@@ -140,3 +140,7 @@ case $TEST_NAME in
 esac
 
 echo -e "${GREEN}Tests completed successfully!${NC}"
+
+
+
+

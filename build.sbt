@@ -1,42 +1,123 @@
-scalaVersion := "2.12.20"
+// Multi-module SBT configuration for SVFA project
+// This separates core SVFA functionality from heavy benchmark dependencies
 
-name := "svfa-scala"
-organization := "br.unb.cic"
+ThisBuild / scalaVersion := "2.12.20"
+ThisBuild / organization := "br.unb.cic"
+ThisBuild / version := "0.5.0"
 
-version := "0.4.0"
+// GitHub publishing configuration
+ThisBuild / githubOwner := "PAMunb"
+ThisBuild / githubRepository := "svfa"
+ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token")
 
-githubOwner := "PAMunb"
-githubRepository := "svfa"
-githubTokenSource := TokenSource.GitConfig("github.token")
+// Exclude GitHub token from lint warnings
+Global / excludeLintKeys += githubTokenSource
 
-publishConfiguration := publishConfiguration.value.withOverwrite(true)
-publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+// Global settings
+ThisBuild / publishConfiguration := publishConfiguration.value.withOverwrite(true)
+ThisBuild / publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+ThisBuild / Test / parallelExecution := false
 
-Test / parallelExecution := false
+// Global resolvers
+ThisBuild / resolvers ++= Seq(
+  "Local maven repository" at s"file://${Path.userHome.absolutePath}/.m2/repository",
+  Classpaths.typesafeReleases
+)
 
-// Custom test tasks that support environment variables from command line
-Test / envVars := Map(
-  "ANDROID_SDK" -> sys.env.get("ANDROID_SDK").orElse(sys.props.get("android.sdk")),
-  "TAINT_BENCH" -> sys.env.get("TAINT_BENCH").orElse(sys.props.get("taint.bench"))
-).collect { case (k, Some(v)) => (k, v) }
+// Common dependencies
+lazy val commonDependencies = Seq(
+  "org.typelevel" %% "cats-core" % "1.6.0",
+  "org.soot-oss" % "soot" % "4.5.0",
+  "org.scala-graph" %% "graph-core" % "1.13.0",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
+  "org.scalatest" %% "scalatest" % "3.0.8" % Test,
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
+)
 
-// Define custom commands for easier testing
-addCommandAlias("testRoidsec", "testOnly br.unb.cic.android.RoidsecTest")
-addCommandAlias("testAndroid", "testOnly br.unb.cic.android.*")
+// Android-specific dependencies
+lazy val androidDependencies = Seq(
+  "de.fraunhofer.sit.sse.flowdroid" % "soot-infoflow" % "2.13.0",
+  "de.fraunhofer.sit.sse.flowdroid" % "soot-infoflow-cmd" % "2.13.0",
+  "de.fraunhofer.sit.sse.flowdroid" % "soot-infoflow-android" % "2.13.0",
+  "com.google.guava" % "guava" % "27.1-jre"
+)
 
-resolvers += "Local maven repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
-resolvers += Classpaths.typesafeReleases
+// Servlet dependencies
+lazy val servletDependencies = Seq(
+  "javax.servlet" % "javax.servlet-api" % "3.0.1" % Provided
+)
 
-libraryDependencies += "org.typelevel" %% "cats-core" % "1.6.0"
-libraryDependencies += "org.soot-oss" % "soot" % "4.5.0"
-libraryDependencies += "de.fraunhofer.sit.sse.flowdroid" % "soot-infoflow" % "2.13.0"
-libraryDependencies += "de.fraunhofer.sit.sse.flowdroid" % "soot-infoflow-cmd" % "2.13.0"
-libraryDependencies += "de.fraunhofer.sit.sse.flowdroid" % "soot-infoflow-android" % "2.13.0"
-libraryDependencies += "com.google.guava" % "guava" % "27.1-jre"
-libraryDependencies += "org.scala-graph" %% "graph-core" % "1.13.0"
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3"
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
-libraryDependencies += "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided"
-libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
+// ROOT PROJECT (Aggregate)
+lazy val root = (project in file("."))
+  .aggregate(core, securibench, taintbench)
+  .settings(
+    name := "svfa-scala",
+    publish / skip := true, // Don't publish the aggregate
+    // Commands that work on all modules
+    addCommandAlias("testCore", "core/test"),
+    addCommandAlias("testSecuribench", "securibench/test"),
+    addCommandAlias("testTaintbench", "taintbench/test"),
+    addCommandAlias("testAll", "test")
+  )
 
+// CORE MODULE - Essential SVFA functionality
+lazy val core = (project in file("modules/core"))
+  .settings(
+    name := "svfa-core",
+    libraryDependencies ++= commonDependencies,
+    
+    // Core doesn't need environment variables
+    Test / envVars := Map.empty[String, String],
+    
+    // Source directories for core module
+    Compile / scalaSource := baseDirectory.value / "src" / "main" / "scala",
+    Test / scalaSource := baseDirectory.value / "src" / "test" / "scala",
+    Compile / resourceDirectory := baseDirectory.value / "src" / "main" / "resources",
+    Test / resourceDirectory := baseDirectory.value / "src" / "test" / "resources",
+    
+    // GitHub packages publishing
+    publishTo := githubPublishTo.value
+  )
+
+// SECURIBENCH MODULE - Java-based security benchmarks
+lazy val securibench = (project in file("modules/securibench"))
+  .dependsOn(core % "compile->compile;test->test")
+  .settings(
+    name := "svfa-securibench", 
+    libraryDependencies ++= servletDependencies,
+    
+    // Securibench doesn't need environment variables
+    Test / envVars := Map.empty[String, String],
+    
+    // Include Java sources for securibench test cases
+    Test / javaSource := baseDirectory.value / "src" / "test" / "java",
+    Test / scalaSource := baseDirectory.value / "src" / "test" / "scala",
+    Test / resourceDirectory := baseDirectory.value / "src" / "test" / "resources"
+  )
+
+// TAINTBENCH MODULE - Android-based malware analysis benchmarks  
+lazy val taintbench = (project in file("modules/taintbench"))
+  .dependsOn(core % "compile->compile;test->test")
+  .settings(
+    name := "svfa-taintbench",
+    libraryDependencies ++= androidDependencies,
+    
+    // TaintBench requires environment variables
+    Test / envVars := Map(
+      "ANDROID_SDK" -> sys.env.get("ANDROID_SDK").orElse(sys.props.get("android.sdk")),
+      "TAINT_BENCH" -> sys.env.get("TAINT_BENCH").orElse(sys.props.get("taint.bench"))
+    ).collect { case (k, Some(v)) => (k, v) },
+    
+    // Custom commands for Android testing
+    addCommandAlias("testRoidsec", "testOnly br.unb.cic.android.RoidsecTest"),
+    addCommandAlias("testAndroid", "testOnly br.unb.cic.android.*"),
+    
+    Test / scalaSource := baseDirectory.value / "src" / "test" / "scala",
+    Test / resourceDirectory := baseDirectory.value / "src" / "test" / "resources"
+  )
+
+// Global commands that work across modules
+addCommandAlias("compileAll", "all core/compile securibench/compile taintbench/compile")
+addCommandAlias("publishAllLocal", "all core/publishLocal securibench/publishLocal taintbench/publishLocal")
+addCommandAlias("publishCore", "core/publish")
