@@ -59,16 +59,23 @@ jobs:
       run: |
         mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
         # Downgraded to commandlinetools-linux-7583922_latest.zip for Java 8 compatibility
-        curl -fo cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
-        unzip -q cmdline-tools.zip -d "$ANDROID_SDK_ROOT/cmdline-tools"
+
+        # Use cache for Android command line tools
+        if [ ! -f "$RUNNER_TEMP/cmdline-tools.zip" ]; then
+          curl -fo "$RUNNER_TEMP/cmdline-tools.zip" https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+        fi
+        unzip -q -o "$RUNNER_TEMP/cmdline-tools.zip" -d "$ANDROID_SDK_ROOT/cmdline-tools"
         mv "$ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools" "$ANDROID_SDK_ROOT/cmdline-tools/latest"
         yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses
         "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
     - name: Download TaintBench suite
       run: |
-        curl -L -o TaintBench.zip https://github.com/TaintBench/TaintBench/releases/download/TaintBenchSuite/TaintBench.zip
-        unzip -q TaintBench.zip -d $RUNNER_TEMP/TaintBench
+        # Use cache for TaintBench.zip
+        if [ ! -f "$RUNNER_TEMP/TaintBench.zip" ]; then
+          curl -L -o "$RUNNER_TEMP/TaintBench.zip" https://github.com/TaintBench/TaintBench/releases/download/TaintBenchSuite/TaintBench.zip
+        fi
+        unzip -q -o "$RUNNER_TEMP/TaintBench.zip" -d $RUNNER_TEMP/TaintBench
 
     - name: Configure taintbench.properties
       run: |
