@@ -52,3 +52,5 @@ case class DefLabelType(labelT: PDGType) extends EdgeLabel {
   override var value = labelT
   override val labelType: LabelType = DefLabel
 }
+
+
