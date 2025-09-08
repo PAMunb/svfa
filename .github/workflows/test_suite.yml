@@ -2,7 +2,7 @@ name: JSVFA_pipeline
 
 on:
   pull_request:
-    branches: [ master, develop ]
+    branches: [ main, develop ]
 
 jobs:
   test-suite:
