@@ -77,14 +77,9 @@ jobs:
         fi
         unzip -q -o "$RUNNER_TEMP/TaintBench.zip" -d $RUNNER_TEMP/TaintBench
 
-    - name: Configure taintbench.properties
-      run: |
-        echo "sdk=$RUNNER_TEMP/android-sdk" > src/test/resources/taintbench.properties
-        echo "taint-bench=$RUNNER_TEMP/TaintBench" >> src/test/resources/taintbench.properties
-
     - name: Run specific test suites
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
-        sbt "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment1Test"
+        ./run-tests.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench roidsec
