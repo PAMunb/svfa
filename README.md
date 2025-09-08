@@ -93,6 +93,10 @@ sbt testTaintbench
    ```bash
    git config --global github.token YOUR_GITHUB_TOKEN
    ```
+   or
+   ```bash
+   export GITHUB_TOKEN="your_personal_access_token"
+   ```
 
 2. **Publish Core Module**:
    ```bash
