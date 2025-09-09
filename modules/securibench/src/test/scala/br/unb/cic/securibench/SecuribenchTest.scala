@@ -11,6 +11,9 @@ class SecuribenchTest(var className: String = "", var mainMethod: String = "")
 
   override def getMainMethod(): String = mainMethod
 
+  override def applicationClassPath(): List[String] =
+    List("modules/securibench/target/scala-2.12/test-classes")
+
   override def analyze(unit: soot.Unit): NodeType = {
     if (unit.isInstanceOf[InvokeStmt]) {
       val invokeStmt = unit.asInstanceOf[InvokeStmt]

@@ -28,7 +28,7 @@ echo "  • Data Structure Vulnerabilities"
 echo ""
 
 # Use SBT command alias for consistency
-sbt testSecuribench
+sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
 
 echo ""
 echo -e "${GREEN}SecuriBench tests completed!${NC}"

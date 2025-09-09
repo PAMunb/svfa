@@ -2,24 +2,23 @@ name: JSVFA_pipeline
 
 on:
   pull_request:
-    branches: [ master, develop ]
+    branches: [ main, develop ]
 
 jobs:
   test-suite:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Configure Git
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-        git config --global github.token "${{ secrets.GITHUB_TOKEN }}"
         
     - name: Set up JDK 8
       uses: actions/setup-java@v4
@@ -77,14 +76,10 @@ jobs:
         fi
         unzip -q -o "$RUNNER_TEMP/TaintBench.zip" -d $RUNNER_TEMP/TaintBench
 
-    - name: Configure taintbench.properties
-      run: |
-        echo "sdk=$RUNNER_TEMP/android-sdk" > src/test/resources/taintbench.properties
-        echo "taint-bench=$RUNNER_TEMP/TaintBench" >> src/test/resources/taintbench.properties
-
     - name: Run specific test suites
       env:
+        # Only set GITHUB_TOKEN if it's available in secrets (for CI)
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
-        sbt "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment1Test"
+        ./run-tests.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench AndroidTaintBenchSuiteExperiment1
