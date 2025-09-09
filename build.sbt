@@ -5,14 +5,6 @@ ThisBuild / scalaVersion := "2.12.20"
 ThisBuild / organization := "br.unb.cic"
 ThisBuild / version := "0.5.0"
 
-// GitHub publishing configuration
-ThisBuild / githubOwner := "PAMunb"
-ThisBuild / githubRepository := "svfa"
-ThisBuild / githubTokenSource := TokenSource.GitConfig("github.token")
-
-// Exclude GitHub token from lint warnings
-Global / excludeLintKeys += githubTokenSource
-
 // Global settings
 ThisBuild / publishConfiguration := publishConfiguration.value.withOverwrite(true)
 ThisBuild / publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
@@ -76,8 +68,25 @@ lazy val core = (project in file("modules/core"))
     Compile / resourceDirectory := baseDirectory.value / "src" / "main" / "resources",
     Test / resourceDirectory := baseDirectory.value / "src" / "test" / "resources",
     
-    // GitHub packages publishing
-    publishTo := githubPublishTo.value
+    // Publishing configuration - only when GitHub token is available
+    publishTo := {
+      val githubToken = sys.env.get("GITHUB_TOKEN")
+      if (githubToken.isDefined) {
+        Some("GitHub PAMunb Apache Maven Packages" at "https://maven.pkg.github.com/PAMunb/svfa")
+      } else {
+        Some(Resolver.mavenLocal)
+      }
+    },
+    
+    // Credentials only when GitHub token is available
+    credentials := {
+      val githubToken = sys.env.get("GITHUB_TOKEN")
+      if (githubToken.isDefined) {
+        Seq(Credentials("GitHub Package Registry", "maven.pkg.github.com", "PAMunb", githubToken.get))
+      } else {
+        Seq.empty
+      }
+    }
   )
 
 // SECURIBENCH MODULE - Java-based security benchmarks

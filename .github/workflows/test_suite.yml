@@ -10,23 +10,15 @@ jobs:
     permissions:
       contents: read
       packages: read
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Configure Git
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
-        git config --global github.token "${GITHUB_TOKEN}"
         
     - name: Set up JDK 8
       uses: actions/setup-java@v4
@@ -53,8 +45,6 @@ jobs:
         key: ${{ runner.os }}-sbt-cache-v2-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('project/build.properties') }}
 
     - name: Install library dependencies
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: sbt update
 
     - name: Install system tools
@@ -87,6 +77,9 @@ jobs:
         unzip -q -o "$RUNNER_TEMP/TaintBench.zip" -d $RUNNER_TEMP/TaintBench
 
     - name: Run specific test suites
+      env:
+        # Only set GITHUB_TOKEN if it's available in secrets (for CI)
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
         ./run-tests.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench AndroidTaintBenchSuiteExperiment1
