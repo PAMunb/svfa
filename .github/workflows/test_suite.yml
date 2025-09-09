@@ -89,4 +89,4 @@ jobs:
     - name: Run specific test suites
       run: |
         sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
-        ./run-tests.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench roidsec
+        ./run-tests.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench AndroidTaintBenchSuiteExperiment1
