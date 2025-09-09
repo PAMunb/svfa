@@ -3,7 +3,7 @@
 
 ThisBuild / scalaVersion := "2.12.20"
 ThisBuild / organization := "br.unb.cic"
-ThisBuild / version := "0.5.0"
+ThisBuild / version := "0.5.0-SNAPSHOT"
 
 // Global settings
 ThisBuild / publishConfiguration := publishConfiguration.value.withOverwrite(true)
