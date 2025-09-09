@@ -57,7 +57,7 @@ while [[ $# -gt 0 ]]; do
             usage
             exit 0
             ;;
-        roidsec|android|all)
+        roidsec|AndroidTaintBenchSuiteExperiment1|AndroidTaintBenchSuiteExperiment2|android|all)
             TEST_NAME="$1"
             shift
             ;;
@@ -123,6 +123,14 @@ case $TEST_NAME in
     roidsec)
         echo -e "${YELLOW}Running RoidsecTest...${NC}"
         sbt "taintbench/testOnly br.unb.cic.android.RoidsecTest"
+        ;;
+    AndroidTaintBenchSuiteExperiment1)
+        echo -e "${GREEN}Running AndroidTaintBenchSuiteExperiment1Test specifically...${NC}"
+        sbt AndroidTaintBenchSuiteExperiment1Test
+        ;;
+    AndroidTaintBenchSuiteExperiment2)
+        echo -e "${GREEN}Running AndroidTaintBenchSuiteExperiment2Test specifically...${NC}"
+        sbt AndroidTaintBenchSuiteExperiment2Test
         ;;
     android)
         echo -e "${YELLOW}Running all Android tests...${NC}"
