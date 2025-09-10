@@ -51,7 +51,7 @@ abstract class SVFA extends SootConfiguration {
       // Convert the parent object to a JSON string
       val jsonString = write(sourceJson, indent = 4)
 
-      createFile(jsonString, "source.json")
+      createFile(jsonString, "_findings.json")
     })
   }
 
@@ -67,9 +67,11 @@ abstract class SVFA extends SootConfiguration {
       "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
       "targetName" -> Str(""),
       "targetNo" -> Num(0),
-      "IRs" -> Obj(
-        "type" -> Str("Jimple"),
-        "IRstatement" -> Str(stmt.stmt)
+      "IRs" -> Arr(
+        Obj(
+          "type" -> Str("Jimple"),
+          "IRstatement" -> Str(stmt.stmt)
+        )
       )
     )
   }
