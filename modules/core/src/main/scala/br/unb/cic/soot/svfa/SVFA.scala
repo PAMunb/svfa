@@ -100,6 +100,7 @@ abstract class SVFA extends SootConfiguration {
           "methodName" -> Str(method.getDeclaration),
           "className" -> Str(stmt.className),
           "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
+          "IRstatement" -> Str(stmt.stmt),
           "ID" -> Num(id)
         )
       case _ =>
