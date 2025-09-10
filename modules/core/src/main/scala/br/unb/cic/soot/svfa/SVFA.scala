@@ -1,11 +1,10 @@
 package br.unb.cic.soot.svfa
 
-import br.unb.cic.soot.graph.{GraphNode, Statement, StatementNode}
+import br.unb.cic.soot.graph.{GraphNode, SimpleNode, SinkNode, SourceNode, Statement}
 import soot._
 import br.unb.cic.soot.svfa.configuration.SootConfiguration
 import ujson._
-import java.io.{FileWriter, BufferedWriter}
-import scala.util.parsing.json.JSONObject
+import java.io.{BufferedWriter, FileWriter}
 
 /** Base class for all implementations of SVFA algorithms.
   */
@@ -71,20 +70,32 @@ abstract class SVFA extends SootConfiguration {
     val stmt = node.value.asInstanceOf[Statement]
     val method = stmt.sootMethod
 
-    Obj(
-      "statement" -> Str(""),
-      "methodName" -> Str(method.getDeclaration),
-      "className" -> Str(stmt.className),
-      "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
-      "targetName" -> Str(""),
-      "targetNo" -> Num(0),
-      "IRs" -> Arr(
+    node.nodeType match { 
+      case SourceNode | SinkNode =>
         Obj(
-          "type" -> Str("Jimple"),
-          "IRstatement" -> Str(stmt.stmt)
+          "statement" -> Str(""),
+          "methodName" -> Str(method.getDeclaration),
+          "className" -> Str(stmt.className),
+          "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
+          "targetName" -> Str(""),
+          "targetNo" -> Num(0),
+          "IRs" -> Arr(
+            Obj(
+              "type" -> Str("Jimple"),
+              "IRstatement" -> Str(stmt.stmt)
+            )
+          )
         )
-      )
-    )
+      case SimpleNode =>
+        Obj(
+          "statement" -> Str(""),
+          "methodName" -> Str(method.getDeclaration),
+          "className" -> Str(stmt.className),
+          "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
+        )
+      case _ =>
+        throw new IllegalArgumentException("Invalid node type: " + node.nodeType)
+    }
   }
 
   private def createFile(json: String, fileName: String) = {
