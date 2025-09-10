@@ -42,6 +42,7 @@ abstract class SVFA extends SootConfiguration {
   }
 
   def findConflictingPaths() = {
+    var conflicts = List[Obj]()
     svg.findConflictingPaths().foreach(conflict => {
 
       val source = conflict.head
@@ -53,16 +54,19 @@ abstract class SVFA extends SootConfiguration {
       val intermediateFlows = conflict.drop(1).dropRight(1)
       val intermediateFlowsJson = intermediateFlows.zipWithIndex.map { case (node, idx) => generateJsonFormat(node, idx + 1) }
 
-      val findings = Obj(
-        "findings" -> Obj(
+      val conflictDetails = Obj(
           "source" -> sourceJson,
           "sink" -> sinkJson,
           "intermediateFlows" -> Arr(intermediateFlowsJson)
         )
-      )
 
-      createFile(write(findings, indent = 4), "_findings.json")
+      conflicts = conflicts :+ conflictDetails
     })
+
+    val findings = Obj(
+        "findings" -> conflicts
+    )
+    createFile(write(findings, indent = 4), "_findings.json")
   }
 
   private def generateJsonFormat(node: GraphNode, id: Int = -1) = {
