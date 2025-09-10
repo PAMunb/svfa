@@ -48,10 +48,21 @@ abstract class SVFA extends SootConfiguration {
       val source = conflict.head
       val sourceJson = generateJsonFormat(source)
 
-      // Convert the parent object to a JSON string
-      val jsonString = write(sourceJson, indent = 4)
+      val sink = conflict.last
+      val sinkJson = generateJsonFormat(sink)
 
-      createFile(jsonString, "_findings.json")
+      val intermediateFlows = conflict.drop(1).dropRight(1)
+      val intermediateFlowsJson = intermediateFlows.map(generateJsonFormat)
+
+      val findings = Obj(
+        "findings" -> Obj(
+          "source" -> sourceJson,
+          "sink" -> sinkJson,
+          "intermediateFlows" -> Arr(intermediateFlowsJson)
+        )
+      )
+
+      createFile(write(findings, indent = 4), "_findings.json")
     })
   }
 
