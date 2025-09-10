@@ -5,6 +5,7 @@ import soot._
 import br.unb.cic.soot.svfa.configuration.SootConfiguration
 import ujson._
 import java.io.{BufferedWriter, FileWriter}
+import java.time.LocalDate
 
 /** Base class for all implementations of SVFA algorithms.
   */
@@ -41,7 +42,7 @@ abstract class SVFA extends SootConfiguration {
       .toDouble
   }
 
-  def findConflictingPaths() = {
+  def findConflictingPaths(fileName: String) = {
     var conflicts = List[Obj]()
     svg.findConflictingPaths().foreach(conflict => {
 
@@ -64,9 +65,12 @@ abstract class SVFA extends SootConfiguration {
     })
 
     val findings = Obj(
-        "findings" -> conflicts
+      "fileName" -> Str(s"${fileName}.apk"),
+      "day" -> Str(LocalDate.now().toString),
+      "findings" -> conflicts
     )
-    createFile(write(findings, indent = 4), "_findings.json")
+
+    createFile(write(findings, indent = 4), s"${fileName}_findings.json")
   }
 
   private def generateJsonFormat(node: GraphNode, id: Int = -1) = {
