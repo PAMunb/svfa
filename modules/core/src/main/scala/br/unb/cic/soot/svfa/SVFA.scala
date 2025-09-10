@@ -51,7 +51,7 @@ abstract class SVFA extends SootConfiguration {
       val sinkJson = generateJsonFormat(sink)
 
       val intermediateFlows = conflict.drop(1).dropRight(1)
-      val intermediateFlowsJson = intermediateFlows.map(generateJsonFormat)
+      val intermediateFlowsJson = intermediateFlows.zipWithIndex.map { case (node, idx) => generateJsonFormat(node, idx + 1) }
 
       val findings = Obj(
         "findings" -> Obj(
@@ -65,7 +65,7 @@ abstract class SVFA extends SootConfiguration {
     })
   }
 
-  private def generateJsonFormat(node: GraphNode) = {
+  private def generateJsonFormat(node: GraphNode, id: Int = -1) = {
 
     val stmt = node.value.asInstanceOf[Statement]
     val method = stmt.sootMethod
@@ -92,6 +92,7 @@ abstract class SVFA extends SootConfiguration {
           "methodName" -> Str(method.getDeclaration),
           "className" -> Str(stmt.className),
           "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
+          "ID" -> Num(id)
         )
       case _ =>
         throw new IllegalArgumentException("Invalid node type: " + node.nodeType)
