@@ -4,9 +4,10 @@ import br.unb.cic.soot.graph.{GraphNode, SimpleNode, SinkNode, SourceNode, State
 import soot._
 import br.unb.cic.soot.svfa.configuration.SootConfiguration
 import ujson._
+
 import java.io.{BufferedWriter, FileWriter}
 import java.nio.file.Paths
-import java.time.LocalDate
+import java.time.{LocalDate, LocalTime}
 
 /** Base class for all implementations of SVFA algorithms.
   */
@@ -67,7 +68,7 @@ abstract class SVFA extends SootConfiguration {
 
     val findings = Obj(
       "fileName" -> Str(s"${fileName}.apk"),
-      "day" -> Str(LocalDate.now().toString),
+      "day" -> Str(LocalDate.now().toString + "T" + LocalTime.now().toString),
       "findings" -> conflicts
     )
 
