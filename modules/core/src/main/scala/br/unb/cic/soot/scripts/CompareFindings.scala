@@ -31,14 +31,10 @@ object CompareFindings extends App {
 
       val fileName = jsonData("fileName").str
       // Accessing findings
-      val conflicts = jsonData("findings").arr.map(finding => {
-        (getSourceIR(finding), getSinkIR(finding))
-      }).toSet
+      val conflicts = getConflicts(jsonData)
 
       actualConflicts.add((fileName, conflicts))
   })
-
-  actualConflicts.foreach(println)
 
   // generate a csv file with the conflicts
   val csvFile = new File("conflicts.csv")
@@ -62,5 +58,11 @@ object CompareFindings extends App {
 
   private def getSourceOrSinkIR(jsonData: Value, sourceOrSink: String): String = {
     jsonData(sourceOrSink)("IRs")(0)("IRstatement").toString()
+  }
+
+  private def getConflicts(jsonData: Value): Set[(String, String)] = {
+    jsonData("findings").arr.map(finding => {
+      (getSourceIR(finding), getSinkIR(finding))
+    }).toSet
   }
 }
