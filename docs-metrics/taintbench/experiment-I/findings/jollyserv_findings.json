@@ -1,0 +1,64 @@
+{
+    "fileName": "jollyserv.apk",
+    "day": "2025-09-10T21:07:59.788",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getBotId(android.content.Context)",
+                "className": "sx.jolly.utils.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke r2.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                "className": "sx.jolly.utils.SMS",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r6, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <sx.jolly.utils.Utils: java.lang.String getBotId(android.content.Context)>($r7)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        }
+    ]
+}

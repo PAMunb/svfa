@@ -1,0 +1,90 @@
+{
+    "fileName": "hummingbad_android_samp.apk",
+    "day": "2025-09-10T21:07:58.814",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static transient java.lang.reflect.Method a(java.lang.Class, java.lang.String, java.lang.Class[])",
+                "className": "com.picksbrowser.h",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($r0, $r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final java.lang.Object b()",
+                "className": "com.picksbrowser.i",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final java.lang.Object b()",
+                        "className": "com.picksbrowser.i",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.picksbrowser.h: java.lang.reflect.Method a(java.lang.Class,java.lang.String,java.lang.Class[])>($r4, $r5, $r2)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static transient java.lang.reflect.Method a(java.lang.Class, java.lang.String, java.lang.Class[])",
+                "className": "com.picksbrowser.h",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($r0, $r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final java.lang.Object b()",
+                "className": "com.picksbrowser.i",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r7, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final java.lang.Object b()",
+                        "className": "com.picksbrowser.i",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.picksbrowser.h: java.lang.reflect.Method a(java.lang.Class,java.lang.String,java.lang.Class[])>($r4, $r5, $r2)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        }
+    ]
+}
