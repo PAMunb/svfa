@@ -1,0 +1,401 @@
+{
+    "fileName": "vibleaker_android_samp.apk",
+    "day": "2025-09-10T21:25:46.148",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, android.util.AttributeSet, int)",
+                "className": "com.viewpagerindicator.UnderlinePageIndicator",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.content.res.TypedArray: android.graphics.drawable.Drawable getDrawable(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, android.util.AttributeSet, int)",
+                "className": "com.viewpagerindicator.UnderlinePageIndicator",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r0.<com.viewpagerindicator.UnderlinePageIndicator: void setBackgroundDrawable(android.graphics.drawable.Drawable)>($r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected static java.util.HashMap getConnectionInfo(android.content.Context)",
+                "className": "com.splunk.mint.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r7.<android.net.NetworkInfo$State: java.lang.String toString()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected static java.util.HashMap getConnectionInfo(android.content.Context)",
+                "className": "com.splunk.mint.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r1.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"state\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                "className": "com.splunk.mint.network.NetLogManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r4.<java.lang.RuntimeException: java.lang.String getMessage()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void logInfo(java.lang.String)",
+                "className": "com.splunk.mint.Logger",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"Mint\", $r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void logInfo(java.lang.String)",
+                        "className": "com.splunk.mint.Logger",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                "className": "com.splunk.mint.network.NetLogManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r7.<java.lang.Exception: java.lang.String getMessage()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void logInfo(java.lang.String)",
+                "className": "com.splunk.mint.Logger",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"Mint\", $r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void logInfo(java.lang.String)",
+                        "className": "com.splunk.mint.Logger",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.lang.String getMessage()",
+                "className": "org.springframework.core.NestedRuntimeException",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = specialinvoke r0.<java.lang.RuntimeException: java.lang.String getMessage()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void logInfo(java.lang.String)",
+                "className": "com.splunk.mint.Logger",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"Mint\", $r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String buildMessage(java.lang.String, java.lang.Throwable)",
+                        "className": "org.springframework.core.NestedExceptionUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter0: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String buildMessage(java.lang.String, java.lang.Throwable)",
+                        "className": "org.springframework.core.NestedExceptionUtils",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String buildMessage(java.lang.String, java.lang.Throwable)",
+                        "className": "org.springframework.core.NestedExceptionUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.lang.String getMessage()",
+                        "className": "org.springframework.core.NestedRuntimeException",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = staticinvoke <org.springframework.core.NestedExceptionUtils: java.lang.String buildMessage(java.lang.String,java.lang.Throwable)>($r1, $r2)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r6 = virtualinvoke r4.<java.lang.RuntimeException: java.lang.String getMessage()>()"
+                            }
+                        ]
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean deviceSupporsNetworkMonitoring()",
+                        "className": "com.splunk.mint.network.NetLogManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void logInfo(java.lang.String)",
+                        "className": "com.splunk.mint.Logger",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected static java.util.HashMap getConnectionInfo(android.content.Context)",
+                "className": "com.splunk.mint.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r6.<android.net.NetworkInfo: java.lang.String getSubtypeName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected static java.util.HashMap getConnectionInfo(android.content.Context)",
+                "className": "com.splunk.mint.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r1.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"connection\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onShow(android.content.DialogInterface)",
+                "className": "gr.georkouk.kastorakiacounter_new.ActPlayers$1$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r3.<android.app.AlertDialog: android.widget.Button getButton(int)>(-1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onShow(android.content.DialogInterface)",
+                "className": "gr.georkouk.kastorakiacounter_new.ActPlayers$1$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.Button: void setOnClickListener(android.view.View$OnClickListener)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected static java.util.HashMap getConnectionInfo(android.content.Context)",
+                "className": "com.splunk.mint.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r6.<android.net.NetworkInfo: java.lang.String getTypeName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected static java.util.HashMap getConnectionInfo(android.content.Context)",
+                "className": "com.splunk.mint.Utils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r1.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>(\"connection\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}
