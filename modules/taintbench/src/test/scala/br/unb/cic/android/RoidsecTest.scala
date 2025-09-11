@@ -5,10 +5,9 @@ import org.scalatest.FunSuite
 
 class RoidsecTest extends FunSuite {
   test("This is a test case for the Roidsec benchmark") {
-    assume(scala.util.Properties.envOrNone("ANDROID_SDK").isDefined)
-    assume(scala.util.Properties.envOrNone("TAINT_BENCH").isDefined)
     val svfa = new AndroidTaintBenchTest("roidsec") with RoidSecSpec
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths("roidsec", "docs-metrics/taintbench/experiment-I/findings")
     assert(svfa.reportConflictsSVG().size == 6)
   }
 }
