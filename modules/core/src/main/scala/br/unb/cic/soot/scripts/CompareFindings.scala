@@ -1,24 +1,12 @@
 package br.unb.cic.soot.scripts
 
-import java.io.File
+import java.io.{File, PrintWriter}
 import scala.io.Source
 import ujson._
 
 import scala.collection.mutable
 
 object CompareFindings extends App {
-
-  private def getSourceIR(jsonData: Value): String = {
-    getSourceOrSinkIR(jsonData, "source")
-  }
-
-  private def getSinkIR(jsonData: Value): String = {
-    getSourceOrSinkIR(jsonData, "sink")
-  }
-
-  private def getSourceOrSinkIR(jsonData: Value, sourceOrSink: String): String = {
-    jsonData(sourceOrSink)("IRs")(0)("IRstatement").toString()
-  }
 
   if (args.isEmpty) {
       println("No parameters provided.")
@@ -51,4 +39,28 @@ object CompareFindings extends App {
   })
 
   actualConflicts.foreach(println)
+
+  // generate a csv file with the conflicts
+  val csvFile = new File("conflicts.csv")
+  val writer = new PrintWriter(csvFile)
+  writer.write("fileName,actual findings\n")
+  actualConflicts.foreach(conflict => {
+    writer.write(conflict._1 + "," + conflict._2.size + "\n")
+  })
+  writer.close()
+
+  System.exit(0)
+
+  // methods
+  private def getSourceIR(jsonData: Value): String = {
+    getSourceOrSinkIR(jsonData, "source")
+  }
+
+  private def getSinkIR(jsonData: Value): String = {
+    getSourceOrSinkIR(jsonData, "sink")
+  }
+
+  private def getSourceOrSinkIR(jsonData: Value, sourceOrSink: String): String = {
+    jsonData(sourceOrSink)("IRs")(0)("IRstatement").toString()
+  }
 }
