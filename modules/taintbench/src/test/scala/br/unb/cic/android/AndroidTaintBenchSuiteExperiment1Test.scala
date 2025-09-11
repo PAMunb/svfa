@@ -14,8 +14,10 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
-    
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
+
     val actual = svfa.reportConflictsSVG().size
+
     assert(actual == expected)
   }
 
@@ -25,7 +27,8 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
-    
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
+      
     val actual = svfa.reportConflictsSVG().size
 
     assert(actual == expected)
@@ -37,6 +40,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
     
     val actual = svfa.reportConflictsSVG().size
 
@@ -49,6 +53,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -61,6 +66,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -73,6 +79,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -85,6 +92,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -97,6 +105,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -109,6 +118,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -121,6 +131,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -133,6 +144,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -145,6 +157,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -157,6 +170,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -169,6 +183,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -181,6 +196,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -193,6 +209,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -205,6 +222,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -217,6 +235,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -229,6 +248,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -241,6 +261,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -253,6 +274,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -265,6 +287,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -277,6 +300,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -289,6 +313,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -301,6 +326,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -313,6 +339,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -325,6 +352,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -337,6 +365,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -349,6 +378,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -361,6 +391,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -373,6 +404,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -385,6 +417,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -399,6 +432,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -413,6 +447,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -425,6 +460,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -437,6 +473,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -449,6 +486,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
@@ -461,6 +499,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    svfa.findConflictingPaths(nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
 
