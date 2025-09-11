@@ -1,6 +1,6 @@
 {
     "fileName": "hummingbad_android_samp.apk",
-    "day": "2025-09-10T21:07:58.814",
+    "day": "2025-09-10T21:13:13.407",
     "findings": [
         {
             "source": {
@@ -27,7 +27,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r3)"
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r7, $r3)"
                     }
                 ]
             },
@@ -69,7 +69,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r7, $r3)"
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $r3)"
                     }
                 ]
             },
