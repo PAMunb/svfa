@@ -49,7 +49,7 @@ object CompareFindings extends App {
       "," + 
       expectedConflictsByFile.size + 
       "," + 
-      (actualConflictsByFile.size == expectedConflictsByFile.size) + 
+      compareConflicts(actualConflictsByFile, expectedConflictsByFile).size + 
     "\n")
   }
   writer.close()
@@ -91,5 +91,12 @@ object CompareFindings extends App {
       actualConflicts.put(fileName, conflicts)
     })
     actualConflicts
+  }
+
+  private def compareConflicts(actualConflicts: Set[(String, String)], expectedConflicts: Set[(String, String)]): Set[(String, String)] = {
+    actualConflicts.size match {
+      case 0 => Set.empty
+      case _ => actualConflicts.intersect(expectedConflicts)
+    }
   }
 }
