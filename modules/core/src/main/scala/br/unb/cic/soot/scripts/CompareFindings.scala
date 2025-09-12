@@ -38,9 +38,9 @@ object CompareFindings extends App {
   val csvFile = new File("conflicts.csv")
   val writer = new PrintWriter(csvFile)
   writer.write("fileName,actual findings,expected findings\n")
-  actualConflicts.foreach(conflict => {
-    writer.write(conflict._1 + "," + conflict._2.size + "," + expectedConflicts.find(c => c._1 == conflict._1).get._2.size + "\n")
-  })
+  actualConflicts.foreach { case (fileName, conflicts) =>
+    writer.write(fileName + "," + conflicts.size + "," + expectedConflicts.getOrElse(fileName, Set.empty).size + "\n")
+  }
   writer.close()
 
   System.exit(0)
@@ -64,8 +64,8 @@ object CompareFindings extends App {
     }).toSet
   }
 
-  private def getConflicts(jsonFiles: Array[File]): mutable.HashSet[(String, Set[(String, String)])] = {
-    val actualConflicts = new mutable.HashSet[(String, Set[(String, String)])]()
+  private def getConflicts(jsonFiles: Array[File]): mutable.HashMap[String, Set[(String, String)]] = {
+    val actualConflicts = new mutable.HashMap[String, Set[(String, String)]]()
 
     jsonFiles.map(file => {
       val jsonString = Source.fromFile(file).getLines().mkString("\n")
@@ -77,7 +77,7 @@ object CompareFindings extends App {
       // Accessing findings
       val conflicts = getConflicts(jsonData)
 
-      actualConflicts.add((fileName, conflicts))
+      actualConflicts.put(fileName, conflicts)
     })
     actualConflicts
   }
