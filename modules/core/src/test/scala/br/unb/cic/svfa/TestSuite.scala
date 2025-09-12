@@ -72,6 +72,7 @@ class TestSuite extends FunSuite with BeforeAndAfter {
       sinkMethods = Set("sink")
     )
     svfa.buildSparseValueFlowGraph()
+//    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
@@ -82,6 +83,7 @@ class TestSuite extends FunSuite with BeforeAndAfter {
       sinkMethods = Set("sink")
     )
     svfa.buildSparseValueFlowGraph()
+//    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
