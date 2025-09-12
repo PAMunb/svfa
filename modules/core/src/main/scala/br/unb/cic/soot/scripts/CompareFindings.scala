@@ -14,27 +14,14 @@ object CompareFindings extends App {
   }
 
   val actualPathFindings = args(0)
-  // val expectedPathFindings = args(1)
+   val expectedPathFindings = args(1)
   // val resultPathFindings = args(2)
 
   val actualFindings = new File(actualPathFindings)
-  // val expectedFindings = new File(expectedPathFindings)
+  val expectedFindings = new File(expectedPathFindings)
 
   val actualJsonFiles = actualFindings.listFiles().filter(_.getName.endsWith("_findings.json"))
-  val actualConflicts = new mutable.HashSet[(String, Set[(String, String)])]()
-
-  actualJsonFiles.map(file => {
-      val jsonString = Source.fromFile(file).getLines().mkString("\n")
-
-      // Parse the JSON string into a ujson.Value
-      val jsonData: Value = read(jsonString)
-
-      val fileName = jsonData("fileName").str
-      // Accessing findings
-      val conflicts = getConflicts(jsonData)
-
-      actualConflicts.add((fileName, conflicts))
-  })
+  val actualConflicts = getConflicts(actualJsonFiles)
 
   // generate a csv file with the conflicts
   val csvFile = new File("conflicts.csv")
@@ -64,5 +51,23 @@ object CompareFindings extends App {
     jsonData("findings").arr.map(finding => {
       (getSourceIR(finding), getSinkIR(finding))
     }).toSet
+  }
+
+  private def getConflicts(jsonFiles: Array[File]): mutable.HashSet[(String, Set[(String, String)])] = {
+    val actualConflicts = new mutable.HashSet[(String, Set[(String, String)])]()
+
+    jsonFiles.map(file => {
+      val jsonString = Source.fromFile(file).getLines().mkString("\n")
+
+      // Parse the JSON string into a ujson.Value
+      val jsonData: Value = read(jsonString)
+
+      val fileName = jsonData("fileName").str
+      // Accessing findings
+      val conflicts = getConflicts(jsonData)
+
+      actualConflicts.add((fileName, conflicts))
+    })
+    actualConflicts
   }
 }
