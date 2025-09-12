@@ -1,0 +1,1261 @@
+{
+    "fileName": "chat_hook.apk",
+    "day": "2025-09-10T21:22:29.922",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r7.<android.content.ComponentName: java.lang.String getPackageName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ligan\", $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String access$3(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.String access$3(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"chat\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r9)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r9 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getMountDate(android.content.Context)",
+                "className": "com.example.chathook.InjectUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r11.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void copyInjectfile(android.content.Context)",
+                "className": "com.example.chathook.InjectUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ligan\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getMountDate(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "r1 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                            }
+                        ]
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = staticinvoke <com.example.chathook.InjectUtils: java.lang.String getMountDate(android.content.Context)>($r0)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/libcall.so\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r7.<android.content.ComponentName: java.lang.String getPackageName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String access$3(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.String access$3(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getMountDate(android.content.Context)",
+                "className": "com.example.chathook.InjectUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r11.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void copyInjectfile(android.content.Context)",
+                "className": "com.example.chathook.InjectUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getMountDate(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "r1 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                            }
+                        ]
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = staticinvoke <com.example.chathook.InjectUtils: java.lang.String getMountDate(android.content.Context)>($r0)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void copyInjectfile(android.content.Context)",
+                        "className": "com.example.chathook.InjectUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r7.<android.content.ComponentName: java.lang.String getPackageName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ProcesMonitor\", $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String access$3(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.String access$3(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>(\"yincc\", $r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.Object getDefault()",
+                        "className": "com.example.chathook.utils.MActivityManagerNative",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r4)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.Object getDefault()",
+                        "className": "com.example.chathook.utils.MActivityManagerNative",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"chat\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onClick(android.view.View)",
+                "className": "com.example.chathook.MainActivity$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r9.<android.telephony.SmsManager: java.util.ArrayList divideMessage(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onClick(android.view.View)",
+                "className": "com.example.chathook.MainActivity$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r5, null, $r10, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r7.<android.content.ComponentName: java.lang.String getPackageName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ProcesMonitor\", $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String access$3(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.String access$3(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = (java.lang.String) $r8",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void getSN()",
+                "className": "com.example.chathook.InjectApplicaiton",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void getSN()",
+                "className": "com.example.chathook.InjectApplicaiton",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ligan\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r7.<android.content.ComponentName: java.lang.String getPackageName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ligan\", $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String access$3(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.String access$3(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onClick(android.view.View)",
+                "className": "com.example.chathook.MainActivity$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onClick(android.view.View)",
+                "className": "com.example.chathook.MainActivity$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r5, null, $r10, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.Object getDefault()",
+                        "className": "com.example.chathook.utils.MActivityManagerNative",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r4)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.Object getDefault()",
+                        "className": "com.example.chathook.utils.MActivityManagerNative",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void getSN()",
+                "className": "com.example.chathook.InjectApplicaiton",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void getSN()",
+                "className": "com.example.chathook.InjectApplicaiton",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r9)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = (java.lang.String) $r8",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r9 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"chat\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.example.chathook.HookReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>($r4, $r9)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r6[0] = $r3",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = $r6[1]",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getMountDate(android.content.Context)",
+                "className": "com.example.chathook.InjectUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r11.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String getMountDate(android.content.Context)",
+                "className": "com.example.chathook.InjectUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r1 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r7.<android.content.ComponentName: java.lang.String getPackageName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.example.chathook.ProcessMonitor$MyThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void access$1(com.example.chathook.ProcessMonitor, java.lang.String)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String access$3(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.String runPkg>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.String access$3(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "fileName": "dsencrypt_samp.apk",
+    "day": "2025-09-10T21:12:33.009",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.content.res.Resources getResource()",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"addAssetPath\", $r5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private android.content.res.Resources getResource()",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r4, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

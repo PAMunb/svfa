@@ -24,7 +24,8 @@ lazy val commonDependencies = Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
   "org.scalatest" %% "scalatest" % "3.0.8" % Test,
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+  "com.lihaoyi" %% "upickle" % "3.1.0" // Or the latest version
 )
 
 // Android-specific dependencies

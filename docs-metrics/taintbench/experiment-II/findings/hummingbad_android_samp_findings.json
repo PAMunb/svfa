@@ -1,0 +1,1677 @@
+{
+    "fileName": "hummingbad_android_samp.apk",
+    "day": "2025-09-10T21:23:27.601",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase b(android.content.Context, int)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<com.duapps.ad.stats.p: android.database.sqlite.SQLiteDatabase getWritableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r7.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>($r8, $r2, $r3, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])",
+                        "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = specialinvoke r0.<com.duapps.ad.stats.DuAdCacheProvider: android.database.sqlite.SQLiteDatabase b(android.content.Context,int)>($r6, $i0)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "com.mb.bdapp.down.DefaultSSLSocketFactory",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r0.<java.lang.Throwable: java.lang.String getMessage()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void e(java.lang.String, java.lang.String)",
+                "className": "com.mb.bdapp.util.LogUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\": \")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase b(android.content.Context, int)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r5.<com.duapps.ad.stats.m: android.database.sqlite.SQLiteDatabase getWritableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r7.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>($r8, $r2, $r3, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])",
+                        "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = specialinvoke r0.<com.duapps.ad.stats.DuAdCacheProvider: android.database.sqlite.SQLiteDatabase b(android.content.Context,int)>($r6, $i0)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase b(android.content.Context, int)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r5.<com.duapps.ad.stats.m: android.database.sqlite.SQLiteDatabase getWritableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final android.net.Uri insert(android.net.Uri, android.content.ContentValues)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r5.<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>($r6, null, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final android.net.Uri insert(android.net.Uri, android.content.ContentValues)",
+                        "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = specialinvoke r0.<com.duapps.ad.stats.DuAdCacheProvider: android.database.sqlite.SQLiteDatabase b(android.content.Context,int)>($r4, $i0)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static byte[] b(java.io.InputStream) throws java.io.IOException",
+                "className": "u.aly.av",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.io.File, byte[]) throws java.io.IOException",
+                "className": "u.aly.av",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<java.io.FileOutputStream: void write(byte[])>($r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public byte[] d()",
+                        "className": "com.umeng.analytics.f",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <u.aly.av: byte[] b(java.io.InputStream)>($r4)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void f()",
+                        "className": "u.aly.j",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r2.<com.umeng.analytics.f: byte[] d()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void b(byte[])",
+                        "className": "com.umeng.analytics.f",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: byte[]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.io.File, byte[]) throws java.io.IOException",
+                        "className": "u.aly.av",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: byte[]",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setSupportZoom(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initUI()",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r7.<android.view.Display: int getWidth()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initUI()",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r4.<android.widget.TextView: void setPadding(int,int,int,int)>($i0, 0, $i0, 0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void initUI()",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$d0 = (double) $i0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void initUI()",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$d0 = 0.06666666666666667 * $d0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void initUI()",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = (int) $d0",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "com.mb.bdapp.util.FileUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getSimpleName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void e(java.lang.String, java.lang.String)",
+                "className": "com.mb.bdapp.util.LogUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "com.mb.bdapp.util.FileUtils",
+                        "lineNo": -1,
+                        "IRstatement": "<com.mb.bdapp.util.FileUtils: java.lang.String TAG> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getRootFile()",
+                        "className": "com.mb.bdapp.util.FileUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <com.mb.bdapp.util.FileUtils: java.lang.String TAG>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private static byte[] getMD5(byte[])",
+                        "className": "com.mb.bdapp.util.FileUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <com.mb.bdapp.util.FileUtils: java.lang.String TAG>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String f(android.content.Context)",
+                "className": "u.aly.ai",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.provider.Settings$Secure: java.lang.String getString(android.content.ContentResolver,java.lang.String)>($r4, \"android_id\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String, java.lang.String)",
+                "className": "u.aly.aj",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.lang.String, java.lang.String)",
+                        "className": "u.aly.aj",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "u.aly.ai",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void b(java.lang.String, java.lang.String, java.lang.Exception)",
+                "className": "u.aly.aj",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "<u.aly.ai: java.lang.String a> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <u.aly.ai: java.lang.String a>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String[] n(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <u.aly.ai: java.lang.String a>",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void b(java.lang.String, java.lang.String, java.lang.Exception)",
+                        "className": "u.aly.aj",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public byte[] a(u.aly.az) throws u.aly.aF",
+                "className": "u.aly.aI",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r3.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.io.File, byte[]) throws java.io.IOException",
+                "className": "u.aly.av",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<java.io.FileOutputStream: void write(byte[])>($r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void a(u.aly.S)",
+                        "className": "u.aly.d",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r4.<u.aly.aI: byte[] a(u.aly.az)>($r1)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.io.File, byte[]) throws java.io.IOException",
+                        "className": "u.aly.av",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: byte[]",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase b(android.content.Context, int)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r4.<com.duapps.ad.stats.o: android.database.sqlite.SQLiteDatabase getWritableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final android.net.Uri insert(android.net.Uri, android.content.ContentValues)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r5.<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>($r6, null, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final android.net.Uri insert(android.net.Uri, android.content.ContentValues)",
+                        "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = specialinvoke r0.<com.duapps.ad.stats.DuAdCacheProvider: android.database.sqlite.SQLiteDatabase b(android.content.Context,int)>($r4, $i0)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r3.<android.content.Intent: boolean getBooleanExtra(java.lang.String,boolean)>(\"tag_close_dialog\", 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String, java.lang.String)",
+                "className": "com.cmcm.adsdk.requestconfig.log.a",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(boolean)>($z0)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.lang.String, java.lang.String)",
+                        "className": "com.cmcm.adsdk.requestconfig.log.a",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setBuiltInZoomControls(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "u.aly.ai",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String, java.lang.String)",
+                "className": "u.aly.aj",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "<u.aly.ai: java.lang.String a> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.lang.String, java.lang.String)",
+                        "className": "u.aly.aj",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "u.aly.ai",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String, java.lang.String, java.lang.Exception)",
+                "className": "u.aly.aj",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "<u.aly.ai: java.lang.String a> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <u.aly.ai: java.lang.String a>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String[] n(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <u.aly.ai: java.lang.String a>",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static int m(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.lang.String, java.lang.String, java.lang.Exception)",
+                        "className": "u.aly.aj",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setUseWideViewPort(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r6.<java.lang.Exception: java.lang.String getMessage()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String, java.lang.String)",
+                "className": "com.cmcm.adsdk.requestconfig.log.a",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.lang.String, java.lang.String)",
+                        "className": "com.cmcm.adsdk.requestconfig.log.a",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "u.aly.ai",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void b(java.lang.String, java.lang.String)",
+                "className": "u.aly.aj",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "<u.aly.ai: java.lang.String a> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <u.aly.ai: java.lang.String a>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String s(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = <u.aly.ai: java.lang.String a>",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private static java.util.Locale x(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void b(java.lang.String, java.lang.String)",
+                        "className": "u.aly.aj",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initUI()",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r4.<android.widget.TextView: android.view.ViewGroup$LayoutParams getLayoutParams()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initUI()",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r4.<android.widget.TextView: void setLayoutParams(android.view.ViewGroup$LayoutParams)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase b(android.content.Context, int)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<com.duapps.ad.stats.p: android.database.sqlite.SQLiteDatabase getWritableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final android.net.Uri insert(android.net.Uri, android.content.ContentValues)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r5.<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>($r6, null, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final android.net.Uri insert(android.net.Uri, android.content.ContentValues)",
+                        "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = specialinvoke r0.<com.duapps.ad.stats.DuAdCacheProvider: android.database.sqlite.SQLiteDatabase b(android.content.Context,int)>($r4, $i0)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase initDB(android.content.Context)",
+                "className": "com.mb.bdapp.db.DBService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<com.mb.bdapp.db.DBOpenHelper: android.database.sqlite.SQLiteDatabase getReadableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void updateAdStatusById(long, int)",
+                "className": "com.mb.bdapp.db.DBService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>(\"tb_dubai_adv\", r1, \"_ID = ?\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private android.database.sqlite.SQLiteDatabase initDB(android.content.Context)",
+                        "className": "com.mb.bdapp.db.DBService",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.mb.bdapp.db.DBService: android.database.sqlite.SQLiteDatabase db> = $r3",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void updateAdStatusById(long, int)",
+                        "className": "com.mb.bdapp.db.DBService",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = r0.<com.mb.bdapp.db.DBService: android.database.sqlite.SQLiteDatabase db>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context)",
+                "className": "com.picksbrowser.a",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r0.<com.picksbrowser.a: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context)",
+                "className": "com.picksbrowser.a",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r4.<android.webkit.WebSettings: void setPluginState(android.webkit.WebSettings$PluginState)>($r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase initDB(android.content.Context)",
+                "className": "com.mb.bdapp.db.DBService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<com.mb.bdapp.db.DBOpenHelper: android.database.sqlite.SQLiteDatabase getReadableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void updateAdDownRetryById(long, int)",
+                "className": "com.mb.bdapp.db.DBService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>(\"tb_dubai_adv\", r1, \"_ID = ?\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private android.database.sqlite.SQLiteDatabase initDB(android.content.Context)",
+                        "className": "com.mb.bdapp.db.DBService",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.mb.bdapp.db.DBService: android.database.sqlite.SQLiteDatabase db> = $r3",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void updateAdDownRetryById(long, int)",
+                        "className": "com.mb.bdapp.db.DBService",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = r0.<com.mb.bdapp.db.DBService: android.database.sqlite.SQLiteDatabase db>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "com.mb.bdapp.util.ConfigUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getSimpleName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void e(java.lang.String, java.lang.String)",
+                "className": "com.mb.bdapp.util.LogUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "com.mb.bdapp.util.ConfigUtils",
+                        "lineNo": -1,
+                        "IRstatement": "<com.mb.bdapp.util.ConfigUtils: java.lang.String TAG> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private static void initDebugConfig(android.content.Context)",
+                        "className": "com.mb.bdapp.util.ConfigUtils",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <com.mb.bdapp.util.ConfigUtils: java.lang.String TAG>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "com.mb.bdapp.db.DBService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getSimpleName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void e(java.lang.String, java.lang.String)",
+                "className": "com.mb.bdapp.util.LogUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "com.mb.bdapp.db.DBService",
+                        "lineNo": -1,
+                        "IRstatement": "<com.mb.bdapp.db.DBService: java.lang.String TAG> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List queryAdByStatus(int)",
+                        "className": "com.mb.bdapp.db.DBService",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = <com.mb.bdapp.db.DBService: java.lang.String TAG>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initUI()",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r3.<android.widget.ImageView: android.view.ViewGroup$LayoutParams getLayoutParams()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initUI()",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.widget.ImageView: void setLayoutParams(android.view.ViewGroup$LayoutParams)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "com.mb.bdapp.down.DefaultSSLSocketFactory",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.lang.Class: java.lang.String getSimpleName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void e(java.lang.String, java.lang.String)",
+                "className": "com.mb.bdapp.util.LogUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "com.mb.bdapp.down.DefaultSSLSocketFactory",
+                        "lineNo": -1,
+                        "IRstatement": "<com.mb.bdapp.down.DefaultSSLSocketFactory: java.lang.String TAG> = $r2",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "com.mb.bdapp.down.DefaultSSLSocketFactory",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = <com.mb.bdapp.down.DefaultSSLSocketFactory: java.lang.String TAG>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "com.mb.bdapp.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.database.sqlite.SQLiteDatabase b(android.content.Context, int)",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r4.<com.duapps.ad.stats.o: android.database.sqlite.SQLiteDatabase getWritableDatabase()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public final int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])",
+                "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r7.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>($r8, $r2, $r3, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public final int update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])",
+                        "className": "com.duapps.ad.stats.DuAdCacheProvider",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = specialinvoke r0.<com.duapps.ad.stats.DuAdCacheProvider: android.database.sqlite.SQLiteDatabase b(android.content.Context,int)>($r6, $i0)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "u.aly.ai",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void e(java.lang.String, java.lang.String)",
+                "className": "u.aly.aj",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>($r0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "<u.aly.ai: java.lang.String a> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String f(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <u.aly.ai: java.lang.String a>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String p(android.content.Context)",
+                        "className": "u.aly.ai",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = <u.aly.ai: java.lang.String a>",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void e(java.lang.String, java.lang.String)",
+                        "className": "u.aly.aj",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private int getResourceId(android.content.Context, java.lang.String, java.lang.String, java.lang.String)",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r6.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r2, $r3, $r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r0.<com.cmcm.adsdk.nativead.PicksLoadingActivity: void setContentView(int)>($i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "com.cmcm.adsdk.nativead.PicksLoadingActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = specialinvoke r0.<com.cmcm.adsdk.nativead.PicksLoadingActivity: int getResourceId(android.content.Context,java.lang.String,java.lang.String,java.lang.String)>(r0, \"activity_picks_loading\", \"layout\", $r2)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.picksbrowser.PicksBrowser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

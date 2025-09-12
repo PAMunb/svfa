@@ -1,0 +1,56 @@
+{
+    "fileName": "repane.apk",
+    "day": "2025-09-10T21:24:05.187",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static void <clinit>()",
+                "className": "com.vr.installer.scanner.PackageDescription",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = virtualinvoke $r1.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private boolean unpack(android.content.Context)",
+                "className": "com.vr.installer.scanner.PackageDescription",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>($r4, $r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static void <clinit>()",
+                        "className": "com.vr.installer.scanner.PackageDescription",
+                        "lineNo": -1,
+                        "IRstatement": "<com.vr.installer.scanner.PackageDescription: java.lang.String DEBUG_TAG> = $r0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private boolean unpack(android.content.Context)",
+                        "className": "com.vr.installer.scanner.PackageDescription",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = <com.vr.installer.scanner.PackageDescription: java.lang.String DEBUG_TAG>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        }
+    ]
+}

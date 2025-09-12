@@ -1,0 +1,41 @@
+{
+    "fileName": "the_interview_movieshow.apk",
+    "day": "2025-09-10T21:25:31.819",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected transient void onProgressUpdate(java.lang.String[])",
+                "className": "com.movieshow.down.Badaccents$DownloadMusicfromInternet",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected transient void onProgressUpdate(java.lang.String[])",
+                "className": "com.movieshow.down.Badaccents$DownloadMusicfromInternet",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.app.ProgressDialog: void setProgress(int)>($i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

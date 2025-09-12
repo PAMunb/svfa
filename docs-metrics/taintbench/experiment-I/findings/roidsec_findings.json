@@ -1,0 +1,48 @@
+{
+    "fileName": "roidsec.apk",
+    "day": "2025-09-10T21:13:44.220",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onDestroy()",
+                "className": "cn.phoneSync.PhoneSyncService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke r1.<java.io.File: java.io.File[] listFiles()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onDestroy()",
+                "className": "cn.phoneSync.PhoneSyncService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r1.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onDestroy()",
+                        "className": "cn.phoneSync.PhoneSyncService",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r3[$i1]",
+                        "ID": 1
+                    }
+                ]
+            ]
+        }
+    ]
+}
