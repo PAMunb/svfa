@@ -6,6 +6,14 @@ import ujson._
 
 import scala.collection.mutable
 
+/**
+  * Usage:
+  *   sbt "runMain br.unb.cic.soot.scripts.CompareFindings <actual-path-findings> <expected-path-findings>"
+  *
+  * Example:
+  *   sbt "core/runMain br.unb.cic.soot.scripts.CompareFindings docs-metrics/taintbench/experiment-I/findings docs-metrics/taintbench/source/findings"
+  */
+
 object CompareFindings extends App {
 
   if (args.isEmpty) {
@@ -14,7 +22,7 @@ object CompareFindings extends App {
   }
 
   val actualPathFindings = args(0)
-   val expectedPathFindings = args(1)
+  val expectedPathFindings = args(1)
   // val resultPathFindings = args(2)
 
   val actualFindings = new File(actualPathFindings)
@@ -23,12 +31,15 @@ object CompareFindings extends App {
   val actualJsonFiles = actualFindings.listFiles().filter(_.getName.endsWith("_findings.json"))
   val actualConflicts = getConflicts(actualJsonFiles)
 
+  val expectedJsonFiles = expectedFindings.listFiles().filter(_.getName.endsWith("_findings.json"))
+  val expectedConflicts = getConflicts(expectedJsonFiles)
+
   // generate a csv file with the conflicts
   val csvFile = new File("conflicts.csv")
   val writer = new PrintWriter(csvFile)
-  writer.write("fileName,actual findings\n")
+  writer.write("fileName,actual findings,expected findings\n")
   actualConflicts.foreach(conflict => {
-    writer.write(conflict._1 + "," + conflict._2.size + "\n")
+    writer.write(conflict._1 + "," + conflict._2.size + "," + expectedConflicts.find(c => c._1 == conflict._1).get._2.size + "\n")
   })
   writer.close()
 
