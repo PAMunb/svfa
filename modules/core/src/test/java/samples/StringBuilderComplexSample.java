@@ -6,7 +6,7 @@ public class StringBuilderComplexSample {
         String s = source();
         String name = "pepito";
         StringBuilder buffer = new StringBuilder();
-        buffer.append("|").append(name).append("|").append(s);
+        buffer.append("|").append(name).append(s);
         sink(buffer.toString());
     }
 
