@@ -63,7 +63,19 @@ object CompareFindings extends App {
   }
 
   private def getSourceOrSinkIR(jsonData: Value, sourceOrSink: String): String = {
-    jsonData(sourceOrSink)("IRs")(0)("IRstatement").toString()
+    try {
+      val irs = jsonData.obj.get(sourceOrSink).flatMap(_.obj.get("IRs"))
+      irs match {
+        case Some(arr) if arr.arr.nonEmpty =>
+          arr(0).obj.get("IRstatement") match {
+            case Some(irStatement) => irStatement.toString()
+            case None => ""
+          }
+        case _ => ""
+      }
+    } catch {
+      case _: Throwable => ""
+    }
   }
 
   private def getConflicts(jsonData: Value): Set[(String, String)] = {
