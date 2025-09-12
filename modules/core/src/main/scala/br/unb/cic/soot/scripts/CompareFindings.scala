@@ -49,25 +49,7 @@ object CompareFindings extends App {
 
   // generate a csv file with the conflicts
 
-
-  val csvFile = new File(s"$resultPathFindings/conflicts.csv")
-  val writer = new PrintWriter(csvFile)
-  writer.write("APK,actual-findings,expected-findings, matches\n")
-  actualConflicts.foreach { case (fileName, actualConflictsByFile) =>
-
-    val expectedConflictsByFile = expectedConflicts.getOrElse(fileName, Set.empty)
-
-    writer.write(
-      fileName + 
-      "," + 
-      actualConflictsByFile.size + 
-      "," + 
-      expectedConflictsByFile.size + 
-      "," + 
-      compareConflicts(actualConflictsByFile, expectedConflictsByFile).size + 
-    "\n")
-  }
-  writer.close()
+  createCSVFile(actualConflicts, expectedConflicts, resultPathFindings)
 
   System.exit(0)
 
@@ -113,5 +95,16 @@ object CompareFindings extends App {
       case 0 => Set.empty
       case _ => actualConflicts.intersect(expectedConflicts)
     }
+  }
+
+  private def createCSVFile(actualConflicts: mutable.HashMap[String, Set[(String, String)]], expectedConflicts: mutable.HashMap[String, Set[(String, String)]], resultPathFindings: String): Unit = {
+    val csvFile = new File(s"$resultPathFindings/conflicts.csv")
+    val writer = new PrintWriter(csvFile)
+    writer.write("APK,actual-findings,expected-findings, matches\n")
+    actualConflicts.foreach { case (fileName, actualConflictsByFile) =>
+      val expectedConflictsByFile = expectedConflicts.getOrElse(fileName, Set.empty)
+      writer.write(fileName + "," + actualConflictsByFile.size + "," + expectedConflictsByFile.size + "," + compareConflicts(actualConflictsByFile, expectedConflictsByFile).size + "\n")
+    }
+    writer.close()
   }
 }
