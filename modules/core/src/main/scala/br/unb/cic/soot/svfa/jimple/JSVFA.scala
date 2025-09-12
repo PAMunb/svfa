@@ -105,6 +105,8 @@ abstract class JSVFA
 
         if (base.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
+          
+          // Original logic: argument definitions -> base object definitions
           localDefs
             .getDefsOfAt(local, invokeStmt)
             .forEach(sourceStmt => {
@@ -113,8 +115,20 @@ abstract class JSVFA
                 .getDefsOfAt(localBase, invokeStmt)
                 .forEach(targetStmt => {
                   val targetNode = createNode(sootMethod, targetStmt)
-                  updateGraph(sourceNode, targetNode) // add comment
+                  updateGraph(sourceNode, targetNode)
                 })
+            })
+          
+          // NEW LOGIC: argument definitions -> root allocation sites of base object
+          localDefs
+            .getDefsOfAt(local, invokeStmt)
+            .forEach(sourceStmt => {
+              val sourceNode = createNode(sootMethod, sourceStmt)
+              // Find allocation sites (root definitions) of the base object
+              val allocationSites = findAllocationSites(localBase, false)
+              allocationSites.foreach(allocationNode => {
+                updateGraph(sourceNode, allocationNode)
+              })
             })
         }
       }
@@ -297,7 +311,7 @@ abstract class JSVFA
 
     val graph = new ExceptionalUnitGraph(body)
     val defs = new SimpleLocalDefs(graph)
-
+    println(body)
     body.getUnits.forEach(unit => {
       val v = Statement.convert(unit)
 
