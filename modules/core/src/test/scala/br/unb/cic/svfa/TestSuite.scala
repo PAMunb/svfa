@@ -75,6 +75,16 @@ class TestSuite extends FunSuite with BeforeAndAfter {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
+  test("we should find exactly one conflict in the StringBuilderComplexTest test") {
+    val svfa = new MethodBasedSVFATest(
+      className = "samples.StringBuilderComplexSample",
+      sourceMethods = Set("source"),
+      sinkMethods = Set("sink")
+    )
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
   test(
     "we should find exactly one conflict in the InitStringBufferTest test"
   ) {
