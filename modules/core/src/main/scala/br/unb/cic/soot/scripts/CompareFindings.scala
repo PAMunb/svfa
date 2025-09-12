@@ -8,10 +8,23 @@ import scala.collection.mutable
 
 /**
   * Usage:
-  *   sbt "runMain br.unb.cic.soot.scripts.CompareFindings <actual-path-findings> <expected-path-findings>"
+  *   sbt "runMain br.unb.cic.soot.scripts.CompareFindings 
+            <actual-path-findings> 
+            <expected-path-findings>
+            <result-path-findings>
+          "
   *
   * Example:
-  *   sbt "core/runMain br.unb.cic.soot.scripts.CompareFindings docs-metrics/taintbench/experiment-I/findings docs-metrics/taintbench/source/findings"
+  *   sbt "core/runMain br.unb.cic.soot.scripts.CompareFindings 
+            docs-metrics/taintbench/experiment-I/findings 
+            docs-metrics/taintbench/source/findings
+            docs-metrics/taintbench/experiment-I"
+  *
+  * Example:
+  *   sbt "core/runMain br.unb.cic.soot.scripts.CompareFindings 
+            docs-metrics/taintbench/experiment-II/findings 
+            docs-metrics/taintbench/source/findings
+            docs-metrics/taintbench/experiment-II"
   */
 
 object CompareFindings extends App {
@@ -23,7 +36,7 @@ object CompareFindings extends App {
 
   val actualPathFindings = args(0)
   val expectedPathFindings = args(1)
-  // val resultPathFindings = args(2)
+  val resultPathFindings = args(2)
 
   val actualFindings = new File(actualPathFindings)
   val expectedFindings = new File(expectedPathFindings)
@@ -35,7 +48,9 @@ object CompareFindings extends App {
   val expectedConflicts = getConflicts(expectedJsonFiles)
 
   // generate a csv file with the conflicts
-  val csvFile = new File("conflicts.csv")
+
+
+  val csvFile = new File(s"$resultPathFindings/conflicts.csv")
   val writer = new PrintWriter(csvFile)
   writer.write("APK,actual-findings,expected-findings, matches\n")
   actualConflicts.foreach { case (fileName, actualConflictsByFile) =>
