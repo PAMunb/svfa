@@ -37,12 +37,20 @@ object CompareFindings extends App {
   // generate a csv file with the conflicts
   val csvFile = new File("conflicts.csv")
   val writer = new PrintWriter(csvFile)
-  writer.write("fileName,actual findings,expected findings\n")
+  writer.write("APK,actual-findings,expected-findings, matches\n")
   actualConflicts.foreach { case (fileName, actualConflictsByFile) =>
 
     val expectedConflictsByFile = expectedConflicts.getOrElse(fileName, Set.empty)
 
-    writer.write(fileName + "," + actualConflictsByFile.size + "," + expectedConflictsByFile.size + "\n")
+    writer.write(
+      fileName + 
+      "," + 
+      actualConflictsByFile.size + 
+      "," + 
+      expectedConflictsByFile.size + 
+      "," + 
+      (actualConflictsByFile.size == expectedConflictsByFile.size) + 
+    "\n")
   }
   writer.close()
 
