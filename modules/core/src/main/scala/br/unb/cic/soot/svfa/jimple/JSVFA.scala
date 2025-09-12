@@ -119,13 +119,15 @@ abstract class JSVFA
                 })
             })
           
+          
           // NEW LOGIC: argument definitions -> root allocation sites of base object
           localDefs
             .getDefsOfAt(local, invokeStmt)
             .forEach(sourceStmt => {
               val sourceNode = createNode(sootMethod, sourceStmt)
               // Find allocation sites (root definitions) of the base object
-              val allocationSites = findAllocationSites(localBase, false)
+//              val allocationSites = findAllocationSites(localBase, false)
+              val allocationSites = getAllocationSites(invokeStmt)
               allocationSites.foreach(allocationNode => {
                 updateGraph(sourceNode, allocationNode)
               })
