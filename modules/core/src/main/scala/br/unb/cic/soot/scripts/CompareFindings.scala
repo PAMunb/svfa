@@ -103,23 +103,20 @@ object CompareFindings extends App {
   }
 
   private def compareConflicts(actualConflicts: Set[(String, String)], expectedConflicts: Set[(String, String)]): Set[(String, String)] = {
-    // actualConflicts.size match {
-    //   case 0 => Set.empty
-    //   case _ => actualConflicts.intersect(expectedConflicts)
-    // }
-    if (actualConflicts.isEmpty) {
-      return Set.empty
-    }
 
-    val newActualConflicts = actualConflicts.map { case (source, sink) =>
-      (getRawValueFromString(source), getRawValueFromString(sink))
-    }
+    actualConflicts match {
+      case s if s.isEmpty => Set.empty
+      case _ =>
+        val newActualConflicts = actualConflicts.map { case (source, sink) =>
+          (getRawValueFromString(source), getRawValueFromString(sink))
+        }
 
-    val newExpectedConflicts = expectedConflicts.map { case (source, sink) => 
-      (getRawValueFromString(source), getRawValueFromString(sink))
-    }
+        val newExpectedConflicts = expectedConflicts.map { case (source, sink) =>
+          (getRawValueFromString(source), getRawValueFromString(sink))
+        }
 
-    newActualConflicts.intersect(newExpectedConflicts)
+        newActualConflicts.intersect(newExpectedConflicts)
+    }
   }
 
   private def getRawValueFromString(value: String): String = {
