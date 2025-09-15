@@ -75,6 +75,7 @@ abstract class JSVFA
           logger.warn("Methods: " + sootMethod.getName + " " + invokedMethod);
           return
       }
+
       if (hasBaseObject(expr) && srcArg.isInstanceOf[Local]) {
         val local = srcArg.asInstanceOf[Local]
 
@@ -95,68 +96,26 @@ abstract class JSVFA
                   updateGraph(sourceNode, targetNode)
                 })
             })
-          
-          
-          // NEW LOGIC: argument definitions -> root allocation sites of base object
-//          localDefs
-//            .getDefsOfAt(local, invokeStmt)
-//            .forEach(sourceStmt => {
-//              val sourceNode = createNode(sootMethod, sourceStmt)
-//              // Find allocation sites (root definitions) of the base object
-////              val allocationSites = findAllocationSites(localBase, false)
-//              val allocationSites = getAllocationSites(invokeStmt)
-//              allocationSites.foreach(allocationNode => {
-//                updateGraph(sourceNode, allocationNode)
-//              })
-//            })
-              getAllocationObject(invokeStmt, localDefs)
+        }
+      }
+
+      // NEW LOGIC: argument definitions -> root allocation sites of base object
+      if (hasBaseObject(expr)) {
+        val base = getBaseObject(expr)
+
+        if (base.isInstanceOf[Local]) {
+          val localBase = base.asInstanceOf[Local]
+
+          localDefs
+            .getDefsOfAt(localBase, invokeStmt)
+            .forEach(targetStmt => {
+              val currentNode = createNode(sootMethod, invokeStmt)
+              val targetNode = createNode(sootMethod, targetStmt)
+              updateGraph(currentNode, targetNode)
+            })
         }
       }
     }
-  }
-
-  private def getAllocationObject(stmt: Stmt, localDefs: SimpleLocalDefs): ListBuffer[Stmt] = {
-
-    var stmts: ListBuffer[Stmt] = ListBuffer()
-
-//    val expr = stmt match {
-//      case s : AssignStmt => s.stmt.getRightOp
-//      case s : InvokeStmt => s.asInstanceOf[InvokeStmt].stmt.getInvokeExpr
-//      case _ => println("no he nada")
-//    }
-
-//    println(stmt.isInstanceOf[InvokeStmt])
-    var expr: InvokeExpr = null
-    if (stmt.isInstanceOf[AssignStmt]) {
-      val rightOp = stmt.asInstanceOf[AssignStmt].stmt.getRightOp
-      if (rightOp.isInstanceOf[InvokeExpr]) {
-        expr = rightOp.asInstanceOf[InvokeExpr]
-      }
-    }
-
-    if (stmt.isInstanceOf[InvokeStmt]) {
-      expr = stmt.asInstanceOf[InvokeStmt].stmt.getInvokeExpr
-    }
-
-    if (! expr.isInstanceOf[InvokeExpr]) {
-      return stmts
-    }
-
-    val base = getBaseObject(expr)
-
-    if (! base.isInstanceOf[Local]) {
-      return stmts
-    }
-
-    val local = base.asInstanceOf[Local]
-
-    localDefs
-      .getDefsOfAt(local, stmt)
-      .forEach(sourceStmt => {
-        println(getAllocationObject(sourceStmt.asInstanceOf[Stmt], localDefs))
-      })
-
-    stmts
   }
 
   private def getBaseObject(expr: InvokeExpr) =
