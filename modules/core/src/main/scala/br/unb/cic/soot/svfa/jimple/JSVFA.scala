@@ -2,42 +2,19 @@ package br.unb.cic.soot.svfa.jimple
 
 import java.util
 import br.unb.cic.soot.svfa.jimple.rules.RuleAction
-import br.unb.cic.soot.graph.{
-  CallSiteCloseLabel,
-  CallSiteLabel,
-  CallSiteOpenLabel,
-  ContextSensitiveRegion,
-  GraphNode,
-  SinkNode,
-  SourceNode,
-  StatementNode
-}
+import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, StatementNode}
 import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser}
 import br.unb.cic.soot.svfa.{SVFA, SourceSinkDef}
 import com.typesafe.scalalogging.LazyLogging
 import soot.jimple._
-import soot.jimple.internal.{AbstractInvokeExpr, JArrayRef, JAssignStmt}
+import soot.jimple.internal.{AbstractInvokeExpr, JArrayRef, JAssignStmt, JInvokeStmt}
 import soot.jimple.spark.ondemand.DemandCSPointsTo
 import soot.jimple.spark.pag
 import soot.jimple.spark.pag.{AllocNode, PAG}
-import soot.jimple.spark.sets.{
-  DoublePointsToSet,
-  HybridPointsToSet,
-  P2SetVisitor
-}
+import soot.jimple.spark.sets.{DoublePointsToSet, HybridPointsToSet, P2SetVisitor}
 import soot.toolkits.graph.ExceptionalUnitGraph
 import soot.toolkits.scalar.SimpleLocalDefs
-import soot.{
-  ArrayType,
-  Local,
-  Scene,
-  SceneTransformer,
-  SootField,
-  SootMethod,
-  Transform,
-  Value,
-  jimple
-}
+import soot.{ArrayType, Local, Scene, SceneTransformer, SootField, SootMethod, Transform, Value, jimple}
 
 import scala.collection.mutable.ListBuffer
 
@@ -121,20 +98,65 @@ abstract class JSVFA
           
           
           // NEW LOGIC: argument definitions -> root allocation sites of base object
-          localDefs
-            .getDefsOfAt(local, invokeStmt)
-            .forEach(sourceStmt => {
-              val sourceNode = createNode(sootMethod, sourceStmt)
-              // Find allocation sites (root definitions) of the base object
-//              val allocationSites = findAllocationSites(localBase, false)
-              val allocationSites = getAllocationSites(invokeStmt)
-              allocationSites.foreach(allocationNode => {
-                updateGraph(sourceNode, allocationNode)
-              })
-            })
+//          localDefs
+//            .getDefsOfAt(local, invokeStmt)
+//            .forEach(sourceStmt => {
+//              val sourceNode = createNode(sootMethod, sourceStmt)
+//              // Find allocation sites (root definitions) of the base object
+////              val allocationSites = findAllocationSites(localBase, false)
+//              val allocationSites = getAllocationSites(invokeStmt)
+//              allocationSites.foreach(allocationNode => {
+//                updateGraph(sourceNode, allocationNode)
+//              })
+//            })
+              getAllocationObject(invokeStmt, localDefs)
         }
       }
     }
+  }
+
+  private def getAllocationObject(stmt: Stmt, localDefs: SimpleLocalDefs): ListBuffer[Stmt] = {
+
+    var stmts: ListBuffer[Stmt] = ListBuffer()
+
+//    val expr = stmt match {
+//      case s : AssignStmt => s.stmt.getRightOp
+//      case s : InvokeStmt => s.asInstanceOf[InvokeStmt].stmt.getInvokeExpr
+//      case _ => println("no he nada")
+//    }
+
+//    println(stmt.isInstanceOf[InvokeStmt])
+    var expr: InvokeExpr = null
+    if (stmt.isInstanceOf[AssignStmt]) {
+      val rightOp = stmt.asInstanceOf[AssignStmt].stmt.getRightOp
+      if (rightOp.isInstanceOf[InvokeExpr]) {
+        expr = rightOp.asInstanceOf[InvokeExpr]
+      }
+    }
+
+    if (stmt.isInstanceOf[InvokeStmt]) {
+      expr = stmt.asInstanceOf[InvokeStmt].stmt.getInvokeExpr
+    }
+
+    if (! expr.isInstanceOf[InvokeExpr]) {
+      return stmts
+    }
+
+    val base = getBaseObject(expr)
+
+    if (! base.isInstanceOf[Local]) {
+      return stmts
+    }
+
+    val local = base.asInstanceOf[Local]
+
+    localDefs
+      .getDefsOfAt(local, stmt)
+      .forEach(sourceStmt => {
+        println(getAllocationObject(sourceStmt.asInstanceOf[Stmt], localDefs))
+      })
+
+    stmts
   }
 
   private def getBaseObject(expr: InvokeExpr) =
@@ -313,7 +335,7 @@ abstract class JSVFA
 
     val graph = new ExceptionalUnitGraph(body)
     val defs = new SimpleLocalDefs(graph)
-    println(body)
+//    println(body)
     body.getUnits.forEach(unit => {
       val v = Statement.convert(unit)
 
