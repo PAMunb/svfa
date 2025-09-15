@@ -2,7 +2,7 @@ APK,actual-findings,expected-findings, matches
 jollyserv.apk,1,1,0
 faketaobao.apk,0,2,0
 samsapo.apk,0,5,0
-phospy.apk,1,4,0
+phospy.apk,1,4,1
 cajino_baidu.apk,5,14,0
 fakeappstore.apk,0,3,0
 godwon_samp.apk,0,5,0
@@ -12,11 +12,11 @@ repane.apk,0,1,0
 backflash.apk,1,12,0
 overlay_android_samp.apk,0,6,0
 smssilience_fake_vertu.apk,0,4,0
-proxy_samp.apk,12,19,1
+proxy_samp.apk,12,19,3
 exprespam.apk,0,2,0
 overlaylocker2_android_samp.apk,0,19,0
 fakemart.apk,0,1,0
-sms_send_locker_qqmagic.apk,2,4,0
+sms_send_locker_qqmagic.apk,2,4,2
 sms_google.apk,0,4,0
 smssend_packageInstaller.apk,0,5,0
 tetus.apk,0,2,0
