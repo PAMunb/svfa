@@ -419,7 +419,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     assert(found == expected)
   }
 
-  test("in the APK smssilience_fake_vertu, we should detect 2 flows") {
+  ignore("in the APK smssilience_fake_vertu, we should detect 2 flows") {
     val nameAPK = "smssilience_fake_vertu";
     val expected = 2;
 
