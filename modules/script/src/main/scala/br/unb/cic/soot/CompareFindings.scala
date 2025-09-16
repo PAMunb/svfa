@@ -133,7 +133,11 @@ object CompareFindings extends App {
     var totalExpectedFindings = 0
     var totalMatches = 0
 
-    writer.write("APK,actual-findings,expected-findings, matches\n")
+    writer.write("APK,actual-findings,expected-findings,matches\n")
+
+    var resultWithEmptyActualConflicts = ""
+    var resultWithNotEmptyActualConflicts = ""
+    
     actualConflicts.foreach { case (fileName, actualConflictsByFile) =>
       val actualFindingsSize = actualConflictsByFile.size
       totalActualFindings += actualFindingsSize
@@ -143,8 +147,17 @@ object CompareFindings extends App {
 
       val matches = compareConflicts(actualConflictsByFile, expectedConflictsByFile).size
       totalMatches += matches
-      writer.write(s"$fileName,$actualFindingsSize,$expectedFindingsSize,$matches\n")
+
+      val result = s"$fileName,$actualFindingsSize,$expectedFindingsSize,$matches\n"
+      if (actualFindingsSize == 0) {
+        resultWithEmptyActualConflicts += result
+      } else {
+        resultWithNotEmptyActualConflicts += result
+      }
     }
+
+    writer.write(resultWithNotEmptyActualConflicts)
+    writer.write(resultWithEmptyActualConflicts)
     writer.write(s"Total,$totalActualFindings,$totalExpectedFindings,$totalMatches\n")
     writer.close()
   }
