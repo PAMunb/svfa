@@ -128,11 +128,24 @@ object CompareFindings extends App {
   private def createCSVFile(actualConflicts: mutable.HashMap[String, Set[(String, String)]], expectedConflicts: mutable.HashMap[String, Set[(String, String)]], resultPathFindings: String): Unit = {
     val csvFile = new File(s"$resultPathFindings/conflicts.csv")
     val writer = new PrintWriter(csvFile)
+
+    var totalActualFindings = 0 
+    var totalExpectedFindings = 0
+    var totalMatches = 0
+
     writer.write("APK,actual-findings,expected-findings, matches\n")
     actualConflicts.foreach { case (fileName, actualConflictsByFile) =>
+      val actualFindingsSize = actualConflictsByFile.size
+      totalActualFindings += actualFindingsSize
       val expectedConflictsByFile = expectedConflicts.getOrElse(fileName, Set.empty)
-      writer.write(fileName + "," + actualConflictsByFile.size + "," + expectedConflictsByFile.size + "," + compareConflicts(actualConflictsByFile, expectedConflictsByFile).size + "\n")
+      val expectedFindingsSize = expectedConflictsByFile.size
+      totalExpectedFindings += expectedFindingsSize
+
+      val matches = compareConflicts(actualConflictsByFile, expectedConflictsByFile).size
+      totalMatches += matches
+      writer.write(fileName + "," + actualFindingsSize + "," + expectedFindingsSize + "," + matches + "\n")
     }
+    writer.write("Total, " + totalActualFindings + "," + totalExpectedFindings + "," + totalMatches + "\n")
     writer.close()
   }
 }
