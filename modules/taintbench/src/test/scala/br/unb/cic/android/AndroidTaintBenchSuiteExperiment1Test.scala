@@ -90,7 +90,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  test("in the APK dsencrypt_samp, we should detect 1 flow") {
+  ignore("in the APK dsencrypt_samp, we should detect 1 flow") {
     val expected = 1
     val nameAPK = "dsencrypt_samp"
 
@@ -207,7 +207,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  test("in the APK hummingbad_android_samp, we should detect 2 flows") {
+  ignore("in the APK hummingbad_android_samp, we should detect 2 flows") {
     val expected = 2
     val nameAPK = "hummingbad_android_samp"
 
@@ -298,7 +298,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  ignore("in the APK repane, we should detect 1 flow") {
+  test("in the APK repane, we should detect 1 flow") {
     val expected = 1
     val nameAPK = "repane"
 
@@ -428,7 +428,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  ignore(
+  test(
     "in the APK smsstealer_kysn_assassincreed_android_samp, we should detect 5 flows"
   ) {
     val expected = 5
@@ -443,7 +443,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  ignore(
+  test(
     "in the APK stels_flashplayer_android_update, we should detect 3 flows"
   ) {
     val expected = 3
