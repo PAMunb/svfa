@@ -1,0 +1,1460 @@
+{
+    "fileName": "backflash.apk",
+    "day": "2025-09-10T21:20:47.216",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r6 = virtualinvoke r7.<android.telephony.SmsMessage: java.lang.String getDisplayMessageBody()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = r8",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"|\")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r24[0] = r3",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = $r24[1]",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r54 = new java.lang.StringBuilder",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 10
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 11
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r6 = virtualinvoke r7.<android.telephony.SmsMessage: java.lang.String getMessageBody()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = $r54",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = r6",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = r8",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"|\")",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r24[0] = r3",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = $r24[1]",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r54 = new java.lang.StringBuilder",
+                        "ID": 10
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)",
+                        "ID": 11
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 12
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 13
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r21 = virtualinvoke $r34.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r21 = virtualinvoke $r34.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r3.<android.telephony.SmsManager: java.util.ArrayList divideMessage(java.lang.String)>($r2)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r3.<android.telephony.SmsManager: java.util.ArrayList divideMessage(java.lang.String)>($r2)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r21 = virtualinvoke $r34.<java.lang.Class: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r34 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r21)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, java.lang.String)",
+                "className": "com.adobe.flashplayer_.Prefs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r14 = virtualinvoke r10.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, java.lang.String)",
+                "className": "com.adobe.flashplayer_.Prefs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r14.<android.webkit.WebSettings: void setBuiltInZoomControls(boolean)>(0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"wifi\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r40.<android.net.wifi.WifiManager: boolean setWifiEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r40 = (android.net.wifi.WifiManager) $r10",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l4 = interfaceinvoke $r25.<android.database.Cursor: long getLong(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r0.<java.util.Calendar: void setTimeInMillis(long)>($l0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String millisToDate(long)",
+                        "className": "com.adobe.flashplayer_.AdobeUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 := @parameter0: long",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r44 = interfaceinvoke $r30.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r54 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = $r54",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = r6",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = r8",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"|\")",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r24[0] = r3",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = $r24[1]",
+                        "ID": 10
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)",
+                        "ID": 11
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 12
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 13
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = staticinvoke <java.util.Calendar: java.util.Calendar getInstance()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r0.<java.util.Calendar: void setTimeInMillis(long)>($l0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r32 = interfaceinvoke $r30.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r32)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r25)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"&f=\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"&g=\")",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"&h=macros_a_good&i=macros_a_data\")",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r4 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r54 = new java.lang.StringBuilder",
+                        "ID": 10
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = $r54",
+                        "ID": 11
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 12
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = r6",
+                        "ID": 13
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = r8",
+                        "ID": 14
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"|\")",
+                        "ID": 15
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 16
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 17
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r24[0] = r3",
+                        "ID": 18
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = $r24[1]",
+                        "ID": 19
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)",
+                        "ID": 20
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 21
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 22
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, java.lang.String)",
+                "className": "com.adobe.flashplayer_.Prefs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r14 = virtualinvoke r10.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, java.lang.String)",
+                "className": "com.adobe.flashplayer_.Prefs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r14.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r25 = interfaceinvoke $r30.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r21 = interfaceinvoke $r25.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.AdobeUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l2 = interfaceinvoke $r30.<android.database.Cursor: long getLong(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r0.<java.util.Calendar: void setTimeInMillis(long)>($l0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String millisToDate(long)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 := @parameter0: long",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r0 = staticinvoke <java.util.Calendar: java.util.Calendar getInstance()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r0.<java.util.Calendar: void setTimeInMillis(long)>($l0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l4 = interfaceinvoke $r25.<android.database.Cursor: long getLong(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.AdobeUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r0.<java.util.Calendar: void setTimeInMillis(long)>($l0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String millisToDate(long)",
+                        "className": "com.adobe.flashplayer_.AdobeUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 := @parameter0: long",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private java.lang.String readConfig(java.lang.String, android.content.Context)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke r3.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private java.lang.String readConfig(java.lang.String, android.content.Context)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private java.lang.String readConfig(java.lang.String, android.content.Context)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r22 = specialinvoke r0.<com.adobe.flashplayer_.FlashURL: java.lang.String readConfig(java.lang.String,android.content.Context)>(\"BotVer\", $r1)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"&g=\")",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"&h=macros_a_good&i=macros_a_data\")",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r4 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r54 = new java.lang.StringBuilder",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = $r54",
+                        "ID": 10
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 11
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = r6",
+                        "ID": 12
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = r8",
+                        "ID": 13
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"|\")",
+                        "ID": 14
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 15
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 16
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r24[0] = r3",
+                        "ID": 17
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = $r24[1]",
+                        "ID": 18
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r21)",
+                        "ID": 19
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = virtualinvoke r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 20
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 21
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l2 = interfaceinvoke $r30.<android.database.Cursor: long getLong(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String millisToDate(long)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r0.<java.util.Calendar: void setTimeInMillis(long)>($l0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String millisToDate(long)",
+                        "className": "com.adobe.flashplayer_.FlashURL",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 := @parameter0: long",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(java.lang.String, java.lang.String)",
+                "className": "com.adobe.flashplayer_.FlashURL",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)>($r1, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

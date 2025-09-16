@@ -1,12 +1,16 @@
 package br.unb.cic.android
 
 import br.unb.cic.metrics.TestResult
+import br.unb.cic.soot.svfa.report.ReportFormat
 import org.scalatest.FunSuite
 
 /** EXPERIMENT 1: All tests are configured with sources and sinks defined in
   * benchmark suite. We do it using a unique "trait" that contents these lists.
   */
-class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
+class AndroidTaintBenchSuiteExperiment1Test extends FunSuite 
+  with TestResult
+  with ReportFormat
+{
 
   ignore("in the APK backflash, we should detect 13 flow") {
     val expected = 13
@@ -14,16 +18,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
-    val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
+    val actual = svfa.reportConflictsSVG().size
 
     assert(actual == expected)
   }
@@ -34,16 +31,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -54,16 +44,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -74,16 +57,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -94,16 +70,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -114,16 +83,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -134,16 +96,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -154,16 +109,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -174,16 +122,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -194,16 +135,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -214,16 +148,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -234,16 +161,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -254,16 +174,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -274,16 +187,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -294,16 +200,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -314,16 +213,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -334,16 +226,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -354,16 +239,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -374,16 +252,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -394,16 +265,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -414,16 +278,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -434,16 +291,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -454,16 +304,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -474,16 +317,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -494,16 +330,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -514,16 +343,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -534,16 +356,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -554,16 +369,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -574,16 +382,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -594,16 +395,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -614,16 +408,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -634,16 +421,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -656,16 +436,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -678,16 +451,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -698,16 +464,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -718,16 +477,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -738,16 +490,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -758,16 +503,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val svfa = new AndroidTaintBenchTest(nameAPK)
     svfa.buildSparseValueFlowGraph()
+    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = svfa.reportConflictsSVG().size
-    val executionTime = svfa.executionTime()
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }
@@ -783,13 +521,6 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite with TestResult {
 
     val actual = 0
     val executionTime = 0.0
-    this.compute(
-      expected,
-      actual,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
 
     assert(actual == expected)
   }

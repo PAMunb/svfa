@@ -1,0 +1,538 @@
+{
+    "fileName": "fakeplay.apk",
+    "day": "2025-09-10T21:23:02.220",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getService(android.content.Context,int,android.content.Intent,int)>($r1, 0, $r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r7.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r7.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.googleprojects.mm.GJBootReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = (android.app.AlarmManager) $r6",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r24 = virtualinvoke r23.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r24.<android.webkit.WebSettings: void setAppCacheEnabled(boolean)>(0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r24 = virtualinvoke r23.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r24.<android.webkit.WebSettings: void setCacheMode(int)>(2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getService(android.content.Context,int,android.content.Intent,int)>($r1, 1, $r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r7.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getService(android.content.Context,int,android.content.Intent,int)>(r0, 1, r4, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r15.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r24 = virtualinvoke r23.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r24.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l0 = virtualinvoke $r14.<java.util.Calendar: long getTimeInMillis()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r15.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l0 = virtualinvoke $r14.<java.util.Calendar: long getTimeInMillis()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r15.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.JHService$JHINMsgReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<android.telephony.SmsMessage: java.lang.String getMessageBody()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.JHService$JHINMsgReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z2 = virtualinvoke $r12.<java.lang.String: boolean startsWith(java.lang.String)>(\"HH\")"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r24 = virtualinvoke r23.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r24.<android.webkit.WebSettings: void setRenderPriority(android.webkit.WebSettings$RenderPriority)>($r25)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getService(android.content.Context,int,android.content.Intent,int)>(r0, 0, r4, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r15.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$l0 = virtualinvoke $r5.<java.util.Calendar: long getTimeInMillis()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.googleprojects.mm.GJBootReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r7.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, 10000L, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r24 = virtualinvoke r23.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r24.<android.webkit.WebSettings: void setAllowFileAccess(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r24 = virtualinvoke r23.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "com.googleprojects.mm.SPMainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r24.<android.webkit.WebSettings: void setBuiltInZoomControls(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

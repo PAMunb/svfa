@@ -24,7 +24,8 @@ lazy val commonDependencies = Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
   "org.scalatest" %% "scalatest" % "3.0.8" % Test,
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+  "com.lihaoyi" %% "upickle" % "3.1.0"
 )
 
 // Android-specific dependencies
@@ -42,7 +43,7 @@ lazy val servletDependencies = Seq(
 
 // ROOT PROJECT (Aggregate)
 lazy val root = (project in file("."))
-  .aggregate(core, securibench, taintbench)
+  .aggregate(core, script, securibench, taintbench)
   .settings(
     name := "svfa-scala",
     publish / skip := true, // Don't publish the aggregate
@@ -124,6 +125,23 @@ lazy val taintbench = (project in file("modules/taintbench"))
     
     Test / scalaSource := baseDirectory.value / "src" / "test" / "scala",
     Test / resourceDirectory := baseDirectory.value / "src" / "test" / "resources"
+  )
+
+// SCRIPT MODULE - Android-based malware analysis benchmarks
+lazy val script = (project in file("modules/script"))
+  .dependsOn(core % "compile->compile;test->test")
+  .settings(
+    name := "svfa-script",
+    libraryDependencies ++= commonDependencies,
+
+    // Custom commands for Android testing
+//    addCommandAlias("testRoidsec", "testOnly br.unb.cic.android.RoidsecTest"),
+//    addCommandAlias("testAndroid", "testOnly br.unb.cic.android.*"),
+
+    // Source directories for core module
+    Compile / scalaSource := baseDirectory.value / "src" / "main" / "scala",
+//    Test / scalaSource := baseDirectory.value / "src" / "test" / "scala",
+//    Test / resourceDirectory := baseDirectory.value / "src" / "test" / "resources"
   )
 
 // Global commands that work across modules
