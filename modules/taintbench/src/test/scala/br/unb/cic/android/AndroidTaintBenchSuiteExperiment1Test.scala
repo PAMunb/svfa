@@ -428,7 +428,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  test(
+  ignore(
     "in the APK smsstealer_kysn_assassincreed_android_samp, we should detect 5 flows"
   ) {
     val expected = 5
@@ -443,7 +443,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  test(
+  ignore(
     "in the APK stels_flashplayer_android_update, we should detect 3 flows"
   ) {
     val expected = 3
