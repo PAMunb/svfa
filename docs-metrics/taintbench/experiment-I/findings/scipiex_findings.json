@@ -1,0 +1,178 @@
+{
+    "fileName": "scipiex.apk",
+    "day": "2025-09-10T21:14:37.877",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.util.List readAllContacts()",
+                "className": "com.yxx.jiejie.SMSListenerService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = interfaceinvoke $r6.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public java.util.List readAllContacts()",
+                "className": "com.yxx.jiejie.SMSListenerService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"zhou\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void setName(java.lang.String)",
+                        "className": "com.yxx.jiejie.Contact",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setName(java.lang.String)",
+                        "className": "com.yxx.jiejie.Contact",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.yxx.jiejie.Contact: java.lang.String name> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.lang.String getName()",
+                        "className": "com.yxx.jiejie.Contact",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = r0.<com.yxx.jiejie.Contact: java.lang.String name>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke r2.<com.yxx.jiejie.Contact: java.lang.String getName()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.util.List readAllContacts()",
+                "className": "com.yxx.jiejie.SMSListenerService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = interfaceinvoke $r6.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public java.util.List readAllContacts()",
+                "className": "com.yxx.jiejie.SMSListenerService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"zhou\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void setC_id(java.lang.String)",
+                        "className": "com.yxx.jiejie.Contact",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setC_id(java.lang.String)",
+                        "className": "com.yxx.jiejie.Contact",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.yxx.jiejie.Contact: java.lang.String C_id> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.lang.String getC_id()",
+                        "className": "com.yxx.jiejie.Contact",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = r0.<com.yxx.jiejie.Contact: java.lang.String C_id>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke r2.<com.yxx.jiejie.Contact: java.lang.String getC_id()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        }
+    ]
+}

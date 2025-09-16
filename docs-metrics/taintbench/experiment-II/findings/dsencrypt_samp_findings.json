@@ -1,0 +1,83 @@
+{
+    "fileName": "dsencrypt_samp.apk",
+    "day": "2025-09-10T21:22:45.568",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public byte[] decrypt(byte[]) throws java.lang.Exception",
+                "className": "com.kbstar.kb.android.star.DesUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r2.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void loadClass(android.content.Context)",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r8.<java.io.FileOutputStream: void write(byte[])>(r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void loadClass(android.content.Context)",
+                        "className": "com.kbstar.kb.android.star.ProxyApp",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r4.<com.kbstar.kb.android.star.DesUtils: byte[] decrypt(byte[])>(r6)",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void setFieldOjbect(java.lang.String, java.lang.String, java.lang.Object, java.lang.Object)",
+                "className": "com.kbstar.kb.android.star.InjectFun",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void setFieldOjbect(java.lang.String, java.lang.String, java.lang.Object, java.lang.Object)",
+                "className": "com.kbstar.kb.android.star.InjectFun",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r5.<java.lang.reflect.Field: void set(java.lang.Object,java.lang.Object)>($r2, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

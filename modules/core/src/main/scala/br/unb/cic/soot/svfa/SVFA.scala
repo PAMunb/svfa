@@ -1,5 +1,6 @@
 package br.unb.cic.soot.svfa
 
+import br.unb.cic.soot.graph.GraphNode
 import soot._
 import br.unb.cic.soot.svfa.configuration.SootConfiguration
 
@@ -36,5 +37,9 @@ abstract class SVFA extends SootConfiguration {
     BigDecimal((endTime - startTime) / 1000000)
       .setScale(2, BigDecimal.RoundingMode.HALF_UP)
       .toDouble
+  }
+
+  def conflictPaths(): scala.collection.Set[List[GraphNode]] = {
+    svg.findConflictingPaths()
   }
 }
