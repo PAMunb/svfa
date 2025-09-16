@@ -524,16 +524,9 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
 
     // val svfa = new AndroidTaintBenchTest(nameAPK) with XbotAndroidSampSpec
     // svfa.buildSparseValueFlowGraph()
+    createJsonReport(Set() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
 
     val found = 0
-    val executionTime = 0.0
-    this.compute(
-      expected,
-      found,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
-    assert(found == expected)
+      assert(found == expected)
   }
 }
