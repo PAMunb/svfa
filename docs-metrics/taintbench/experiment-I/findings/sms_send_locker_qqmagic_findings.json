@@ -1,6 +1,6 @@
 {
     "fileName": "sms_send_locker_qqmagic.apk",
-    "day": "2025-09-10T21:14:38.816",
+    "day": "2025-09-16T10:23:24.662",
     "findings": [
         {
             "source": {
@@ -13,7 +13,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayMessageBody()>()"
+                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
                     }
                 ]
             },
@@ -63,7 +63,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayMessageBody()>()"
                     }
                 ]
             },

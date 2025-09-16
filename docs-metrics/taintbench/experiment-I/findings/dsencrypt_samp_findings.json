@@ -1,7 +1,49 @@
 {
     "fileName": "dsencrypt_samp.apk",
-    "day": "2025-09-10T21:12:33.009",
+    "day": "2025-09-16T10:21:41.292",
     "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void loadClass(android.content.Context)",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r20.<java.io.File: void <init>(java.lang.String)>($r10)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void loadClass(android.content.Context)",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r20.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void loadClass(android.content.Context)",
+                        "className": "com.kbstar.kb.android.star.ProxyApp",
+                        "lineNo": -1,
+                        "IRstatement": "$r20 = new java.io.File",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
         {
             "source": {
                 "statement": "",
@@ -34,6 +76,48 @@
             "intermediateFlows": [
                 [
                     
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void loadClass(android.content.Context)",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r20.<java.io.File: void <init>(java.lang.String)>($r11)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void loadClass(android.content.Context)",
+                "className": "com.kbstar.kb.android.star.ProxyApp",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r20.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void loadClass(android.content.Context)",
+                        "className": "com.kbstar.kb.android.star.ProxyApp",
+                        "lineNo": -1,
+                        "IRstatement": "$r20 = new java.io.File",
+                        "ID": 1
+                    }
                 ]
             ]
         }
