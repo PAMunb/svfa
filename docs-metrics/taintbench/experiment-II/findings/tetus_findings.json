@@ -1,19 +1,54 @@
 {
     "fileName": "tetus.apk",
-    "day": "2025-09-10T21:25:31.543",
+    "day": "2025-09-16T12:28:46.115",
     "findings": [
         {
             "source": {
                 "statement": "",
-                "methodName": "public static java.lang.String getValue(org.json.JSONObject, java.lang.String)",
-                "className": "shared.library.us.Parameters",
+                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
+                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r1 = virtualinvoke $r0.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r1)"
+                        "IRstatement": "$r4 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r2)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
+                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setDataAndType(android.net.Uri,java.lang.String)>($r4, \"video/*\")"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke r0.<com.droidmojo.awesomejokes.Main: java.lang.String getString(int)>(2130968579)"
                     }
                 ]
             },
@@ -27,7 +62,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r10.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, $r7, null)"
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int,int)>(0, 160)"
                     }
                 ]
             },
@@ -35,18 +70,18 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static void init()",
-                        "className": "shared.library.us.Parameters",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r1 = staticinvoke <shared.library.us.Parameters: java.lang.String getValue(org.json.JSONObject,java.lang.String)>(r2, \"csc\")",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
                         "ID": 1
                     },
                     {
                         "statement": "",
-                        "methodName": "public static void init()",
-                        "className": "shared.library.us.Parameters",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "<shared.library.us.Parameters: java.lang.String csc> = $r1",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"hredirect.php?\")",
                         "ID": 2
                     },
                     {
@@ -54,8 +89,32 @@
                         "methodName": "public void onActivityResult(int, int, android.content.Intent)",
                         "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = <shared.library.us.Parameters: java.lang.String csc>",
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
                         "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
                     }
                 ]
             ]
@@ -63,35 +122,196 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
-                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = staticinvoke <android.media.MediaPlayer: android.media.MediaPlayer create(android.content.Context,android.net.Uri)>($r6, $r4)"
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_campaign\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
-                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
+                "methodName": "public void setReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.PersistentEventStore",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r7.<android.media.MediaPlayer: void setOnPreparedListener(android.media.MediaPlayer$OnPreparedListener)>($r9)"
+                        "IRstatement": "virtualinvoke $r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"referrer\", $r1)"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
-                    
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.PersistentEventStore",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"gclid\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void setReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.PersistentEventStore",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"referrer\", $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.PersistentEventStore",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 8
+                    }
                 ]
             ]
         },
@@ -131,7 +351,7 @@
                         "methodName": "public void onActivityResult(int, int, android.content.Intent)",
                         "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
                         "ID": 1
                     },
                     {
@@ -139,7 +359,7 @@
                         "methodName": "public void onActivityResult(int, int, android.content.Intent)",
                         "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"hredirect.php?\")",
                         "ID": 2
                     },
                     {
@@ -147,7 +367,7 @@
                         "methodName": "public void onActivityResult(int, int, android.content.Intent)",
                         "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
                         "ID": 3
                     },
                     {
@@ -155,7 +375,7 @@
                         "methodName": "public void onActivityResult(int, int, android.content.Intent)",
                         "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
                         "ID": 4
                     },
                     {
@@ -163,8 +383,24 @@
                         "methodName": "public void onActivityResult(int, int, android.content.Intent)",
                         "className": "com.droidmojo.awesomejokes.Main",
                         "lineNo": -1,
-                        "IRstatement": "$r2 = $r3",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
                         "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r3",
+                        "ID": 7
                     }
                 ]
             ]
@@ -180,7 +416,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_content\")"
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_campaign\")"
                     }
                 ]
             },
@@ -229,7 +465,7 @@
                         "methodName": "static java.lang.String formatReferrer(java.lang.String)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
                         "ID": 4
                     },
                     {
@@ -237,15 +473,15 @@
                         "methodName": "static java.lang.String formatReferrer(java.lang.String)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
                         "ID": 5
                     },
                     {
                         "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 6
                     },
                     {
@@ -253,7 +489,7 @@
                         "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
                         "ID": 7
                     },
                     {
@@ -261,7 +497,415 @@
                         "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
                         "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_source\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"googleanalytics\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initParams()",
+                "className": "shared.library.us.Splash",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r1 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, $r7, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void initParams()",
+                        "className": "shared.library.us.Splash",
+                        "lineNo": -1,
+                        "IRstatement": "<shared.library.us.Parameters: java.lang.String imei> = r1",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "shared.library.us.Splash$2",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <shared.library.us.Parameters: java.lang.String imei>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = <shared.library.us.Parameters: java.lang.String imei>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r3",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_term\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void setReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.PersistentEventStore",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"referrer\", $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.PersistentEventStore",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_medium\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void setReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.PersistentEventStore",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"referrer\", $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.PersistentEventStore",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
                         "ID": 8
                     }
                 ]
@@ -278,7 +922,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(r0, 0, $r1, 0)"
+                        "IRstatement": "$r10 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
                     }
                 ]
             },
@@ -299,6 +943,351 @@
             "intermediateFlows": [
                 [
                     
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_id\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void setReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.PersistentEventStore",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"referrer\", $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.PersistentEventStore",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
+                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.media.MediaPlayer: android.media.MediaPlayer create(android.content.Context,android.net.Uri)>($r6, $r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
+                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<android.media.MediaPlayer: void setOnPreparedListener(android.media.MediaPlayer$OnPreparedListener)>($r9)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_term\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"googleanalytics\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_medium\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"googleanalytics\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
                 ]
             ]
         },
@@ -328,107 +1317,6 @@
                     {
                         "type": "Jimple",
                         "IRstatement": "virtualinvoke $r7.<android.media.MediaPlayer: void setOnCompletionListener(android.media.MediaPlayer$OnCompletionListener)>($r8)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                "className": "com.droidmojo.awesomejokes.Main",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r2 = virtualinvoke r0.<com.droidmojo.awesomejokes.Main: java.lang.String getString(int)>(2130968579)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                "className": "com.droidmojo.awesomejokes.Main",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int,int)>(0, 160)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                        "className": "com.droidmojo.awesomejokes.Main",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = new java.lang.StringBuilder",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                        "className": "com.droidmojo.awesomejokes.Main",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                        "className": "com.droidmojo.awesomejokes.Main",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                        "className": "com.droidmojo.awesomejokes.Main",
-                        "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 4
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
-                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r4 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r2)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public boolean shouldOverrideUrlLoading(android.webkit.WebView, java.lang.String)",
-                "className": "shared.library.us.CustomWebView$CustomWebViewClient",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r4)"
                     }
                 ]
             },
@@ -498,7 +1386,7 @@
                         "methodName": "static java.lang.String formatReferrer(java.lang.String)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
                         "ID": 4
                     },
                     {
@@ -506,8 +1394,16 @@
                         "methodName": "static java.lang.String formatReferrer(java.lang.String)",
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
                         "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
                     },
                     {
                         "statement": "",
@@ -515,7 +1411,7 @@
                         "className": "com.google.android.apps.analytics.AnalyticsReceiver",
                         "lineNo": -1,
                         "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
-                        "ID": 6
+                        "ID": 7
                     },
                     {
                         "statement": "",
@@ -523,43 +1419,8 @@
                         "className": "com.google.android.apps.analytics.PersistentEventStore",
                         "lineNo": -1,
                         "IRstatement": "$r1 := @parameter0: java.lang.String",
-                        "ID": 7
+                        "ID": 8
                     }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                "className": "com.droidmojo.awesomejokes.Main",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r10 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
-                "className": "com.droidmojo.awesomejokes.Main",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r10.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, $r7, null)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
                 ]
             ]
         },
@@ -588,13 +1449,768 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setDataAndType(android.net.Uri,java.lang.String)>($r4, \"video/*\")"
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r4)"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
                     
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r0.<com.droidmojo.awesomejokes.Main: java.lang.String getString(int)>(2130968579)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int,int)>(0, 160)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r0.<com.droidmojo.awesomejokes.Main: java.lang.String getString(int)>(2130968579)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, $r7, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r3",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_source\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void setReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.PersistentEventStore",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"referrer\", $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.PersistentEventStore",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(r0, 0, $r1, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, $r7, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"gclid\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"googleanalytics\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initParams()",
+                "className": "shared.library.us.Splash",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r1 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int,int)>(0, 160)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void initParams()",
+                        "className": "shared.library.us.Splash",
+                        "lineNo": -1,
+                        "IRstatement": "<shared.library.us.Parameters: java.lang.String imei> = r1",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "shared.library.us.Splash$2",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <shared.library.us.Parameters: java.lang.String imei>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = <shared.library.us.Parameters: java.lang.String imei>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"  ?\")",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getValue(org.json.JSONObject, java.lang.String)",
+                "className": "shared.library.us.Parameters",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r0.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                "className": "com.droidmojo.awesomejokes.Main",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, $r7, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void init()",
+                        "className": "shared.library.us.Parameters",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = staticinvoke <shared.library.us.Parameters: java.lang.String getValue(org.json.JSONObject,java.lang.String)>(r2, \"csc\")",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void init()",
+                        "className": "shared.library.us.Parameters",
+                        "lineNo": -1,
+                        "IRstatement": "<shared.library.us.Parameters: java.lang.String csc> = $r1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onActivityResult(int, int, android.content.Intent)",
+                        "className": "com.droidmojo.awesomejokes.Main",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = <shared.library.us.Parameters: java.lang.String csc>",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_content\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"googleanalytics\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(\"utm_id\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"googleanalytics\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = (java.lang.String) $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1[1] = $r0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r1[0]",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.String formatReferrer(java.lang.String)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = staticinvoke <com.google.android.apps.analytics.AnalyticsReceiver: java.lang.String formatReferrer(java.lang.String)>($r3)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.google.android.apps.analytics.AnalyticsReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 9
+                    }
                 ]
             ]
         }

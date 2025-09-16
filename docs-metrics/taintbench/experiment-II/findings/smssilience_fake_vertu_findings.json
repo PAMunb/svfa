@@ -1,7 +1,268 @@
 {
     "fileName": "smssilience_fake_vertu.apk",
-    "day": "2025-09-10T21:25:26.250",
+    "day": "2025-09-16T12:28:42.649",
     "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.vertu.jp.catchsms2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r17 = virtualinvoke r10.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.vertu.jp.catchsms2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<java.io.PrintWriter: void write(java.lang.String)>($r17)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r17 = virtualinvoke $r17.<java.lang.String: java.lang.String substring(int,int)>(3, $i0)"
+                            }
+                        ]
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = virtualinvoke r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = virtualinvoke r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r17 = virtualinvoke r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r11 = $r17",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke $r19.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"=\")",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"mobile\")",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = new java.lang.StringBuffer",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r17 = virtualinvoke r6.<java.lang.StringBuffer: java.lang.String toString()>()",
+                        "ID": 10
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.vertu.jp.catchsms2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r17 = virtualinvoke r4.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.vertu.jp.catchsms2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<java.io.PrintWriter: void write(java.lang.String)>($r17)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = virtualinvoke r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = virtualinvoke r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r17 = virtualinvoke r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r11 = $r17",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke $r19.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"=\")",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"mobile\")",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = new java.lang.StringBuffer",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.vertu.jp.catchsms2",
+                        "lineNo": -1,
+                        "IRstatement": "$r17 = virtualinvoke r6.<java.lang.StringBuffer: java.lang.String toString()>()",
+                        "ID": 9
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.vertu.jp.catchsms2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r17 = virtualinvoke r10.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.vertu.jp.catchsms2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r17 = virtualinvoke $r17.<java.lang.String: java.lang.String substring(int,int)>(3, $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
         {
             "source": {
                 "statement": "",
@@ -40,35 +301,66 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.vertu.jp.catchsms2",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.vertu.jp.MainActivity",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r17 = virtualinvoke r10.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()"
+                        "IRstatement": "$r11 = virtualinvoke r10.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.vertu.jp.catchsms2",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.vertu.jp.MainActivity",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r17 = virtualinvoke $r17.<java.lang.String: java.lang.String substring(int,int)>(3, $i0)"
+                        "IRstatement": "virtualinvoke r4.<java.io.PrintWriter: void write(java.lang.String)>($r11)"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
-                    
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.vertu.jp.MainActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"=\")",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.vertu.jp.MainActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(\"mobile\")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.vertu.jp.MainActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = new java.lang.StringBuffer",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.vertu.jp.MainActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r11 = virtualinvoke r5.<java.lang.StringBuffer: java.lang.String toString()>()",
+                        "ID": 4
+                    }
                 ]
             ]
         }

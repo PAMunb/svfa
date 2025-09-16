@@ -1,7 +1,150 @@
 {
     "fileName": "remote_control_smack.apk",
-    "day": "2025-09-10T21:24:04.910",
+    "day": "2025-09-16T12:27:53.840",
     "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                "className": "com.baidu.location.f$c",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                "className": "com.baidu.location.f$c",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(2, $l1, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                        "className": "com.baidu.location.f$c",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = (android.app.AlarmManager) $r5",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                        "className": "com.baidu.location.f$c",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.baidu.location.f$c: android.app.AlarmManager try> = $r6",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                        "className": "com.baidu.location.f$c",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = r0.<com.baidu.location.f$c: android.app.AlarmManager try>",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                "className": "com.baidu.location.f$c",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r2, 0, $r9, 134217728)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                "className": "com.baidu.location.f$c",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(2, $l1, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                        "className": "com.baidu.location.f$c",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.baidu.location.f$c: android.app.PendingIntent d> = $r3",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
+                        "className": "com.baidu.location.f$c",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = r0.<com.baidu.location.f$c: android.app.PendingIntent d>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void a(android.telephony.CellLocation)",
+                "className": "com.baidu.location.c",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<android.telephony.TelephonyManager: java.lang.String getNetworkOperator()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void a(android.telephony.CellLocation)",
+                "className": "com.baidu.location.c",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int,int)>(0, 3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
         {
             "source": {
                 "statement": "",
@@ -73,7 +216,7 @@
                         "methodName": "public static void 'byte'()",
                         "className": "com.baidu.location.g",
                         "lineNo": -1,
-                        "IRstatement": "<com.baidu.location.j: double s> = $d0",
+                        "IRstatement": "<com.baidu.location.j: double 'byte'> = $d0",
                         "ID": 1
                     },
                     {
@@ -81,7 +224,7 @@
                         "methodName": "public static void for()",
                         "className": "com.baidu.location.g",
                         "lineNo": -1,
-                        "IRstatement": "$d0 = <com.baidu.location.j: double s>",
+                        "IRstatement": "$d0 = <com.baidu.location.j: double 'byte'>",
                         "ID": 2
                     }
                 ]
@@ -90,85 +233,35 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "private void a(android.telephony.CellLocation)",
-                "className": "com.baidu.location.c",
+                "methodName": "private static int 'if'(java.util.List, int)",
+                "className": "com.baidu.location.k",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r2.<android.telephony.TelephonyManager: java.lang.String getNetworkOperator()>()"
+                        "IRstatement": "$r5 = virtualinvoke $r2.<java.lang.String: byte[] getBytes()>()"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "private void a(android.telephony.CellLocation)",
-                "className": "com.baidu.location.c",
+                "methodName": "private static int 'if'(java.util.List, int)",
+                "className": "com.baidu.location.k",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke $r3.<java.lang.String: java.lang.String substring(int,int)>(0, 3)"
+                        "IRstatement": "virtualinvoke $r8.<java.io.RandomAccessFile: void write(byte[],int,int)>($r5, 0, $i1)"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
                     
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                "className": "com.baidu.location.f$c",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r2, 0, $r9, 134217728)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                "className": "com.baidu.location.f$c",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r6.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(2, $l1, $l0, $r3)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                        "className": "com.baidu.location.f$c",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.baidu.location.f$c: android.app.PendingIntent d> = $r3",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                        "className": "com.baidu.location.f$c",
-                        "lineNo": -1,
-                        "IRstatement": "$r3 = r0.<com.baidu.location.f$c: android.app.PendingIntent d>",
-                        "ID": 2
-                    }
                 ]
             ]
         },
@@ -227,99 +320,6 @@
                         "IRstatement": "$r1 := @parameter1: java.lang.String",
                         "ID": 3
                     }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                "className": "com.baidu.location.f$c",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke $r2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                "className": "com.baidu.location.f$c",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r6.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(2, $l1, $l0, $r3)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                        "className": "com.baidu.location.f$c",
-                        "lineNo": -1,
-                        "IRstatement": "$r6 = (android.app.AlarmManager) $r5",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                        "className": "com.baidu.location.f$c",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.baidu.location.f$c: android.app.AlarmManager try> = $r6",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.baidu.location.f, android.content.Context)",
-                        "className": "com.baidu.location.f$c",
-                        "lineNo": -1,
-                        "IRstatement": "$r6 = r0.<com.baidu.location.f$c: android.app.AlarmManager try>",
-                        "ID": 3
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private static int 'if'(java.util.List, int)",
-                "className": "com.baidu.location.k",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke $r2.<java.lang.String: byte[] getBytes()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private static int 'if'(java.util.List, int)",
-                "className": "com.baidu.location.k",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r8.<java.io.RandomAccessFile: void write(byte[],int,int)>($r5, 0, $i1)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
                 ]
             ]
         }

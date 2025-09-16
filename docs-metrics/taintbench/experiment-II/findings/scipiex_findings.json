@@ -1,42 +1,7 @@
 {
     "fileName": "scipiex.apk",
-    "day": "2025-09-10T21:25:12.585",
+    "day": "2025-09-16T12:28:33.445",
     "findings": [
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.TransportManager",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r2 = virtualinvoke r3.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.TransportManager",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r11.<java.io.OutputStream: void write(byte[])>(r2)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
         {
             "source": {
                 "statement": "",
@@ -54,15 +19,15 @@
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.ClientServerHello",
+                "methodName": "public void flush() throws java.io.IOException",
+                "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<java.io.OutputStream: void write(byte[])>(r3)"
+                        "IRstatement": "virtualinvoke $r2.<java.io.OutputStream: void write(byte[],int,int)>($r3, 0, $i0)"
                     }
                 ]
             },
@@ -70,11 +35,35 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
-                        "className": "com.trilead.ssh2.transport.ClientServerHello",
+                        "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream, java.security.SecureRandom)",
+                        "className": "com.trilead.ssh2.transport.TransportConnection",
                         "lineNo": -1,
                         "IRstatement": "$r2 := @parameter1: java.io.OutputStream",
                         "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.trilead.ssh2.crypto.cipher.BlockCipher, java.io.OutputStream)",
+                        "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter1: java.io.OutputStream",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(com.trilead.ssh2.crypto.cipher.BlockCipher, java.io.OutputStream)",
+                        "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.trilead.ssh2.crypto.cipher.CipherOutputStream: java.io.OutputStream bo> = $r2",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void flush() throws java.io.IOException",
+                        "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = r0.<com.trilead.ssh2.crypto.cipher.CipherOutputStream: java.io.OutputStream bo>",
+                        "ID": 4
                     }
                 ]
             ]
@@ -148,212 +137,6 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.TransportManager",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r11 = virtualinvoke $r6.<java.net.Socket: java.io.OutputStream getOutputStream()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.TransportManager",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r11.<java.io.OutputStream: void write(byte[])>(r2)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.ClientServerHello",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r3 = virtualinvoke $r5.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.ClientServerHello",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<java.io.OutputStream: void write(byte[])>(r3)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
-                "className": "com.trilead.ssh2.SCPClient",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r10 = virtualinvoke $r8.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
-                "className": "com.trilead.ssh2.SCPClient",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r13.<java.io.OutputStream: void write(byte[])>($r10)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
-                "className": "com.trilead.ssh2.SCPClient",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r5 = virtualinvoke $r4.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
-                "className": "com.trilead.ssh2.SCPClient",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r13.<java.io.OutputStream: void write(byte[])>(r5)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void initialize(com.trilead.ssh2.crypto.CryptoWishList, com.trilead.ssh2.ServerHostKeyVerifier, com.trilead.ssh2.DHGexParameters, int, java.security.SecureRandom, com.trilead.ssh2.ProxyData) throws java.io.IOException",
-                "className": "com.trilead.ssh2.transport.TransportManager",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r10 = virtualinvoke $r8.<java.net.Socket: java.io.OutputStream getOutputStream()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void flush() throws java.io.IOException",
-                "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<java.io.OutputStream: void write(byte[],int,int)>($r3, 0, $i0)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream, java.security.SecureRandom)",
-                        "className": "com.trilead.ssh2.transport.TransportConnection",
-                        "lineNo": -1,
-                        "IRstatement": "$r2 := @parameter1: java.io.OutputStream",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.trilead.ssh2.crypto.cipher.BlockCipher, java.io.OutputStream)",
-                        "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
-                        "lineNo": -1,
-                        "IRstatement": "$r2 := @parameter1: java.io.OutputStream",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(com.trilead.ssh2.crypto.cipher.BlockCipher, java.io.OutputStream)",
-                        "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.trilead.ssh2.crypto.cipher.CipherOutputStream: java.io.OutputStream bo> = $r2",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void flush() throws java.io.IOException",
-                        "className": "com.trilead.ssh2.crypto.cipher.CipherOutputStream",
-                        "lineNo": -1,
-                        "IRstatement": "$r2 = r0.<com.trilead.ssh2.crypto.cipher.CipherOutputStream: java.io.OutputStream bo>",
-                        "ID": 4
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
                 "methodName": "public java.util.List readAllContacts()",
                 "className": "com.yxx.jiejie.SMSListenerService",
                 "lineNo": -1,
@@ -419,7 +202,7 @@
                         "methodName": "public java.util.List readAllContacts()",
                         "className": "com.yxx.jiejie.SMSListenerService",
                         "lineNo": -1,
-                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
                         "ID": 5
                     },
                     {
@@ -427,9 +210,52 @@
                         "methodName": "public java.util.List readAllContacts()",
                         "className": "com.yxx.jiejie.SMSListenerService",
                         "lineNo": -1,
-                        "IRstatement": "$r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
                         "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.util.List readAllContacts()",
+                        "className": "com.yxx.jiejie.SMSListenerService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
                     }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
+                "className": "com.trilead.ssh2.SCPClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r8.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
+                "className": "com.trilead.ssh2.SCPClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r13.<java.io.OutputStream: void write(byte[])>($r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
                 ]
             ]
         },
@@ -512,6 +338,188 @@
                         "IRstatement": "$r8 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 6
                     }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void initialize(com.trilead.ssh2.crypto.CryptoWishList, com.trilead.ssh2.ServerHostKeyVerifier, com.trilead.ssh2.DHGexParameters, int, java.security.SecureRandom, com.trilead.ssh2.ProxyData) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.TransportManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r8.<java.net.Socket: java.io.OutputStream getOutputStream()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.ClientServerHello",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<java.io.OutputStream: void write(byte[])>(r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
+                        "className": "com.trilead.ssh2.transport.ClientServerHello",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter1: java.io.OutputStream",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
+                "className": "com.trilead.ssh2.SCPClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r5 = virtualinvoke $r4.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void sendFiles(com.trilead.ssh2.Session, java.lang.String[], java.lang.String[], java.lang.String) throws java.io.IOException",
+                "className": "com.trilead.ssh2.SCPClient",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r13.<java.io.OutputStream: void write(byte[])>(r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.ClientServerHello",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r3 = virtualinvoke $r5.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void <init>(java.io.InputStream, java.io.OutputStream) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.ClientServerHello",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<java.io.OutputStream: void write(byte[])>(r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.TransportManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r2 = virtualinvoke r3.<java.lang.String: byte[] getBytes(java.lang.String)>(\"ISO-8859-1\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.TransportManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r11.<java.io.OutputStream: void write(byte[])>(r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.TransportManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r11 = virtualinvoke $r6.<java.net.Socket: java.io.OutputStream getOutputStream()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void establishConnection(com.trilead.ssh2.ProxyData, int) throws java.io.IOException",
+                "className": "com.trilead.ssh2.transport.TransportManager",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r11.<java.io.OutputStream: void write(byte[])>(r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
                 ]
             ]
         }

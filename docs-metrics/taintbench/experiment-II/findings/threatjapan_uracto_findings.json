@@ -1,223 +1,7 @@
 {
     "fileName": "threatjapan_uracto.apk",
-    "day": "2025-09-10T21:25:32.093",
+    "day": "2025-09-16T12:28:46.554",
     "findings": [
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r19.<java.io.PrintWriter: java.io.PrintWriter append(java.lang.CharSequence)>(r6)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "$r16 = new java.lang.StringBuilder",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\n\")",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 3
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r6 = virtualinvoke $r27.<java.io.BufferedReader: java.lang.String readLine()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r19.<java.io.PrintWriter: java.io.PrintWriter append(java.lang.CharSequence)>(r6)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r2 = $r16",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"xxx\", $r7)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"xxx\", r6)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "$r16 = new java.lang.StringBuilder",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\n\")",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 3
-                    }
-                ]
-            ]
-        },
         {
             "source": {
                 "statement": "",
@@ -314,7 +98,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                        "IRstatement": "$r7 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()"
                     }
                 ]
             },
@@ -347,7 +131,7 @@
                         "methodName": "private void postMailList()",
                         "className": "solution.newsandroid.MainviewActivity",
                         "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\n\")",
+                        "IRstatement": "r2 = $r16",
                         "ID": 2
                     },
                     {
@@ -357,6 +141,312 @@
                         "lineNo": -1,
                         "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r19.<java.io.PrintWriter: java.io.PrintWriter append(java.lang.CharSequence)>(r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r16 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = $r16",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r6 = virtualinvoke $r27.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r19.<java.io.PrintWriter: java.io.PrintWriter append(java.lang.CharSequence)>(r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = $r16",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"xxx\", r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r16 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = $r16",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"xxx\", $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void postMailList()",
+                "className": "solution.newsandroid.MainviewActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"xxx\", $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r16 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void postMailList()",
+                        "className": "solution.newsandroid.MainviewActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
                     }
                 ]
             ]
@@ -405,7 +495,7 @@
                         "methodName": "private void postMailList()",
                         "className": "solution.newsandroid.MainviewActivity",
                         "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\n\")",
+                        "IRstatement": "r2 = $r16",
                         "ID": 2
                     },
                     {
@@ -415,56 +505,6 @@
                         "lineNo": -1,
                         "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 3
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private void postMailList()",
-                "className": "solution.newsandroid.MainviewActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"xxx\", $r7)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
                     }
                 ]
             ]
