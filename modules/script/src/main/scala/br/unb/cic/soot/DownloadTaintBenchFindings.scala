@@ -1,4 +1,4 @@
-package br.unb.cic.soot.scripts
+package br.unb.cic.soot
 
 import org.apache.commons.io.FileUtils
 

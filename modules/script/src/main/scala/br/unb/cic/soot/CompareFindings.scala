@@ -1,4 +1,4 @@
-package br.unb.cic.soot.scripts
+package br.unb.cic.soot
 
 import java.io.{File, PrintWriter}
 import scala.io.Source
@@ -15,13 +15,13 @@ import scala.collection.mutable
           "
   *
   * Example:
-  *   sbt "core/runMain br.unb.cic.soot.scripts.CompareFindings 
+  *   sbt "script/runMain br.unb.cic.soot.CompareFindings
             docs-metrics/taintbench/experiment-I/findings 
             docs-metrics/taintbench/source/findings
             docs-metrics/taintbench/experiment-I"
   *
   * Example:
-  *   sbt "core/runMain br.unb.cic.soot.scripts.CompareFindings 
+  *   sbt "script/runMain br.unb.cic.soot.CompareFindings
             docs-metrics/taintbench/experiment-II/findings 
             docs-metrics/taintbench/source/findings
             docs-metrics/taintbench/experiment-II"
