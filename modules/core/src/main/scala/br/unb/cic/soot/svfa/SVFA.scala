@@ -1,13 +1,8 @@
 package br.unb.cic.soot.svfa
 
-import br.unb.cic.soot.graph.{GraphNode, SimpleNode, SinkNode, SourceNode, Statement}
+import br.unb.cic.soot.graph.GraphNode
 import soot._
 import br.unb.cic.soot.svfa.configuration.SootConfiguration
-import ujson._
-
-import java.io.{BufferedWriter, FileWriter}
-import java.nio.file.Paths
-import java.time.{LocalDate, LocalTime}
 
 /** Base class for all implementations of SVFA algorithms.
   */
