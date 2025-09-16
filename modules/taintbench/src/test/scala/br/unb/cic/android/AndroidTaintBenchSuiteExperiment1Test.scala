@@ -518,9 +518,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
 
 //    val svfa = new AndroidTaintBenchTest(nameAPK)
 //    svfa.buildSparseValueFlowGraph()
+    createJsonReport(Set() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = 0
-    val executionTime = 0.0
 
     assert(actual == expected)
   }
