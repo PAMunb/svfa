@@ -143,9 +143,9 @@ object CompareFindings extends App {
 
       val matches = compareConflicts(actualConflictsByFile, expectedConflictsByFile).size
       totalMatches += matches
-      writer.write(fileName + "," + actualFindingsSize + "," + expectedFindingsSize + "," + matches + "\n")
+      writer.write(s"$fileName,$actualFindingsSize,$expectedFindingsSize,$matches\n")
     }
-    writer.write("Total, " + totalActualFindings + "," + totalExpectedFindings + "," + totalMatches + "\n")
+    writer.write(s"Total,$totalActualFindings,$totalExpectedFindings,$totalMatches\n")
     writer.close()
   }
 }
