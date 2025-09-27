@@ -1,33 +1,33 @@
 {
     "fileName": "cajino_baidu.apk",
-    "day": "2025-09-10T21:12:20.596",
+    "day": "2025-09-16T10:21:29.547",
     "findings": [
         {
             "source": {
                 "statement": "",
-                "methodName": "public static void a(java.lang.String)",
-                "className": "com.baidu.android.pushservice.util.m",
+                "methodName": "public boolean a(android.content.Intent)",
+                "className": "com.baidu.android.pushservice.x",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r10 = virtualinvoke $r1.<java.io.File: java.io.File[] listFiles()>()"
+                        "IRstatement": "$r4 = virtualinvoke $r1.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"app_id\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void a(java.lang.String)",
-                "className": "com.baidu.android.pushservice.util.m",
+                "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                "className": "com.baidu.android.pushservice.util.PushDatabase",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r1.<java.io.File: boolean delete()>()"
+                        "IRstatement": "virtualinvoke $r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>($r4, $r8)"
                     }
                 ]
             },
@@ -35,11 +35,43 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static void a(java.lang.String)",
-                        "className": "com.baidu.android.pushservice.util.m",
+                        "methodName": "public void b(android.content.Context, java.lang.String, java.lang.String)",
+                        "className": "com.baidu.android.pushservice.message.PublicMsg",
                         "lineNo": -1,
-                        "IRstatement": "$r1 = $r10[$i0]",
+                        "IRstatement": "$r3 := @parameter2: java.lang.String",
                         "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(java.lang.String)",
+                        "className": "com.baidu.android.pushservice.b.b",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(java.lang.String)",
+                        "className": "com.baidu.android.pushservice.b.b",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.baidu.android.pushservice.b.b: java.lang.String a> = $r1",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public java.lang.String a()",
+                        "className": "com.baidu.android.pushservice.b.b",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = r0.<com.baidu.android.pushservice.b.b: java.lang.String a>",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                        "className": "com.baidu.android.pushservice.util.PushDatabase",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r1.<com.baidu.android.pushservice.b.b: java.lang.String a()>()",
+                        "ID": 5
                     }
                 ]
             ]
@@ -121,6 +153,198 @@
         {
             "source": {
                 "statement": "",
+                "methodName": "private static void deletTempFile(java.lang.String)",
+                "className": "ca.ji.no.method10.BaiduUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke r1.<java.io.File: void <init>(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void deletTempFile(java.lang.String)",
+                "className": "ca.ji.no.method10.BaiduUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r1.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private static void deletTempFile(java.lang.String)",
+                        "className": "ca.ji.no.method10.BaiduUtils",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = new java.io.File",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void deletFileByPath(android.content.Context, java.lang.String)",
+                "className": "ca.ji.no.method10.BaiduUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke r2.<java.io.File: void <init>(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void deletFileByPath(android.content.Context, java.lang.String)",
+                "className": "ca.ji.no.method10.BaiduUtils",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r2.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private static void deletFileByPath(android.content.Context, java.lang.String)",
+                        "className": "ca.ji.no.method10.BaiduUtils",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = new java.io.File",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static com.baidu.android.pushservice.b.b needToInsertUpdate(android.database.sqlite.SQLiteDatabase, com.baidu.android.pushservice.b.b)",
+                "className": "com.baidu.android.pushservice.util.PushDatabase",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = interfaceinvoke $r6.<android.database.Cursor: int getInt(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                "className": "com.baidu.android.pushservice.util.PushDatabase",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r0.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>(\"AppInfo\", $r5, $r4, $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                        "className": "com.baidu.android.pushservice.util.PushDatabase",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 := @parameter1: int",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                        "className": "com.baidu.android.pushservice.util.PushDatabase",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                        "className": "com.baidu.android.pushservice.util.PushDatabase",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
+                        "className": "com.baidu.android.pushservice.util.PushDatabase",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String)",
+                "className": "com.baidu.android.pushservice.util.m",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r1.<java.io.File: java.io.File[] listFiles()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void a(java.lang.String)",
+                "className": "com.baidu.android.pushservice.util.m",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r1.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void a(java.lang.String)",
+                        "className": "com.baidu.android.pushservice.util.m",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = $r10[$i0]",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
                 "methodName": "public boolean a(android.content.Intent)",
                 "className": "com.baidu.android.pushservice.x",
                 "lineNo": -1,
@@ -195,64 +419,6 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static com.baidu.android.pushservice.b.b needToInsertUpdate(android.database.sqlite.SQLiteDatabase, com.baidu.android.pushservice.b.b)",
-                "className": "com.baidu.android.pushservice.util.PushDatabase",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$i0 = interfaceinvoke $r6.<android.database.Cursor: int getInt(int)>($i0)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
-                "className": "com.baidu.android.pushservice.util.PushDatabase",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$i0 = virtualinvoke $r0.<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>(\"AppInfo\", $r5, $r4, $r2)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
-                        "className": "com.baidu.android.pushservice.util.PushDatabase",
-                        "lineNo": -1,
-                        "IRstatement": "$i0 := @parameter1: int",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
-                        "className": "com.baidu.android.pushservice.util.PushDatabase",
-                        "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
-                        "className": "com.baidu.android.pushservice.util.PushDatabase",
-                        "lineNo": -1,
-                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 3
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
                 "methodName": "public boolean a(android.content.Intent)",
                 "className": "com.baidu.android.pushservice.x",
                 "lineNo": -1,
@@ -327,29 +493,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public boolean a(android.content.Intent)",
-                "className": "com.baidu.android.pushservice.x",
+                "methodName": "public static boolean a(android.content.Context)",
+                "className": "com.baidu.android.pushservice.util.m",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r1.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"app_id\")"
+                        "IRstatement": "specialinvoke $r1.<java.io.File: void <init>(java.lang.String)>(\"/data/data/root\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
-                "className": "com.baidu.android.pushservice.util.PushDatabase",
+                "methodName": "public static boolean a(android.content.Context)",
+                "className": "com.baidu.android.pushservice.util.m",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>($r4, $r8)"
+                        "IRstatement": "virtualinvoke $r1.<java.io.File: boolean delete()>()"
                     }
                 ]
             },
@@ -357,43 +523,11 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public void b(android.content.Context, java.lang.String, java.lang.String)",
-                        "className": "com.baidu.android.pushservice.message.PublicMsg",
+                        "methodName": "public static boolean a(android.content.Context)",
+                        "className": "com.baidu.android.pushservice.util.m",
                         "lineNo": -1,
-                        "IRstatement": "$r3 := @parameter2: java.lang.String",
+                        "IRstatement": "$r1 = new java.io.File",
                         "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(java.lang.String)",
-                        "className": "com.baidu.android.pushservice.b.b",
-                        "lineNo": -1,
-                        "IRstatement": "$r1 := @parameter0: java.lang.String",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void <init>(java.lang.String)",
-                        "className": "com.baidu.android.pushservice.b.b",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.baidu.android.pushservice.b.b: java.lang.String a> = $r1",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public java.lang.String a()",
-                        "className": "com.baidu.android.pushservice.b.b",
-                        "lineNo": -1,
-                        "IRstatement": "r1 = r0.<com.baidu.android.pushservice.b.b: java.lang.String a>",
-                        "ID": 4
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static int updateAppInfo(android.database.sqlite.SQLiteDatabase, int, com.baidu.android.pushservice.b.b)",
-                        "className": "com.baidu.android.pushservice.util.PushDatabase",
-                        "lineNo": -1,
-                        "IRstatement": "$r8 = virtualinvoke $r1.<com.baidu.android.pushservice.b.b: java.lang.String a()>()",
-                        "ID": 5
                     }
                 ]
             ]

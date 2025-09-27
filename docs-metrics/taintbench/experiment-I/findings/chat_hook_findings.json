@@ -1,19 +1,19 @@
 {
     "fileName": "chat_hook.apk",
-    "day": "2025-09-10T21:12:21.972",
+    "day": "2025-09-16T10:21:30.898",
     "findings": [
         {
             "source": {
                 "statement": "",
-                "methodName": "public static java.lang.Object getDefault()",
-                "className": "com.example.chathook.utils.MActivityManagerNative",
+                "methodName": "public static java.util.List getTasks(java.lang.Object, int, int)",
+                "className": "com.example.chathook.utils.MIActivityManager",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getDefault\", null)"
+                        "IRstatement": "$r5 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getTasks\", $r3)"
                     }
                 ]
             },
@@ -33,59 +33,64 @@
             },
             "intermediateFlows": [
                 [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void getSN()",
+                "className": "com.example.chathook.InjectApplicaiton",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void getSN()",
+                "className": "com.example.chathook.InjectApplicaiton",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ligan\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
                     {
                         "statement": "",
-                        "methodName": "public static java.lang.Object getDefault()",
-                        "className": "com.example.chathook.utils.MActivityManagerNative",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
                         "lineNo": -1,
-                        "targetName": "",
-                        "targetNo": 0,
-                        "IRs": [
-                            {
-                                "type": "Jimple",
-                                "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)"
-                            }
-                        ]
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
+                        "ID": 1
                     },
                     {
                         "statement": "",
-                        "methodName": "public void onCreate()",
-                        "className": "com.example.chathook.ProcessMonitor",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
                         "lineNo": -1,
-                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.utils.MActivityManagerNative: java.lang.Object getDefault()>()",
+                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
                         "ID": 2
                     },
                     {
                         "statement": "",
-                        "methodName": "public void onCreate()",
-                        "className": "com.example.chathook.ProcessMonitor",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
                         "lineNo": -1,
-                        "IRstatement": "r0.<com.example.chathook.ProcessMonitor: java.lang.Object acNative> = $r2",
+                        "IRstatement": "$r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "static java.lang.Object access$0(com.example.chathook.ProcessMonitor)",
-                        "className": "com.example.chathook.ProcessMonitor",
-                        "lineNo": -1,
-                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.Object acNative>",
-                        "ID": 4
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.example.chathook.ProcessMonitor$MyThread",
-                        "lineNo": -1,
-                        "IRstatement": "$r4 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.Object access$0(com.example.chathook.ProcessMonitor)>($r3)",
-                        "ID": 5
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static java.util.List getTasks(java.lang.Object, int, int)",
-                        "className": "com.example.chathook.utils.MIActivityManager",
-                        "lineNo": -1,
-                        "IRstatement": "$r0 := @parameter0: java.lang.Object",
-                        "ID": 6
                     }
                 ]
             ]
@@ -126,7 +131,7 @@
                         "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
                         "className": "com.example.chathook.HookReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3)",
                         "ID": 1
                     },
                     {
@@ -134,7 +139,7 @@
                         "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
                         "className": "com.example.chathook.HookReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
                         "ID": 2
                     },
                     {
@@ -142,8 +147,16 @@
                         "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
                         "className": "com.example.chathook.HookReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r9 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9)",
                         "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.example.chathook.HookReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r9 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
                     }
                 ]
             ]
@@ -173,7 +186,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"ligan\", $r4)"
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r6)"
                     }
                 ]
             },
@@ -184,7 +197,7 @@
                         "methodName": "public void getSN()",
                         "className": "com.example.chathook.InjectApplicaiton",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "IRstatement": "$r7 = new java.lang.StringBuilder",
                         "ID": 1
                     },
                     {
@@ -192,44 +205,17 @@
                         "methodName": "public void getSN()",
                         "className": "com.example.chathook.InjectApplicaiton",
                         "lineNo": -1,
-                        "IRstatement": "$r4 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
                         "ID": 2
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static java.lang.Object getDefault()",
-                "className": "com.example.chathook.utils.MActivityManagerNative",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
+                    },
                     {
-                        "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getDefault\", null)"
+                        "statement": "",
+                        "methodName": "public void getSN()",
+                        "className": "com.example.chathook.InjectApplicaiton",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
                     }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static java.lang.Object getDefault()",
-                "className": "com.example.chathook.utils.MActivityManagerNative",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
                 ]
             ]
         },
@@ -350,65 +336,50 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void getSN()",
-                "className": "com.example.chathook.InjectApplicaiton",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getDefault\", null)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void getSN()",
-                "className": "com.example.chathook.InjectApplicaiton",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"yincc\", $r6)"
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
-                    {
-                        "statement": "",
-                        "methodName": "public void getSN()",
-                        "className": "com.example.chathook.InjectApplicaiton",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void getSN()",
-                        "className": "com.example.chathook.InjectApplicaiton",
-                        "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
-                    }
+                    
                 ]
             ]
         },
         {
             "source": {
                 "statement": "",
-                "methodName": "public static java.util.List getTasks(java.lang.Object, int, int)",
-                "className": "com.example.chathook.utils.MIActivityManager",
+                "methodName": "public static java.lang.Object getDefault()",
+                "className": "com.example.chathook.utils.MActivityManagerNative",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getTasks\", $r3)"
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getDefault\", null)"
                     }
                 ]
             },
@@ -428,7 +399,60 @@
             },
             "intermediateFlows": [
                 [
-                    
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.Object getDefault()",
+                        "className": "com.example.chathook.utils.MActivityManagerNative",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)"
+                            }
+                        ]
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate()",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = staticinvoke <com.example.chathook.utils.MActivityManagerNative: java.lang.Object getDefault()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate()",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.example.chathook.ProcessMonitor: java.lang.Object acNative> = $r2",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static java.lang.Object access$0(com.example.chathook.ProcessMonitor)",
+                        "className": "com.example.chathook.ProcessMonitor",
+                        "lineNo": -1,
+                        "IRstatement": "r1 = $r0.<com.example.chathook.ProcessMonitor: java.lang.Object acNative>",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.example.chathook.ProcessMonitor$MyThread",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = staticinvoke <com.example.chathook.ProcessMonitor: java.lang.Object access$0(com.example.chathook.ProcessMonitor)>($r3)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.util.List getTasks(java.lang.Object, int, int)",
+                        "className": "com.example.chathook.utils.MIActivityManager",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.Object",
+                        "ID": 6
+                    }
                 ]
             ]
         }

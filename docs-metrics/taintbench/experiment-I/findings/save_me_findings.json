@@ -1,6 +1,6 @@
 {
     "fileName": "save_me.apk",
-    "day": "2025-09-10T21:13:47.510",
+    "day": "2025-09-16T10:22:42.371",
     "findings": [
         {
             "source": {
@@ -13,7 +13,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r11 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>(1)"
+                        "IRstatement": "$r10 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>(2)"
                     }
                 ]
             },
@@ -27,7 +27,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"user_name\", $r2)"
+                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"user_pass\", $r4)"
                     }
                 ]
             },
@@ -38,7 +38,49 @@
                         "methodName": "public void putInformation(com.savemebeta.DatabaseOperationssmssave, java.lang.String, java.lang.String, java.lang.String)",
                         "className": "com.savemebeta.DatabaseOperationssmssave",
                         "lineNo": -1,
-                        "IRstatement": "$r2 := @parameter1: java.lang.String",
+                        "IRstatement": "$r4 := @parameter3: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void getContacts()",
+                "className": "com.savemebeta.CO",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r10 = interfaceinvoke $r20.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void putInformation(com.savemebeta.DatabaseOperations, java.lang.String, java.lang.String, java.lang.String)",
+                "className": "com.savemebeta.DatabaseOperations",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"user_pass\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void putInformation(com.savemebeta.DatabaseOperations, java.lang.String, java.lang.String, java.lang.String)",
+                        "className": "com.savemebeta.DatabaseOperations",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 := @parameter3: java.lang.String",
                         "ID": 1
                     }
                 ]
@@ -131,29 +173,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void getContacts()",
-                "className": "com.savemebeta.CO",
+                "methodName": "public void refreshMessagelist()",
+                "className": "com.savemebeta.Scan",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "r10 = interfaceinvoke $r20.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                        "IRstatement": "$r11 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>(1)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void putInformation(com.savemebeta.DatabaseOperations, java.lang.String, java.lang.String, java.lang.String)",
-                "className": "com.savemebeta.DatabaseOperations",
+                "methodName": "public void putInformation(com.savemebeta.DatabaseOperationssmssave, java.lang.String, java.lang.String, java.lang.String)",
+                "className": "com.savemebeta.DatabaseOperationssmssave",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"user_pass\", $r4)"
+                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"user_name\", $r2)"
                     }
                 ]
             },
@@ -161,10 +203,10 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public void putInformation(com.savemebeta.DatabaseOperations, java.lang.String, java.lang.String, java.lang.String)",
-                        "className": "com.savemebeta.DatabaseOperations",
+                        "methodName": "public void putInformation(com.savemebeta.DatabaseOperationssmssave, java.lang.String, java.lang.String, java.lang.String)",
+                        "className": "com.savemebeta.DatabaseOperationssmssave",
                         "lineNo": -1,
-                        "IRstatement": "$r4 := @parameter3: java.lang.String",
+                        "IRstatement": "$r2 := @parameter1: java.lang.String",
                         "ID": 1
                     }
                 ]
@@ -245,7 +287,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"uploadFile\", $r1)"
+                        "IRstatement": "virtualinvoke $r15.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r1)"
                     }
                 ]
             },
@@ -272,7 +314,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_\")",
                         "ID": 3
                     },
                     {
@@ -280,7 +322,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".vcf\")",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
                         "ID": 4
                     },
                     {
@@ -288,7 +330,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r6 = new java.lang.StringBuilder",
                         "ID": 5
                     },
                     {
@@ -296,31 +338,31 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "r0.<com.savemebeta.Scan: java.lang.String uploadFileName> = $r7",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)",
                         "ID": 6
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public void getVCF()",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = $r4.<com.savemebeta.Scan: java.lang.String uploadFileName>",
+                        "IRstatement": "r1 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 7
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public void getVCF()",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "IRstatement": "r0.<com.savemebeta.Scan: java.lang.String uploadFilePath> = r1",
                         "ID": 8
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r1 = r0.<com.savemebeta.Scan: java.lang.String uploadFilePath>",
                         "ID": 9
                     },
                     {
@@ -328,7 +370,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "IRstatement": "$r11 = new java.lang.StringBuilder",
                         "ID": 10
                     },
                     {
@@ -336,7 +378,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1)",
+                        "IRstatement": "$r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*****\")",
                         "ID": 11
                     },
                     {
@@ -344,8 +386,24 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r1 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"--\")",
                         "ID": 12
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\r\\n\")",
+                        "ID": 13
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 14
                     }
                 ]
             ]
@@ -402,7 +460,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_\")",
                         "ID": 3
                     },
                     {
@@ -410,7 +468,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".vcf\")",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
                         "ID": 4
                     },
                     {
@@ -418,7 +476,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r6 = new java.lang.StringBuilder",
                         "ID": 5
                     },
                     {
@@ -426,31 +484,31 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "r0.<com.savemebeta.Scan: java.lang.String uploadFileName> = $r7",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)",
                         "ID": 6
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public void getVCF()",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = $r4.<com.savemebeta.Scan: java.lang.String uploadFileName>",
+                        "IRstatement": "r1 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 7
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public void getVCF()",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "IRstatement": "r0.<com.savemebeta.Scan: java.lang.String uploadFilePath> = r1",
                         "ID": 8
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r1 = r0.<com.savemebeta.Scan: java.lang.String uploadFilePath>",
                         "ID": 9
                     },
                     {
@@ -458,7 +516,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "IRstatement": "$r11 = new java.lang.StringBuilder",
                         "ID": 10
                     },
                     {
@@ -466,7 +524,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1)",
+                        "IRstatement": "$r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*****\")",
                         "ID": 11
                     },
                     {
@@ -474,7 +532,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\"\")",
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"--\")",
                         "ID": 12
                     },
                     {
@@ -521,7 +579,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r15.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r1)"
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"uploadFile\", $r1)"
                     }
                 ]
             },
@@ -548,7 +606,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_\")",
                         "ID": 3
                     },
                     {
@@ -556,7 +614,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".vcf\")",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
                         "ID": 4
                     },
                     {
@@ -564,7 +622,7 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r6 = new java.lang.StringBuilder",
                         "ID": 5
                     },
                     {
@@ -572,31 +630,31 @@
                         "methodName": "public void getVCF()",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "r0.<com.savemebeta.Scan: java.lang.String uploadFileName> = $r7",
+                        "IRstatement": "$r6 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1)",
                         "ID": 6
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public void getVCF()",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = $r4.<com.savemebeta.Scan: java.lang.String uploadFileName>",
+                        "IRstatement": "r1 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>()",
                         "ID": 7
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public void getVCF()",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "IRstatement": "r0.<com.savemebeta.Scan: java.lang.String uploadFilePath> = r1",
                         "ID": 8
                     },
                     {
                         "statement": "",
-                        "methodName": "public void run()",
-                        "className": "com.savemebeta.Scan$9",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r1 = r0.<com.savemebeta.Scan: java.lang.String uploadFilePath>",
                         "ID": 9
                     },
                     {
@@ -604,7 +662,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "IRstatement": "$r11 = new java.lang.StringBuilder",
                         "ID": 10
                     },
                     {
@@ -612,7 +670,7 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1)",
+                        "IRstatement": "$r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*****\")",
                         "ID": 11
                     },
                     {
@@ -620,50 +678,24 @@
                         "methodName": "public int uploadFile(java.lang.String)",
                         "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r1 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"--\")",
                         "ID": 12
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void refreshMessagelist()",
-                "className": "com.savemebeta.Scan",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r10 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>(2)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void putInformation(com.savemebeta.DatabaseOperationssmssave, java.lang.String, java.lang.String, java.lang.String)",
-                "className": "com.savemebeta.DatabaseOperationssmssave",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"user_pass\", $r4)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
+                    },
                     {
                         "statement": "",
-                        "methodName": "public void putInformation(com.savemebeta.DatabaseOperationssmssave, java.lang.String, java.lang.String, java.lang.String)",
-                        "className": "com.savemebeta.DatabaseOperationssmssave",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
                         "lineNo": -1,
-                        "IRstatement": "$r4 := @parameter3: java.lang.String",
-                        "ID": 1
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\r\\n\")",
+                        "ID": 13
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int uploadFile(java.lang.String)",
+                        "className": "com.savemebeta.Scan",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 14
                     }
                 ]
             ]

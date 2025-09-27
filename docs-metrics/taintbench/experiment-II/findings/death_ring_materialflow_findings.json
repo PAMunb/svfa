@@ -1,7 +1,42 @@
 {
     "fileName": "death_ring_materialflow.apk",
-    "day": "2025-09-10T21:22:45.217",
+    "day": "2025-09-16T12:26:58.764",
     "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r11 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r14.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
         {
             "source": {
                 "statement": "",
@@ -19,15 +54,15 @@
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.qc.access.SmsReceiver",
+                "methodName": "public static void send2(java.lang.String, java.lang.String)",
+                "className": "com.qc.model.SmsSenderAndReceiver",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$z0 = virtualinvoke $r7.<java.lang.String: boolean startsWith(java.lang.String)>(\"10086\")"
+                        "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r1, null, null)"
                     }
                 ]
             },
@@ -62,8 +97,16 @@
                         "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
                         "className": "com.qc.access.SmsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber>",
+                        "IRstatement": "$r14 = r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber>",
                         "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void send2(java.lang.String, java.lang.String)",
+                        "className": "com.qc.model.SmsSenderAndReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 5
                     }
                 ]
             ]
@@ -71,29 +114,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
-                "className": "com.qc.common.WapApnHelper",
+                "methodName": "private static byte[] getRawKey(byte[]) throws java.lang.Exception",
+                "className": "com.qc.util.SimpleCrypto",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>()"
+                        "IRstatement": "$r2 = staticinvoke <java.security.SecureRandom: java.security.SecureRandom getInstance(java.lang.String)>(\"SHA1PRNG\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
-                "className": "com.qc.common.WapApnHelper",
+                "methodName": "private static byte[] getRawKey(byte[]) throws java.lang.Exception",
+                "className": "com.qc.util.SimpleCrypto",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>()"
+                        "IRstatement": "virtualinvoke $r2.<java.security.SecureRandom: void setSeed(byte[])>($r0)"
                     }
                 ]
             },
@@ -106,129 +149,35 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static boolean installApp(java.lang.String, android.content.Context)",
-                "className": "com.qc.common.InstallEngine",
+                "methodName": "boolean getMobileDataStatus()",
+                "className": "com.qc.common.WapApnHelper",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r6 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r0)"
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>()"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static boolean installApp(java.lang.String, android.content.Context)",
-                "className": "com.qc.common.InstallEngine",
+                "methodName": "boolean getMobileDataStatus()",
+                "className": "com.qc.common.WapApnHelper",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setDataAndType(android.net.Uri,java.lang.String)>($r6, \"application/vnd.android.package-archive\")"
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>()"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
                     
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void ring_open(android.content.Context)",
-                "className": "com.qc.common.Funs",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r1 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"audio\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void ring_open(android.content.Context)",
-                "className": "com.qc.common.Funs",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r2.<android.media.AudioManager: void setVibrateSetting(int,int)>(0, 0)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void ring_open(android.content.Context)",
-                        "className": "com.qc.common.Funs",
-                        "lineNo": -1,
-                        "IRstatement": "r2 = (android.media.AudioManager) $r1",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                "className": "com.qc.entity.UrlGenerator",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r13 = virtualinvoke $r12.<android.content.res.Resources: android.util.DisplayMetrics getDisplayMetrics()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                "className": "com.qc.entity.UrlGenerator",
-                "lineNo": -1,
-                "IRstatement": "$r4 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()",
-                "ID": -1
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$i0 = $r13.<android.util.DisplayMetrics: int heightPixels>",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"*\")",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
-                        "ID": 3
-                    }
                 ]
             ]
         },
@@ -270,81 +219,50 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.qc.access.SmsReceiver",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke r4.<android.telephony.gsm.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>()"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.qc.access.SmsReceiver",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$z0 = virtualinvoke $r7.<java.lang.String: boolean startsWith(java.lang.String)>(\"10010\")"
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.lang.Class: java.lang.String getName()>()"
                     }
                 ]
             },
             "intermediateFlows": [
                 [
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = new java.lang.StringBuilder",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke r6.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber> = $r7",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber>",
-                        "ID": 4
-                    }
+                    
                 ]
             ]
         },
         {
             "source": {
                 "statement": "",
-                "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
-                "className": "com.qc.base.BitmapCache",
+                "methodName": "public static int getId(android.content.Context, java.lang.String)",
+                "className": "com.qc.widget.ResourceUtil",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r12 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream)>(r3)"
+                        "IRstatement": "$i0 = virtualinvoke $r2.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r1, \"id\", $r3)"
                     }
                 ]
             },
@@ -366,19 +284,11 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
-                        "className": "com.qc.base.BitmapCache",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = $r12",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
                         "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
                         "className": "com.qc.widget.NotificationView",
                         "lineNo": -1,
-                        "IRstatement": "$r17 = virtualinvoke $r15.<com.qc.base.BitmapCache: android.graphics.Bitmap getBitmap(android.content.Context,java.lang.Integer)>($r0, $r16)",
-                        "ID": 2
+                        "IRstatement": "$i0 = staticinvoke <com.qc.widget.ResourceUtil: int getId(android.content.Context,java.lang.String)>($r0, \"abc_img_2\")",
+                        "ID": 1
                     }
                 ]
             ]
@@ -421,343 +331,7 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void createFlow(android.graphics.Bitmap, java.lang.String)",
-                "className": "com.qc.widget.AdsWindow",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r8 = virtualinvoke $r7.<android.content.res.Resources: android.graphics.drawable.Drawable getDrawable(int)>($i0)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void createFlow(android.graphics.Bitmap, java.lang.String)",
-                "className": "com.qc.widget.AdsWindow",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r6.<android.widget.ImageView: void setImageDrawable(android.graphics.drawable.Drawable)>($r8)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void onClick(android.view.View)",
-                "className": "com.qc.widget.AdsWindow$1",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r4 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r3)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void onClick(android.view.View)",
-                "className": "com.qc.widget.AdsWindow$1",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r2.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r4)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"notification\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r6.<android.app.NotificationManager: void notify(int,android.app.Notification)>($i0, r3)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                        "className": "com.qc.widget.NotificationView",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = (android.app.NotificationManager) $r5",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static int getDrawableId(android.content.Context, java.lang.String)",
-                "className": "com.qc.widget.ResourceUtil",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$i0 = virtualinvoke $r2.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r1, \"drawable\", $r3)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewResource(int,int)>($i2, $i0)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                        "className": "com.qc.widget.NotificationView",
-                        "lineNo": -1,
-                        "IRstatement": "$i0 = staticinvoke <com.qc.widget.ResourceUtil: int getDrawableId(android.content.Context,java.lang.String)>($r0, \"abc_icon\")",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "boolean getMobileDataStatus()",
-                "className": "com.qc.common.WapApnHelper",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "boolean getMobileDataStatus()",
-                "className": "com.qc.common.WapApnHelper",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r3)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "r13 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r14, 0)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r7, $r9, r13)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "private static byte[] getRawKey(byte[]) throws java.lang.Exception",
-                "className": "com.qc.util.SimpleCrypto",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r2 = staticinvoke <java.security.SecureRandom: java.security.SecureRandom getInstance(java.lang.String)>(\"SHA1PRNG\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "private static byte[] getRawKey(byte[]) throws java.lang.Exception",
-                "className": "com.qc.util.SimpleCrypto",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<java.security.SecureRandom: void setSeed(byte[])>($r0)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static int getId(android.content.Context, java.lang.String)",
-                "className": "com.qc.widget.ResourceUtil",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$i0 = virtualinvoke $r2.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r1, \"id\", $r3)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setTextViewText(int,java.lang.CharSequence)>($i0, $r7)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                        "className": "com.qc.widget.NotificationView",
-                        "lineNo": -1,
-                        "IRstatement": "$i0 = staticinvoke <com.qc.widget.ResourceUtil: int getId(android.content.Context,java.lang.String)>($r0, \"abc_text_1\")",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r11 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r7)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r14.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r11)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void startConfigureDownLoadHandler(android.content.Context, int)",
+                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
                 "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
@@ -771,7 +345,7 @@
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void startConfigureDownLoadHandler(android.content.Context, int)",
+                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
                 "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
@@ -779,7 +353,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r4.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r2)"
+                        "IRstatement": "virtualinvoke r4.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l1, $l3, $r2)"
                     }
                 ]
             },
@@ -787,52 +361,10 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static void startConfigureDownLoadHandler(android.content.Context, int)",
+                        "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
                         "className": "com.qc.base.QCMainCourse",
                         "lineNo": -1,
                         "IRstatement": "r4 = (android.app.AlarmManager) $r3",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r6.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r4)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
-                        "className": "com.qc.base.QCMainCourse",
-                        "lineNo": -1,
-                        "IRstatement": "r6 = (android.app.AlarmManager) $r5",
                         "ID": 1
                     }
                 ]
@@ -864,83 +396,6 @@
                     {
                         "type": "Jimple",
                         "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r1, null, null)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r2 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r1)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
-                        "className": "com.qc.base.QCMainCourse",
-                        "lineNo": -1,
-                        "IRstatement": "r3 = (android.app.AlarmManager) $r2",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r4 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r1, 0)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r6.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r4)"
                     }
                 ]
             },
@@ -1041,7 +496,7 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
+                "methodName": "public static void startConfigureDownLoadHandler(android.content.Context, int)",
                 "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
@@ -1049,13 +504,13 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r1 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, $r4, 0)"
+                        "IRstatement": "$r3 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
+                "methodName": "public static void startConfigureDownLoadHandler(android.content.Context, int)",
                 "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
@@ -1063,7 +518,49 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r1)"
+                        "IRstatement": "virtualinvoke r4.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startConfigureDownLoadHandler(android.content.Context, int)",
+                        "className": "com.qc.base.QCMainCourse",
+                        "lineNo": -1,
+                        "IRstatement": "r4 = (android.app.AlarmManager) $r3",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static boolean installApp(java.lang.String, android.content.Context)",
+                "className": "com.qc.common.InstallEngine",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean installApp(java.lang.String, android.content.Context)",
+                "className": "com.qc.common.InstallEngine",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setDataAndType(android.net.Uri,java.lang.String)>($r6, \"application/vnd.android.package-archive\")"
                     }
                 ]
             },
@@ -1118,29 +615,134 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.qc.access.SmsReceiver",
+                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
+                "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke r4.<android.telephony.gsm.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                        "IRstatement": "$r2 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r1, 0)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void send2(java.lang.String, java.lang.String)",
-                "className": "com.qc.model.SmsSenderAndReceiver",
+                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
+                "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r1, null, null)"
+                        "IRstatement": "virtualinvoke r4.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l1, $l3, $r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r13 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r14, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r7, $r9, r13)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r13 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r14, 134217728)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r7, $r9, r13)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void ring_open(android.content.Context)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"audio\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void ring_open(android.content.Context)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r2.<android.media.AudioManager: void setVibrateSetting(int,int)>(1, 0)"
                     }
                 ]
             },
@@ -1148,43 +750,11 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
+                        "methodName": "public static void ring_open(android.content.Context)",
+                        "className": "com.qc.common.Funs",
                         "lineNo": -1,
-                        "IRstatement": "r6 = new java.lang.StringBuilder",
+                        "IRstatement": "r2 = (android.media.AudioManager) $r1",
                         "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke r6.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber> = $r7",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber>",
-                        "ID": 4
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static void send2(java.lang.String, java.lang.String)",
-                        "className": "com.qc.model.SmsSenderAndReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r0 := @parameter0: java.lang.String",
-                        "ID": 5
                     }
                 ]
             ]
@@ -1192,29 +762,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                "className": "com.qc.entity.UrlGenerator",
+                "methodName": "public static int getDrawableId(android.content.Context, java.lang.String)",
+                "className": "com.qc.widget.ResourceUtil",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r13 = virtualinvoke $r12.<android.content.res.Resources: android.util.DisplayMetrics getDisplayMetrics()>()"
+                        "IRstatement": "$i0 = virtualinvoke $r2.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r1, \"drawable\", $r3)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                "className": "com.qc.entity.UrlGenerator",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewResource(int,int)>($i2, $i0)"
                     }
                 ]
             },
@@ -1222,35 +792,11 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
+                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                        "className": "com.qc.widget.NotificationView",
                         "lineNo": -1,
-                        "IRstatement": "$i0 = $r13.<android.util.DisplayMetrics: int heightPixels>",
+                        "IRstatement": "$i0 = staticinvoke <com.qc.widget.ResourceUtil: int getDrawableId(android.content.Context,java.lang.String)>($r0, \"abc_icon\")",
                         "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r4 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 4
                     }
                 ]
             ]
@@ -1258,29 +804,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public java.util.List getAll()",
-                "className": "com.qc.model.InstalledApkDBHelper",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$i0 = interfaceinvoke $r4.<android.database.Cursor: int getInt(int)>($i0)"
+                        "IRstatement": "$r5 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"notification\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                "className": "com.qc.entity.UrlGenerator",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                        "IRstatement": "virtualinvoke r6.<android.app.NotificationManager: void notify(int,android.app.Notification)>($i0, r3)"
                     }
                 ]
             },
@@ -1288,59 +834,53 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public void setKssiid(int)",
-                        "className": "com.qc.entity.InstalledApk",
+                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                        "className": "com.qc.widget.NotificationView",
                         "lineNo": -1,
-                        "IRstatement": "$i0 := @parameter0: int",
+                        "IRstatement": "r6 = (android.app.NotificationManager) $r5",
                         "ID": 1
-                    },
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void ring_open(android.content.Context)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"audio\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void ring_open(android.content.Context)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r2.<android.media.AudioManager: void setVibrateSetting(int,int)>(0, 0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
                     {
                         "statement": "",
-                        "methodName": "public void setKssiid(int)",
-                        "className": "com.qc.entity.InstalledApk",
+                        "methodName": "public static void ring_open(android.content.Context)",
+                        "className": "com.qc.common.Funs",
                         "lineNo": -1,
-                        "IRstatement": "r0.<com.qc.entity.InstalledApk: int kssiid> = $i0",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public int getKssiid()",
-                        "className": "com.qc.entity.InstalledApk",
-                        "lineNo": -1,
-                        "IRstatement": "i0 = r0.<com.qc.entity.InstalledApk: int kssiid>",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$i0 = virtualinvoke r15.<com.qc.entity.InstalledApk: int getKssiid()>()",
-                        "ID": 4
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
-                        "ID": 5
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\",\")",
-                        "ID": 6
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
-                        "className": "com.qc.entity.UrlGenerator",
-                        "lineNo": -1,
-                        "IRstatement": "$r4 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 7
+                        "IRstatement": "r2 = (android.media.AudioManager) $r1",
+                        "ID": 1
                     }
                 ]
             ]
@@ -1370,7 +910,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewBitmap(int,android.graphics.Bitmap)>($i0, $r17)"
+                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewResource(int,int)>($i2, $i0)"
                     }
                 ]
             },
@@ -1381,49 +921,7 @@
                         "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
                         "className": "com.qc.widget.NotificationView",
                         "lineNo": -1,
-                        "IRstatement": "$i0 = staticinvoke <com.qc.widget.ResourceUtil: int getId(android.content.Context,java.lang.String)>($r0, \"abc_img_2\")",
-                        "ID": 1
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
-                "className": "com.qc.base.QCMainCourse",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r4.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l1, $l3, $r2)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
-                        "className": "com.qc.base.QCMainCourse",
-                        "lineNo": -1,
-                        "IRstatement": "r4 = (android.app.AlarmManager) $r3",
+                        "IRstatement": "$i2 = staticinvoke <com.qc.widget.ResourceUtil: int getId(android.content.Context,java.lang.String)>($r0, \"abc_img_4\")",
                         "ID": 1
                     }
                 ]
@@ -1506,7 +1004,7 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
+                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
                 "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
@@ -1514,13 +1012,13 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r2 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r1, 0)"
+                        "IRstatement": "$r2 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void startRepeatAlarm(android.content.Context, int)",
+                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
                 "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
@@ -1528,42 +1026,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r4.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l1, $l3, $r2)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
-                "className": "com.qc.base.BitmapCache",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r12 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream)>(r4)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewBitmap(int,android.graphics.Bitmap)>($i0, $r17)"
+                        "IRstatement": "virtualinvoke r3.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r1)"
                     }
                 ]
             },
@@ -1571,19 +1034,69 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
-                        "className": "com.qc.base.BitmapCache",
+                        "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
+                        "className": "com.qc.base.QCMainCourse",
                         "lineNo": -1,
-                        "IRstatement": "r6 = $r12",
+                        "IRstatement": "r3 = (android.app.AlarmManager) $r2",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getReplySmsContent(java.util.HashMap, java.lang.String, java.util.List)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke r0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void send2(java.lang.String, java.lang.String)",
+                "className": "com.qc.model.SmsSenderAndReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r1, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getReplySmsContent(java.util.HashMap, java.lang.String, java.util.List)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = (java.lang.String) $r5",
                         "ID": 1
                     },
                     {
                         "statement": "",
-                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                        "className": "com.qc.widget.NotificationView",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "com.qc.access.SmsReceiver",
                         "lineNo": -1,
-                        "IRstatement": "$r17 = virtualinvoke $r15.<com.qc.base.BitmapCache: android.graphics.Bitmap getBitmap(android.content.Context,java.lang.Integer)>($r0, $r16)",
+                        "IRstatement": "$r7 = staticinvoke <com.qc.common.Funs: java.lang.String getReplySmsContent(java.util.HashMap,java.lang.String,java.util.List)>($r13, $r7, $r12)",
                         "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void send2(java.lang.String, java.lang.String)",
+                        "className": "com.qc.model.SmsSenderAndReceiver",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 3
                     }
                 ]
             ]
@@ -1591,29 +1104,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "boolean getMobileDataStatus()",
-                "className": "com.qc.common.WapApnHelper",
+                "methodName": "public void onClick(android.view.View)",
+                "className": "com.qc.widget.AdsWindow$1",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>()"
+                        "IRstatement": "$r4 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r3)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "boolean getMobileDataStatus()",
-                "className": "com.qc.common.WapApnHelper",
+                "methodName": "public void onClick(android.view.View)",
+                "className": "com.qc.widget.AdsWindow$1",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>()"
+                        "IRstatement": "virtualinvoke r2.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r4)"
                     }
                 ]
             },
@@ -1626,29 +1139,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
+                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
+                "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "r13 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r14, 0)"
+                        "IRstatement": "$r1 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, $r4, 0)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
+                "methodName": "public static void startCheckNetWorkHandler(android.content.Context, int)",
+                "className": "com.qc.base.QCMainCourse",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r3.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r7, $r9, r13)"
+                        "IRstatement": "virtualinvoke r3.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r1)"
                     }
                 ]
             },
@@ -1703,29 +1216,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.qc.access.SmsReceiver",
+                "methodName": "public static int getId(android.content.Context, java.lang.String)",
+                "className": "com.qc.widget.ResourceUtil",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = virtualinvoke r4.<android.telephony.gsm.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                        "IRstatement": "$i0 = virtualinvoke $r2.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r1, \"id\", $r3)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                "className": "com.qc.access.SmsReceiver",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$z0 = virtualinvoke $r7.<java.lang.String: boolean startsWith(java.lang.String)>(\"106\")"
+                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setTextViewText(int,java.lang.CharSequence)>($i0, $r7)"
                     }
                 ]
             },
@@ -1733,35 +1246,11 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
+                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                        "className": "com.qc.widget.NotificationView",
                         "lineNo": -1,
-                        "IRstatement": "r6 = new java.lang.StringBuilder",
+                        "IRstatement": "$i0 = staticinvoke <com.qc.widget.ResourceUtil: int getId(android.content.Context,java.lang.String)>($r0, \"abc_text_1\")",
                         "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = virtualinvoke r6.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber> = $r7",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r7 = r0.<com.qc.access.SmsReceiver: java.lang.String smsNumber>",
-                        "ID": 4
                     }
                 ]
             ]
@@ -1791,7 +1280,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r2.<android.media.AudioManager: void setVibrateSetting(int,int)>(1, 0)"
+                        "IRstatement": "virtualinvoke r2.<android.media.AudioManager: void setRingerMode(int)>(2)"
                     }
                 ]
             },
@@ -1811,29 +1300,64 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static int getId(android.content.Context, java.lang.String)",
-                "className": "com.qc.widget.ResourceUtil",
+                "methodName": "boolean getMobileDataStatus()",
+                "className": "com.qc.common.WapApnHelper",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$i0 = virtualinvoke $r2.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($r1, \"id\", $r3)"
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.Class: java.lang.String getName()>()"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                "className": "com.qc.widget.NotificationView",
+                "methodName": "boolean getMobileDataStatus()",
+                "className": "com.qc.common.WapApnHelper",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewResource(int,int)>($i2, $i0)"
+                        "IRstatement": "$r2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.util.List getAll()",
+                "className": "com.qc.model.InstalledApkDBHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = interfaceinvoke $r4.<android.database.Cursor: int getInt(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                "className": "com.qc.entity.UrlGenerator",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
                     }
                 ]
             },
@@ -1841,12 +1365,87 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
-                        "className": "com.qc.widget.NotificationView",
+                        "methodName": "public void setKssiid(int)",
+                        "className": "com.qc.entity.InstalledApk",
                         "lineNo": -1,
-                        "IRstatement": "$i2 = staticinvoke <com.qc.widget.ResourceUtil: int getId(android.content.Context,java.lang.String)>($r0, \"abc_img_4\")",
+                        "IRstatement": "$i0 := @parameter0: int",
                         "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void setKssiid(int)",
+                        "className": "com.qc.entity.InstalledApk",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<com.qc.entity.InstalledApk: int kssiid> = $i0",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int getKssiid()",
+                        "className": "com.qc.entity.InstalledApk",
+                        "lineNo": -1,
+                        "IRstatement": "i0 = r0.<com.qc.entity.InstalledApk: int kssiid>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                        "className": "com.qc.entity.UrlGenerator",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = virtualinvoke r15.<com.qc.entity.InstalledApk: int getKssiid()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                        "className": "com.qc.entity.UrlGenerator",
+                        "lineNo": -1,
+                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                        "className": "com.qc.entity.UrlGenerator",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
                     }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void createFlow(android.graphics.Bitmap, java.lang.String)",
+                "className": "com.qc.widget.AdsWindow",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<android.content.res.Resources: android.graphics.drawable.Drawable getDrawable(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void createFlow(android.graphics.Bitmap, java.lang.String)",
+                "className": "com.qc.widget.AdsWindow",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.widget.ImageView: void setImageDrawable(android.graphics.drawable.Drawable)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
                 ]
             ]
         },
@@ -1919,6 +1518,41 @@
         {
             "source": {
                 "statement": "",
+                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
+                "className": "com.qc.base.QCMainCourse",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r1, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
+                "className": "com.qc.base.QCMainCourse",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
                 "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
                 "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
@@ -1927,7 +1561,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "r13 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r14, 134217728)"
+                        "IRstatement": "r13 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r14, 0)"
                     }
                 ]
             },
@@ -1954,29 +1588,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static java.lang.String getReplySmsContent(java.util.HashMap, java.lang.String, java.util.List)",
-                "className": "com.qc.common.Funs",
+                "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                "className": "com.qc.base.BitmapCache",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r5 = virtualinvoke r0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r6)"
+                        "IRstatement": "$r12 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream)>(r4)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void send2(java.lang.String, java.lang.String)",
-                "className": "com.qc.model.SmsSenderAndReceiver",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r1, null, null)"
+                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewBitmap(int,android.graphics.Bitmap)>($i0, $r17)"
                     }
                 ]
             },
@@ -1984,27 +1618,19 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static java.lang.String getReplySmsContent(java.util.HashMap, java.lang.String, java.util.List)",
-                        "className": "com.qc.common.Funs",
+                        "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                        "className": "com.qc.base.BitmapCache",
                         "lineNo": -1,
-                        "IRstatement": "r3 = (java.lang.String) $r5",
+                        "IRstatement": "r6 = $r12",
                         "ID": 1
                     },
                     {
                         "statement": "",
-                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
-                        "className": "com.qc.access.SmsReceiver",
+                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                        "className": "com.qc.widget.NotificationView",
                         "lineNo": -1,
-                        "IRstatement": "$r7 = staticinvoke <com.qc.common.Funs: java.lang.String getReplySmsContent(java.util.HashMap,java.lang.String,java.util.List)>($r13, $r7, $r12)",
+                        "IRstatement": "$r17 = virtualinvoke $r15.<com.qc.base.BitmapCache: android.graphics.Bitmap getBitmap(android.content.Context,java.lang.Integer)>($r0, $r16)",
                         "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public static void send2(java.lang.String, java.lang.String)",
-                        "className": "com.qc.model.SmsSenderAndReceiver",
-                        "lineNo": -1,
-                        "IRstatement": "$r1 := @parameter1: java.lang.String",
-                        "ID": 3
                     }
                 ]
             ]
@@ -2012,29 +1638,29 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public static void ring_open(android.content.Context)",
-                "className": "com.qc.common.Funs",
+                "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                "className": "com.qc.base.BitmapCache",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r1 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"audio\")"
+                        "IRstatement": "$r12 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream)>(r3)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "public static void ring_open(android.content.Context)",
-                "className": "com.qc.common.Funs",
+                "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                "className": "com.qc.widget.NotificationView",
                 "lineNo": -1,
                 "targetName": "",
                 "targetNo": 0,
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "virtualinvoke r2.<android.media.AudioManager: void setRingerMode(int)>(2)"
+                        "IRstatement": "virtualinvoke r8.<android.widget.RemoteViews: void setImageViewBitmap(int,android.graphics.Bitmap)>($i0, $r17)"
                     }
                 ]
             },
@@ -2042,11 +1668,119 @@
                 [
                     {
                         "statement": "",
-                        "methodName": "public static void ring_open(android.content.Context)",
-                        "className": "com.qc.common.Funs",
+                        "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                        "className": "com.qc.base.BitmapCache",
                         "lineNo": -1,
-                        "IRstatement": "r2 = (android.media.AudioManager) $r1",
+                        "IRstatement": "r6 = $r12",
                         "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, com.qc.entity.AdsInfo)",
+                        "className": "com.qc.widget.NotificationView",
+                        "lineNo": -1,
+                        "IRstatement": "$r17 = virtualinvoke $r15.<com.qc.base.BitmapCache: android.graphics.Bitmap getBitmap(android.content.Context,java.lang.Integer)>($r0, $r16)",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
+                "className": "com.qc.base.QCMainCourse",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
+                "className": "com.qc.base.QCMainCourse",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l1, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startAdsAlertHandler(android.content.Context, int, long)",
+                        "className": "com.qc.base.QCMainCourse",
+                        "lineNo": -1,
+                        "IRstatement": "r6 = (android.app.AlarmManager) $r5",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                "className": "com.qc.entity.UrlGenerator",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r13 = virtualinvoke $r12.<android.content.res.Resources: android.util.DisplayMetrics getDisplayMetrics()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                "className": "com.qc.entity.UrlGenerator",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                        "className": "com.qc.entity.UrlGenerator",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = $r13.<android.util.DisplayMetrics: int heightPixels>",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                        "className": "com.qc.entity.UrlGenerator",
+                        "lineNo": -1,
+                        "IRstatement": "$r14 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static com.qc.entity.UrlGenerator getInstance(android.content.Context)",
+                        "className": "com.qc.entity.UrlGenerator",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
                     }
                 ]
             ]

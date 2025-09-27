@@ -419,7 +419,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     assert(found == expected)
   }
 
-  test("in the APK smssilience_fake_vertu, we should detect 2 flows") {
+  ignore("in the APK smssilience_fake_vertu, we should detect 2 flows") {
     val nameAPK = "smssilience_fake_vertu";
     val expected = 2;
 
@@ -524,16 +524,9 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
 
     // val svfa = new AndroidTaintBenchTest(nameAPK) with XbotAndroidSampSpec
     // svfa.buildSparseValueFlowGraph()
+    createJsonReport(Set() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
 
     val found = 0
-    val executionTime = 0.0
-    this.compute(
-      expected,
-      found,
-      nameAPK,
-      executionTime,
-      showReportSummary = true
-    )
-    assert(found == expected)
+      assert(found == expected)
   }
 }

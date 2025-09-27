@@ -1,7 +1,112 @@
 {
     "fileName": "jollyserv.apk",
-    "day": "2025-09-10T21:23:29.147",
+    "day": "2025-09-16T12:27:31.178",
     "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "fm.xtube.VideoActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke r0.<fm.xtube.VideoActivity: android.view.Window getWindow()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "fm.xtube.VideoActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.view.Window: void setFlags(int,int)>(1024, 1024)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onDestroy()",
+                "className": "fm.xtube.VideoActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.content.res.Resources: java.lang.String getString(int)>(2130968581)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onDestroy()",
+                "className": "fm.xtube.VideoActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>($r3, $r6, 500)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean onError(android.media.MediaPlayer, int, int)",
+                "className": "fm.xtube.VideoActivity$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.content.res.Resources: java.lang.String getString(int)>(2130968581)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean onError(android.media.MediaPlayer, int, int)",
+                "className": "fm.xtube.VideoActivity$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>($r3, $r6, 500)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
         {
             "source": {
                 "statement": "",
@@ -53,6 +158,41 @@
         {
             "source": {
                 "statement": "",
+                "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                "className": "sx.jolly.utils.SMS",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                "className": "sx.jolly.utils.SMS",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r6, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
                 "methodName": "public void onCreate(android.os.Bundle)",
                 "className": "fm.xtube.VideoActivity",
                 "lineNo": -1,
@@ -88,142 +228,6 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "public void onCreate(android.os.Bundle)",
-                "className": "fm.xtube.VideoActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r8 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r4)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void onCreate(android.os.Bundle)",
-                "className": "fm.xtube.VideoActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r7.<android.widget.VideoView: void setVideoURI(android.net.Uri)>($r8)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public boolean onError(android.media.MediaPlayer, int, int)",
-                "className": "fm.xtube.VideoActivity$1",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r6 = virtualinvoke $r5.<android.content.res.Resources: java.lang.String getString(int)>(2130968581)"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public boolean onError(android.media.MediaPlayer, int, int)",
-                "className": "fm.xtube.VideoActivity$1",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r7 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>($r3, $r6, 500)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
-                "className": "sx.jolly.utils.SMS",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r4 = virtualinvoke $r3.<org.apache.http.message.BasicNameValuePair: java.lang.String getValue()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
-                "className": "sx.jolly.utils.SMS",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r6, null, null)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    {
-                        "statement": "",
-                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
-                        "className": "sx.jolly.utils.SMS",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = new java.lang.StringBuilder",
-                        "ID": 1
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
-                        "className": "sx.jolly.utils.SMS",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
-                        "className": "sx.jolly.utils.SMS",
-                        "lineNo": -1,
-                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
-                        "ID": 3
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
-                        "className": "sx.jolly.utils.SMS",
-                        "lineNo": -1,
-                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 4
-                    }
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
                 "methodName": "private void goToMain()",
                 "className": "fm.xtube.CheckAgeActivity",
                 "lineNo": -1,
@@ -247,41 +251,6 @@
                     {
                         "type": "Jimple",
                         "IRstatement": "$r7 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>($r4, $r6, 0)"
-                    }
-                ]
-            },
-            "intermediateFlows": [
-                [
-                    
-                ]
-            ]
-        },
-        {
-            "source": {
-                "statement": "",
-                "methodName": "public void onCreate(android.os.Bundle)",
-                "className": "fm.xtube.VideoActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "$r2 = virtualinvoke r0.<fm.xtube.VideoActivity: android.view.Window getWindow()>()"
-                    }
-                ]
-            },
-            "sink": {
-                "statement": "",
-                "methodName": "public void onCreate(android.os.Bundle)",
-                "className": "fm.xtube.VideoActivity",
-                "lineNo": -1,
-                "targetName": "",
-                "targetNo": 0,
-                "IRs": [
-                    {
-                        "type": "Jimple",
-                        "IRstatement": "virtualinvoke $r2.<android.view.Window: void setFlags(int,int)>(1024, 1024)"
                     }
                 ]
             },
@@ -352,7 +321,7 @@
         {
             "source": {
                 "statement": "",
-                "methodName": "protected void onDestroy()",
+                "methodName": "public void onCreate(android.os.Bundle)",
                 "className": "fm.xtube.VideoActivity",
                 "lineNo": -1,
                 "targetName": "",
@@ -360,13 +329,13 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r6 = virtualinvoke $r5.<android.content.res.Resources: java.lang.String getString(int)>(2130968581)"
+                        "IRstatement": "$r8 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r4)"
                     }
                 ]
             },
             "sink": {
                 "statement": "",
-                "methodName": "protected void onDestroy()",
+                "methodName": "public void onCreate(android.os.Bundle)",
                 "className": "fm.xtube.VideoActivity",
                 "lineNo": -1,
                 "targetName": "",
@@ -374,7 +343,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r7 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>($r3, $r6, 500)"
+                        "IRstatement": "virtualinvoke $r7.<android.widget.VideoView: void setVideoURI(android.net.Uri)>($r8)"
                     }
                 ]
             },
@@ -395,7 +364,7 @@
                 "IRs": [
                     {
                         "type": "Jimple",
-                        "IRstatement": "$r2 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                        "IRstatement": "$r4 = virtualinvoke $r3.<org.apache.http.message.BasicNameValuePair: java.lang.String getValue()>()"
                     }
                 ]
             },
@@ -415,7 +384,46 @@
             },
             "intermediateFlows": [
                 [
-                    
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\" \")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void sendSMS(sx.jolly.core.SingleCommand)",
+                        "className": "sx.jolly.utils.SMS",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    }
                 ]
             ]
         }

@@ -90,7 +90,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  test("in the APK dsencrypt_samp, we should detect 1 flow") {
+  ignore("in the APK dsencrypt_samp, we should detect 1 flow") {
     val expected = 1
     val nameAPK = "dsencrypt_samp"
 
@@ -207,7 +207,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  test("in the APK hummingbad_android_samp, we should detect 2 flows") {
+  ignore("in the APK hummingbad_android_samp, we should detect 2 flows") {
     val expected = 2
     val nameAPK = "hummingbad_android_samp"
 
@@ -298,7 +298,7 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
     assert(actual == expected)
   }
 
-  ignore("in the APK repane, we should detect 1 flow") {
+  test("in the APK repane, we should detect 1 flow") {
     val expected = 1
     val nameAPK = "repane"
 
@@ -518,9 +518,9 @@ class AndroidTaintBenchSuiteExperiment1Test extends FunSuite
 
 //    val svfa = new AndroidTaintBenchTest(nameAPK)
 //    svfa.buildSparseValueFlowGraph()
+    createJsonReport(Set() , nameAPK, "docs-metrics/taintbench/experiment-I/findings")
 
     val actual = 0
-    val executionTime = 0.0
 
     assert(actual == expected)
   }

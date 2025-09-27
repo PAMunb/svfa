@@ -1,6 +1,6 @@
 {
     "fileName": "threatjapan_uracto.apk",
-    "day": "2025-09-10T21:14:53.791",
+    "day": "2025-09-16T10:23:36.804",
     "findings": [
         {
             "source": {
@@ -38,7 +38,7 @@
                         "methodName": "private void postMailList()",
                         "className": "solution.newsandroid.MainviewActivity",
                         "lineNo": -1,
-                        "IRstatement": "$r16 = new java.lang.StringBuilder",
+                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6)",
                         "ID": 1
                     },
                     {
@@ -46,16 +46,8 @@
                         "methodName": "private void postMailList()",
                         "className": "solution.newsandroid.MainviewActivity",
                         "lineNo": -1,
-                        "IRstatement": "r2 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\n\")",
-                        "ID": 2
-                    },
-                    {
-                        "statement": "",
-                        "methodName": "private void postMailList()",
-                        "className": "solution.newsandroid.MainviewActivity",
-                        "lineNo": -1,
                         "IRstatement": "r6 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>()",
-                        "ID": 3
+                        "ID": 2
                     }
                 ]
             ]
