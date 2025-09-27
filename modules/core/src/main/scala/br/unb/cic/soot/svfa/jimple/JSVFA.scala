@@ -76,36 +76,14 @@ abstract class JSVFA
           return
       }
 
-      if (hasBaseObject(expr) && srcArg.isInstanceOf[Local]) {
-        val local = srcArg.asInstanceOf[Local]
+      if (hasBaseObject(expr) ) {
 
         val base = getBaseObject(expr)
 
         if (base.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
-          
-          // Original logic: argument definitions -> base object definitions
-          localDefs
-            .getDefsOfAt(local, invokeStmt)
-            .forEach(sourceStmt => {
-              val sourceNode = createNode(sootMethod, sourceStmt)
-              localDefs
-                .getDefsOfAt(localBase, invokeStmt)
-                .forEach(targetStmt => {
-                  val targetNode = createNode(sootMethod, targetStmt)
-                  updateGraph(sourceNode, targetNode)
-                })
-            })
-        }
-      }
 
-      // NEW LOGIC: argument definitions -> root allocation sites of base object
-      if (hasBaseObject(expr)) {
-        val base = getBaseObject(expr)
-
-        if (base.isInstanceOf[Local]) {
-          val localBase = base.asInstanceOf[Local]
-
+          // logic: argument definitions -> root allocation sites of base object
           localDefs
             .getDefsOfAt(localBase, invokeStmt)
             .forEach(targetStmt => {
@@ -113,6 +91,22 @@ abstract class JSVFA
               val targetNode = createNode(sootMethod, targetStmt)
               updateGraph(currentNode, targetNode)
             })
+
+          if (srcArg.isInstanceOf[Local]) {
+            val local = srcArg.asInstanceOf[Local]
+            // logic: argument definitions -> base object definitions
+            localDefs
+              .getDefsOfAt(local, invokeStmt)
+              .forEach(sourceStmt => {
+                val sourceNode = createNode(sootMethod, sourceStmt)
+                localDefs
+                  .getDefsOfAt(localBase, invokeStmt)
+                  .forEach(targetStmt => {
+                    val targetNode = createNode(sootMethod, targetStmt)
+                    updateGraph(sourceNode, targetNode)
+                  })
+              })
+          }
         }
       }
     }
