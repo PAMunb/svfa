@@ -1,6 +1,6 @@
-#### JSVFA old metrics
+#### JSVFA initial metrics
 
-> SUMMARY (*computed in March 2023.*)
+> SUMMARY (*computed in June 2023.*)
 
 - **securibench.micro** - failed: 46, passed: 57 of 103 tests - (55.34%)
 
