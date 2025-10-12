@@ -185,7 +185,7 @@
 |     TOTAL      |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 
 
-> Extra Test
+> Extra Tests
 
 These tests are not executed by Flowdroid
 
