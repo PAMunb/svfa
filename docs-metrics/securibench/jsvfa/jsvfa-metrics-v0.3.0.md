@@ -1,4 +1,4 @@
-#### JSVFA initial metrics
+## JSVFA metrics
 
 > SUMMARY (*computed in June 2023.*)
 
@@ -18,7 +18,7 @@
 |     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |   55.34   |
 
 
-> Details (*computed in June, 2025.*)
+> Details
 
 - **securibench.micro.aliasing** - failed: 4, passed: 2 of 6 tests - (33.33%)
 
@@ -184,12 +184,9 @@
 | StrongUpdates5 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
 |     TOTAL      |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 
-**OBSERVATIONS**
-- Flowdroid is not taking in count the TP expected in StrongUpdate4;
-- Test Basic40 is commented in the test suite so the amount of TP differs from the original run by Flowdroid; 
-- There are two flaky tests: Basic6 and Inter11.
 
 > Extra Test
+
 These tests are not executed by Flowdroid
 
 - **securibench.micro.pred** - failed: 3, passed: 6 of 9 tests - (66.67%)
