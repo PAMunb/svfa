@@ -14,6 +14,9 @@ v0.3.4
 - Enhanced type annotations and error handling.
 
 v0.5.0
+- Refactor project arquitecture in "modules".
+
+v0.6.0
 - Organize metrics results,
 - Create module for scripts,
 - Set up github workflow to not use tokens,
