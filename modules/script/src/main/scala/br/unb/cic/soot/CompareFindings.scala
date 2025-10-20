@@ -16,15 +16,15 @@ import scala.collection.mutable
   *
   * Example:
   *   sbt "script/runMain br.unb.cic.soot.CompareFindings
-            docs-metrics/taintbench/experiment-I/findings 
-            docs-metrics/taintbench/source/findings
-            docs-metrics/taintbench/experiment-I"
+            modules/taintbench/src/docs-metrics/experiment-I/findings 
+            modules/taintbench/src/docs-metrics/source/findings
+            modules/taintbench/src/docs-metrics/experiment-I"
   *
   * Example:
   *   sbt "script/runMain br.unb.cic.soot.CompareFindings
-            docs-metrics/taintbench/experiment-II/findings 
-            docs-metrics/taintbench/source/findings
-            docs-metrics/taintbench/experiment-II"
+            modules/taintbench/src/docs-metrics/experiment-II/findings 
+            modules/taintbench/src/docs-metrics/source/findings
+            modules/taintbench/src/docs-metrics/experiment-II"
   */
 
 object CompareFindings extends App {

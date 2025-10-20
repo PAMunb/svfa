@@ -10,7 +10,7 @@ import java.io.File
   *   sbt "runMain br.unb.cic.soot.scripts.DownloadTaintBenchFindings <download-path>"
   *
   * Example:
-  *   sbt "core/runMain br.unb.cic.soot.scripts.DownloadTaintBenchFindings docs-metrics/taintbench/source/findings"
+  *   sbt "core/runMain br.unb.cic.soot.scripts.DownloadTaintBenchFindings modules/taintbench/src/docs-metrics/source/findings"
   */
 object DownloadTaintBenchFindings extends App {
 

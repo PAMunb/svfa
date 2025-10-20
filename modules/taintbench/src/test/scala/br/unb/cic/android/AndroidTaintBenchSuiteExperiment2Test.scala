@@ -21,7 +21,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with BackFlashSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -34,7 +34,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with BeitaComBeitaContactSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -47,7 +47,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with CajinoBaiduSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -60,7 +60,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with ChatHookSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -73,7 +73,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with ChuliaSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -86,7 +86,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with DeathRingMaterialflowSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -99,7 +99,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with DsencryptSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -112,7 +112,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with ExprespamSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -125,7 +125,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with FakeappstoreSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -138,7 +138,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with FakebankAndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -151,7 +151,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with FakedaumSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -164,7 +164,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with FakemartSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -177,7 +177,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with FakeplaySpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -190,7 +190,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with FaketaobaoSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -203,7 +203,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with GodwonSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -216,7 +216,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with HummingbadAndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -229,7 +229,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with JollyservSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -242,7 +242,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with OverlayAndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -256,7 +256,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
       with Overlaylocker2AndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -269,7 +269,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with PhospySpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -282,7 +282,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with ProxySampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -295,7 +295,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with RemoteControlSmackSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -308,7 +308,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with RepaneSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -321,7 +321,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with RoidSecSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -334,7 +334,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with SamsapoSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -347,7 +347,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with SaveMeSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -360,7 +360,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with ScipiexSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -373,7 +373,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with SlockerAndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -386,7 +386,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with SmsGoogleSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -399,7 +399,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with SmsSendLockerQqmagicSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -413,7 +413,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
       with SmssendPackageInstallerSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -426,7 +426,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with SmssilienceFakeVertuSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -442,7 +442,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
       with SmsstealerKysnAssassincreedAndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -458,7 +458,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
       with StelsFlashplayerAndroidUpdateSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -471,7 +471,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with TetusSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -484,7 +484,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with TheInterviewMovieShowSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -497,7 +497,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with ThreatjapanUractoSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -510,7 +510,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
     val svfa = new AndroidTaintBenchTest(nameAPK) with VibleakerAndroidSampSpec
     svfa.buildSparseValueFlowGraph()
 
-    createJsonReport(svfa.conflictPaths() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(svfa.conflictPaths() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = svfa.reportConflictsSVG(true).size
     assert(found == expected)
@@ -524,7 +524,7 @@ class AndroidTaintBenchSuiteExperiment2Test extends FunSuite
 
     // val svfa = new AndroidTaintBenchTest(nameAPK) with XbotAndroidSampSpec
     // svfa.buildSparseValueFlowGraph()
-    createJsonReport(Set() , nameAPK, "docs-metrics/taintbench/experiment-II/findings")
+    createJsonReport(Set() , nameAPK, "modules/taintbench/src/docs-metrics/experiment-II/findings")
 
     val found = 0
       assert(found == expected)
