@@ -1,0 +1,331 @@
+{
+    "fileName": "fakebank_android_samp.apk",
+    "day": "2025-09-16T12:27:02.502",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getSimOperatorName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r9, $r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r6.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r9, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected transient java.lang.String doInBackground(java.lang.String[])",
+                "className": "com.example.bankmanager.BankEndActivity$CreateNewUser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke r3.<java.text.SimpleDateFormat: java.lang.String format(java.util.Date)>($r6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected transient java.lang.String doInBackground(java.lang.String[])",
+                "className": "com.example.bankmanager.BankEndActivity$CreateNewUser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>(\"str6\", $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.lang.String getPhoneNumber()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public java.lang.String getPhoneNumber()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r4, $r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.lang.String getPhoneNumber()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public java.lang.String getPhoneNumber()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r6, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static byte[] sendGetRequest(java.lang.String, java.util.Map, java.lang.String) throws java.lang.Exception",
+                "className": "cn.smsmanager.internet.HttpRequest",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke r7.<java.net.HttpURLConnection: int getResponseCode()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static byte[] sendGetRequest(java.lang.String, java.util.Map, java.lang.String) throws java.lang.Exception",
+                "className": "cn.smsmanager.internet.HttpRequest",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"HttpRequest url\", $r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static byte[] sendGetRequest(java.lang.String, java.util.Map, java.lang.String) throws java.lang.Exception",
+                        "className": "cn.smsmanager.internet.HttpRequest",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static byte[] sendGetRequest(java.lang.String, java.util.Map, java.lang.String) throws java.lang.Exception",
+                        "className": "cn.smsmanager.internet.HttpRequest",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = $r13",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static byte[] sendGetRequest(java.lang.String, java.util.Map, java.lang.String) throws java.lang.Exception",
+                        "className": "cn.smsmanager.internet.HttpRequest",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected transient java.lang.String doInBackground(java.lang.String[])",
+                "className": "com.example.bankmanager.BankEndActivity$CreateNewUser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i2 = virtualinvoke $r16.<org.json.JSONObject: int getInt(java.lang.String)>(\"success\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected transient java.lang.String doInBackground(java.lang.String[])",
+                "className": "com.example.bankmanager.BankEndActivity$CreateNewUser",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(\"json.getInt\", $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected transient java.lang.String doInBackground(java.lang.String[])",
+                        "className": "com.example.bankmanager.BankEndActivity$CreateNewUser",
+                        "lineNo": -1,
+                        "IRstatement": "$r17 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected transient java.lang.String doInBackground(java.lang.String[])",
+                        "className": "com.example.bankmanager.BankEndActivity$CreateNewUser",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public java.lang.String getPhoneNumber()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "com.scott.crash.CrashApplication",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r9, $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate()",
+                        "className": "com.scott.crash.CrashApplication",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke r0.<com.scott.crash.CrashApplication: java.lang.String getPhoneNumber()>()",
+                        "ID": 1
+                    }
+                ]
+            ]
+        }
+    ]
+}

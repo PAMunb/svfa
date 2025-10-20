@@ -1,0 +1,1127 @@
+{
+    "fileName": "death_ring_materialflow.apk",
+    "day": "2025-09-16T10:21:41.055",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getITelephony\", $r5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r1, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                        "className": "com.qc.common.WapApnHelper",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r1 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r2, $r7)"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"phone\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r1, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                        "className": "com.qc.common.WapApnHelper",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = (android.telephony.TelephonyManager) $r1",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                        "className": "com.qc.common.WapApnHelper",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r1 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r2, $r7)"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.AppTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r15 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.AppTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r14.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r15)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/mnkp/\")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r10)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".apk\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r14 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r10)",
+                        "ID": 10
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String, java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r7.<java.io.File: void <init>(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.access.LocalOsService$1",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String, java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String, java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = $r7",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.access.LocalOsService$1",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String,java.lang.String)>(\"mnkp\", $r5)",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                "className": "com.qc.base.BitmapCache",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke r5.<java.io.File: void <init>(java.lang.String)>($r10)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                "className": "com.qc.base.BitmapCache",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public android.graphics.Bitmap getBitmap(android.content.Context, java.lang.Integer)",
+                        "className": "com.qc.base.BitmapCache",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = new java.io.File",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "boolean getMobileDataStatus()",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getMobileDataEnabled\", $r6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "boolean getMobileDataStatus()",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r5, $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.APKInstallTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r1)",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"disableDataConnectivity\", $r5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r1, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"phone\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r2, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                        "className": "com.qc.common.WapApnHelper",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = (android.telephony.TelephonyManager) $r1",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.APKInstallTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.APKInstallTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/mnkp/\")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".apk\")",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 10
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 11
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r1)",
+                        "ID": 12
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.APKInstallTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.APKInstallTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"/\")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r1)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\".apk\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 9
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r1)",
+                        "ID": 10
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.access.BaseSiteService$2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.access.BaseSiteService$2",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>(\"basesite.apk\")",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void forceStopProcess(android.content.Context, java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"forceStopPackage\", $r5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void forceStopProcess(android.content.Context, java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r3, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.access.BaseSiteService$2",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.access.BaseSiteService$2",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>(\"basesite.apk\")",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void forceStopProcess(android.content.Context, java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"activity\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void forceStopProcess(android.content.Context, java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r3, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void forceStopProcess(android.content.Context, java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = (android.app.ActivityManager) $r2",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"enableDataConnectivity\", $r5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r1, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(\"getITelephony\", $r5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private static void setDataConnection(android.content.Context, boolean)",
+                "className": "com.qc.common.WapApnHelper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r2, $r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.APKInstallTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.APKInstallTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r1)",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.AppTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r14.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r14 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r10)",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                "className": "com.qc.common.Funs",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "specialinvoke $r2.<java.io.File: void <init>(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "com.qc.model.AppTask",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r14.<java.io.File: boolean delete()>()"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.io.File getSDCardFile(java.lang.String)",
+                        "className": "com.qc.common.Funs",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = new java.io.File",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "com.qc.model.AppTask",
+                        "lineNo": -1,
+                        "IRstatement": "$r14 = staticinvoke <com.qc.common.Funs: java.io.File getSDCardFile(java.lang.String)>($r10)",
+                        "ID": 2
+                    }
+                ]
+            ]
+        }
+    ]
+}

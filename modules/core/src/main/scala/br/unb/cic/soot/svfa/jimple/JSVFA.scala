@@ -2,42 +2,19 @@ package br.unb.cic.soot.svfa.jimple
 
 import java.util
 import br.unb.cic.soot.svfa.jimple.rules.RuleAction
-import br.unb.cic.soot.graph.{
-  CallSiteCloseLabel,
-  CallSiteLabel,
-  CallSiteOpenLabel,
-  ContextSensitiveRegion,
-  GraphNode,
-  SinkNode,
-  SourceNode,
-  StatementNode
-}
+import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, StatementNode}
 import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser}
 import br.unb.cic.soot.svfa.{SVFA, SourceSinkDef}
 import com.typesafe.scalalogging.LazyLogging
 import soot.jimple._
-import soot.jimple.internal.{AbstractInvokeExpr, JArrayRef, JAssignStmt}
+import soot.jimple.internal.{AbstractInvokeExpr, JArrayRef, JAssignStmt, JInvokeStmt}
 import soot.jimple.spark.ondemand.DemandCSPointsTo
 import soot.jimple.spark.pag
 import soot.jimple.spark.pag.{AllocNode, PAG}
-import soot.jimple.spark.sets.{
-  DoublePointsToSet,
-  HybridPointsToSet,
-  P2SetVisitor
-}
+import soot.jimple.spark.sets.{DoublePointsToSet, HybridPointsToSet, P2SetVisitor}
 import soot.toolkits.graph.ExceptionalUnitGraph
 import soot.toolkits.scalar.SimpleLocalDefs
-import soot.{
-  ArrayType,
-  Local,
-  Scene,
-  SceneTransformer,
-  SootField,
-  SootMethod,
-  Transform,
-  Value,
-  jimple
-}
+import soot.{ArrayType, Local, Scene, SceneTransformer, SootField, SootMethod, Transform, Value, jimple}
 
 import scala.collection.mutable.ListBuffer
 
@@ -98,24 +75,38 @@ abstract class JSVFA
           logger.warn("Methods: " + sootMethod.getName + " " + invokedMethod);
           return
       }
-      if (hasBaseObject(expr) && srcArg.isInstanceOf[Local]) {
-        val local = srcArg.asInstanceOf[Local]
+
+      if (hasBaseObject(expr) ) {
 
         val base = getBaseObject(expr)
 
         if (base.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
+
+          // logic: argument definitions -> root allocation sites of base object
           localDefs
-            .getDefsOfAt(local, invokeStmt)
-            .forEach(sourceStmt => {
-              val sourceNode = createNode(sootMethod, sourceStmt)
-              localDefs
-                .getDefsOfAt(localBase, invokeStmt)
-                .forEach(targetStmt => {
-                  val targetNode = createNode(sootMethod, targetStmt)
-                  updateGraph(sourceNode, targetNode) // add comment
-                })
+            .getDefsOfAt(localBase, invokeStmt)
+            .forEach(targetStmt => {
+              val currentNode = createNode(sootMethod, invokeStmt)
+              val targetNode = createNode(sootMethod, targetStmt)
+              updateGraph(currentNode, targetNode)
             })
+
+          if (srcArg.isInstanceOf[Local]) {
+            val local = srcArg.asInstanceOf[Local]
+            // logic: argument definitions -> base object definitions
+            localDefs
+              .getDefsOfAt(local, invokeStmt)
+              .forEach(sourceStmt => {
+                val sourceNode = createNode(sootMethod, sourceStmt)
+                localDefs
+                  .getDefsOfAt(localBase, invokeStmt)
+                  .forEach(targetStmt => {
+                    val targetNode = createNode(sootMethod, targetStmt)
+                    updateGraph(sourceNode, targetNode)
+                  })
+              })
+          }
         }
       }
     }
@@ -297,7 +288,7 @@ abstract class JSVFA
 
     val graph = new ExceptionalUnitGraph(body)
     val defs = new SimpleLocalDefs(graph)
-
+//    println(body)
     body.getUnits.forEach(unit => {
       val v = Statement.convert(unit)
 

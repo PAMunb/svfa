@@ -1,0 +1,1474 @@
+{
+    "fileName": "stels_flashplayer_android_update.apk",
+    "day": "2025-09-16T12:28:44.939",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r1.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.stels2.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r5.<ru.stels2.Settings: java.lang.String server> = $r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void sendContactsToServer(java.lang.String)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r4.<ru.stels2.Settings: java.lang.String server>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r16 = virtualinvoke $r10.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r16)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r2, $r3, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 := @parameter3: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "app.opera.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "app.opera.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"startPeriod\", $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.stels2.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.stels2.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r10.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"text\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r9 = (ru.stels2.SmsItem) $r8",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = r9.<ru.stels2.SmsItem: java.lang.String text>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean isDeleteMessage(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void setWildCards()",
+                "className": "ru.stels2.WildCardStringFinder",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r1.<java.lang.String: boolean startsWith(java.lang.String)>(\"*\")"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isDeleteMessage(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = (ru.stels2.SmsItem) $r7",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isDeleteMessage(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = r8.<ru.stels2.SmsItem: java.lang.String text>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isStringMatching(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.WildCardStringFinder",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter1: java.lang.String",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isStringMatching(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.WildCardStringFinder",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<ru.stels2.WildCardStringFinder: java.lang.String wildCardPatternString> = $r2",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void setWildCards()",
+                        "className": "ru.stels2.WildCardStringFinder",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = r0.<ru.stels2.WildCardStringFinder: java.lang.String wildCardPatternString>",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                "className": "ru.stels2.Stels",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r2.<org.json.JSONObject: int getInt(java.lang.String)>(\"startPeriod\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r4.<ru.stels2.Settings: int startPeriod> = $i0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = $r6.<ru.stels2.Settings: int startPeriod>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = $i0 * $i2",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$l3 = (long) $i0",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$l1 = $l1 + $l3",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r4.<ru.stels2.Settings: long timeNextConnection> = $l1",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void startTimer(android.content.Context)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $r6.<ru.stels2.Settings: long timeNextConnection>",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startTimerInfo(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimerInfo(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, $l2, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r10.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                "className": "ru.stels2.Stels",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r2.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"subPref\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r4.<ru.stels2.Settings: java.lang.String subPref> = $r5",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r3.<ru.stels2.Settings: java.lang.String subPref>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                "className": "ru.stels2.Stels",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = virtualinvoke $r2.<org.json.JSONObject: int getInt(java.lang.String)>(\"period\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r4.<ru.stels2.Settings: int period> = $i0",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = $r6.<ru.stels2.Settings: int period>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = $i0 * $i2",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$l3 = (long) $i0",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$l1 = $l1 + $l3",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r4.<ru.stels2.Settings: long timeNextConnection> = $l1",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void startTimer(android.content.Context)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $r6.<ru.stels2.Settings: long timeNextConnection>",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                "className": "ru.stels2.Stels",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r2.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"server\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void <init>(android.content.Context, org.json.JSONObject)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r4.<ru.stels2.Settings: java.lang.String server> = $r5",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static org.json.JSONObject sendRequest(android.content.Context)",
+                        "className": "ru.stels2.Stels",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r4.<ru.stels2.Settings: java.lang.String server>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startTimerInfo(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimerInfo(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, $l0, $l2, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startTimerInfo(android.content.Context)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = (android.app.AlarmManager) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "app.opera.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "app.opera.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r8.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r1.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"subPref\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.stels2.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r5.<ru.stels2.Settings: java.lang.String subPref> = $r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r3.<ru.stels2.Settings: java.lang.String subPref>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r2)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r10.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r12)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter1: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.stels2.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.stels2.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r10.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"phone\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r9 = (ru.stels2.SmsItem) $r8",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = r9.<ru.stels2.SmsItem: java.lang.String number>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startTimer(android.content.Context)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = (android.app.AlarmManager) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r10.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<java.net.HttpURLConnection: void setRequestMethod(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void sendSimpleHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"notification\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r9.<android.app.NotificationManager: void notify(int,android.app.Notification)>(1, r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "r9 = (android.app.NotificationManager) $r8",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r10.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r12)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void sendSimpleHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public ru.stels2.CatchResult isCatchMessage(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r6.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void setWildCards()",
+                "className": "ru.stels2.WildCardStringFinder",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r1.<java.lang.String: boolean startsWith(java.lang.String)>(\"*\")"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public ru.stels2.CatchResult isCatchMessage(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r8 = (ru.stels2.SmsItem) $r7",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public ru.stels2.CatchResult isCatchMessage(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = r8.<ru.stels2.SmsItem: java.lang.String number>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isStringMatching(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.WildCardStringFinder",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter1: java.lang.String",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isStringMatching(java.lang.String, java.lang.String)",
+                        "className": "ru.stels2.WildCardStringFinder",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<ru.stels2.WildCardStringFinder: java.lang.String wildCardPatternString> = $r2",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void setWildCards()",
+                        "className": "ru.stels2.WildCardStringFinder",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 = r0.<ru.stels2.WildCardStringFinder: java.lang.String wildCardPatternString>",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r4.<android.content.Intent: android.content.Intent putExtras(android.os.Bundle)>($r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r11 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r7, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r2, $r3, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "app.opera.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "app.opera.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"period\", $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r13 = virtualinvoke $r10.<org.json.JSONObject: java.lang.String getString(java.lang.String)>($r13)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r2, $r3, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                        "className": "ru.stels2.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter2: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void uninstallApk(android.content.Context, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void uninstallApk(android.content.Context, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String, java.lang.String, java.lang.String, long)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String, java.lang.String, java.lang.String, long)",
+                "className": "ru.stels2.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.content.Intent: android.content.Intent putExtras(android.os.Bundle)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.stels2.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

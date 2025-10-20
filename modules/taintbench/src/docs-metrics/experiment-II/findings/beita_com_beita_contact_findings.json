@@ -1,0 +1,519 @@
+{
+    "fileName": "beita_com_beita_contact.apk",
+    "day": "2025-09-16T12:25:32.331",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.widget.EditText: void setText(java.lang.CharSequence)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(2)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.TextView: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.widget.EditText: void setText(java.lang.CharSequence)>($r9)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(2)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.widget.EditText: void setText(java.lang.CharSequence)>($r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.TextView: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(3)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.widget.EditText: void setText(java.lang.CharSequence)>($r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r2.<android.content.Intent: android.net.Uri getData()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>(\"ContactEditor:onCreate\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.beita.contact.ContactEditor",
+                        "lineNo": -1,
+                        "IRstatement": "$r15 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.beita.contact.ContactEditor",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r5)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate(android.os.Bundle)",
+                        "className": "com.beita.contact.ContactEditor",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.widget.EditText: void setText(java.lang.CharSequence)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<android.content.Intent: java.lang.String getAction()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>(\"ContactEditor:onCreate\", $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactEditor",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.widget.EditText: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.TextView: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(6)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.TextView: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(3)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.TextView: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = interfaceinvoke $r1.<android.database.Cursor: java.lang.String getString(int)>(5)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onResume()",
+                "className": "com.beita.contact.ContactView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.widget.TextView: void setText(java.lang.CharSequence)>($r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

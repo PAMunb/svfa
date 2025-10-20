@@ -23,7 +23,7 @@ This project follows a **modular architecture** with three focused modules:
 Add to your `build.sbt`:
 ```scala
 resolvers += Resolver.githubPackages("PAMunb", "svfa")
-libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.5.0"
+libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.0"
 ```
 
 #### Using svfa-core in Java/Maven Projects
@@ -40,7 +40,7 @@ Add to your `pom.xml`:
 <dependency>
   <groupId>br.unb.cic</groupId>
   <artifactId>svfa-core_2.12</artifactId>
-  <version>0.5.0</version>
+  <version>0.6.0</version>
 </dependency>
 ```
 
@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'br.unb.cic:svfa-core_2.12:0.5.0'
+    implementation 'br.unb.cic:svfa-core_2.12:0.6.0'
 }
 ```
 
@@ -92,6 +92,10 @@ sbt testTaintbench
 1. **Setup GitHub Token**:
    ```bash
    git config --global github.token YOUR_GITHUB_TOKEN
+   ```
+   or
+   ```bash
+   export GITHUB_TOKEN="your_personal_access_token"
    ```
 
 2. **Publish Core Module**:
@@ -205,7 +209,7 @@ This benchmark was integrated because it is also used in the [FlowDroid Project]
 | strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 |     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
+To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
 
 #### JSVFA 2.0 metrics (v0.3.4)
 
@@ -224,7 +228,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 |     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/jsvfa/jsvfa-metrics-v0.3.4.md) (*computed in September 2025.*)
+To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.4.md) (*computed in September 2025.*)
 
 #### FLOWDROID 
 
@@ -243,7 +247,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
 | TOTAL          | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/flowdroid/flowdroid-metrics.md)
+To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/flowdroid/flowdroid-metrics.md)
 
 #### JOANA
 
@@ -262,7 +266,7 @@ To have detailed information about each group of tests run, [see here.](docs-met
 | StrongUpdates  | 5     | 1        | 1/5    | 1  | 4  | 0  | 0.20      | 1.00   | 0.33 |
 | TOTAL          | 106   | 126      | 71/103 | 73 | 14 | 34 | 0.84      | 0.68   | 0.75 |
 
-To have detailed information about each group of tests run, [see here.](docs-metrics/securibench/joana/joana-metrics.md)
+To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/joana/joana-metrics.md)
 
 #### METRICS SUMMARY
 
@@ -353,7 +357,7 @@ and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.sca
 As a result, we got `36, passed: 3 of 39 tests` and comparing to FLOWDROID we computed the next metrics:
 ~~a better `precision(0.82)`, the same `recall(0.22)` value and a slightly better `F-score(0.35)`.~~
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-I.md)
+- JSVFA metrics, to have detailed information about each group of tests run, [see here.](modules/taintbench/src/docs-metrics/taintbench-experiment-I.md)
 
 | Found | Expected | Status | TP | FP | FN  | Precision | Recall | F-score | Pass Rate |
 |:-----:|:--------:|:------:|:--:|:--:|:---:|:---------:|:------:|:-------:|:---------:| 
@@ -384,7 +388,7 @@ As a result, we got `failed: 35, passed: 4 of 39 tests` and comparing to FLOWDRO
 ~~awe detect a several better amount of `TP(135)` but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
 a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-II.md)
+- JSVFA metrics, to have detailed information about each group of tests run, [see here.](modules/taintbench/src/docs-metrics/taintbench-experiment-II.md)
 
 | Found | Expected | Status | TP | FP  | FN | Precision | Recall | F-score | Pass Rate |
 |:-----:|:--------:|:------:|:--:|:---:|:--:|:---------:|:------:|:-------:|:---------:|

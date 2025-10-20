@@ -1,0 +1,142 @@
+{
+    "fileName": "phospy.apk",
+    "day": "2025-09-16T12:27:49.358",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void log()",
+                "className": "com.labado.lulaoshi.myService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i4 = virtualinvoke $r19.<java.io.DataInputStream: int read(byte[])>(r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void log()",
+                "className": "com.labado.lulaoshi.myService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r20.<java.io.DataOutputStream: void write(byte[],int,int)>(r1, 0, $i4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void log()",
+                "className": "com.labado.lulaoshi.myService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke r2.<java.io.File: java.lang.String getName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void log()",
+                "className": "com.labado.lulaoshi.myService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r20.<java.io.DataOutputStream: void writeUTF(java.lang.String)>($r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void log()",
+                "className": "com.labado.lulaoshi.myService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke r7.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void log()",
+                "className": "com.labado.lulaoshi.myService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r20.<java.io.DataOutputStream: void writeUTF(java.lang.String)>($r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void log()",
+                        "className": "com.labado.lulaoshi.myService",
+                        "lineNo": -1,
+                        "IRstatement": "$r21 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void log()",
+                        "className": "com.labado.lulaoshi.myService",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void log()",
+                        "className": "com.labado.lulaoshi.myService",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"\\\\\")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void log()",
+                        "className": "com.labado.lulaoshi.myService",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        }
+    ]
+}

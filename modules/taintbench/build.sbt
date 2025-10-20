@@ -26,6 +26,8 @@ Test / envVars := Map(
 // Custom commands for Android testing
 addCommandAlias("testRoidsec", "testOnly br.unb.cic.android.RoidsecTest")
 addCommandAlias("testAndroid", "testOnly br.unb.cic.android.*")
+addCommandAlias("AndroidTaintBenchSuiteExperiment1Test", "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment1Test")
+addCommandAlias("AndroidTaintBenchSuiteExperiment2Test", "testOnly br.unb.cic.android.AndroidTaintBenchSuiteExperiment2Test")
 
 
 

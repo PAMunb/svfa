@@ -1,0 +1,1855 @@
+{
+    "fileName": "overlaylocker2_android_samp.apk",
+    "day": "2025-09-16T12:27:33.372",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r1, 0, $r18, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r10.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, l0, $l3, $r12)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke r6.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setAllowFileAccess(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-\")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = staticinvoke <brandmangroupe.miui.updater.GlobalCode: java.lang.String getUniqueID(android.content.Context)>(r0)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = staticinvoke <java.util.Calendar: java.util.Calendar getInstance()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<java.util.Calendar: void setTimeInMillis(long)>($l3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r3.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"url\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>(0, $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<brandmangroupe.miui.updater.MasterPage: java.lang.String template> = $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r0.<brandmangroupe.miui.updater.MasterPage: java.lang.String template>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r10.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, l0, $l3, $r12)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.MasterBoot",
+                        "lineNo": -1,
+                        "IRstatement": "r10 = (android.app.AlarmManager) $r9",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke r6.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setSavePassword(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke r6.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setSaveFormData(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setSaveFormData(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r3)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r8.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, l0, $l3, $r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                        "lineNo": -1,
+                        "IRstatement": "i1 = i1 * 1000",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                        "lineNo": -1,
+                        "IRstatement": "$l3 = (long) i1",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.IncomingSms",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r5 = virtualinvoke $r18.<android.telephony.SmsMessage: java.lang.String getOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.IncomingSms",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>(\"data\", r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = staticinvoke <brandmangroupe.miui.updater.MasterPage: java.lang.String getUniqueID(android.content.Context)>(r0)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r20 = new java.lang.StringBuilder",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r11 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = staticinvoke <brandmangroupe.miui.updater.OverlayView: java.lang.String getUniqueID(android.content.Context)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = staticinvoke <android.provider.Settings$Secure: java.lang.String getString(android.content.ContentResolver,java.lang.String)>($r7, \"android_id\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = staticinvoke <brandmangroupe.miui.updater.OverlayView: java.lang.String getUniqueID(android.content.Context)>($r2)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke r6.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke r6.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setAllowFileAccess(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = staticinvoke <brandmangroupe.miui.updater.MasterPage: java.lang.String getUniqueID(android.content.Context)>(r0)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r20 = new java.lang.StringBuilder",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r11 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(r0, 0, $r11, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.SampleOverlayShowActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r8.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, l0, $l3, $r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-\")",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = staticinvoke <brandmangroupe.miui.updater.GlobalCode: java.lang.String getUniqueID(android.content.Context)>(r0)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = staticinvoke <android.provider.Settings$Secure: java.lang.String getString(android.content.ContentResolver,java.lang.String)>($r7, \"android_id\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = staticinvoke <brandmangroupe.miui.updater.MasterPage: java.lang.String getUniqueID(android.content.Context)>(r0)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r20 = new java.lang.StringBuilder",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r11 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4)",
+                        "ID": 7
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "protected void onCreate(android.os.Bundle)",
+                        "className": "brandmangroupe.miui.updater.MasterPage",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 8
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r11.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setSaveFormData(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void inflateView()",
+                "className": "brandmangroupe.miui.updater.OverlayView",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = staticinvoke <brandmangroupe.miui.updater.OverlayView: java.lang.String getUniqueID(android.content.Context)>($r2)",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void inflateView()",
+                        "className": "brandmangroupe.miui.updater.OverlayView",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = staticinvoke <android.provider.Settings$Secure: java.lang.String getString(android.content.ContentResolver,java.lang.String)>($r7, \"android_id\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r12 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"-\")",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r5)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.lang.String getUniqueID(android.content.Context)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = staticinvoke <brandmangroupe.miui.updater.GlobalCode: java.lang.String getUniqueID(android.content.Context)>(r0)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r7 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "brandmangroupe.miui.updater.GlobalCode",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r11 = staticinvoke <java.util.Calendar: java.util.Calendar getInstance()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r11.<java.util.Calendar: void setTimeInMillis(long)>($l3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private android.app.PendingIntent notificationIntent()",
+                "className": "brandmangroupe.miui.updater.OverlayService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>(r0, 0, r1, 134217728)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected android.app.Notification foregroundNotification(int)",
+                "className": "brandmangroupe.miui.updater.OverlayService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r1.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>(r0, $r2, $r3, $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "protected android.app.Notification foregroundNotification(int)",
+                        "className": "brandmangroupe.miui.updater.OverlayService",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = specialinvoke r0.<brandmangroupe.miui.updater.OverlayService: android.app.PendingIntent notificationIntent()>()",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r11.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setSavePassword(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.IncomingSms",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r5 = virtualinvoke $r18.<android.telephony.SmsMessage: java.lang.String getOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.IncomingSms",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>(\"type\", r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r5)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = new java.lang.StringBuilder",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "$r19 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r3)",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.IncomingSms",
+                        "lineNo": -1,
+                        "IRstatement": "r3 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r11.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setUserAgentString(java.lang.String)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r11.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "i1 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r4)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "brandmangroupe.miui.updater.MasterBoot",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r10.<android.app.AlarmManager: void setRepeating(int,long,long,android.app.PendingIntent)>(0, l0, $l3, $r12)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.MasterBoot",
+                        "lineNo": -1,
+                        "IRstatement": "i1 = i1 * 1000",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "brandmangroupe.miui.updater.MasterBoot",
+                        "lineNo": -1,
+                        "IRstatement": "$l3 = (long) i1",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r11.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "brandmangroupe.miui.updater.GlobalCode",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setAllowFileAccess(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke r8.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "protected void onCreate(android.os.Bundle)",
+                "className": "brandmangroupe.miui.updater.MasterPage",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r10.<android.webkit.WebSettings: void setSavePassword(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

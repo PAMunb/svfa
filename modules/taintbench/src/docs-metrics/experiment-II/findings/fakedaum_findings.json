@@ -1,0 +1,575 @@
+{
+    "fileName": "fakedaum.apk",
+    "day": "2025-09-16T12:27:09.818",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getApnType(android.content.Context)",
+                "className": "com.mvlove.http.ApnUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = interfaceinvoke $r5.<android.database.Cursor: java.lang.String getString(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.lang.String getApnType(android.content.Context)",
+                "className": "com.mvlove.http.ApnUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r6.<java.lang.String: boolean startsWith(java.lang.String)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "void <init>(java.text.DateFormat, java.text.DateFormat)",
+                "className": "com.google.gson.DefaultTypeAdapters$DefaultDateTypeAdapter",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = staticinvoke <java.util.TimeZone: java.util.TimeZone getTimeZone(java.lang.String)>(\"UTC\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "void <init>(java.text.DateFormat, java.text.DateFormat)",
+                "className": "com.google.gson.DefaultTypeAdapters$DefaultDateTypeAdapter",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r1.<java.text.DateFormat: void setTimeZone(java.util.TimeZone)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.mvlove.receiver.SmsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r5 = virtualinvoke r3.<android.telephony.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r4.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r1, $r2, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                        "className": "com.mvlove.util.SmsUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setCacheMode(int)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setDefaultZoom(android.webkit.WebSettings$ZoomDensity)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "com.mvlove.receiver.SmsReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "r5 = virtualinvoke r3.<android.telephony.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>(\"address\", $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                        "className": "com.mvlove.util.SmsUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r11 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r3, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r4.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r1, $r2, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"notification\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r13.<android.app.NotificationManager: void notify(int,android.app.Notification)>(100, r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                        "className": "com.mvlove.util.SmsUtil",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (android.app.NotificationManager) $r12",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setSupportZoom(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setBuiltInZoomControls(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>(\"content://mms-sms/\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static final long insertSms(android.content.Context, java.lang.String, java.lang.String)",
+                "className": "com.mvlove.util.SmsUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void handleMessage(android.os.Message)",
+                "className": "com.mvlove.service.PhoneService$ServiceHandler",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r9)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void handleMessage(android.os.Message)",
+                "className": "com.mvlove.service.PhoneService$ServiceHandler",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r15.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r10)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void setNetWorkInfo(android.content.Context)",
+                "className": "com.mvlove.http.HttpWrapper",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r4.<android.net.NetworkInfo: java.lang.String getTypeName()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void debug(java.lang.String)",
+                "className": "com.mvlove.util.LogUtil",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>($r1, $r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "private void setNetWorkInfo(android.content.Context)",
+                        "className": "com.mvlove.http.HttpWrapper",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "private void setNetWorkInfo(android.content.Context)",
+                        "className": "com.mvlove.http.HttpWrapper",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void debug(java.lang.String)",
+                        "className": "com.mvlove.util.LogUtil",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "void sendMessage(com.mvlove.entity.RemoteSms)",
+                "className": "com.mvlove.service.TaskService$LoadMotionThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "void sendMessage(com.mvlove.entity.RemoteSms)",
+                "className": "com.mvlove.service.TaskService$LoadMotionThread",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r3.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r5, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "private void initView()",
+                "className": "com.mvlove.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

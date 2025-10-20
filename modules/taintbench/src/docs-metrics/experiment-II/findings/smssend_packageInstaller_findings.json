@@ -1,0 +1,2599 @@
+{
+    "fileName": "smssend_packageInstaller.apk",
+    "day": "2025-09-16T12:28:42.382",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r12.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"phone\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r17 = virtualinvoke $r12.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"title\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r2, $r3, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter2: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public install.app.SmsItem loadCurrentSmsItem()",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public install.app.SmsItem loadCurrentSmsItem()",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = (install.app.SmsItem) $r2",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "void sendSms(install.app.Settings)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r1.<install.app.Settings: install.app.SmsItem loadCurrentSmsItem()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "void sendSms(install.app.Settings)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = $r3.<install.app.SmsItem: java.lang.String number>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 4
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i1 = virtualinvoke $r1.<org.json.JSONObject: int getInt(java.lang.String)>(\"wait\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r2.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,long)>(\"timeNextConnection\", $l1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$i1 = $i1 * $i2",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$l3 = (long) $i1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $l0 + $l3",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8.<ru.beta.Settings: long timeNextConnection> = $l0",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l1 = r0.<ru.beta.Settings: long timeNextConnection>",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"repeat\", $i1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (install.app.SmsOperator) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$i1 = r13.<install.app.SmsOperator: int repeat>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"responseNumber\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = r14.<install.app.SmsItem: java.lang.String responseNumber>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r1.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"server\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8.<ru.beta.Settings: java.lang.String server> = $r7",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void sendContactsToServer(java.lang.String)",
+                        "className": "ru.beta.Beta",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = $r4.<ru.beta.Settings: java.lang.String server>",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = new java.lang.StringBuilder",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Content-Disposition: form-data; name=\\\"\")",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,long)>(\"key\", $l2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l2 = r14.<install.app.SmsItem: long key>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "install.app.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r6.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onCreate(android.os.Bundle)",
+                "className": "install.app.MainActivity",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<android.webkit.WebSettings: void setJavaScriptEnabled(boolean)>(1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String, java.lang.String, java.lang.String, long)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String, java.lang.String, java.lang.String, long)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.content.Intent: android.content.Intent putExtras(android.os.Bundle)>($r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public install.app.SmsItem loadCurrentSmsItem()",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r1.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public install.app.SmsItem loadCurrentSmsItem()",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = (install.app.SmsItem) $r2",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "void sendSms(install.app.Settings)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = virtualinvoke $r1.<install.app.Settings: install.app.SmsItem loadCurrentSmsItem()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "void sendSms(install.app.Settings)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$i0 = $r3.<install.app.SmsItem: int wait>",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "void sendSms(install.app.Settings)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$l1 = (long) $i0",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 := @parameter1: long",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $l3 * $l0",
+                        "ID": 6
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $l1 + $l0",
+                        "ID": 7
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"text\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = r14.<install.app.SmsItem: java.lang.String text>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r14 = virtualinvoke $r12.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"text\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 := @parameter1: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String)",
+                "className": "install.app.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String)",
+                "className": "install.app.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent putExtras(android.os.Bundle)>($r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r4.<android.content.Intent: android.content.Intent putExtras(android.os.Bundle)>($r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"maxSmsCount\", $i1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (install.app.SmsOperator) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$i1 = r13.<install.app.SmsOperator: int maxSmsCount>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean isAosMessage(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r3.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean isAosMessage(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r1.<java.lang.String: boolean startsWith(java.lang.String)>($r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isAosMessage(java.lang.String, java.lang.String)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = (java.lang.String) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r8.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"number\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = (ru.beta.SmsItem) $r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r7.<ru.beta.SmsItem: java.lang.String number>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"cost\", $i3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$i3 = r14.<install.app.SmsItem: int cost>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startSendTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startSendTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r8.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"text\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = (ru.beta.SmsItem) $r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r7.<ru.beta.SmsItem: java.lang.String text>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"id\", $i1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (install.app.SmsOperator) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$i1 = r13.<install.app.SmsOperator: int id>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,long)>(\"time\", $l2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (install.app.SmsOperator) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l2 = r13.<install.app.SmsOperator: long time>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r18 = virtualinvoke $r12.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"text\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r2, $r3, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 := @parameter3: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public install.app.SmsOperator loadCurrentOperator()",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = virtualinvoke $r2.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void updateCurrentOperator(install.app.SmsOperator)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<java.util.Vector: java.lang.Object set(int,java.lang.Object)>($i0, $r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public install.app.SmsOperator loadCurrentOperator()",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r3 = (install.app.SmsOperator) $r1",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void threadOperationRun(int, java.lang.Object)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = virtualinvoke $r4.<install.app.Settings: install.app.SmsOperator loadCurrentOperator()>()",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void updateCurrentOperator(install.app.SmsOperator)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: install.app.SmsOperator",
+                        "ID": 3
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "install.app.MainReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r5.<android.telephony.SmsMessage: java.lang.String getOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "install.app.MainReceiver",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke r5.<android.telephony.SmsMessage: java.lang.String getOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean isAosMessage(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r1.<java.lang.String: boolean startsWith(java.lang.String)>($r2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean isAosMessage(java.lang.String, java.lang.String)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter0: java.lang.String",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = (android.app.AlarmManager) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void uninstallApk(android.content.Context, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void uninstallApk(android.content.Context, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent setData(android.net.Uri)>($r5)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r1.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"server\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r2.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"server\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8.<ru.beta.Settings: java.lang.String server> = $r7",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r0.<ru.beta.Settings: java.lang.String server>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static java.lang.String getImsi(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke r3.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "static install.app.SmsOperator loadOperator(java.lang.String)",
+                "className": "install.app.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$z0 = virtualinvoke $r0.<java.lang.String: boolean startsWith(java.lang.String)>(r7)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void threadOperationRun(int, java.lang.Object)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "r2 = staticinvoke <install.app.Settings: java.lang.String getImsi(android.content.Context)>(r0)",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "static install.app.SmsOperator loadOperator(java.lang.String)",
+                        "className": "install.app.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startWaitTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static boolean sendSms(java.lang.String, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r0, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startSendTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startSendTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startSendTimer(android.content.Context, long)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = (android.app.AlarmManager) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r8.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r11.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"phone\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r10 = (ru.beta.SmsItem) $r9",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r10.<ru.beta.SmsItem: java.lang.String number>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"wait\", $i3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$i3 = r14.<install.app.SmsItem: int wait>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r11 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getActivity(android.content.Context,int,android.content.Intent,int)>($r0, 0, r7, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<android.app.Notification: void setLatestEventInfo(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,android.app.PendingIntent)>($r0, $r2, $r3, $r11)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r5.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r8.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,long)>(\"key\", $l1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r7 = (ru.beta.SmsItem) $r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$l1 = r7.<ru.beta.SmsItem: long key>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startTimer(android.content.Context)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = (android.app.AlarmManager) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startKillTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"alarm\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startKillTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void startKillTimer(android.content.Context, long)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r5 = (android.app.AlarmManager) $r4",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r1.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"twitter\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void printToOutStream()",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r2.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"twitterUrl\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8.<ru.beta.Settings: java.lang.String twitterUrl> = $r7",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void printToOutStream()",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r0.<ru.beta.Settings: java.lang.String twitterUrl>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"responseText\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = r14.<install.app.SmsItem: java.lang.String responseText>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"name\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (install.app.SmsOperator) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = r13.<install.app.SmsOperator: java.lang.String name>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>($i1)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"number\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r14 = (install.app.SmsItem) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r8 = r14.<install.app.SmsItem: java.lang.String number>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r8 = virtualinvoke $r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>(\"notification\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r9.<android.app.NotificationManager: void notify(int,android.app.Notification)>(1, r6)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void showNotification(android.content.Context, java.lang.String, java.lang.String, java.lang.String, int, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "r9 = (android.app.NotificationManager) $r8",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r9 = virtualinvoke $r8.<java.util.Vector: java.lang.Object get(int)>($i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "ru.beta.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r11.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>(\"text\", $r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r10 = (ru.beta.SmsItem) $r9",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "ru.beta.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$r4 = r10.<ru.beta.SmsItem: java.lang.String text>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void startKillTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($r0, 0, r2, 0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startKillTimer(android.content.Context, long)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r7 = virtualinvoke $r12.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"method\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r9.<java.net.HttpURLConnection: void setRequestMethod(java.lang.String)>($r1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void sendSimpleHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r1 := @parameter1: java.lang.String",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$i1 = virtualinvoke $r1.<org.json.JSONObject: int getInt(java.lang.String)>(\"wait\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void startTimer(android.content.Context)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(0, $l0, $r3)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$i1 = $i1 * $i2",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$l3 = (long) $i1",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $l0 + $l3",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void executeCommands(org.json.JSONObject)",
+                        "className": "ru.beta.MainService",
+                        "lineNo": -1,
+                        "IRstatement": "$r8.<ru.beta.Settings: long timeNextConnection> = $l0",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static void startTimer(android.content.Context)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$l0 = $r6.<ru.beta.Settings: long timeNextConnection>",
+                        "ID": 5
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r12 = virtualinvoke $r11.<java.util.Vector: java.lang.Object get(int)>(i0)"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public boolean save(android.content.Context)",
+                "className": "install.app.Settings",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r5.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,int)>(\"maxSmsCost\", $i1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "r13 = (install.app.SmsOperator) $r12",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public boolean save(android.content.Context)",
+                        "className": "install.app.Settings",
+                        "lineNo": -1,
+                        "IRstatement": "$i1 = r13.<install.app.SmsOperator: int maxSmsCost>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String, boolean)",
+                "className": "install.app.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r1.<android.content.Intent: android.os.Bundle getExtras()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static void start(android.content.Context, android.content.Intent, java.lang.String, boolean)",
+                "className": "install.app.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r3.<android.content.Intent: android.content.Intent putExtras(android.os.Bundle)>($r4)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void executeCommands(org.json.JSONObject)",
+                "className": "ru.beta.MainService",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r14 = virtualinvoke $r12.<org.json.JSONObject: java.lang.String getString(java.lang.String)>(\"url\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                "className": "ru.beta.Functions",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke r6.<java.io.DataOutputStream: void writeBytes(java.lang.String)>($r0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public static void sendSimpleHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 := @parameter0: java.lang.String",
+                        "ID": 2
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = new java.lang.StringBuilder",
+                        "ID": 3
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"Content-Disposition: form-data; name=\\\"\")",
+                        "ID": 4
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r13 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r0)",
+                        "ID": 5
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public static java.net.HttpURLConnection sendHttpRequest(java.lang.String, java.lang.String, java.util.List, java.util.List, boolean, java.lang.String)",
+                        "className": "ru.beta.Functions",
+                        "lineNo": -1,
+                        "IRstatement": "$r0 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 6
+                    }
+                ]
+            ]
+        }
+    ]
+}

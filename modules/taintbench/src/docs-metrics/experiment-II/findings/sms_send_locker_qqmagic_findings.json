@@ -1,0 +1,536 @@
+{
+    "fileName": "sms_send_locker_qqmagic.apk",
+    "day": "2025-09-16T12:28:34.425",
+    "findings": [
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r1.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"nnr\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r2.<java.lang.String: java.lang.String substring(int,int)>($i1, $i0)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r10, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "qqkj.qqmagic.Fr",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<qqkj.qqmagic.Fr: android.telephony.SmsManager sm> = $r6",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "qqkj.qqmagic.Fr",
+                        "lineNo": -1,
+                        "IRstatement": "$r6 = r0.<qqkj.qqmagic.Fr: android.telephony.SmsManager sm>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "qqkj.qqmagic.s",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = staticinvoke <android.telephony.gsm.SmsManager: android.telephony.gsm.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "qqkj.qqmagic.s$100000001",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r4, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate()",
+                        "className": "qqkj.qqmagic.s",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<qqkj.qqmagic.s: android.telephony.gsm.SmsManager sms> = $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "qqkj.qqmagic.s$100000001",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r1.<qqkj.qqmagic.s: android.telephony.gsm.SmsManager sms>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "LogCatBroadcaster",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r6 = virtualinvoke $r3.<java.io.BufferedReader: java.lang.String readLine()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "LogCatBroadcaster",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r7.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String[])>(\"lines\", $r8)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "LogCatBroadcaster",
+                        "lineNo": -1,
+                        "IRstatement": "$r8[0] = $r6",
+                        "ID": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayMessageBody()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r4.<java.lang.String: java.lang.String substring(int,int)>($i3, $i2)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r10 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayMessageBody()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r14 = virtualinvoke $r10.<java.lang.String: java.lang.String substring(int,int)>(0, $i1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "qqkj.qqmagic.s",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = staticinvoke <android.telephony.gsm.SmsManager: android.telephony.gsm.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void run()",
+                "className": "qqkj.qqmagic.s$100000000",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r2.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r9, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate()",
+                        "className": "qqkj.qqmagic.s",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<qqkj.qqmagic.s: android.telephony.gsm.SmsManager sms> = $r4",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void run()",
+                        "className": "qqkj.qqmagic.s$100000000",
+                        "lineNo": -1,
+                        "IRstatement": "$r2 = $r1.<qqkj.qqmagic.s: android.telephony.gsm.SmsManager sms>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onCreate()",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r1 = staticinvoke <android.telephony.gsm.SmsManager: android.telephony.gsm.SmsManager getDefault()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r5.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onCreate()",
+                        "className": "qqkj.qqmagic.b",
+                        "lineNo": -1,
+                        "IRstatement": "r0.<qqkj.qqmagic.b: android.telephony.gsm.SmsManager sm> = $r1",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "qqkj.qqmagic.b",
+                        "lineNo": -1,
+                        "IRstatement": "$r5 = r0.<qqkj.qqmagic.b: android.telephony.gsm.SmsManager sm>",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayMessageBody()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r10, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "qqkj.qqmagic.Fr",
+                        "lineNo": -1,
+                        "IRstatement": "$r25 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "qqkj.qqmagic.Fr",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r4 = virtualinvoke $r12.<android.telephony.SmsMessage: java.lang.String getDisplayOriginatingAddress()>()"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                "className": "qqkj.qqmagic.Fr",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r6.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r4, null, $r10, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "qqkj.qqmagic.Fr",
+                        "lineNo": -1,
+                        "IRstatement": "$r25 = new java.lang.StringBuilder",
+                        "ID": 1
+                    },
+                    {
+                        "statement": "",
+                        "methodName": "public void onReceive(android.content.Context, android.content.Intent)",
+                        "className": "qqkj.qqmagic.Fr",
+                        "lineNo": -1,
+                        "IRstatement": "$r10 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>()",
+                        "ID": 2
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r1.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"nnr\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "virtualinvoke $r5.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($r3, null, $r2, null, null)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    {
+                        "statement": "",
+                        "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                        "className": "qqkj.qqmagic.b",
+                        "lineNo": -1,
+                        "targetName": "",
+                        "targetNo": 0,
+                        "IRs": [
+                            {
+                                "type": "Jimple",
+                                "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.String: java.lang.String substring(int,int)>($i2, $i1)"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            "source": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r2 = virtualinvoke $r1.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>(\"nnr\")"
+                    }
+                ]
+            },
+            "sink": {
+                "statement": "",
+                "methodName": "public int onStartCommand(android.content.Intent, int, int)",
+                "className": "qqkj.qqmagic.b",
+                "lineNo": -1,
+                "targetName": "",
+                "targetNo": 0,
+                "IRs": [
+                    {
+                        "type": "Jimple",
+                        "IRstatement": "$r3 = virtualinvoke $r2.<java.lang.String: java.lang.String substring(int,int)>($i2, $i1)"
+                    }
+                ]
+            },
+            "intermediateFlows": [
+                [
+                    
+                ]
+            ]
+        }
+    ]
+}

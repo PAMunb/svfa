@@ -91,6 +91,14 @@ run_tests() {
             echo -e "${GREEN}Running RoidsecTest specifically...${NC}"
             sbt testRoidsec
             ;;
+        "AndroidTaintBenchSuiteExperiment1")
+            echo -e "${GREEN}Running AndroidTaintBenchSuiteExperiment1Test specifically...${NC}"
+            sbt AndroidTaintBenchSuiteExperiment1Test
+            ;;
+        "AndroidTaintBenchSuiteExperiment2")
+            echo -e "${GREEN}Running AndroidTaintBenchSuiteExperiment2Test specifically...${NC}"
+            sbt AndroidTaintBenchSuiteExperiment2Test
+            ;;
         "android")
             echo -e "${GREEN}Running all Android malware tests...${NC}"
             sbt testAndroid
