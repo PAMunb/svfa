@@ -357,7 +357,7 @@ and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.sca
 As a result, we got `36, passed: 3 of 39 tests` and comparing to FLOWDROID we computed the next metrics:
 ~~a better `precision(0.82)`, the same `recall(0.22)` value and a slightly better `F-score(0.35)`.~~
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-I.md)
+- JSVFA metrics, to have detailed information about each group of tests run, [see here.](modules/taintbench/src/docs-metrics/taintbench/taintbench-experiment-I.md)
 
 | Found | Expected | Status | TP | FP | FN  | Precision | Recall | F-score | Pass Rate |
 |:-----:|:--------:|:------:|:--:|:--:|:---:|:---------:|:------:|:-------:|:---------:| 
@@ -388,7 +388,7 @@ As a result, we got `failed: 35, passed: 4 of 39 tests` and comparing to FLOWDRO
 ~~awe detect a several better amount of `TP(135)` but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
 a good `recall(0.73)` value and a better `F-score(0.42)`.~~
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](docs-metrics/taintbench/taintbench-experiment-II.md)
+- JSVFA metrics, to have detailed information about each group of tests run, [see here.](modules/taintbench/src/docs-metrics/taintbench/taintbench-experiment-II.md)
 
 | Found | Expected | Status | TP | FP  | FN | Precision | Recall | F-score | Pass Rate |
 |:-----:|:--------:|:------:|:--:|:---:|:--:|:---------:|:------:|:-------:|:---------:|
