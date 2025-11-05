@@ -1324,7 +1324,9 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
   /**
+   *
    * EXTRA TESTs
+   *
    */
 
   /** PRED TESTs
@@ -1442,7 +1444,7 @@ class SecuribenchTestSuite extends FunSuite {
 
   /** SANITIZERS TESTs
    */
-  ignore(
+  test(
     "in the class Sanitizers1 we should detect 1 conflict(s) of a Sanitizers test case"
   ) {
     val svfa =
