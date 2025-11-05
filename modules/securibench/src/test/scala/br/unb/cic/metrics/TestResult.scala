@@ -191,9 +191,9 @@ trait TestResult {
     )
 
     val header =
-      "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Execution Time |"
+      "|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |"
     val sep =
-      "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:--------------:|"
+      "|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|"
     println(header)
     println(sep)
     var totalFound = 0
@@ -212,7 +212,7 @@ trait TestResult {
       val f1 = f1Score(testName)
       val shortTestName = testName.split('.').last.padTo(14, ' ')
       println(
-        f"| $shortTestName| ${m.found}%5d | ${m.expected}%8d | ${status}%6s | ${m.truePositives}%2d | ${m.falsePositives}%2d | ${m.falseNegatives}%3d | ${prec}%9.2f | ${rec}%6.2f | ${f1}%7.2f | ${m.executionTime}%9.2f ms |"
+        f"| $shortTestName| ${m.found}%5d | ${m.expected}%8d | ${status}%6s | ${m.truePositives}%2d | ${m.falsePositives}%2d | ${m.falseNegatives}%3d | ${prec}%9.2f | ${rec}%6.2f | ${f1}%7.2f |"
       )
       totalFound += m.found
       totalExpected += m.expected
@@ -229,7 +229,7 @@ trait TestResult {
     val totalF1 = f1Score()
     val totalStatus = s"${totalPassed}/${totalTests}"
     println(
-      f"| TOTAL         | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f | ${totalExecutionTime}%9.2f ms |"
+      f"| TOTAL         | ${totalFound}%5d | ${totalExpected}%8d | ${totalStatus}%6s | ${totalTP}%2d | ${totalFP}%2d | ${totalFN}%3d | ${totalPrec}%9.2f | ${totalRec}%6.2f | ${totalF1}%7.2f |"
     )
   }
 }
