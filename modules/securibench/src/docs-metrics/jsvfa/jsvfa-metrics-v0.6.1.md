@@ -22,23 +22,23 @@
 
 > Details
 
-[//]: # (* wrong counting)
+[//]: # ()
 
-[//]: # (** array indexes)
+[//]: # )
 
 - **securibench.micro.aliasing** - failed: 7, passed: 2 of 9 tests - (22.22%)
 
 |   Test    | Found | Expected | Status  | TP | FP | FN   | Precision | Recall  | F-score |
 |:---------:|:-----:|:--------:|:-------:|:--:|:--:|:-----|:---------:|:-------:|:-------:|
 | Aliasing1 |   1   |    1     |    ✅    | 1  | 0  | 0    |   1.00    |  1.00   |  1.00   |
-| Aliasing2 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   |
-| Aliasing3 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   |
-| Aliasing4 |   2   |    1     |    ❌    | 0  | 1  | 0    |   0.00    |  0.00   |  0.00   |
-| Aliasing5 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   |
+| Aliasing2 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   | * wrong counting
+| Aliasing3 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   | ** array indexes
+| Aliasing4 |   2   |    1     |    ❌    | 0  | 1  | 0    |   0.00    |  0.00   |  0.00   | * wrong counting
+| Aliasing5 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   | >
 | Aliasing6 |   7   |    7     |    ✅    | 7  | 0  | 0    |   1.00    |  1.00   |  1.00   |
-| Aliasing7 |   7   |    0     |    ❌    | 0  | 7  | 0    |   0.00    |  0.00   |  0.00   |
-| Aliasing8 |   8   |    7     |    ❌    | 0  | 1  | 0    |   0.00    |  0.00   |  0.00   |
-| Aliasing9 |   0   |    7     |    ❌    | 0  | 0  | 7    |   0.00    |  0.00   |  0.00   |
+| Aliasing7 |   7   |    0     |    ❌    | 0  | 7  | 0    |   0.00    |  0.00   |  0.00   | ** array indexes
+| Aliasing8 |   8   |    7     |    ❌    | 0  | 1  | 0    |   0.00    |  0.00   |  0.00   | * wrong counting
+| Aliasing9 |   0   |    7     |    ❌    | 0  | 0  | 7    |   0.00    |  0.00   |  0.00   | ** array indexes
 |   TOTAL   |  25   |    26    |   2/9   | 8  | 9  | 10   |   0.47    |  0.44   |  0.45   |
 
 
