@@ -1162,7 +1162,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
 //  FLAKY
-  ignore(
+  test(
     "in the class Inter11 we should detect 1 conflict of a simple inter test case"
   ) {
     val testName = "Inter11"
@@ -1295,7 +1295,7 @@ class SecuribenchTestSuite extends FunSuite {
   }
 
   // It only fails in the Github action pipeline
-  ignore(
+  test(
     "in the class StrongUpdates4 we should detect 1 conflict of a simple strong update test case"
   ) {
     val testName = "StrongUpdates4"
