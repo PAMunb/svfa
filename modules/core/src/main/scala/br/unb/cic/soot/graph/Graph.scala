@@ -523,6 +523,12 @@ class Graph() {
 
     val csOpenAndClose = csOpen ++ csClose
 
+    /**
+    TO-DO: Implement a better way to calculate the right csOpen and Close
+    because the right one can lead to a bug in some edges cases. 
+    */
+
+
     csOpenAndClose.foreach(open => {
       if (open.value.context.nonEmpty) {
         cs = cs + open.value.context.head
