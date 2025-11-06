@@ -317,7 +317,7 @@ abstract class JSVFA
       case (p: Local, q: ArrayRef) => // p = q[i]
         loadArrayRule(assignStmt.stmt, q, method, defs)
       case (p: Local, q: InvokeExpr) =>
-        invokeRule(assignStmt, q, method, defs) // call a method
+        invokeRule(assignStmt, q, method, defs) // p = myObject.method() : call a method and assign its return value to a local variable
       case (p: Local, q: Local) => copyRule(assignStmt.stmt, q, method, defs)
       case (p: Local, _) =>
         copyRuleInvolvingExpressions(assignStmt.stmt, method, defs)
@@ -367,10 +367,18 @@ abstract class JSVFA
     })
   }
 
-  /** Handles invocation rules for a call statement by traversing the call
-    * graph. This method avoids infinite recursion and limits the traversal
-    * depth for performance.
-    */
+  /**
+   * Handles invocation rules for a call statement by traversing the call
+   * graph. This method avoids infinite recursion and limits the traversal
+   * depth for performance.
+   *
+   * i.e:
+   *
+   * myObject.method()
+   * myObject.method(q)
+   * this.method()
+   * this.method(q)
+   */
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
@@ -1039,14 +1047,28 @@ abstract class JSVFA
       case v              => v
     }
 
-  /** CASE 1: UPDATE EDGE(S) "FROM" each stmt where the variable, passed as an
-    * argument, is defined. "TO" stmt where the method is called (call-site
-    * stmt).
-    *
-    * CASE 2: ???
-    *
-    * CASE 2: ???
-    */
+  /** CASE #1: UPDATE EDGE(S) "FROM" each stmt where the variable, passed as an
+   * argument, is defined. "TO" stmt where the method is called (call-site
+   * stmt). i.e: [s1 -> s2]
+   *
+   * -------------------
+   *  s1: p = ...
+   *  s2: myObj.method(p)
+   * -------------------
+   *
+   * CASE #2:
+   * TO-DO
+   *
+   * CASE #3: UPDATE EDGE(S) "FROM" from definition of base object "TO" where it
+   * calls any of its methods. The expression must be type (invoke).
+   * i.e: [s1 -> s2]
+   *
+   * -------------------
+   *  s1: myObj = new Object()
+   *  s2: myObj.method()
+   * -------------------
+   *
+   */
   private def defsToCallOfSinkMethod(
       stmt: Statement,
       exp: InvokeExpr,
@@ -1054,7 +1076,7 @@ abstract class JSVFA
       defs: SimpleLocalDefs
   ) = {
 
-    // CASE 1
+    // CASE #1
     exp.getArgs
       .stream()
       .filter(a => a.isInstanceOf[Local])
@@ -1069,22 +1091,21 @@ abstract class JSVFA
             updateGraph(
               source,
               target
-            ) // update 'edge(s)' FROM "declaration stmt(s) for args" TO "call-site stmt" (current stmt)
+            )
           })
 
-        // CASE 2
+        // CASE #2
         if (local.getType.isInstanceOf[ArrayType]) {
           val stores = arrayStores.getOrElseUpdate(local, List())
           stores.foreach(sourceStmt => {
             val source = createNode(caller, sourceStmt)
             val target = createNode(caller, targetStmt)
-            updateGraph(source, target) // add comment
+            updateGraph(source, target)
           })
         }
       })
 
-    // CASE 3
-    // edges from definition to base object of an invoke expression
+    // CASE #3
     if (isFieldSensitiveAnalysis() && exp.isInstanceOf[InstanceInvokeExpr]) {
       if (exp.asInstanceOf[InstanceInvokeExpr].getBase.isInstanceOf[Local]) {
         val local =
@@ -1095,7 +1116,7 @@ abstract class JSVFA
           .forEach(sourceStmt => {
             val source = createNode(caller, sourceStmt)
             val target = createNode(caller, targetStmt)
-            updateGraph(source, target) // add comment
+            updateGraph(source, target)
           })
       }
     }
