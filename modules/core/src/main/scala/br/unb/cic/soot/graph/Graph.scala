@@ -568,21 +568,7 @@ class Graph() {
       f(stmt)
     )
 
-  def reportConflicts(
-      useUniquePaths: Boolean = false
-  ): scala.collection.Set[String] = {
-    val conflicts = findConflictingPaths()
-
-    if (useUniquePaths) {
-      var conflictsByUniquePaths: Set[String] = Set.empty[String]
-      conflicts.foreach(path => {
-        conflictsByUniquePaths += s"source: ${path.head.show()} - sink: ${path.last.show()}"
-      })
-      conflictsByUniquePaths
-    } else {
-      conflicts.map(p => p.toString)
-    }
-  }
+  def reportConflicts(): scala.collection.Set[List[GraphNode]] = findConflictingPaths()
 
   def findConflictingPaths(): scala.collection.Set[List[GraphNode]] = {
     if (fullGraph) {

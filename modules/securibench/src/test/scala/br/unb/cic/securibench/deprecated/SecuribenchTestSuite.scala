@@ -66,7 +66,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("in the class Aliasing6 we should detect 7 conflicts") {
+  test("in the class Aliasing6 we should detect 7 conflicts") {
     val testName = "Aliasing6"
     val expectedConflicts = 7
 

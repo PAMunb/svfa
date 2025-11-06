@@ -27,10 +27,8 @@ abstract class SVFA extends SootConfiguration {
     svg.toDotModel()
   }
 
-  def reportConflictsSVG(
-      useUniquePaths: Boolean = false
-  ): collection.Set[String] = {
-    svg.reportConflicts(useUniquePaths)
+  def reportConflictsSVG(): scala.collection.Set[List[GraphNode]] = {
+    svg.reportConflicts()
   }
 
   def executionTime(): Double = {
