@@ -1,11 +1,11 @@
 
-> SUMMARY (*computed in October 2025.*)
+> SUMMARY (*computed in November 2025.*)
 
-- **securibench.micro** - failed: 50, passed: 75 of 125 tests - (60.0%)
+- **securibench.micro** - failed: 47, passed: 75 of 122 tests - (61.48%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
-|    Aliasing    |  25   |    26    |  2/9   | 8  | 9  | 10 |   0.47    |  0.44  |  0.45   |  22.22%   |
+|    Aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |  33.33%   |
 |     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |    50%    |
 |     Basic      |  56   |    60    | 37/42  | 53 | 1  | 5  |   0.98    |  0.91  |  0.94   |   88.1%   |
 |  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |  35.71%   |
@@ -17,7 +17,7 @@
 |      Pred      |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |  66.67%   |
 |   Reflection   |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |    0%     |
 |   Sanitizers   |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |  33.33%   |
-|     TOTAL      |  118  |   155    | 74/125 | 87 | 15 | 52 |   0.85    |  0.63  |  0.72   |   59.2%   |
+|     TOTAL      |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |  61.48%   |
 
 
 > Details
@@ -26,20 +26,17 @@
 
 [//]: # )
 
-- **securibench.micro.aliasing** - failed: 7, passed: 2 of 9 tests - (22.22%)
+- **securibench.micro.aliasing** - failed: 4, passed: 2 of 6 tests - (33.33%)
 
-|   Test    | Found | Expected | Status  | TP | FP | FN   | Precision | Recall  | F-score |
-|:---------:|:-----:|:--------:|:-------:|:--:|:--:|:-----|:---------:|:-------:|:-------:|
-| Aliasing1 |   1   |    1     |    ✅    | 1  | 0  | 0    |   1.00    |  1.00   |  1.00   |
-| Aliasing2 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   | * wrong counting
-| Aliasing3 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   | ** array indexes
-| Aliasing4 |   2   |    1     |    ❌    | 0  | 1  | 0    |   0.00    |  0.00   |  0.00   | * wrong counting
-| Aliasing5 |   0   |    1     |    ❌    | 0  | 0  | 1    |   0.00    |  0.00   |  0.00   | >
-| Aliasing6 |   7   |    7     |    ✅    | 7  | 0  | 0    |   1.00    |  1.00   |  1.00   |
-| Aliasing7 |   7   |    0     |    ❌    | 0  | 7  | 0    |   0.00    |  0.00   |  0.00   | ** array indexes
-| Aliasing8 |   8   |    7     |    ❌    | 0  | 1  | 0    |   0.00    |  0.00   |  0.00   | * wrong counting
-| Aliasing9 |   0   |    7     |    ❌    | 0  | 0  | 7    |   0.00    |  0.00   |  0.00   | ** array indexes
-|   TOTAL   |  25   |    26    |   2/9   | 8  | 9  | 10   |   0.47    |  0.44   |  0.45   |
+|   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
+|:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
+| Aliasing1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+| Aliasing2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * wrong counting
+| Aliasing3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | ** array indexes
+| Aliasing4 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * wrong counting
+| Aliasing5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Aliasing6 |   7   |    7     |   ✅    | 7  | 0  | 0  |   1.00    |  1.00  |  1.00   |
+|   TOTAL   |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
 
 
 - **securibench.micro.arrays** - failed: 5, passed: 5 of 10 tests - (50.0%)
