@@ -1249,7 +1249,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class StrongUpdates3 we should detect 0 conflict of a simple strong update test case"
   ) {
     val testName = "StrongUpdates3"
@@ -1260,8 +1260,29 @@ class SecuribenchTestSuite extends FunSuite {
       "doGet"
     )
     svfa.buildSparseValueFlowGraph()
+    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
+
+  /**
+   * WHY IS IT FAILING
+   *
+   * The current logic "maybe" can not differentiate
+   * when an object attribute is overwrite so it keeps linked to the old one value.
+   *
+   * i.e:
+   * w.value = name
+   * w.value = "abc"
+   *
+   * However, I not sure if this behavior is OK, because StrongUpdates4 shows a case
+   * with almost the same logic of overwriting an object attribute, and it is labeled as PASSED
+   *
+   * this.value = name
+   * this.value = "abc"
+   *
+   * PD: the only difference is that StrongUpdates4 uses "this", while StrongUpdates3 uses
+   * an "object". May it be the root of the issue?
+   */
 
   // FLAKY: It only fails in the Github action pipeline
   ignore(
@@ -1275,6 +1296,7 @@ class SecuribenchTestSuite extends FunSuite {
       "doGet"
     )
     svfa.buildSparseValueFlowGraph()
+    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
@@ -1291,6 +1313,12 @@ class SecuribenchTestSuite extends FunSuite {
     svfa.buildSparseValueFlowGraph()
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
+
+  /**
+   * WHY IS IT FAILING
+   *
+   * Same case as StrongUpdates3
+   */
 
   /**
    *
