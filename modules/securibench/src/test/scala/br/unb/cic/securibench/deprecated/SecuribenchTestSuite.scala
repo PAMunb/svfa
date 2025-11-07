@@ -76,36 +76,6 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("in the class Aliasing7 we should detect 0 conflicts") {
-    val testName = "Aliasing7"
-    val expectedConflicts = 0
-
-    val svfa = new SecuribenchTest(s"securibench.micro.aliasing.$testName", "doGet")
-    svfa.buildSparseValueFlowGraph()
-
-    assert(svfa.reportConflictsSVG().size == expectedConflicts)
-  }
-
-  ignore("in the class Aliasing8 we should detect 7 conflicts") {
-    val testName = "Aliasing8"
-    val expectedConflicts = 7
-
-    val svfa = new SecuribenchTest(s"securibench.micro.aliasing.$testName", "doGet")
-    svfa.buildSparseValueFlowGraph()
-
-    assert(svfa.reportConflictsSVG().size == expectedConflicts)
-  }
-
-  ignore("in the class Aliasing9 we should detect 7 conflicts") {
-    val testName = "Aliasing9"
-    val expectedConflicts = 7
-
-    val svfa = new SecuribenchTest(s"securibench.micro.aliasing.$testName", "doGet")
-    svfa.buildSparseValueFlowGraph()
-
-    assert(svfa.reportConflictsSVG().size == expectedConflicts)
-  }
-
   /** ARRAY TESTs
     */
 
