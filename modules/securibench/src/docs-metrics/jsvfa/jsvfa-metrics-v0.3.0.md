@@ -2,7 +2,7 @@
 
 > SUMMARY (*computed in June 2023.*)
 
-- **securibench.micro** - failed: 59, passed: 63 of 122 tests - (55.34%)
+- **securibench.micro** - failed: 59, passed: 63 of 122 tests - (51.63%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
