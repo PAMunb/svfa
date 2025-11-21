@@ -13,6 +13,7 @@ This project follows a **modular architecture** with three focused modules:
 - **`core`**: Essential SVFA framework + Android analysis support
 - **`securibench`**: Java security vulnerability analysis benchmarks  
 - **`taintbench`**: Android malware analysis benchmarks
+- **`scripts`**: snippets of code use to automatize metric computation 
 
 ## Quick Start
 
@@ -110,11 +111,23 @@ sbt testTaintbench
 
 ## API Usage
 
-Implement a class that extends the `JSVFA class` (see examples in the tests). You must provide implementations for:
+Implement a class that extends the `JSVFA class` (i.e., scala/br/unb/cic/svfa/JSVFATest.scala)
+
+You must provide implementations for:
 
 * `getEntryPoints()` - Set up the "main" methods (returns List of Soot methods)
 * `sootClassPath()` - Set up the soot classpath (returns String)  
 * `analyze(unit)` - Identify node types (source, sink, simple node) in the graph
+
+The framework implements a flexible approach (`trait`) to store the set of node types (source, sink)
+Then, this trait is available to be manipulated in method `analyze(unit)`
+
+```scala
+trait SecuribenchSpec {
+  val sinkList: Seq[String] = List()
+
+  val sourceList: Seq[String] = List()
+```
 
 ### Example Usage
 
@@ -138,15 +151,15 @@ class MyAnalysis extends JSVFATest {
 
 ## Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `sbt testCore` | Run core SVFA tests |
+| Command               | Description                                      |
+|-----------------------|--------------------------------------------------|
+| `sbt testCore`        | Run core SVFA tests                              |
 | `sbt testSecuribench` | Run security vulnerability tests (93 test cases) |
-| `sbt testTaintbench` | Run Android malware tests |
-| `sbt testRoidsec` | Run specific Roidsec test |
-| `sbt compileAll` | Compile all modules |
-| `sbt publishCore` | Publish core module to GitHub Packages |
-| `sbt publishAllLocal` | Publish all modules to local Maven repository |
+| `sbt testTaintbench`  | Run Android malware tests                        |
+| `sbt testRoidsec`     | Run specific Roidsec test                        |
+| `sbt compileAll`      | Compile all modules                              |
+| `sbt publishCore`     | Publish core module to GitHub Packages           |
+| `sbt publishAllLocal` | Publish all modules to local Maven repository    |
 
 ## Scripts
 
