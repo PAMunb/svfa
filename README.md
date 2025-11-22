@@ -206,6 +206,17 @@ This project integrates 2 well-known benchmarks.
 This benchmark was integrated because it is also used in the [FlowDroid Project](https://github.com/secure-software-engineering/FlowDroid) and this integration
 is implemented in `securibench` module.
 
+The result are presented in a table that contains the following information.
+
+- **Expected:** The amount of taint flows presented by TAINTBENCH
+- **Actual:** The amount of taint flows detected by JSVFA
+- **Status:** If the test PASS OR FAIL
+- **TP:** True Positive
+- **FP:** False Positive
+- **Precision:** TP/(TP + FP)
+- **Recall:** TP/P
+- **F-score:** (2 x Precision x Recall)/(Precision + Recall)
+
 #### Old metrics (v0.3.0)
 
 > failed: 59, passed: 63 of 122 tests - (51.63%)
@@ -311,8 +322,11 @@ and it is introduced by [Paper: TaintBench: Automatic real-world malware benchma
 which in its result section presents six experiments to answer one of its RQ: *How effective are taint analysis tools on TaintBench compared to DroidBench*,
 where FLOWDROID and AMANDROID as the chosen tools.
 
-In the next sections, we will focus in **Experiment 2** and **Experiment 3** and use our tool (JSVFA) to reproduce them. 
-After that, we will compare the already computed results for FLOWDROID to our results.
+In the next sections, we will focus in **Experiment 2** and **Experiment 3** and use the latest version of JSVFA to reproduce them.
+Both experiments compare the matches between the set of leaks reported by each APK execution TaintBench paper, referred to as `expected`, 
+against the number of leaks identified by JSVFA, which is termed `actual`. A `match` is when the source and sink are the same in both the actual and expected sets.
+We have created a file `taintbench.properties` to set the configurations in module `taintbench`.
+
 
 #### Environment Setup
 
@@ -357,19 +371,6 @@ ANDROID_SDK=/path/to/android/sdk TAINT_BENCH=/path/to/taintbench sbt testRoidsec
 ANDROID_SDK=/path/to/android/sdk TAINT_BENCH=/path/to/taintbench sbt "testOnly br.unb.cic.android.RoidsecTest"
 ```
 
-- The result for each APK tested using JSVFA are presented in a table that contains the following information.
-  - **Expected:** The amount of taint flows presented by TAINTBENCH
-  - **Actual:** The amount of taint flows detected by JSVFA
-  - **Status:** If the test PASS OR FAIL
-  - **TP:** True Positive
-  - **FP:** False Positive
-  - **Precision:** TP/(TP + FP)
-  - **Recall:** TP/P
-  - **F-score:** (2 x Precision x Recall)/(Precision + Recall)
-- We have created a file `taintbench.properties` in `src/test/resources` to set the configurations
-
-**Disclaimer**: Although TAINTBENCH contains 203 expected [taint flows](https://taintbench.github.io/taintbenchSuite/),
-we have decided to use only 186 expected cases because the mentioned paper, uses as a reference, works with those amounts.
 
 #### EXPERIMENT I
 
@@ -377,27 +378,12 @@ This case emulates **Experiment 2 - TB2** that states:
 
 >All tools are configured with sources and sinks defined in benchmark suite.
 
-The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/main/TB_SourcesAndSinks.txt), 
-and we have stored them in `src/test/scala/br/unb/cic/android/TaintBenchSpec.scala`.
+The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/main/TB_SourcesAndSinks.txt). 
+As a result, it finds fewer leaks than the expected, and, it gets only 10 matches.
 
-As a result, we got `36, passed: 3 of 39 tests` and comparing to FLOWDROID we computed the next metrics:
-~~a better `precision(0.82)`, the same `recall(0.22)` value and a slightly better `F-score(0.35)`.~~
-
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](modules/taintbench/src/docs-metrics/taintbench-experiment-I.md)
-
-| Found | Expected | Status | TP | FP | FN  | Precision | Recall | F-score | Pass Rate |
-|:-----:|:--------:|:------:|:--:|:--:|:---:|:---------:|:------:|:-------:|:---------:| 
-|  60   |   203    |  3/39  | 4  | 12 | 155 |   0.25    |  0.03  |  0.05   |   7.69%   |
-
-- FLOWDROID metrics from [Paper](https://doi.org/10.1007/s10664-021-10013-5)
-
-| Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
-|:-----:|:--------:|:------:|:--:|:--:|:--:|:---------:|:------:|:-------:|:---------:| 
-|  55   |   186    |   ?    | 41 | 14 | ?  |   0.75    |  0.22  |  0.34   |     ?     |
-
-##### Observation
-- From the 37 failing tests, 28 of them reported zero flows.
-
+| Actual Findings | Expected Findings | Matches |
+|:---------------:|:-----------------:|:-------:|
+|       86        |        216        |   10    |
 
 #### EXPERIMENT II
 
@@ -407,29 +393,16 @@ This case emulates **Experiment 3 - TB3** that configures:
 configure all tools. Each tool analyzes each benchmark app with the associated list 
 of sources and sinks 
 
-The mentioned lists can be found in https://taintbench.github.io/taintbenchSuite/, and we have stored them by individual
-files in `src/test/scala/br/unb/cic/android/specs`.
+The mentioned lists can be found in [TB_SourcesAndSinks](https://taintbench.github.io/taintbenchSuite).
+As a result, it finds more leaks than the expected, however, it still gets only 10 matches as in the last experiment.
 
-As a result, we got `failed: 35, passed: 4 of 39 tests` and comparing to FLOWDROID
-~~awe detect a several better amount of `TP(135)` but also a several amount of `FP(318)` and about metric, we got a significant less `precision(0.30)` due to the high amount of FP; however,
-a good `recall(0.73)` value and a better `F-score(0.42)`.~~
+| Actual Findings | Expected Findings | Matches |
+|:---------------:|:-----------------:|:-------:|
+|       655       |        216        |   10    |
 
-- JSVFA metrics, to have detailed information about each group of tests run, [see here.](modules/taintbench/src/docs-metrics/taintbench-experiment-II.md)
-
-| Found | Expected | Status | TP | FP  | FN | Precision | Recall | F-score | Pass Rate |
-|:-----:|:--------:|:------:|:--:|:---:|:--:|:---------:|:------:|:-------:|:---------:|
-|  620  |   203    |  4/39  | 29 | 463 | 46 |   0.06    |  0.39  |  0.10   |  10.26%   |
-
-- FLOWDROID metrics from Paper https://doi.org/10.1007/s10664-021-10013-5
-
-| Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
-|:-----:|:--------:|:------:|:--:|:--:|:--:|:---------:|:------:|:-------:|:---------:|
-|  57   |   186    |   ?    | 43 | 14 | ?  |   0.75    |  0.23  |  0.35   |     ?     |
-
-##### Observation
-- We got a big amount of FP.
 
 ## Tasks
+
 ### WIP
 - [ ] Add set up project documentation.
 - [ ] Fix bugs for Securibench in folders
@@ -438,13 +411,6 @@ a good `recall(0.73)` value and a better `F-score(0.42)`.~~
     - [ ] Session
     - [ ] Strong Update
     - [ ] Aliasing
-
-### TO-DO
--
-
-### DONE
-- [X] Create Git Action flow.
-- [X] Integrate Taintbench.
 
 ## License
 This project is licensed under the MIT License.
