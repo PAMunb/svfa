@@ -1,21 +1,24 @@
 #### FLOWDROID metrics
 
-### SUMMARY
+### SUMMARY (*computed in November 2025.*)
 
 > failed: 36, passed: 67 of 103 tests. `(65.05%)`
 
-| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
-|----------------|-------|----------|--------|----|----|----|-----------|--------|------|
-| Aliasing       | 11    | 11       | 4/6    | 9  | 1  | 1  | 0.90      | 0.90   | 0.90 |
-| Arrays         | 14    | 9        | 6/10   | 6  | 5  | 0  | 0.55      | 1.00   | 0.71 |
-| Basic          | 38    | 61       | 26/42  | 33 | 1  | 24 | 0.97      | 0.58   | 0.73 |
-| Collections    | 14    | 15       | 11/14  | 12 | 1  | 2  | 0.92      | 0.86   | 0.89 |
-| Datastructures | 5     | 5        | 4/6    | 3  | 1  | 1  | 0.75      | 0.75   | 0.75 |
-| Factories      | 1     | 3        | 1/3    | 1  | 0  | 2  | 1.00      | 0.33   | 0.50 |
-| Inter          | 15    | 18       | 11/14  | 13 | 0  | 3  | 1.00      | 0.81   | 0.90 |
-| Session        | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 |
-| StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
-| TOTAL          | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 |
+| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   | Pass Rate |
+|----------------|-------|----------|--------|----|----|----|-----------|--------|------|-----------|
+| Aliasing       | 11    | 11       | 4/6    | 9  | 1  | 1  | 0.90      | 0.90   | 0.90 | 66.67%    |
+| Arrays         | 14    | 9        | 6/10   | 6  | 5  | 0  | 0.55      | 1.00   | 0.71 | 60%       |
+| Basic          | 38    | 61       | 26/42  | 33 | 1  | 24 | 0.97      | 0.58   | 0.73 | 61.90%    |
+| Collections    | 14    | 15       | 11/14  | 12 | 1  | 2  | 0.92      | 0.86   | 0.89 | 78.57%    |
+| Datastructures | 5     | 5        | 4/6    | 3  | 1  | 1  | 0.75      | 0.75   | 0.75 | 66.67%    |
+| Factories      | 1     | 3        | 1/3    | 1  | 0  | 2  | 1.00      | 0.33   | 0.50 | 33.33%    |
+| Inter          | 15    | 18       | 11/14  | 13 | 0  | 3  | 1.00      | 0.81   | 0.90 | 78.57%    |
+| Session        | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 | 0%        |
+| StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 | 80%       |
+| Pred           | -     | -        | -      | -  | -  | -  | -         | -      | -    | -         |
+| Reflection     | -     | -        | -      | -  | -  | -  | -         | -      | -    | -         |
+| Sanitizers     | -     | -        | -      | -  | -  | -  | -         | -      | -    | -         |
+| **TOTAL**      | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 | 65.05%    |
 
 
 According to Flowdroid Paper (https://www.bodden.de/pubs/far+14flowdroid.pdf), they computed the next values.
@@ -38,7 +41,7 @@ According to Flowdroid Paper (https://www.bodden.de/pubs/far+14flowdroid.pdf), t
 |  StrongUpdate  |   0/0   | 0  |
 |   **TOTAL**    | 117/121 | 9  |
 
-### Details
+### DETAILS
 
 - ✅ : PASSED; ❌ : FAIL
 
@@ -55,7 +58,7 @@ According to Flowdroid Paper (https://www.bodden.de/pubs/far+14flowdroid.pdf), t
 | TOTAL     | 11    | 11       | 4/6    | 9  | 1  | 1  | 0.90      | 0.90   | 0.90 |
 
 
-- **ArraysTest** - failed: 4, passed: 6 of 10 tests. `(60.00%)`
+- **ArraysTest** - failed: 4, passed: 6 of 10 tests. `(60%)`
 
 | Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
 |----------|-------|----------|--------|----|----|----|-----------|--------|------|
@@ -197,7 +200,7 @@ According to Flowdroid Paper (https://www.bodden.de/pubs/far+14flowdroid.pdf), t
 | TOTAL    | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 |
 
 
-- **StrongUpdateTest** - failed: 1, passed: 4 of 5 tests. `(80.00%)`
+- **StrongUpdateTest** - failed: 1, passed: 4 of 5 tests. `(80%)`
 
 | Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
 |----------------|-------|----------|--------|----|----|----|-----------|--------|------|
