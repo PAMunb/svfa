@@ -203,45 +203,52 @@ This project integrates 2 well-known benchmarks.
 
 ### Securibench
 
-This benchmark was integrated because it is also used in the [FlowDroid Project](https://github.com/secure-software-engineering/FlowDroid) and tests cases are in `src/test/java/securibench`.
+This benchmark was integrated because it is also used in the [FlowDroid Project](https://github.com/secure-software-engineering/FlowDroid) and this integration
+is implemented in `securibench` module.
 
-#### JSVFA metrics (old)
+#### Old metrics (v0.3.0)
 
-> failed: 46, passed: 57 of 103 tests - (55.34%)
+> failed: 59, passed: 63 of 122 tests - (51.63%)
 
-|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
-|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
-|    aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
-|     arrays     |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   | 
-|     basic      |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |
-|  collections   |   3   |    15    |  1/14  | 1  | 1  | 13 |   0.50    |  0.07  |  0.12   |
-| datastructures |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |
-|   factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
-|     inter      |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |
-|    session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
-| strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-|     TOTAL      |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
+|    aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |   33.33   |
+|     arrays     |   0   |    9     |  1/10  | 0  | 0  | 9  |   0.00    |  0.00  |  0.00   |    10     |
+|     basic      |  60   |    60    | 36/42  | 52 | 3  | 3  |   0.95    |  0.95  |  0.95   |   85.71   |
+|  collections   |   3   |    15    |  1/14  | 1  | 1  | 13 |   0.50    |  0.07  |  0.12   |   7.14    |
+| datastructures |   7   |    5     |  4/6   | 4  | 2  | 0  |   0.67    |  1.00  |  0.80   |   66.67   |
+|   factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |   66.67   |
+|     inter      |  10   |    18    |  7/14  | 8  | 0  | 8  |   1.00    |  0.50  |  0.67   |    50     |
+|    session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |     0     |
+| strong_updates |   0   |    1     |  4/5   | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |    80     |
+|      Pred      |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |  66.67%   |
+|   Reflection   |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |    0%     |
+|   Sanitizers   |   0   |    4     |  0/6   | 0  | 0  | 6  |   0.00    |  0.00  |  0.00   |    0%     |
+|     TOTAL      |  102  |   139    | 63/122 | 80 | 11 | 50 |   0.88    |  0.62  |  0.72   |   51.64   | 
 
-To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in March 2023.*)
+To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in June 2023.*)
 
-#### JSVFA 2.0 metrics (v0.3.4)
+#### New metrics (v0.6.1)
 
-> failed: 38, passed: 65 of 103 tests - (63.11%)
+> failed: 47, passed: 75 of 122 tests - (61.48%)
 
-|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
-|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
-|    Aliasing    |   4   |    12    |  1/6   | 1  | 1  | 9  |   0.50    |  0.10  |  0.17   |
-|     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |
-|     Basic      |  59   |    60    | 37/42  | 53 | 2  | 3  |   0.96    |  0.95  |  0.95   |
-|  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |
-| Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
-|   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
-|     Inter      |  12   |    18    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
-|    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
-| StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
-|     TOTAL      |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |
+|      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
+|    Aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |  33.33%   |
+|     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |    50%    |
+|     Basic      |  57   |    60    | 38/42  | 55 | 1  | 4  |   0.98    |  0.93  |  0.95   |  90.48%   |
+|  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |  35.71%   |
+| Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |  66.67%   |
+|   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |  66.67%   |
+|     Inter      |  12   |    18    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |  57.14%   |
+|    Session     |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |    0%     |
+| StrongUpdates  |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |    60%    |
+|      Pred      |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |  66.67%   |
+|   Reflection   |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |    0%     |
+|   Sanitizers   |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |  33.33%   |
+|     TOTAL      |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |  61.48%   |
 
-To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.4.md) (*computed in September 2025.*)
+To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.1.md) (*computed in November 2025.*)
 
 #### FLOWDROID 
 
@@ -258,37 +265,43 @@ To have detailed information about each group of tests run, [see here.](modules/
 | Inter          | 15    | 16       | 13/14  | 15 | 0  | 1  | 1.00      | 0.94   | 0.97 |
 | Session        | 0     | 3        | 0/3    | 0  | 0  | 3  | 0.00      | 0.00   | 0.00 |
 | StrongUpdates  | 0     | 1        | 4/5    | 0  | 0  | 1  | 0.00      | 0.00   | 0.00 |
+|      Pred      | -     | -        | -/-    | -  | -  | -  | -         | -      |  -   |  ** NO EXECUTED
+|   Reflection   | -     | -        | -/-    | -  | -  | -  | -         | -      |  -   |  ** NO EXECUTED
+|   Sanitizers   | -     | -        | -/-    | -  | -  | -  | -         | -      |  -   |  ** NO EXECUTED
 | TOTAL          | 98    | 126      | 67/103 | 77 | 9  | 37 | 0.90      | 0.68   | 0.77 |
 
 To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/flowdroid/flowdroid-metrics.md)
 
 #### JOANA
 
-> failed: 32, passed: 71 of 103 tests. `(68.93%)`
+> failed: 37, passed: 85 of 122 tests. `(69.67%)`
 
-| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1   |
-|----------------|-------|----------|--------|----|----|----|-----------|--------|------|
-| Aliasing       | 6     | 11       | 2/6    | 2  | 2  | 7  | 0.50      | 0.22   | 0.31 |
-| Arrays         | 10    | 9        | 9/10   | 9  | 1  | 0  | 0.90      | 1.00   | 0.95 |
-| Basic          | 45    | 61       | 25/42  | 26 | 6  | 22 | 0.81      | 0.54   | 0.65 |
-| Collections    | 15    | 15       | 14/14  | 15 | 0  | 0  | 1.00      | 1.00   | 1.00 |
-| Datastructures | 6     | 5        | 5/6    | 5  | 1  | 0  | 0.83      | 1.00   | 0.91 |
-| Factories      | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00 |
-| Inter          | 13    | 18       | 9/14   | 9  | 0  | 5  | 1.00      | 0.64   | 0.78 |
-| Session        | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00 |
-| StrongUpdates  | 5     | 1        | 1/5    | 1  | 4  | 0  | 0.20      | 1.00   | 0.33 |
-| TOTAL          | 106   | 126      | 71/103 | 73 | 14 | 34 | 0.84      | 0.68   | 0.75 |
+| Test           | Found | Expected | Status | TP | FP | FN | Precision | Recall | F1    | Pass rate |
+|----------------|-------|----------|--------|----|----|----|-----------|--------|-------|-----------|
+| Aliasing       | 6     | 11       | 2/6    | 2  | 2  | 7  | 0.50      | 0.22   | 0.31  | 33.33%    |
+| Arrays         | 10    | 9        | 9/10   | 9  | 1  | 0  | 0.90      | 1.00   | 0.95  | 90%       |
+| Basic          | 45    | 61       | 25/42  | 26 | 6  | 22 | 0.81      | 0.54   | 0.65  | 59.52%    |
+| Collections    | 15    | 14       | 13/14  | 14 | 1  | 0  | 0.93      | 1.00   | 0.96  | 92.86%    |
+| Datastructures | 6     | 5        | 5/6    | 5  | 1  | 0  | 0.83      | 1.00   | 0.91  | 83.33%    |
+| Factories      | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00  | 100%      |
+| Inter          | 13    | 16       | 11/14  | 11 | 0  | 3  | 1.00      | 0.79   | 0.88  | 78.57%    |
+| Session        | 3     | 3        | 3/3    | 3  | 0  | 0  | 1.00      | 1.00   | 1.00  | 100%      |
+| StrongUpdates  | 5     | 1        | 1/5    | 1  | 4  | 0  | 0.20      | 1.00   | 0.33  | 20%       |
+| Pred           | 8     | 5        | 6/9    | 5  | 3  | 0  | 0.63      | 1.00   | 0.77  | 66.67%    |
+| Reflection     | 3     | 4        | 3/4    | 3  | 0  | 1  | 1.00      | 0.75   | 0.86  | 75%       |
+| Sanitizer      | 6     | 6        | 4/6    | 4  | 1  | 1  | 0.80      | 0.80   | 0.80  | 66.67%    |
+| TOTAL          | 123   | 138      | 85/122 | 86 | 19 | 34 | 0.82      | 0.72   | 0.77  | 69.67%    |
 
 To have detailed information about each group of tests run, [see here.](modules/securibench/src/docs-metrics/joana/joana-metrics.md)
 
-#### METRICS SUMMARY
+### METRICS SUMMARY
 
-|   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
-|:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
-|   JSVFA   |  94   |   126    | 57/103 | 75 | 8  | 40 |   0.90    |  0.65  |  0.75   |    55.34% |
-| JSVFA 2.0 |  106  |   126    | 65/103 | 80 | 12 | 32 |   0.87    |  0.71  |  0.78   |    63.11% |
-| Flowdroid |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
-|   Joana   |  106  |   126    | 71/103 | 73 | 14 | 34 |   0.84    |  0.68  |  0.75   |    68.93% |
+|     Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
+|:------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
+| JSVFA v0.3.0 |  102  |   139    | 63/122 | 80 | 11 | 50 |   0.88    |  0.62  |  0.72   |    51.64% | 
+| JSVFA v0.6.1 |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |    61.48% |
+|  Flowdroid   |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
+|    Joana     |  123  |   138    | 85/122 | 86 | 19 | 34 |   0.82    |  0.72  |  0.77   |    69.67% |
 
 
 ### TAINTBENCH:
