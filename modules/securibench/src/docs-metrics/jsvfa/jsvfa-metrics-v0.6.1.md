@@ -31,10 +31,10 @@
 |   Test    | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:---------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Aliasing1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Aliasing2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * wrong counting
-| Aliasing3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | ** array indexes
-| Aliasing4 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * wrong counting
-| Aliasing5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Aliasing2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [i]
+| Aliasing3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [ii]
+| Aliasing4 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [i]
+| Aliasing5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Aliasing6 |   7   |    7     |   ✅    | 7  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |   TOTAL   |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |
 
@@ -44,15 +44,15 @@
 |   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Arrays1  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Arrays2  |   3   |    1     |   ❌    | 0  | 2  | 0  |   0.00    |  0.00  |  0.00   |
+| Arrays2  |   3   |    1     |   ❌    | 0  | 2  | 0  |   0.00    |  0.00  |  0.00   | * issue [ii]
 | Arrays3  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Arrays4  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Arrays5  |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Arrays4  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   | 
+| Arrays5  |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [ii]
 | Arrays6  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Arrays7  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Arrays8  |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
-| Arrays9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Arrays10 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Arrays8  |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [ii]
+| Arrays9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [ii]
+| Arrays10 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [ii]
 |  TOTAL   |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |
 
 
@@ -91,17 +91,17 @@
 | Basic28 |   2   |    2     |   ✅    | 0  | 0  | 2  |   1.00    |  1.00  |  1.00   |
 | Basic29 |   2   |    2     |   ✅    | 2  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Basic30 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Basic31 |   0   |    2     |   ❌    | 0  | 0  | 2  |   0.00    |  0.00  |  0.00   |
+| Basic31 |   0   |    2     |   ❌    | 0  | 0  | 2  |   0.00    |  0.00  |  0.00   | * issue [iii]
 | Basic32 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Basic33 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Basic34 |   2   |    2     |   ✅    | 2  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Basic35 |   6   |    6     |   ✅    | 6  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Basic36 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Basic36 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iii]
 | Basic37 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Basic38 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Basic38 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [iii]
 | Basic39 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Basic41 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Basic42 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Basic42 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 |  TOTAL  |  57   |    60    | 38/42  | 55 | 1  | 4  |   0.98    |  0.93  |  0.95   |
 
 
@@ -234,3 +234,11 @@ These tests are not executed by Flowdroid
 | Sanitizers5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 | Sanitizers6 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
 |    TOTAL    |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |
+
+
+### Common issues
+
+- [i] Wrong counting: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
+- [ii] Array Indexes: The actual implementation is unable to recognize tainted in specific indexes from an array. Currently, it marks all the array as tainted.
+- [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
+- [iv] The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs.
