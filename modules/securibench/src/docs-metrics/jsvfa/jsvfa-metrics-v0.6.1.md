@@ -245,7 +245,7 @@ These tests are not executed by Flowdroid
   [a] Nested structures as HashMap, LinkedList, and others,
   [b] Loop statement as "for" or "while",
   [c] Parameters passed in the constructor.
-- [v] Reflection: The actual implementation does not handle reflection feature,
-- [vi] Global variables references: There are edges cases not mapped about how to handle the "definition" of global variables,
-- [vii] Path for conditional: The current logic always evaluate two paths for a conditional, regardless the condition being always set as True or Fals,
-- [viii] Sanitizer method: The actual implementation does not handle intermediary method that Sanitizer uses.
+- [v] Reflection: The current implementation does not address the reflection feature,
+- [vi] Global variables references: There are unaddressed edge cases regarding the handling of the definition of global variables.,
+- [vii] Path for conditional: The current logic always evaluates two paths for a conditional, regardless of whether the condition is set to True or False,
+- [viii] Sanitizer method: The current implementation fails to deal with the intermediary method utilized by the sanitizer.
