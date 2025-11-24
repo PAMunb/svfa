@@ -111,17 +111,17 @@
 |:-------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Collections1  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Collections2  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Collections3  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections3  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Collections4  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Collections5  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Collections9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Collections10 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections5  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Collections9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Collections10 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Collections11 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Collections12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Collections13 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Collections13 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Collections14 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |     TOTAL     |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |
 
@@ -133,8 +133,8 @@
 | Datastructures1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Datastructures2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Datastructures3 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Datastructures4 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [iv]
-| Datastructures5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Datastructures4 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Datastructures5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Datastructures6 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |      TOTAL      |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |
 
@@ -145,7 +145,7 @@
 |:----------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Factories1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Factories2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Factories3 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [iv]
+| Factories3 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [iv]
 |   TOTAL    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
 
 
@@ -156,15 +156,15 @@
 | Inter1  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter2  |   2   |    2     |   ✅    | 2  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter3  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Inter4  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [i]
-| Inter5  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
-| Inter6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [v]
+| Inter4  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [i]
+| Inter5  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
+| Inter6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [v]
 | Inter7  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter8  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Inter9  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Inter9  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Inter10 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter11 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | *flaky
-| Inter12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Inter12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iv]
 | Inter13 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Inter14 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |  TOTAL  |  12   |    18    |  8/14  | 9  | 0  | 6  |   1.00    |  0.60  |  0.75   |
@@ -174,9 +174,9 @@
 
 |   Test   | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:--------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
-| Session1 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iii]
-| Session2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iii]
-| Session3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iii]
+| Session1 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iii]
+| Session2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iii]
+| Session3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iii]
 |  TOTAL   |   0   |    3     |  0/3   | 0  | 0  | 3  |   0.00    |  0.00  |  0.00   |
 
 
@@ -186,9 +186,9 @@
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | StrongUpdates1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
 | StrongUpdates2 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
-| StrongUpdates3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vi]
+| StrongUpdates3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [vi]
 | StrongUpdates4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vi]
+| StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [vi]
 |     TOTAL      |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 
 
@@ -202,11 +202,11 @@ These tests are not executed by Flowdroid
 |:-----:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Pred1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
 | Pred2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Pred3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vii]
+| Pred3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [vii]
 | Pred4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Pred5 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   | 
-| Pred6 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vii]
-| Pred7 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vii]
+| Pred6 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [vii]
+| Pred7 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | * issue [vii]
 | Pred8 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Pred9 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | TOTAL |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |
@@ -216,10 +216,10 @@ These tests are not executed by Flowdroid
 
 | Test  | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:-----:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
-| Refl1 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [v]
-| Refl2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [v]
-| Refl3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [v]
-| Refl4 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [v]
+| Refl1 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [v]
+| Refl2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [v]
+| Refl3 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [v]
+| Refl4 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [v]
 | TOTAL |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |
 
 
@@ -228,24 +228,9 @@ These tests are not executed by Flowdroid
 |    Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:-----------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Sanitizers1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Sanitizers2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [viii]
+| Sanitizers2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [viii]
 | Sanitizers3 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
-| Sanitizers4 |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [viii]
-| Sanitizers5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iii]
-| Sanitizers6 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [viii]
+| Sanitizers4 |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [viii]
+| Sanitizers5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [iii]
+| Sanitizers6 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | * issue [viii]
 |    TOTAL    |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |
-
-
-### Common issues
-
-- [i] Wrong counting: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
-- [ii] Array Indexes: The actual implementation is unable to recognize tainted in specific indexes from an array. Currently, it marks all the array as tainted.
-- [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
-- [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
-  [a] Nested structures as HashMap, LinkedList, and others,
-  [b] Loop statement as "for" or "while",
-  [c] Parameters passed in the constructor.
-- [v] Reflection: The current implementation does not address the reflection feature,
-- [vi] Global variables references: There are unaddressed edge cases regarding the handling of the definition of global variables.,
-- [vii] Path for conditional: The current logic always evaluates two paths for a conditional, regardless of whether the condition is set to True or False,
-- [viii] Sanitizer method: The current implementation fails to deal with the intermediary method utilized by the sanitizer.
