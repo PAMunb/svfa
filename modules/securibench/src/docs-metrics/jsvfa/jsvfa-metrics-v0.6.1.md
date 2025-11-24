@@ -145,7 +145,7 @@
 |:----------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Factories1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Factories2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Factories3 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Factories3 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [iv]
 |   TOTAL    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |
 
 
@@ -242,6 +242,6 @@ These tests are not executed by Flowdroid
 - [ii] Array Indexes: The actual implementation is unable to recognize tainted in specific indexes from an array. Currently, it marks all the array as tainted.
 - [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
 - [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
-  - Nested structures as HashMap, LinkedList, and others,
-  - Loop statement as "for" or "while",
-  - Parameters passed in the constructor,
+  [a] Nested structures as HashMap, LinkedList, and others,
+  [b] Loop statement as "for" or "while",
+  [c] Parameters passed in the constructor,
