@@ -379,7 +379,8 @@ This case emulates **Experiment 2 - TB2** that states:
 >All tools are configured with sources and sinks defined in benchmark suite.
 
 The mentioned sources and sinks can be found in [TB_SourcesAndSinks](https://github.com/TaintBench/TaintBench/blob/main/TB_SourcesAndSinks.txt). 
-As a result, it finds fewer leaks than the expected, and, it gets only 10 matches.
+As a result, it finds fewer leaks than the expected, and, it gets only 10 matches,
+which means, it has found 76 new leakages.
 
 | Actual Findings | Expected Findings | Matches |
 |:---------------:|:-----------------:|:-------:|
@@ -395,6 +396,7 @@ of sources and sinks
 
 The mentioned lists can be found in [TB_SourcesAndSinks](https://taintbench.github.io/taintbenchSuite).
 As a result, it finds more leaks than the expected, however, it still gets only 10 matches as in the last experiment.
+which means, it has found 645 new leakages.
 
 | Actual Findings | Expected Findings | Matches |
 |:---------------:|:-----------------:|:-------:|
