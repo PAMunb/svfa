@@ -202,11 +202,11 @@ These tests are not executed by Flowdroid
 |:-----:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Pred1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
 | Pred2 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Pred3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Pred3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vii]
 | Pred4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Pred5 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Pred6 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
-| Pred7 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Pred5 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   | 
+| Pred6 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vii]
+| Pred7 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vii]
 | Pred8 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Pred9 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | TOTAL |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |
@@ -247,3 +247,4 @@ These tests are not executed by Flowdroid
   [c] Parameters passed in the constructor,
 - [v] Reflection: The actual implementation does not handle reflection feature.
 - [vi] Global variables references: .
+- [vii] Path for conditional: The logic always evaluate two paths for a conditional, regardless the condition being always set as True or False  
