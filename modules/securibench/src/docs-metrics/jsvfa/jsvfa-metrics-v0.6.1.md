@@ -228,11 +228,11 @@ These tests are not executed by Flowdroid
 |    Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score |
 |:-----------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Sanitizers1 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Sanitizers2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Sanitizers2 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [viii]
 | Sanitizers3 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
-| Sanitizers4 |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Sanitizers5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Sanitizers6 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Sanitizers4 |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [viii]
+| Sanitizers5 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iii]
+| Sanitizers6 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [viii]
 |    TOTAL    |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |
 
 
@@ -247,4 +247,5 @@ These tests are not executed by Flowdroid
   [c] Parameters passed in the constructor,
 - [v] Reflection: The actual implementation does not handle reflection feature.
 - [vi] Global variables references: .
-- [vii] Path for conditional: The logic always evaluate two paths for a conditional, regardless the condition being always set as True or False  
+- [vii] Path for conditional: The current logic always evaluate two paths for a conditional, regardless the condition being always set as True or False
+- [viii] Sanitizer method: The actual implementation does not handle intermediary method that Sanitizer uses.
