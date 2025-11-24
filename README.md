@@ -261,6 +261,87 @@ To have detailed information about each test category run, [see here.](modules/s
 
 To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.1.md) (*computed in November 2025.*)
 
+##### Common issues
+From the 47 tests, we have categorized nine (9) issues.
+
+[i] **Wrong counting**: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
+We have mapped three cases: `(6.38%)`
+- Aliasing2
+- Aliasing4
+- Inter4
+
+[ii] Array Indexes: The actual implementation is unable to recognize tainted in specific indexes from an array. Currently, it marks all the array as tainted.
+We have mapped six cases: `(12.77%)`
+- Aliasing3
+- Arrays2
+- Arrays5
+- Arrays8
+- Arrays9
+- Arrays10
+
+[iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
+We have mapped seven cases: `(14.89%)`
+- Basic31
+- Basic36
+- Basic38
+- Session1
+- Session2
+- Session3
+- Sanitizers5
+
+[iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
+  [a] Nested structures as HashMap, LinkedList, and others,
+  [b] Loop statement as "for" or "while",
+  [c] Parameters passed in the constructor.
+We have mapped 17 cases: `(36.17%)`
+- Aliasing5
+- Basic42
+- Collections3
+- Collections5
+- Collections6
+- Collections7
+- Collections8
+- Collections9
+- Collections10
+- Collections12
+- Collections13
+- Datastructures4
+- Datastructures5
+- Factories3
+- Inter5
+- Inter9
+- Inter12
+
+[v] Reflection: The current implementation does not address the reflection feature,
+We have mapped 5 cases: `(10.64%)`
+- Inter6
+- Refl1
+- Refl2
+- Refl3
+- Refl4
+
+[vi] Global variables references: There are unaddressed edge cases regarding the handling of the definition of global variables.,
+We have mapped two cases: `(4.26%)`
+- StrongUpdates3
+- StrongUpdates5
+
+
+[vii] Path for conditional: The current logic always evaluates two paths for a conditional, regardless of whether the condition is set to True or False,
+We have mapped three cases: `(6.38%)`
+- Pred3
+- Pred6
+- Pred7
+
+[viii] Sanitizer method: The current implementation fails to deal with the intermediary method utilized by the sanitizer.
+We have mapped three cases: `(6.38%)`
+- Sanitizers2
+- Sanitizers4
+- Sanitizers6
+
+[ix] Flaky
+We have mapped one cases: `(2.13%)`
+- Inter11
+
 #### FLOWDROID 
 
 - failed: 36, passed: 67 of 103 tests. `(65.05%)`
