@@ -244,8 +244,8 @@ These tests are not executed by Flowdroid
 - [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
   [a] Nested structures as HashMap, LinkedList, and others,
   [b] Loop statement as "for" or "while",
-  [c] Parameters passed in the constructor,
-- [v] Reflection: The actual implementation does not handle reflection feature.
-- [vi] Global variables references: .
-- [vii] Path for conditional: The current logic always evaluate two paths for a conditional, regardless the condition being always set as True or False
+  [c] Parameters passed in the constructor.
+- [v] Reflection: The actual implementation does not handle reflection feature,
+- [vi] Global variables references: There are edges cases not mapped about how to handle the "definition" of global variables,
+- [vii] Path for conditional: The current logic always evaluate two paths for a conditional, regardless the condition being always set as True or Fals,
 - [viii] Sanitizer method: The actual implementation does not handle intermediary method that Sanitizer uses.
