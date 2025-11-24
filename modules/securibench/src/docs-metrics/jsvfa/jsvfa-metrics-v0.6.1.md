@@ -111,17 +111,17 @@
 |:-------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | Collections1  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 | Collections2  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Collections3  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections3  |   1   |    2     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
 | Collections4  |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Collections5  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections10 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| Collections5  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections6  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections7  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections8  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections9  |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections10 |   2   |    1     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [iv]
 | Collections11 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| Collections12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
-| Collections13 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   |
+| Collections12 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
+| Collections13 |   0   |    1     |   ❌    | 0  | 0  | 1  |   0.00    |  0.00  |  0.00   | [iv]
 | Collections14 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
 |     TOTAL     |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |
 
@@ -241,4 +241,7 @@ These tests are not executed by Flowdroid
 - [i] Wrong counting: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
 - [ii] Array Indexes: The actual implementation is unable to recognize tainted in specific indexes from an array. Currently, it marks all the array as tainted.
 - [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
-- [iv] The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs.
+- [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
+  - Nested structures as HashMap, LinkedList, and others,
+  - Loop statement as "for" or "while",
+  - Parameters passed in the constructor,
