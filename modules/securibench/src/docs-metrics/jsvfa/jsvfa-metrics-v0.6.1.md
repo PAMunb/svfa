@@ -186,9 +186,9 @@
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|
 | StrongUpdates1 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
 | StrongUpdates2 |   0   |    0     |   ✅    | 0  | 0  | 0  |   0.00    |  0.00  |  0.00   |
-| StrongUpdates3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates3 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vi]
 | StrongUpdates4 |   1   |    1     |   ✅    | 1  | 0  | 0  |   1.00    |  1.00  |  1.00   |
-| StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   |
+| StrongUpdates5 |   1   |    0     |   ❌    | 0  | 1  | 0  |   0.00    |  0.00  |  0.00   | [vi]
 |     TOTAL      |   3   |    1     |  3/5   | 1  | 2  | 0  |   0.33    |  1.00  |  0.50   |
 
 
@@ -246,3 +246,4 @@ These tests are not executed by Flowdroid
   [b] Loop statement as "for" or "while",
   [c] Parameters passed in the constructor,
 - [v] Reflection: The actual implementation does not handle reflection feature.
+- [vi] Global variables references: .
