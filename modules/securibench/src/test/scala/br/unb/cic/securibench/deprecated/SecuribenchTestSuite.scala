@@ -994,7 +994,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Factories3 we should detect 1 conflict of a simple factory test case"
   ) {
     val testName = "Factories3"
@@ -1003,8 +1003,17 @@ class SecuribenchTestSuite extends FunSuite {
     val svfa =
       new SecuribenchTest(s"securibench.micro.factories.$testName", "doGet")
     svfa.buildSparseValueFlowGraph()
+//    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
+
+  /**
+   * WHY IS IT FAILING
+   *
+   * It is a context issue. The current logic is not mapping
+   * the context when the parameters are passed to the constructor
+   * i.e: StringWrapper w1 = new StringWrapper(s1);
+   */
 
   /** INTER TESTs
     */
