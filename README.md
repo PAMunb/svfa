@@ -265,10 +265,11 @@ To have detailed information about each test category run, [see here.](modules/s
 From the 47 tests, we have categorized nine (9) issues.
 
 [i] **Wrong counting**: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
-We have mapped three cases: `(6.38%)`
+We have mapped four cases: `(8.51%)`
 - Aliasing2
 - Aliasing4
 - Inter4
+- Inter5
 
 [ii] Array Indexes: The actual implementation is unable to recognize tainted in specific indexes from an array. Currently, it marks all the array as tainted.
 We have mapped six cases: `(12.77%)`
@@ -293,7 +294,7 @@ We have mapped seven cases: `(14.89%)`
   [a] Nested structures as HashMap, LinkedList, and others,
   [b] Loop statement as "for" or "while",
   [c] Parameters passed in the constructor.
-We have mapped 17 cases: `(36.17%)`
+We have mapped 16 cases: `(34.04%)`
 - Aliasing5
 - Basic42
 - Collections3
@@ -308,7 +309,6 @@ We have mapped 17 cases: `(36.17%)`
 - Datastructures4
 - Datastructures5
 - Factories3
-- Inter5
 - Inter9
 - Inter12
 
