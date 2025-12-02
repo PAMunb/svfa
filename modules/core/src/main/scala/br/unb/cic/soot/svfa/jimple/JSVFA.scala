@@ -40,7 +40,7 @@ abstract class JSVFA
   val methodRules = languageParser.evaluate(code())
 
   /*
-   * Create an edge  from the definition of the local argument
+   * Create an edge from the definition of the local argument
    * to the definitions of the base object of a method call. In
    * more details, we should use this rule to address a situation
    * like:
@@ -174,7 +174,11 @@ abstract class JSVFA
   /* Create an edge from the definitions of a local argument
    * to the assignment statement. In more details, we should use this rule to address
    * a situation like:
-   * $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+   * 
+   * [i] $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+   * [ii] virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+   *
+   * Where we want to create an edge from the definitions of r6 to the current statement.
    */
   trait CopyFromMethodArgumentToLocal extends RuleAction {
     def from: Int
@@ -185,9 +189,9 @@ abstract class JSVFA
         localDefs: SimpleLocalDefs
     ) = {
       val srcArg = invokeStmt.getInvokeExpr.getArg(from)
-      if (invokeStmt.isInstanceOf[JAssignStmt] && srcArg.isInstanceOf[Local]) {
+      if (srcArg.isInstanceOf[Local]) {
         val local = srcArg.asInstanceOf[Local]
-        val targetStmt = invokeStmt.asInstanceOf[jimple.AssignStmt]
+        val targetStmt = invokeStmt // current statement
         localDefs
           .getDefsOfAt(local, targetStmt)
           .forEach(sourceStmt => {
