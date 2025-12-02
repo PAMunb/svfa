@@ -239,7 +239,7 @@ The result are presented in a table that contains the following information.
 
 To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in June 2023.*)
 
-#### New metrics (v0.6.1)
+#### New metrics (v0.6.2)
 
 > failed: 46, passed: 76 of 122 tests - (62.3%)
 
@@ -405,7 +405,7 @@ To have detailed information about each group of tests run, [see here.](modules/
 |     Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
 | JSVFA v0.3.0 |  102  |   139    | 63/122 | 80 | 11 | 50 |   0.88    |  0.62  |  0.72   |    51.64% | 
-| JSVFA v0.6.1 |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |    61.48% |
+| JSVFA v0.6.2 |  124  |   141    | 76/122 | 96 | 15 | 32 |   0.86    |  0.75  |  0.80   |     62.3% |
 |  Flowdroid   |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
 |    Joana     |  123  |   138    | 85/122 | 86 | 19 | 34 |   0.82    |  0.72  |  0.77   |    69.67% |
 
