@@ -81,6 +81,12 @@ trait DSL {
           CopyFromMethodCallToLocal()
         ]
 
+    rule sessionMethods =
+      if NamedMethodRule(className: "javax.servlet.http.HttpSession", methodName: "getAttribute")
+        then [
+          CopyFromMethodCallToLocal()
+        ]
+
     rule skipNativeMethods = if NativeRule() then DoNothing()
 
     rule skipMethodsWithoutActiveBody =
