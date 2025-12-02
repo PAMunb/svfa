@@ -541,7 +541,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Basic28 we should detect 2 conflicts in a complicated control flow test case"
   ) {
     val testName = "Basic28"
