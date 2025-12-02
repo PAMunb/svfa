@@ -74,6 +74,12 @@ trait DSL {
       if NamedMethodRule(className: "javax.servlet.http.Cookie", methodName: "getComment")
         then CopyFromMethodCallToLocal()
 
+    rule sessionMethods =
+      if NamedMethodRule(className: "javax.servlet.http.HttpSession", methodName: "setAttribute")
+        then [
+          CopyFromMethodCallToLocal()
+        ]
+
     rule skipNativeMethods = if NativeRule() then DoNothing()
 
     rule skipMethodsWithoutActiveBody =
