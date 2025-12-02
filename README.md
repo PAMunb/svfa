@@ -268,7 +268,7 @@ From the 47 tests, we have categorized nine (9) issues.
 We have mapped four cases: `(10.64%)`
 - Aliasing2
 - Aliasing4
-- Basic36
+- Basic31
 - Inter4
 - Inter5
 
@@ -283,7 +283,7 @@ We have mapped six cases: `(12.77%)`
 
 [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
 We have mapped seven cases: `(12.77%)`
-- Basic31
+- Basic36
 - Basic38
 - Session1
 - Session2
