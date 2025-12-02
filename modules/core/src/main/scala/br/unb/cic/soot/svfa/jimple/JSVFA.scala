@@ -40,14 +40,14 @@ abstract class JSVFA
   val methodRules = languageParser.evaluate(code())
 
   /*
-   * Create an edge  from the definition of the local argument
+   * Create an edge from the definition of the local argument
    * to the definitions of the base object of a method call. In
    * more details, we should use this rule to address a situation
    * like:
    *
    * - virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
    *
-   * Where we wanto create an edge from the definitions of r1 to
+   * Where we want to create an edge from the definitions of r1 to
    * the definitions of r3.
    */
   trait CopyFromMethodArgumentToBaseObject extends RuleAction {
@@ -130,10 +130,14 @@ abstract class JSVFA
    * In more details, we should use this rule to address
    * a situation like:
    *
-   * - $r6 = virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
+   * [i]  $r6 = virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
+   * [ii] virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
    *
    * Where we want to create an edge from the definitions of r3 to
-   * this statement.
+   * the current statement.
+   *
+   * CONDITIONS:
+   * - For [i] case, the left operation ($r6) must be a local variable
    */
   trait CopyFromMethodCallToLocal extends RuleAction {
     def apply(
@@ -142,10 +146,18 @@ abstract class JSVFA
         localDefs: SimpleLocalDefs
     ) = {
       val expr = invokeStmt.getInvokeExpr
-      if (hasBaseObject(expr) && invokeStmt.isInstanceOf[jimple.AssignStmt]) {
-        val base = getBaseObject(expr)
+      var isLocalLeftOpFromAssignStmt = true
+
+      if (invokeStmt.isInstanceOf[jimple.AssignStmt]) {
         val local = invokeStmt.asInstanceOf[jimple.AssignStmt].getLeftOp
-        if (base.isInstanceOf[Local] && local.isInstanceOf[Local]) {
+        if (! local.isInstanceOf[Local]) {
+          isLocalLeftOpFromAssignStmt = false
+        }
+      }
+
+      if (hasBaseObject(expr) && isLocalLeftOpFromAssignStmt) {
+        val base = getBaseObject(expr)
+        if (base.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
           localDefs
             .getDefsOfAt(localBase, invokeStmt)
@@ -162,7 +174,11 @@ abstract class JSVFA
   /* Create an edge from the definitions of a local argument
    * to the assignment statement. In more details, we should use this rule to address
    * a situation like:
-   * $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+   * 
+   * [i] $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+   * [ii] virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+   *
+   * Where we want to create an edge from the definitions of r6 to the current statement.
    */
   trait CopyFromMethodArgumentToLocal extends RuleAction {
     def from: Int
@@ -173,9 +189,9 @@ abstract class JSVFA
         localDefs: SimpleLocalDefs
     ) = {
       val srcArg = invokeStmt.getInvokeExpr.getArg(from)
-      if (invokeStmt.isInstanceOf[JAssignStmt] && srcArg.isInstanceOf[Local]) {
+      if (srcArg.isInstanceOf[Local]) {
         val local = srcArg.asInstanceOf[Local]
-        val targetStmt = invokeStmt.asInstanceOf[jimple.AssignStmt]
+        val targetStmt = invokeStmt // current statement
         localDefs
           .getDefsOfAt(local, targetStmt)
           .forEach(sourceStmt => {

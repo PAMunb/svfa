@@ -21,3 +21,11 @@ v0.6.0
 - Create module for scripts,
 - Set up github workflow to not use tokens,
 - Create logic to generate reports.
+
+v0.6.1
+- Update readme information,
+- Compute new test categories: Preds, Reflections, and Sanitizers.
+
+v0.6.2
+- Add DSL rules for Cookie methods and Session methods,
+- Improve traits rules to handle statements types. 
