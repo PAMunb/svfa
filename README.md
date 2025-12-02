@@ -282,11 +282,10 @@ We have mapped six cases: `(12.77%)`
 - Arrays10
 
 [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
-We have mapped seven cases: `(8.51%)`
+We have mapped seven cases: `(6.38%)`
 - Session1
 - Session2
 - Session3
-- Sanitizers5
 
 [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
   [a] Nested structures as HashMap, LinkedList, and others,
@@ -333,9 +332,10 @@ We have mapped three cases: `(6.38%)`
 - Pred7
 
 [viii] Sanitizer method: The current implementation fails to deal with the intermediary method utilized by the sanitizer.
-We have mapped three cases: `(6.38%)`
+We have mapped three cases: `(8.51%)`
 - Sanitizers2
 - Sanitizers4
+- Sanitizers5
 - Sanitizers6
 
 [ix] Flaky
