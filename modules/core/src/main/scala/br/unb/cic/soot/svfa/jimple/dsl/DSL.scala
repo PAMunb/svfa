@@ -77,6 +77,7 @@ trait DSL {
     rule sessionMethods =
       if NamedMethodRule(className: "javax.servlet.http.HttpSession", methodName: "setAttribute")
         then [
+          CopyFromMethodArgumentToLocal(from: 1),
           CopyFromMethodCallToLocal()
         ]
 
