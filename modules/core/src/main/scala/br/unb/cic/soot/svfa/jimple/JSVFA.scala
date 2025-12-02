@@ -130,10 +130,14 @@ abstract class JSVFA
    * In more details, we should use this rule to address
    * a situation like:
    *
-   * - $r6 = virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
+   * [i]  $r6 = virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
+   * [ii] virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
    *
    * Where we want to create an edge from the definitions of r3 to
-   * this statement.
+   * the current statement.
+   *
+   * CONDITIONS:
+   * - For [i] case, the left operation ($r6) must be a local variable
    */
   trait CopyFromMethodCallToLocal extends RuleAction {
     def apply(
@@ -142,10 +146,18 @@ abstract class JSVFA
         localDefs: SimpleLocalDefs
     ) = {
       val expr = invokeStmt.getInvokeExpr
-      if (hasBaseObject(expr) && invokeStmt.isInstanceOf[jimple.AssignStmt]) {
-        val base = getBaseObject(expr)
+      var isLocalLeftOpFromAssignStmt = true
+
+      if (invokeStmt.isInstanceOf[jimple.AssignStmt]) {
         val local = invokeStmt.asInstanceOf[jimple.AssignStmt].getLeftOp
-        if (base.isInstanceOf[Local] && local.isInstanceOf[Local]) {
+        if (! local.isInstanceOf[Local]) {
+          isLocalLeftOpFromAssignStmt = false
+        }
+      }
+
+      if (hasBaseObject(expr) && isLocalLeftOpFromAssignStmt) {
+        val base = getBaseObject(expr)
+        if (base.isInstanceOf[Local]) {
           val localBase = base.asInstanceOf[Local]
           localDefs
             .getDefsOfAt(localBase, invokeStmt)
