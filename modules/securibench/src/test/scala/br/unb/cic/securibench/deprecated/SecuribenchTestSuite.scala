@@ -56,15 +56,25 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore("in the class Aliasing5 we should detect 1 conflict") {
+  test("in the class Aliasing5 we should detect 1 conflict") {
     val testName = "Aliasing5"
     val expectedConflicts = 1
 
     val svfa =
       new SecuribenchTest(s"securibench.micro.aliasing.$testName", "doGet")
     svfa.buildSparseValueFlowGraph()
+    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
+
+  /**
+   * WHY IS IT FAILING
+   *
+   * It is happening because the actual implementation does
+   * not handle Aliasing in passed arguments. In addition,
+   * I am not sure if it is right to have a LEAK in this test.
+   *
+  */
 
   test("in the class Aliasing6 we should detect 7 conflicts") {
     val testName = "Aliasing6"
