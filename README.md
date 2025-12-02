@@ -282,8 +282,7 @@ We have mapped six cases: `(12.77%)`
 - Arrays10
 
 [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
-We have mapped seven cases: `(12.77%)`
-- Basic36
+We have mapped seven cases: `(10.64%)`
 - Basic38
 - Session1
 - Session2
@@ -294,9 +293,10 @@ We have mapped seven cases: `(12.77%)`
   [a] Nested structures as HashMap, LinkedList, and others,
   [b] Loop statement as "for" or "while",
   [c] Parameters passed in the constructor.
-We have mapped 16 cases: `(34.04%)`
+We have mapped 16 cases: `(36.17%)`
 - Aliasing5
 - Basic42
+- Basic36
 - Collections3
 - Collections5
 - Collections6
