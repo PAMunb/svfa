@@ -47,7 +47,7 @@ abstract class JSVFA
    *
    * - virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
    *
-   * Where we wanto create an edge from the definitions of r1 to
+   * Where we want to create an edge from the definitions of r1 to
    * the definitions of r3.
    */
   trait CopyFromMethodArgumentToBaseObject extends RuleAction {
