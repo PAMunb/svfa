@@ -261,26 +261,18 @@ To have detailed information about each test category run, [see here.](modules/s
 
 To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.1.md) (*computed in November 2025.*)
 
-#### Running Android Tests
+#### Running Securibench Tests
 
-You can run Android tests in several ways:
+You can run Securibench tests in two ways:
 
 **1. Using the convenience shell script (Recommended):**
 ```bash
-./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
+./scripts/run-securibench.sh
 ```
 
-**2. Using environment variables:**
+**2. Using SBT testOnly command:**
 ```bash
-sbt test
-# Or run specific tests:
-sbt testRoidsec
-sbt testAndroid
-```
-
-**5. Using SBT testOnly command:**
-```bash
-sbt "testOnly br.unb.cic.securibench.suite.SecuribenchSuiteTest"
+sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
 ```
 
 #### Common issues
