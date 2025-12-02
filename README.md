@@ -261,7 +261,21 @@ To have detailed information about each test category run, [see here.](modules/s
 
 To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.2.md) (*computed in December 2025.*)
 
-##### Common issues
+#### Running Securibench Tests
+
+You can run Securibench tests in two ways:
+
+**1. Using the convenience shell script (Recommended):**
+```bash
+./scripts/run-securibench.sh
+```
+
+**2. Using SBT testOnly command:**
+```bash
+sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
+```
+
+#### Common issues
 From the 47 tests, we have categorized nine (9) issues.
 
 [i] **Wrong counting**: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
@@ -422,9 +436,9 @@ You can run Android tests in several ways:
 
 **1. Using the convenience shell script (Recommended):**
 ```bash
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
 ```
 
 **2. Using environment variables:**
