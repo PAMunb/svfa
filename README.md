@@ -24,7 +24,7 @@ This project follows a **modular architecture** with three focused modules:
 Add to your `build.sbt`:
 ```scala
 resolvers += Resolver.githubPackages("PAMunb", "svfa")
-libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.1"
+libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.2-SNAPSHOT"
 ```
 
 #### Using svfa-core in Java/Maven Projects
@@ -41,7 +41,7 @@ Add to your `pom.xml`:
 <dependency>
   <groupId>br.unb.cic</groupId>
   <artifactId>svfa-core_2.12</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'br.unb.cic:svfa-core_2.12:0.6.1'
+    implementation 'br.unb.cic:svfa-core_2.12:0.6.2-SNAPSHOT'
 }
 ```
 
