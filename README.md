@@ -241,13 +241,13 @@ To have detailed information about each test category run, [see here.](modules/s
 
 #### New metrics (v0.6.1)
 
-> failed: 47, passed: 75 of 122 tests - (61.48%)
+> failed: 46, passed: 76 of 122 tests - (62.3%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
 |    Aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |  33.33%   |
 |     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |    50%    |
-|     Basic      |  57   |    60    | 38/42  | 55 | 1  | 4  |   0.98    |  0.93  |  0.95   |  90.48%   |
+|     Basic      |  60   |    60    | 38/42  | 55 | 2  | 2  |   0.96    |  0.96  |  0.96   |  90.48%   |
 |  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |  35.71%   |
 | Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |  66.67%   |
 |   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |  66.67%   |
@@ -257,9 +257,9 @@ To have detailed information about each test category run, [see here.](modules/s
 |      Pred      |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |  66.67%   |
 |   Reflection   |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |    0%     |
 |   Sanitizers   |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |  33.33%   |
-|     TOTAL      |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |  61.48%   |
+|     TOTAL      |  124  |   141    | 76/122 | 96 | 15 | 32 |   0.86    |  0.75  |  0.80   |   62.3%   |
 
-To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.1.md) (*computed in November 2025.*)
+To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.2.md) (*computed in December 2025.*)
 
 ##### Common issues
 From the 47 tests, we have categorized nine (9) issues.
