@@ -1182,7 +1182,7 @@ class SecuribenchTestSuite extends FunSuite {
   /** SESSION TESTs
     */
 
-  ignore(
+  test(
     "in the class Session1 we should detect 1 conflict of a simple session test case"
   ) {
     val testName = "Session1"
@@ -1191,6 +1191,7 @@ class SecuribenchTestSuite extends FunSuite {
     val svfa =
       new SecuribenchTest(s"securibench.micro.session.$testName", "doGet")
     svfa.buildSparseValueFlowGraph()
+    // println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 

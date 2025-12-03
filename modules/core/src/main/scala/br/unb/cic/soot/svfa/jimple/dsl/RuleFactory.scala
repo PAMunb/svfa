@@ -38,6 +38,9 @@ class RuleFactory(val jsvfa: JSVFA) {
         case "CopyFromMethodCallToLocal" =>
           ruleActions =
             ruleActions ++ List(new jsvfa.CopyFromMethodCallToLocal {})
+        case "CopyFromSessionTag" =>
+          ruleActions =
+            ruleActions ++ List(new jsvfa.CopyFromSessionTag {})
         case _ =>
           ruleActions = ruleActions ++ List(new DoNothing {})
       }

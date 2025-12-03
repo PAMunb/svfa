@@ -240,6 +240,24 @@ abstract class JSVFA
     }
   }
 
+  trait CopyFromSessionTag extends RuleAction {
+
+    def apply(
+         sootMethod: SootMethod,
+         invokeStmt: jimple.Stmt,
+         localDefs: SimpleLocalDefs
+       ) = {
+      /**
+       * TO-DO
+       * Implement logic here
+       */
+    }
+  }
+
+  /**
+   * Core Code
+   */
+
   def createSceneTransform(): (String, Transform) =
     ("wjtp", new Transform("wjtp.svfa", new Transformer()))
 
