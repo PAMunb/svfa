@@ -84,7 +84,8 @@ trait DSL {
     rule sessionMethods =
       if NamedMethodRule(className: "javax.servlet.http.HttpSession", methodName: "getAttribute")
         then [
-          CopyFromMethodCallToLocal()
+          CopyFromMethodCallToLocal(),
+          CopyFromSessionTag()
         ]
 
     rule skipNativeMethods = if NativeRule() then DoNothing()

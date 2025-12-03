@@ -156,10 +156,15 @@ class LanguageParser(val jsvfa: JSVFA) extends RegexParsers {
       _.toString
     }
 
+  def COPY_FROM_SESSION_TAG: Parser[String] =
+    """CopyFromSessionTag""".r ^^ {
+      _.toString
+    }
+
   def ACTIONS: Parser[String] =
     DO_NOTHING | COPY_BETWEEN_ARGS |
       COPY_FROM_METHOD_ARGUMENT_TO_BASE_OBJECT | COPY_FROM_METHOD_CALL_TO_LOCAL |
-      COPY_FROM_METHOD_ARGUMENT_TO_LOCAL ^^ {
+      COPY_FROM_METHOD_ARGUMENT_TO_LOCAL | COPY_FROM_SESSION_TAG ^^ {
         _.toString
       }
 
