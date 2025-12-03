@@ -1191,37 +1191,9 @@ class SecuribenchTestSuite extends FunSuite {
     val svfa =
       new SecuribenchTest(s"securibench.micro.session.$testName", "doGet")
     svfa.buildSparseValueFlowGraph()
-//    println(svfa.svgToDotModel())
+    // println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
-
-  /**
-   * WHY IS IT FAILING?
-   *
-   * Here is a section of the jimple from file: "Session1.java"
-   *
-   * ---------------------------------------------------------------------------------------------------------------------------------
-   * s1: name = interfaceinvoke req.<javax.servlet.http.HttpServletRequest: java.lang.String getParameter(java.lang.String)>("name");
-   * s2: session = interfaceinvoke req.<javax.servlet.http.HttpServletRequest: javax.servlet.http.HttpSession getSession()>();
-   * s3: interfaceinvoke session.<javax.servlet.http.HttpSession: void setAttribute(java.lang.String,java.lang.Object)>("name", name);
-   * s4: $stack7 = interfaceinvoke session.<javax.servlet.http.HttpSession: java.lang.Object getAttribute(java.lang.String)>("name");
-   * s5: s2 = (java.lang.String) $stack7;
-   * s6: writer = interfaceinvoke resp.<javax.servlet.http.HttpServletResponse: java.io.PrintWriter getWriter()>();
-   * s7: virtualinvoke writer.<java.io.PrintWriter: void println(java.lang.String)>(s2);
-   * ---------------------------------------------------------------------------------------------------------------------------------
-   *
-   * Currently, statements (s1, s2, s3, s4, s6) of type "interfaceinvoke" are not processed totally by the program
-   * (not edges are created at least they are "source/sink" nodes). I found 2 cases to improve
-   *
-   * #1: If the expression is local as (s3/s4), it must be created an edge FROM its declaration TO the current stmt.
-   * #2: If the argument(s) passed in the expression call are locals as (s3), it must be created an edge FROM the argument(s) declaration
-   * TO the current stmt.
-   *
-   * Moreover, I found that these expression falls under rules conditions in (JSVFA.scala@invokeRule:449).
-   * We need to validate if this logic is right.
-   *
-   * PD: "Session2.java" and "Session3.java" have similar issues.
-   */
 
   ignore(
     "in the class Session2 we should detect 1 conflict of a simple session test case"
