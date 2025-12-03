@@ -24,7 +24,7 @@ This project follows a **modular architecture** with three focused modules:
 Add to your `build.sbt`:
 ```scala
 resolvers += Resolver.githubPackages("PAMunb", "svfa")
-libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.1"
+libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.2-SNAPSHOT"
 ```
 
 #### Using svfa-core in Java/Maven Projects
@@ -41,7 +41,7 @@ Add to your `pom.xml`:
 <dependency>
   <groupId>br.unb.cic</groupId>
   <artifactId>svfa-core_2.12</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'br.unb.cic:svfa-core_2.12:0.6.1'
+    implementation 'br.unb.cic:svfa-core_2.12:0.6.2-SNAPSHOT'
 }
 ```
 
@@ -239,15 +239,15 @@ The result are presented in a table that contains the following information.
 
 To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in June 2023.*)
 
-#### New metrics (v0.6.1)
+#### New metrics (v0.6.2)
 
-> failed: 47, passed: 75 of 122 tests - (61.48%)
+> failed: 46, passed: 76 of 122 tests - (62.3%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
 |    Aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |  33.33%   |
 |     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |    50%    |
-|     Basic      |  57   |    60    | 38/42  | 55 | 1  | 4  |   0.98    |  0.93  |  0.95   |  90.48%   |
+|     Basic      |  60   |    60    | 38/42  | 55 | 2  | 2  |   0.96    |  0.96  |  0.96   |  90.48%   |
 |  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |  35.71%   |
 | Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |  66.67%   |
 |   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |  66.67%   |
@@ -257,17 +257,32 @@ To have detailed information about each test category run, [see here.](modules/s
 |      Pred      |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |  66.67%   |
 |   Reflection   |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |    0%     |
 |   Sanitizers   |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |  33.33%   |
-|     TOTAL      |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |  61.48%   |
+|     TOTAL      |  124  |   141    | 76/122 | 96 | 15 | 32 |   0.86    |  0.75  |  0.80   |   62.3%   |
 
-To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.1.md) (*computed in November 2025.*)
+To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.2.md) (*computed in December 2025.*)
 
-##### Common issues
+#### Running Securibench Tests
+
+You can run Securibench tests in two ways:
+
+**1. Using the convenience shell script (Recommended):**
+```bash
+./scripts/run-securibench.sh
+```
+
+**2. Using SBT testOnly command:**
+```bash
+sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
+```
+
+#### Common issues
 From the 47 tests, we have categorized nine (9) issues.
 
 [i] **Wrong counting**: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
-We have mapped four cases: `(8.51%)`
+We have mapped four cases: `(10.64%)`
 - Aliasing2
 - Aliasing4
+- Basic31
 - Inter4
 - Inter5
 
@@ -281,21 +296,19 @@ We have mapped six cases: `(12.77%)`
 - Arrays10
 
 [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
-We have mapped seven cases: `(14.89%)`
-- Basic31
-- Basic36
-- Basic38
+We have mapped seven cases: `(6.38%)`
 - Session1
 - Session2
 - Session3
-- Sanitizers5
 
 [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
   [a] Nested structures as HashMap, LinkedList, and others,
   [b] Loop statement as "for" or "while",
   [c] Parameters passed in the constructor.
-We have mapped 16 cases: `(34.04%)`
+We have mapped 16 cases: `(38.3%)`
 - Aliasing5
+- Basic36
+- Basic38
 - Basic42
 - Collections3
 - Collections5
@@ -333,9 +346,10 @@ We have mapped three cases: `(6.38%)`
 - Pred7
 
 [viii] Sanitizer method: The current implementation fails to deal with the intermediary method utilized by the sanitizer.
-We have mapped three cases: `(6.38%)`
+We have mapped three cases: `(8.51%)`
 - Sanitizers2
 - Sanitizers4
+- Sanitizers5
 - Sanitizers6
 
 [ix] Flaky
@@ -391,7 +405,7 @@ To have detailed information about each group of tests run, [see here.](modules/
 |     Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
 | JSVFA v0.3.0 |  102  |   139    | 63/122 | 80 | 11 | 50 |   0.88    |  0.62  |  0.72   |    51.64% | 
-| JSVFA v0.6.1 |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |    61.48% |
+| JSVFA v0.6.2 |  124  |   141    | 76/122 | 96 | 15 | 32 |   0.86    |  0.75  |  0.80   |     62.3% |
 |  Flowdroid   |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
 |    Joana     |  123  |   138    | 85/122 | 86 | 19 | 34 |   0.82    |  0.72  |  0.77   |    69.67% |
 
@@ -422,9 +436,9 @@ You can run Android tests in several ways:
 
 **1. Using the convenience shell script (Recommended):**
 ```bash
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
 ```
 
 **2. Using environment variables:**
