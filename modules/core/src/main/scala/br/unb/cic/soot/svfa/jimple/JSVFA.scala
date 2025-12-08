@@ -304,7 +304,10 @@ abstract class JSVFA
 
     val graph = new ExceptionalUnitGraph(body)
     val defs = new SimpleLocalDefs(graph)
-//    println(body)
+
+    if (method.getName.contains("execute")) {
+      println(body)
+    }
     body.getUnits.forEach(unit => {
       val v = Statement.convert(unit)
 
@@ -344,6 +347,10 @@ abstract class JSVFA
           method,
           defs
         ) // update 'edge' FROM stmt where right value was instanced TO current stmt
+      case (p: InstanceFieldRef, _: Constant) =>
+        if(analyze(assignStmt.stmt).equals(SourceNode)) {
+          svg.addNode(createNode(method, assignStmt.stmt))
+        }
       case (_: StaticFieldRef, _: Local) =>
         storeRule(assignStmt.stmt, method, defs)
       case (p: JArrayRef, _) => // p[i] = q
@@ -578,12 +585,20 @@ abstract class JSVFA
       method: SootMethod,
       defs: SimpleLocalDefs
   ) = {
-    stmt.getRightOp.getUseBoxes.forEach(box => {
-      if (box.getValue.isInstanceOf[Local]) {
-        val local = box.getValue.asInstanceOf[Local]
-        copyRule(stmt, local, method, defs)
+
+    if(stmt.getRightOp.getUseBoxes.isEmpty) {
+      if(analyze(stmt).equals(SourceNode)) {
+        createNode(method, stmt)
       }
-    })
+    }
+    else {
+      stmt.getRightOp.getUseBoxes.forEach(box => {
+        if (box.getValue.isInstanceOf[Local]) {
+          val local = box.getValue.asInstanceOf[Local]
+          copyRule(stmt, local, method, defs)
+        }
+      })
+    }
   }
 
   /*
