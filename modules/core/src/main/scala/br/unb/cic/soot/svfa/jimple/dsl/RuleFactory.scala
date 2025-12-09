@@ -5,6 +5,10 @@ import br.unb.cic.soot.svfa.jimple.rules._
 
 import scala.collection.mutable.HashMap
 
+/**
+ * Factory for creating method rules with associated actions.
+ * Now uses standalone rule actions instead of JSVFA-dependent traits.
+ */
 class RuleFactory(val jsvfa: JSVFA) {
   def create(
       rule: String,
@@ -19,25 +23,23 @@ class RuleFactory(val jsvfa: JSVFA) {
       action match {
         case "DoNothing" =>
           ruleActions = ruleActions ++ List(new DoNothing {})
+          
         case "CopyBetweenArgs" =>
-          ruleActions = ruleActions ++ List(new jsvfa.CopyBetweenArgs {
-            override def from: Int = definitions(action)("from")
-
-            override def target: Int = definitions(action)("target")
-          })
+          val fromArg = definitions(action)("from")
+          val targetArg = definitions(action)("target")
+          ruleActions = ruleActions ++ List(RuleActions.CopyBetweenArgs(fromArg, targetArg))
+          
         case "CopyFromMethodArgumentToBaseObject" =>
-          ruleActions =
-            ruleActions ++ List(new jsvfa.CopyFromMethodArgumentToBaseObject {
-              override def from: Int = definitions(action)("from")
-            })
+          val fromArg = definitions(action)("from")
+          ruleActions = ruleActions ++ List(RuleActions.CopyFromMethodArgumentToBaseObject(fromArg))
+          
         case "CopyFromMethodArgumentToLocal" =>
-          ruleActions =
-            ruleActions ++ List(new jsvfa.CopyFromMethodArgumentToLocal {
-              override def from: Int = definitions(action)("from")
-            })
+          val fromArg = definitions(action)("from")
+          ruleActions = ruleActions ++ List(RuleActions.CopyFromMethodArgumentToLocal(fromArg))
+          
         case "CopyFromMethodCallToLocal" =>
-          ruleActions =
-            ruleActions ++ List(new jsvfa.CopyFromMethodCallToLocal {})
+          ruleActions = ruleActions ++ List(RuleActions.CopyFromMethodCallToLocal())
+          
         case _ =>
           ruleActions = ruleActions ++ List(new DoNothing {})
       }

@@ -20,6 +20,8 @@ trait ComposedRuleAction extends RuleAction {
       stmt: Stmt,
       localDefs: SimpleLocalDefs
   ): Unit = {
+    // This method should not be called directly for context-aware actions
+    // Instead, the JSVFA should handle context injection
     actions.foreach(action => action.apply(sootMethod, stmt, localDefs))
   }
 }
