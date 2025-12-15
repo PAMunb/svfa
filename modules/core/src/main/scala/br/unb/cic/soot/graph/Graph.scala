@@ -43,11 +43,11 @@ case class GraphNode(
     sootUnit: soot.Unit = null,
     sootMethod: soot.SootMethod = null
 ) {
-  
+
   /**
    * Returns a clean string representation for display purposes.
    * Removes quotes to avoid issues in DOT format and other outputs.
-   */
+ */
   def show(): String = stmt.replaceAll("\"", "'")
   
   /**
@@ -59,8 +59,8 @@ case class GraphNode(
    * Returns the underlying Soot Method for this node.
    */
   def method(): soot.SootMethod = sootMethod
-  
-  override def toString: String = 
+
+  override def toString: String =
     s"GraphNode($methodSignature, $stmt, $nodeType)"
 }
 
