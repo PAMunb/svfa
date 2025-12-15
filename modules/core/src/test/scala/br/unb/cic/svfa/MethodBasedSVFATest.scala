@@ -43,6 +43,11 @@ class MethodBasedSVFATest(
     } else if (sinkMethods.contains(methodName)) {
       SinkNode
     } else {
+      if (sourceMethods.contains(exp.getMethod.getSignature)) {
+        return SourceNode
+      } else if (sinkMethods.contains(exp.getMethod.getSignature)) {
+        return SinkNode
+      }
       SimpleNode
     }
   }
