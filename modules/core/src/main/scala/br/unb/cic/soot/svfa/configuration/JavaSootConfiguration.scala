@@ -53,8 +53,12 @@ trait JavaSootConfiguration extends SootConfiguration {
       case CHA => Options.v().setPhaseOption("cg.cha", "on")
       case SPARK => {
         Options.v().setPhaseOption("cg.spark", "on")
-        Options.v().setPhaseOption("cg.spark", "cs-demand:true")
+        // Disable on-demand analysis to ensure complete call graph construction
+        Options.v().setPhaseOption("cg.spark", "cs-demand:false")
         Options.v().setPhaseOption("cg.spark", "string-constants:true")
+        // Add more aggressive options for better interprocedural coverage
+        Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
+        Options.v().setPhaseOption("cg.spark", "simple-edges-bidirectional:false")
       }
       case SPARK_LIBRARY => {
         Options.v().setPhaseOption("cg.spark", "on")

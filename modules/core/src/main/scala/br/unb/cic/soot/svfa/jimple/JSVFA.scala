@@ -186,7 +186,7 @@ abstract class JSVFA
   private def processMethodStatements(method: SootMethod, context: MethodAnalysisContext): Unit = {
     context.body.getUnits.asScala.foreach { unit =>
       val statement = Statement.convert(unit)
-      
+
       processStatement(statement, unit, method, context.localDefinitions)
     }
   }
@@ -216,7 +216,7 @@ abstract class JSVFA
         case _ =>
         // Other statement types don't require special handling
         logger.debug(s"Skipping statement type: ${statement.getClass.getSimpleName}")
-    }
+  }
   }
 
   /**
@@ -452,8 +452,8 @@ abstract class JSVFA
     val declaredMethod = exp.getMethod
     if (isValidCallee(declaredMethod, caller)) {
       invokeRule(callStmt, exp, caller, declaredMethod, defs)
+      }
     }
-  }
 
   /**
    * Validates whether a method is a suitable callee for analysis.
@@ -559,7 +559,7 @@ abstract class JSVFA
             Some(()) // Rule handled the call, stop processing
           case None =>
             None // No special handling needed, continue
-        }
+      }
     }
   }
 
@@ -575,8 +575,19 @@ abstract class JSVFA
       defs: SimpleLocalDefs
   ): Unit = {
     // Skip phantom methods (e.g., servlet API methods without implementation)
-    if (callee.isPhantom || !callee.hasActiveBody) {
+    if (callee.isPhantom) {
       return
+    }
+    
+    // Try to force load the method body if it's not available
+    if (!callee.hasActiveBody) {
+      try {
+        callee.retrieveActiveBody()
+      } catch {
+        case _: Exception => 
+          // If we can't retrieve the body, skip this method
+          return
+      }
     }
     
     try {
