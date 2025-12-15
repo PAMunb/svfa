@@ -138,20 +138,20 @@ abstract class SecuribenchRuntimeTest extends FunSuite with TestResult {
 
   def generateRuntimeTests(className: String, packageName: String): Unit = {
     try {
-      val clazz = Class.forName(className)
+    val clazz = Class.forName(className)
 
-      val svfa = new SecuribenchTest(className, entryPointMethod())
-      svfa.buildSparseValueFlowGraph()
-      val conflicts = svfa.reportConflictsSVG()
-      val executionTime = svfa.executionTime()
+    val svfa = new SecuribenchTest(className, entryPointMethod())
+    svfa.buildSparseValueFlowGraph()
+    val conflicts = svfa.reportConflictsSVG()
+    val executionTime = svfa.executionTime()
 
-      val expected = clazz
-        .getMethod("getVulnerabilityCount")
-        .invoke(clazz.getDeclaredConstructor().newInstance())
-        .asInstanceOf[Int]
-      val found = conflicts.size
+    val expected = clazz
+      .getMethod("getVulnerabilityCount")
+      .invoke(clazz.getDeclaredConstructor().newInstance())
+      .asInstanceOf[Int]
+    val found = conflicts.size
 
-      this.compute(expected, found, className, executionTime)
+    this.compute(expected, found, className, executionTime)
     } catch {
       case e: Exception =>
         println(s"Error processing test case $className: ${e.getMessage}")
