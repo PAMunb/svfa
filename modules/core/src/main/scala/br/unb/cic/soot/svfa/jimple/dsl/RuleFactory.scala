@@ -28,7 +28,7 @@ class RuleFactory(val jsvfa: JSVFA) {
           val fromArg = definitions(action)("from")
           val targetArg = definitions(action)("target")
           ruleActions = ruleActions ++ List(RuleActions.CopyBetweenArgs(fromArg, targetArg))
-          
+
         case "CopyFromMethodArgumentToBaseObject" =>
           val fromArg = definitions(action)("from")
           ruleActions = ruleActions ++ List(RuleActions.CopyFromMethodArgumentToBaseObject(fromArg))
@@ -39,6 +39,9 @@ class RuleFactory(val jsvfa: JSVFA) {
           
         case "CopyFromMethodCallToLocal" =>
           ruleActions = ruleActions ++ List(RuleActions.CopyFromMethodCallToLocal())
+          
+        case "CopyFromBaseObjectToLocal" =>
+          ruleActions = ruleActions ++ List(RuleActions.CopyFromBaseObjectToLocal())
           
         case _ =>
           ruleActions = ruleActions ++ List(new DoNothing {})

@@ -183,6 +183,37 @@ object RuleActions extends LazyLogging {
   }
 
   /**
+   * Creates an edge from the definitions of the base object to the invoke statement itself.
+   * 
+   * Example: $r6 = virtualinvoke r3.<SomeClass: String someMethod()>()
+   * Creates edge from definitions of r3 (base object) to the current invoke statement.
+   */
+  case class CopyFromBaseObjectToLocal() extends ContextAwareRuleAction {
+    def applyWithContext(
+        sootMethod: SootMethod,
+        invokeStmt: jimple.Stmt,
+        localDefs: SimpleLocalDefs,
+        context: SVFAContext
+    ): Unit = {
+      val expr = invokeStmt.getInvokeExpr
+      
+      if (context.hasBaseObject(expr)) {
+        val base = context.getBaseObject(expr)
+        if (base.isInstanceOf[Local]) {
+          val localBase = base.asInstanceOf[Local]
+          localDefs
+            .getDefsOfAt(localBase, invokeStmt)
+            .forEach(sourceStmt => {
+              val sourceNode = context.createNode(sootMethod, sourceStmt)
+              val targetNode = context.createNode(sootMethod, invokeStmt)
+              context.updateGraph(sourceNode, targetNode)
+            })
+        }
+      }
+    }
+  }
+
+  /**
    * Creates edges between the definitions of method arguments.
    * 
    * Example: System.arraycopy(l1, _, l2, _)
