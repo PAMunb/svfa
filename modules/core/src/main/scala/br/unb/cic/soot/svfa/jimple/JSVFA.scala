@@ -2,7 +2,7 @@ package br.unb.cic.soot.svfa.jimple
 
 import java.util
 import br.unb.cic.soot.svfa.jimple.rules.RuleAction
-import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, StatementNode}
+import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, SimpleNode}
 import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser, RuleActions}
 import br.unb.cic.soot.svfa.{SVFA, SourceSinkDef}
 import com.typesafe.scalalogging.LazyLogging
@@ -34,7 +34,7 @@ abstract class JSVFA
   var methods = 0
   val traversedMethods = scala.collection.mutable.Set.empty[SootMethod]
   val allocationSites =
-    scala.collection.mutable.HashMap.empty[soot.Value, StatementNode]
+    scala.collection.mutable.HashMap.empty[soot.Value, GraphNode]
   val arrayStores =
     scala.collection.mutable.HashMap.empty[Local, List[soot.Unit]]
   val languageParser = new LanguageParser(this)
@@ -574,6 +574,11 @@ abstract class JSVFA
       callee: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
+    // Skip phantom methods (e.g., servlet API methods without implementation)
+    if (callee.isPhantom || !callee.hasActiveBody) {
+      return
+    }
+    
     try {
     val body = callee.retrieveActiveBody()
       val calleeGraph = new ExceptionalUnitGraph(body)
@@ -583,7 +588,10 @@ abstract class JSVFA
       
     } catch {
       case e: Exception =>
-        logger.warn(s"Failed to analyze callee ${callee.getName}: ${e.getMessage}")
+        // Only log warnings for non-phantom methods that we expect to be able to analyze
+        if (!callee.isPhantom && callee.hasActiveBody) {
+          logger.warn(s"Failed to analyze callee ${callee.getName}: ${e.getMessage}")
+        }
     }
   }
 
@@ -1254,7 +1262,7 @@ abstract class JSVFA
   /*
    * creates a graph node from a sootMethod / sootUnit
    */
-  override def createNode(method: SootMethod, stmt: soot.Unit): StatementNode =
+  override def createNode(method: SootMethod, stmt: soot.Unit): GraphNode =
     svg.createNode(method, stmt, analyze)
 
   def createCSOpenLabel(
@@ -1263,13 +1271,14 @@ abstract class JSVFA
       callee: SootMethod,
       context: Set[String]
   ): CallSiteLabel = {
-    val statement = br.unb.cic.soot.graph.Statement(
-      method.getDeclaringClass.toString,
-      method.getSignature,
-      stmt.toString,
-      stmt.getJavaSourceStartLineNumber,
-      stmt,
-      method
+    val statement = br.unb.cic.soot.graph.GraphNode(
+      className = method.getDeclaringClass.toString,
+      methodSignature = method.getSignature,
+      stmt = stmt.toString,
+      line = stmt.getJavaSourceStartLineNumber,
+      nodeType = SimpleNode, // Context labels are typically for simple nodes
+      sootUnit = stmt,
+      sootMethod = method
     )
     CallSiteLabel(
       ContextSensitiveRegion(statement, callee.toString, context),
@@ -1283,13 +1292,14 @@ abstract class JSVFA
       callee: SootMethod,
       context: Set[String]
   ): CallSiteLabel = {
-    val statement = br.unb.cic.soot.graph.Statement(
-      method.getDeclaringClass.toString,
-      method.getSignature,
-      stmt.toString,
-      stmt.getJavaSourceStartLineNumber,
-      stmt,
-      method
+    val statement = br.unb.cic.soot.graph.GraphNode(
+      className = method.getDeclaringClass.toString,
+      methodSignature = method.getSignature,
+      stmt = stmt.toString,
+      line = stmt.getJavaSourceStartLineNumber,
+      nodeType = SimpleNode, // Context labels are typically for simple nodes
+      sootUnit = stmt,
+      sootMethod = method
     )
     CallSiteLabel(
       ContextSensitiveRegion(statement, callee.toString, context),
@@ -1372,7 +1382,7 @@ abstract class JSVFA
       if (n.isInstanceOf[AllocNode]) {
         val allocationNode = n.asInstanceOf[AllocNode]
 
-        var stmt: StatementNode = null
+        var stmt: GraphNode = null
 
         if (allocationNode.getNewExpr.isInstanceOf[NewExpr]) {
           if (
@@ -1477,12 +1487,12 @@ abstract class JSVFA
   //   * the types of the nodes.
   //   */
 
-  def containsNodeDF(node: StatementNode): StatementNode = {
+  def containsNodeDF(node: GraphNode): GraphNode = {
     for (n <- svg.edges()) {
-      var auxNodeFrom = n.from.asInstanceOf[StatementNode]
-      var auxNodeTo = n.to.asInstanceOf[StatementNode]
-      if (auxNodeFrom.equals(node)) return n.from.asInstanceOf[StatementNode]
-      if (auxNodeTo.equals(node)) return n.to.asInstanceOf[StatementNode]
+      var auxNodeFrom = n.from.asInstanceOf[GraphNode]
+      var auxNodeTo = n.to.asInstanceOf[GraphNode]
+      if (auxNodeFrom.equals(node)) return n.from.asInstanceOf[GraphNode]
+      if (auxNodeTo.equals(node)) return n.to.asInstanceOf[GraphNode]
     }
     return null
   }
@@ -1501,8 +1511,8 @@ abstract class JSVFA
     var res = false
     if (!runInFullSparsenessMode() || true) {
       addNodeAndEdgeDF(
-        source.asInstanceOf[StatementNode],
-        target.asInstanceOf[StatementNode]
+        source.asInstanceOf[GraphNode],
+        target.asInstanceOf[GraphNode]
       )
 
       res = true
@@ -1510,7 +1520,7 @@ abstract class JSVFA
     return res
   }
 
-  def addNodeAndEdgeDF(from: StatementNode, to: StatementNode): Unit = {
+  def addNodeAndEdgeDF(from: GraphNode, to: GraphNode): Unit = {
     var auxNodeFrom = containsNodeDF(from)
     var auxNodeTo = containsNodeDF(to)
     if (auxNodeFrom != null) {

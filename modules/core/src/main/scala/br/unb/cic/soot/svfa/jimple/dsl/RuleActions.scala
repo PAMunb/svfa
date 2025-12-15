@@ -17,7 +17,7 @@ object RuleActions extends LazyLogging {
    * This allows rule actions to be independent while still accessing necessary functionality.
    */
   trait SVFAContext {
-    def createNode(method: SootMethod, stmt: soot.Unit): br.unb.cic.soot.graph.StatementNode
+    def createNode(method: SootMethod, stmt: soot.Unit): br.unb.cic.soot.graph.GraphNode
     def updateGraph(source: br.unb.cic.soot.graph.GraphNode, target: br.unb.cic.soot.graph.GraphNode): Boolean
     def hasBaseObject(expr: InvokeExpr): Boolean
     def getBaseObject(expr: InvokeExpr): Value
