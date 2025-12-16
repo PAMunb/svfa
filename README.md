@@ -171,8 +171,10 @@ Enhanced scripts are available for convenient testing:
 
 # Securibench security vulnerability analysis
 ./scripts/run-securibench.sh                    # Traditional approach
-./scripts/run-securibench-tests.sh [suite] [callgraph]     # Phase 1: Execute tests
-./scripts/compute-securibench-metrics.sh [suite] [callgraph] # Phase 2: Compute metrics + CSV
+./scripts/run-securibench-tests.sh [suite] [callgraph]     # Phase 1: Execute tests (Bash)
+./scripts/run_securibench_tests.py [suite] [callgraph]     # Phase 1: Execute tests (Python)
+./scripts/compute-securibench-metrics.sh [suite] [callgraph] # Phase 2: Compute metrics + CSV (Bash)
+./scripts/compute_securibench_metrics.py [suite] [callgraph] # Phase 2: Compute metrics + CSV (Python)
 
 # Android malware analysis (requires environment setup)
 ./scripts/run-taintbench.sh --help
@@ -190,6 +192,17 @@ The enhanced testing approach provides intelligent analysis capabilities:
 - **Flexible reporting**: Generate metrics for all suites or specific ones
 
 See **[Securibench Testing Documentation](USAGE_SCRIPTS.md)** for detailed usage instructions.
+
+### Python Scripts (Enhanced Alternative)
+
+SVFA now provides Python alternatives to the bash scripts with enhanced maintainability and features:
+
+- **Better Error Handling**: Proper exception handling vs bash error codes
+- **Cross-Platform**: Works identically on Windows, macOS, Linux  
+- **Enhanced Features**: Colored output, verbose mode, better argument parsing
+- **Maintainable**: Structured code, type hints, easier to test and extend
+
+See **[Python Scripts Documentation](PYTHON_SCRIPTS.md)** for detailed information.
 
 ## Installation (Ubuntu/Debian)
 
@@ -288,20 +301,31 @@ You can run Securibench tests in several ways:
 ```
 
 **2. Two-Phase Approach (For batch execution):**
+
+*Bash Scripts (Traditional):*
 ```bash
 # Phase 1: Execute tests (saves results to disk)
 ./scripts/run-securibench-tests.sh              # All suites with SPARK
-./scripts/run-securibench-tests.sh inter        # Inter suite with SPARK
 ./scripts/run-securibench-tests.sh inter cha    # Inter suite with CHA call graph
 ./scripts/run-securibench-tests.sh basic rta    # Basic suite with RTA call graph
-./scripts/run-securibench-tests.sh inter vta    # Inter suite with VTA call graph
 
 # Phase 2: Compute metrics and generate CSV reports (uses cached results)
 ./scripts/compute-securibench-metrics.sh        # All suites with SPARK
-./scripts/compute-securibench-metrics.sh inter  # Inter suite with SPARK
 ./scripts/compute-securibench-metrics.sh inter cha # Inter suite with CHA call graph
 ./scripts/compute-securibench-metrics.sh basic rta # Basic suite with RTA call graph
-./scripts/compute-securibench-metrics.sh inter vta # Inter suite with VTA call graph
+```
+
+*Python Scripts (Enhanced):*
+```bash
+# Phase 1: Execute tests with enhanced features
+./scripts/run_securibench_tests.py              # All suites with SPARK
+./scripts/run_securibench_tests.py inter cha --verbose    # Inter suite with CHA, verbose output
+./scripts/run_securibench_tests.py basic rta --clean      # Basic suite with RTA, clean first
+
+# Phase 2: Compute metrics with better error handling
+./scripts/compute_securibench_metrics.py        # All suites with SPARK
+./scripts/compute_securibench_metrics.py inter cha --verbose # Inter suite with CHA, verbose
+./scripts/compute_securibench_metrics.py all --csv-only     # All suites, CSV only
 ```
 
 **Call Graph Algorithms:**

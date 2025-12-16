@@ -2,6 +2,18 @@
 
 ## 🎯 Two-Script Approach
 
+> **Note**: SVFA now provides both **Bash** and **Python** versions of these scripts. Python versions offer enhanced maintainability, better error handling, and cross-platform compatibility. See [PYTHON_SCRIPTS.md](PYTHON_SCRIPTS.md) for details.
+
+## 📋 Script Versions Available
+
+| Feature | Bash Scripts | Python Scripts |
+|---------|-------------|----------------|
+| **Files** | `run-securibench-tests.sh`<br>`compute-securibench-metrics.sh` | `run_securibench_tests.py`<br>`compute_securibench_metrics.py` |
+| **Dependencies** | Bash, SBT | Python 3.6+, SBT |
+| **Maintainability** | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Features** | Basic | Enhanced (colors, verbose, better errors) |
+| **Cross-Platform** | Unix/Linux/macOS | Windows/macOS/Linux |
+
 ### **Script 1: Execute Securibench Tests** 
 `./scripts/run-securibench-tests.sh [suite] [callgraph] [clean|--help]`
 
