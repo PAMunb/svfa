@@ -46,8 +46,10 @@ AVAILABLE TEST SUITES:
 
 CALL GRAPH ALGORITHMS:
     spark               SPARK points-to analysis (default, most precise)
-    cha                 Class Hierarchy Analysis (faster, less precise)
-    spark_library       SPARK with library support (comprehensive)
+    cha                 Class Hierarchy Analysis (fastest, least precise)
+    spark_library       SPARK with library support (comprehensive coverage)
+    rta                 Rapid Type Analysis via SPARK (fast, moderately precise)
+    vta                 Variable Type Analysis via SPARK (balanced speed/precision)
 
 EXAMPLES:
     $0                                  # Execute all test suites with SPARK
@@ -55,6 +57,8 @@ EXAMPLES:
     $0 inter                            # Execute Inter suite with SPARK
     $0 inter cha                        # Execute Inter suite with CHA call graph
     $0 basic spark_library              # Execute Basic suite with SPARK_LIBRARY
+    $0 inter rta                        # Execute Inter suite with RTA call graph
+    $0 basic vta                        # Execute Basic suite with VTA call graph
     $0 all cha                          # Execute all suites with CHA call graph
     $0 clean                            # Clean previous data and execute all tests
     $0 --help                           # Show this help
@@ -137,7 +141,7 @@ SUITE_KEYS=("inter" "basic" "aliasing" "arrays" "collections" "datastructures" "
 SUITE_NAMES=("Inter" "Basic" "Aliasing" "Arrays" "Collections" "Datastructures" "Factories" "Pred" "Reflection" "Sanitizers" "Session" "StrongUpdates")
 
 # Available call graph algorithms
-CALLGRAPH_ALGORITHMS=("spark" "cha" "spark_library")
+CALLGRAPH_ALGORITHMS=("spark" "cha" "spark_library" "rta" "vta")
 
 # Parse arguments
 parse_arguments() {

@@ -30,6 +30,8 @@
 # Execute with different call graph algorithms
 ./scripts/run-securibench-tests.sh inter cha          # CHA call graph
 ./scripts/run-securibench-tests.sh basic spark_library # SPARK_LIBRARY call graph
+./scripts/run-securibench-tests.sh inter rta          # RTA call graph
+./scripts/run-securibench-tests.sh basic vta          # VTA call graph
 ./scripts/run-securibench-tests.sh all cha            # All suites with CHA
 
 # Clean previous data and execute all tests
@@ -38,8 +40,10 @@
 
 **Call Graph Algorithms**:
 - `spark` (default): SPARK points-to analysis - most precise, slower
-- `cha`: Class Hierarchy Analysis - faster, less precise
+- `cha`: Class Hierarchy Analysis - fastest, least precise
 - `spark_library`: SPARK with library support - comprehensive coverage
+- `rta`: Rapid Type Analysis via SPARK - fast, moderately precise
+- `vta`: Variable Type Analysis via SPARK - balanced speed/precision
 
 **Output**:
 ```
@@ -109,6 +113,8 @@ Results: 9 passed, 5 failed
 # Process with different call graph algorithms
 ./scripts/compute-securibench-metrics.sh inter cha          # CHA call graph
 ./scripts/compute-securibench-metrics.sh basic spark_library # SPARK_LIBRARY call graph
+./scripts/compute-securibench-metrics.sh inter rta          # RTA call graph
+./scripts/compute-securibench-metrics.sh basic vta          # VTA call graph
 ./scripts/compute-securibench-metrics.sh all cha            # All suites with CHA
 
 # Clean all previous test data and metrics

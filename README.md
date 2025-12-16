@@ -293,17 +293,23 @@ You can run Securibench tests in several ways:
 ./scripts/run-securibench-tests.sh              # All suites with SPARK
 ./scripts/run-securibench-tests.sh inter        # Inter suite with SPARK
 ./scripts/run-securibench-tests.sh inter cha    # Inter suite with CHA call graph
+./scripts/run-securibench-tests.sh basic rta    # Basic suite with RTA call graph
+./scripts/run-securibench-tests.sh inter vta    # Inter suite with VTA call graph
 
 # Phase 2: Compute metrics and generate CSV reports (uses cached results)
 ./scripts/compute-securibench-metrics.sh        # All suites with SPARK
 ./scripts/compute-securibench-metrics.sh inter  # Inter suite with SPARK
 ./scripts/compute-securibench-metrics.sh inter cha # Inter suite with CHA call graph
+./scripts/compute-securibench-metrics.sh basic rta # Basic suite with RTA call graph
+./scripts/compute-securibench-metrics.sh inter vta # Inter suite with VTA call graph
 ```
 
 **Call Graph Algorithms:**
 - `spark` (default): Most precise, slower analysis
-- `cha`: Faster, less precise analysis  
+- `cha`: Fastest, least precise analysis  
 - `spark_library`: Comprehensive library support
+- `rta`: Rapid Type Analysis - fast, moderately precise
+- `vta`: Variable Type Analysis - balanced speed/precision
 
 **3. Clean Previous Data:**
 ```bash

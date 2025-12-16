@@ -5,19 +5,33 @@ import scala.collection.JavaConverters._
 
 import soot.options.Options
 import soot._
+import br.unb.cic.soot.svfa.jimple.{CallGraphAlgorithm, SVFAConfig}
 
-sealed trait CG
-
-case object CHA extends CG
-case object SPARK_LIBRARY extends CG
-case object SPARK extends CG
-case object RTA extends CG
-case object VTA extends CG
-
-/** Base class for all implementations of SVFA algorithms.
-  */
-trait JavaSootConfiguration extends SootConfiguration {
-  def callGraph(): CG = SPARK
+/**
+ * Configurable Java Soot Configuration that uses SVFAConfig for call graph settings.
+ * 
+ * This trait allows the call graph algorithm to be configured through the unified
+ * SVFAConfig system rather than being hardcoded.
+ */
+trait ConfigurableJavaSootConfiguration extends SootConfiguration {
+  
+  /**
+   * Get the SVFA configuration that includes call graph settings.
+   * This should be implemented by classes that use this trait.
+   */
+  def getSVFAConfig: SVFAConfig
+  
+  /**
+   * Legacy method for backward compatibility.
+   * Now delegates to the SVFAConfig setting.
+   */
+  def callGraph(): CG = getSVFAConfig.callGraphAlgorithm match {
+    case CallGraphAlgorithm.Spark => SPARK
+    case CallGraphAlgorithm.CHA => CHA
+    case CallGraphAlgorithm.SparkLibrary => SPARK_LIBRARY
+    case CallGraphAlgorithm.RTA => RTA
+    case CallGraphAlgorithm.VTA => VTA
+  }
 
   def sootClassPath(): String
 
@@ -50,10 +64,12 @@ trait JavaSootConfiguration extends SootConfiguration {
     Scene.v().setEntryPoints(getEntryPoints().asJava)
   }
 
+  /**
+   * Configure the call graph phase based on the SVFAConfig setting.
+   */
   def configureCallGraphPhase() {
-    callGraph() match {
-      case CHA => Options.v().setPhaseOption("cg.cha", "on")
-      case SPARK => {
+    getSVFAConfig.callGraphAlgorithm match {
+      case CallGraphAlgorithm.Spark => {
         Options.v().setPhaseOption("cg.spark", "on")
         // Disable on-demand analysis to ensure complete call graph construction
         Options.v().setPhaseOption("cg.spark", "cs-demand:false")
@@ -62,11 +78,17 @@ trait JavaSootConfiguration extends SootConfiguration {
         Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
         Options.v().setPhaseOption("cg.spark", "simple-edges-bidirectional:false")
       }
-      case SPARK_LIBRARY => {
+      case CallGraphAlgorithm.CHA => {
+        Options.v().setPhaseOption("cg.cha", "on")
+      }
+      case CallGraphAlgorithm.SparkLibrary => {
         Options.v().setPhaseOption("cg.spark", "on")
         Options.v().setPhaseOption("cg", "library:any-subtype")
+        // Use similar SPARK options but with library support
+        Options.v().setPhaseOption("cg.spark", "cs-demand:false")
+        Options.v().setPhaseOption("cg.spark", "string-constants:true")
       }
-      case RTA => {
+      case CallGraphAlgorithm.RTA => {
         Options.v().setPhaseOption("cg.spark", "on")
         // Enable RTA mode in SPARK
         Options.v().setPhaseOption("cg.spark", "rta:true")
@@ -75,16 +97,16 @@ trait JavaSootConfiguration extends SootConfiguration {
         Options.v().setPhaseOption("cg.spark", "string-constants:true")
         Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
       }
-      case VTA => {
+      case CallGraphAlgorithm.VTA => {
         Options.v().setPhaseOption("cg.spark", "on")
         // Enable VTA mode in SPARK
         Options.v().setPhaseOption("cg.spark", "vta:true")
-        // VTA automatically configures internal options, but we add common ones
+        // VTA automatically sets field-based:true, types-for-sites:true, simplify-sccs:true
+        // and on-fly-cg:false internally, but we can be explicit
         Options.v().setPhaseOption("cg.spark", "cs-demand:false")
         Options.v().setPhaseOption("cg.spark", "string-constants:true")
         Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
       }
     }
   }
-
 }
