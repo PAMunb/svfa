@@ -2,9 +2,10 @@
 
 # Script to execute Securibench tests without computing metrics
 # This runs the expensive SVFA analysis and saves results for later metrics computation
-# Usage: ./run-securibench-tests.sh [suite|clean|--help]
+# Usage: ./run-securibench-tests.sh [suite] [callgraph] [clean|--help]
 # Where suite can be: inter, basic, aliasing, arrays, collections, datastructures,
 #                     factories, pred, reflection, sanitizers, session, strong_updates, or omitted for all suites
+# Where callgraph can be: spark, cha, spark_library, or omitted for spark (default)
 # Special commands:
 #   clean - Remove all previous test results before execution
 
@@ -18,7 +19,11 @@ DESCRIPTION:
     Runs expensive SVFA analysis on specified suite(s) or all 12 test suites (122 total tests).
 
 USAGE:
-    $0 [OPTION|SUITE]
+    $0 [SUITE] [CALLGRAPH] [OPTIONS]
+
+ARGUMENTS:
+    SUITE               Test suite to execute (default: all)
+    CALLGRAPH           Call graph algorithm (default: spark)
 
 OPTIONS:
     --help, -h          Show this help message
@@ -39,12 +44,18 @@ AVAILABLE TEST SUITES:
     session             HTTP session tests (3 tests)
     strong_updates      Strong update analysis tests (5 tests)
 
+CALL GRAPH ALGORITHMS:
+    spark               SPARK points-to analysis (default, most precise)
+    cha                 Class Hierarchy Analysis (faster, less precise)
+    spark_library       SPARK with library support (comprehensive)
 
 EXAMPLES:
-    $0                                  # Execute all test suites
+    $0                                  # Execute all test suites with SPARK
     $0 all                              # Same as above
-    $0 inter                            # Execute only Inter suite
-    $0 basic                            # Execute only Basic suite
+    $0 inter                            # Execute Inter suite with SPARK
+    $0 inter cha                        # Execute Inter suite with CHA call graph
+    $0 basic spark_library              # Execute Basic suite with SPARK_LIBRARY
+    $0 all cha                          # Execute all suites with CHA call graph
     $0 clean                            # Clean previous data and execute all tests
     $0 --help                           # Show this help
 
@@ -74,16 +85,8 @@ For detailed documentation, see: USAGE_SCRIPTS.md
 EOF
 }
 
-# Handle help option
-case "$1" in
-    --help|-h|help)
-        show_help
-        exit 0
-        ;;
-esac
-
 # Handle clean option
-if [ "$1" == "clean" ]; then
+if [ "$CLEAN_FIRST" == "true" ]; then
     echo "=== CLEANING SECURIBENCH TEST DATA ==="
     echo
     
@@ -133,8 +136,46 @@ fi
 SUITE_KEYS=("inter" "basic" "aliasing" "arrays" "collections" "datastructures" "factories" "pred" "reflection" "sanitizers" "session" "strong_updates")
 SUITE_NAMES=("Inter" "Basic" "Aliasing" "Arrays" "Collections" "Datastructures" "Factories" "Pred" "Reflection" "Sanitizers" "Session" "StrongUpdates")
 
-# Determine which suites to run
-REQUESTED_SUITE=${1:-"all"}
+# Available call graph algorithms
+CALLGRAPH_ALGORITHMS=("spark" "cha" "spark_library")
+
+# Parse arguments
+parse_arguments() {
+    local arg1=$1
+    local arg2=$2
+    
+    # Handle special cases first
+    case "$arg1" in
+        --help|-h|help)
+            show_help
+            exit 0
+            ;;
+        clean)
+            CLEAN_FIRST=true
+            REQUESTED_SUITE=${arg2:-"all"}
+            REQUESTED_CALLGRAPH="spark"
+            return
+            ;;
+    esac
+    
+    # Parse suite and call graph arguments
+    REQUESTED_SUITE=${arg1:-"all"}
+    REQUESTED_CALLGRAPH=${arg2:-"spark"}
+    
+    # Validate call graph algorithm
+    if [[ ! " ${CALLGRAPH_ALGORITHMS[*]} " == *" $REQUESTED_CALLGRAPH "* ]]; then
+        echo "❌ Unknown call graph algorithm: $REQUESTED_CALLGRAPH"
+        echo
+        echo "Available call graph algorithms: ${CALLGRAPH_ALGORITHMS[*]}"
+        echo "Usage: $0 [suite] [callgraph] [clean|--help]"
+        echo
+        echo "For detailed help, run: $0 --help"
+        exit 1
+    fi
+}
+
+# Parse command line arguments
+parse_arguments "$1" "$2"
 
 # Function to get suite name by key
 get_suite_name() {
@@ -151,25 +192,27 @@ get_suite_name() {
 # Function to execute a specific suite
 execute_suite() {
     local suite_key=$1
+    local callgraph=$2
     local suite_name=$(get_suite_name "$suite_key")
     
     if [[ -z "$suite_name" ]]; then
         echo "❌ Unknown test suite: $suite_key"
         echo
         echo "Available suites: ${SUITE_KEYS[*]}"
-        echo "Usage: $0 [suite|all|clean|--help]"
+        echo "Usage: $0 [suite] [callgraph] [clean|--help]"
         echo
         echo "For detailed help, run: $0 --help"
         exit 1
     fi
     
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    echo "🔄 Executing $suite_name tests (securibench.micro.$suite_key)..."
+    echo "🔄 Executing $suite_name tests (securibench.micro.$suite_key) with $callgraph call graph..."
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     
     start_time=$(date +%s)
     
-    sbt "project securibench" "testOnly *Securibench${suite_name}Executor"
+    # Execute with call graph configuration
+    sbt -Dsecuribench.callgraph="$callgraph" "project securibench" "testOnly *Securibench${suite_name}Executor"
     exit_code=$?
     
     end_time=$(date +%s)
@@ -179,28 +222,24 @@ execute_suite() {
         echo "❌ $suite_name test execution failed (technical error)"
         return 1
     else
-        echo "✅ $suite_name test execution completed (technical success)"
+        echo "✅ $suite_name test execution completed (technical success) with $callgraph call graph"
         
         # Count tests from results directory
         results_dir="target/test-results/securibench/micro/$suite_key"
         if [ -d "$results_dir" ]; then
             test_count=$(ls "$results_dir"/*.json 2>/dev/null | wc -l)
-            echo "   📊 $test_count tests executed in ${duration}s"
+            echo "   📊 $test_count tests executed in ${duration}s using $callgraph call graph"
             echo "   ℹ️  Individual test results show SVFA analysis accuracy"
         fi
         return 0
     fi
 }
 
-# Determine execution mode
+# Determine execution mode and display header
 case "$REQUESTED_SUITE" in
-    "clean")
-        # Clean was already handled above, so execute all suites
-        REQUESTED_SUITE="all"
-        ;;
     "all"|"")
-        echo "=== EXECUTING ALL SECURIBENCH TESTS ==="
-        echo "This will run SVFA analysis on all test suites and save results to disk."
+        echo "=== EXECUTING ALL SECURIBENCH TESTS WITH $REQUESTED_CALLGRAPH CALL GRAPH ==="
+        echo "This will run SVFA analysis on all test suites using $REQUESTED_CALLGRAPH call graph and save results to disk."
         echo "Use compute-securibench-metrics.sh afterwards to generate accuracy metrics."
         echo
         ;;
@@ -208,16 +247,16 @@ case "$REQUESTED_SUITE" in
         # Check if it's a valid suite
         if [[ " ${SUITE_KEYS[*]} " == *" $REQUESTED_SUITE "* ]]; then
             suite_name=$(get_suite_name "$REQUESTED_SUITE")
-            echo "=== EXECUTING $suite_name TEST SUITE ==="
-            echo "This will run SVFA analysis on the $suite_name suite and save results to disk."
+            echo "=== EXECUTING $suite_name TEST SUITE WITH $REQUESTED_CALLGRAPH CALL GRAPH ==="
+            echo "This will run SVFA analysis on the $suite_name suite using $REQUESTED_CALLGRAPH call graph and save results to disk."
             echo "Use compute-securibench-metrics.sh afterwards to generate accuracy metrics."
             echo
         else
             echo "❌ Unknown test suite: $REQUESTED_SUITE"
             echo
             echo "Available suites: ${SUITE_KEYS[*]}"
-            echo "Special commands: clean, all"
-            echo "Usage: $0 [suite|all|clean|--help]"
+            echo "Available call graphs: ${CALLGRAPH_ALGORITHMS[*]}"
+            echo "Usage: $0 [suite] [callgraph] [clean|--help]"
             echo
             echo "For detailed help, run: $0 --help"
             exit 1
@@ -240,7 +279,7 @@ if [ "$REQUESTED_SUITE" == "all" ]; then
         
         start_time=$(date +%s)
         
-        if execute_suite "$suite_key"; then
+        if execute_suite "$suite_key" "$REQUESTED_CALLGRAPH"; then
             # Count tests from results directory
             results_dir="target/test-results/securibench/micro/$suite_key"
             if [ -d "$results_dir" ]; then
@@ -265,7 +304,7 @@ else
     
     start_time=$(date +%s)
     
-    if execute_suite "$REQUESTED_SUITE"; then
+    if execute_suite "$REQUESTED_SUITE" "$REQUESTED_CALLGRAPH"; then
         results_dir="target/test-results/securibench/micro/$REQUESTED_SUITE"
         if [ -d "$results_dir" ]; then
             total_tests=$(ls "$results_dir"/*.json 2>/dev/null | wc -l)
@@ -285,27 +324,27 @@ fi
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 if [ "$REQUESTED_SUITE" == "all" ]; then
-    echo "🏁 ALL TEST EXECUTION COMPLETED"
+    echo "🏁 ALL TEST EXECUTION COMPLETED WITH $REQUESTED_CALLGRAPH CALL GRAPH"
 else
     suite_name=$(get_suite_name "$REQUESTED_SUITE")
-    echo "🏁 $suite_name TEST EXECUTION COMPLETED"
+    echo "🏁 $suite_name TEST EXECUTION COMPLETED WITH $REQUESTED_CALLGRAPH CALL GRAPH"
 fi
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 if [ ${#failed_suites[@]} -eq 0 ]; then
     if [ "$REQUESTED_SUITE" == "all" ]; then
-        echo "✅ All test suites executed successfully!"
+        echo "✅ All test suites executed successfully with $REQUESTED_CALLGRAPH call graph!"
     else
         suite_name=$(get_suite_name "$REQUESTED_SUITE")
-        echo "✅ $suite_name test suite executed successfully!"
+        echo "✅ $suite_name test suite executed successfully with $REQUESTED_CALLGRAPH call graph!"
     fi
-    echo "📊 Total: $total_tests tests executed in ${total_time}s"
+    echo "📊 Total: $total_tests tests executed in ${total_time}s using $REQUESTED_CALLGRAPH call graph"
 else
     echo "⚠️  Some test suites had execution issues:"
     for failed in "${failed_suites[@]}"; do
         echo "   - $failed"
     done
-    echo "📊 Partial: $total_tests tests executed in ${total_time}s"
+    echo "📊 Partial: $total_tests tests executed in ${total_time}s using $REQUESTED_CALLGRAPH call graph"
 fi
 
 echo

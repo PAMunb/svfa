@@ -171,8 +171,8 @@ Enhanced scripts are available for convenient testing:
 
 # Securibench security vulnerability analysis
 ./scripts/run-securibench.sh                    # Traditional approach
-./scripts/run-securibench-tests.sh              # Phase 1: Execute tests
-./scripts/compute-securibench-metrics.sh        # Phase 2: Compute metrics + CSV
+./scripts/run-securibench-tests.sh [suite] [callgraph]     # Phase 1: Execute tests
+./scripts/compute-securibench-metrics.sh [suite] [callgraph] # Phase 2: Compute metrics + CSV
 
 # Android malware analysis (requires environment setup)
 ./scripts/run-taintbench.sh --help
@@ -290,13 +290,20 @@ You can run Securibench tests in several ways:
 **2. Two-Phase Approach (For batch execution):**
 ```bash
 # Phase 1: Execute tests (saves results to disk)
-./scripts/run-securibench-tests.sh              # All suites
-./scripts/run-securibench-tests.sh inter        # Specific suite
+./scripts/run-securibench-tests.sh              # All suites with SPARK
+./scripts/run-securibench-tests.sh inter        # Inter suite with SPARK
+./scripts/run-securibench-tests.sh inter cha    # Inter suite with CHA call graph
 
 # Phase 2: Compute metrics and generate CSV reports (uses cached results)
-./scripts/compute-securibench-metrics.sh        # All suites
-./scripts/compute-securibench-metrics.sh inter  # Specific suite
+./scripts/compute-securibench-metrics.sh        # All suites with SPARK
+./scripts/compute-securibench-metrics.sh inter  # Inter suite with SPARK
+./scripts/compute-securibench-metrics.sh inter cha # Inter suite with CHA call graph
 ```
+
+**Call Graph Algorithms:**
+- `spark` (default): Most precise, slower analysis
+- `cha`: Faster, less precise analysis  
+- `spark_library`: Comprehensive library support
 
 **3. Clean Previous Data:**
 ```bash

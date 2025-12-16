@@ -2,9 +2,10 @@
 
 # Script to compute accuracy metrics for Securibench test suites
 # Automatically executes missing tests before computing metrics
-# Usage: ./compute-securibench-metrics.sh [suite|clean]
+# Usage: ./compute-securibench-metrics.sh [suite] [callgraph] [clean]
 # Where suite can be: inter, basic, aliasing, arrays, collections, datastructures, 
 #                     factories, pred, reflection, sanitizers, session, strong_updates, or omitted for all suites
+# Where callgraph can be: spark, cha, spark_library, or omitted for spark (default)
 # Special commands:
 #   clean - Remove all previous test results and metrics
 # Outputs results to CSV file and console
@@ -19,7 +20,11 @@ DESCRIPTION:
     Automatically executes missing tests before computing metrics.
 
 USAGE:
-    $0 [OPTION|SUITE]
+    $0 [SUITE] [CALLGRAPH] [OPTIONS]
+
+ARGUMENTS:
+    SUITE               Test suite to process (default: all)
+    CALLGRAPH           Call graph algorithm (default: spark)
 
 OPTIONS:
     --help, -h          Show this help message
@@ -40,17 +45,23 @@ AVAILABLE TEST SUITES:
     session             HTTP session tests (3 tests)
     strong_updates      Strong update analysis tests (5 tests)
 
+CALL GRAPH ALGORITHMS:
+    spark               SPARK points-to analysis (default, most precise)
+    cha                 Class Hierarchy Analysis (faster, less precise)
+    spark_library       SPARK with library support (comprehensive)
+
 EXAMPLES:
-    $0                                  # Process all suites (auto-execute missing tests)
+    $0                                  # Process all suites with SPARK (auto-execute missing tests)
     $0 all                              # Same as above
-    $0 basic                            # Process only Basic suite
-    $0 inter                            # Process only Inter suite
+    $0 basic                            # Process only Basic suite with SPARK
+    $0 inter cha                        # Process Inter suite with CHA call graph
+    $0 all spark_library                # Process all suites with SPARK_LIBRARY
     $0 clean                            # Remove all previous test data
     $0 --help                           # Show this help
 
 OUTPUT:
-    - CSV report: target/metrics/securibench_metrics_YYYYMMDD_HHMMSS.csv
-    - Summary report: target/metrics/securibench_summary_YYYYMMDD_HHMMSS.txt
+    - CSV report: target/metrics/securibench_metrics_[callgraph]_YYYYMMDD_HHMMSS.csv
+    - Summary report: target/metrics/securibench_summary_[callgraph]_YYYYMMDD_HHMMSS.txt
     - Console summary with TP, FP, FN, Precision, Recall, F-score
 
 FEATURES:
@@ -78,13 +89,62 @@ case "$1" in
         ;;
 esac
 
-SUITE=${1:-"all"}
-OUTPUT_DIR="target/metrics"
-TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-
 # Available test suites
 SUITE_KEYS=("inter" "basic" "aliasing" "arrays" "collections" "datastructures" "factories" "pred" "reflection" "sanitizers" "session" "strong_updates")
 SUITE_NAMES=("Inter" "Basic" "Aliasing" "Arrays" "Collections" "Datastructures" "Factories" "Pred" "Reflection" "Sanitizers" "Session" "StrongUpdates")
+
+# Available call graph algorithms
+CALLGRAPH_ALGORITHMS=("spark" "cha" "spark_library")
+
+# Parse arguments
+parse_arguments() {
+    local arg1=$1
+    local arg2=$2
+    
+    # Handle special cases first
+    case "$arg1" in
+        --help|-h|help)
+            show_help
+            exit 0
+            ;;
+        clean)
+            CLEAN_FIRST=true
+            REQUESTED_SUITE=${arg2:-"all"}
+            REQUESTED_CALLGRAPH="spark"
+            return
+            ;;
+    esac
+    
+    # Parse suite and call graph arguments
+    REQUESTED_SUITE=${arg1:-"all"}
+    REQUESTED_CALLGRAPH=${arg2:-"spark"}
+    
+    # Validate call graph algorithm
+    if [[ ! " ${CALLGRAPH_ALGORITHMS[*]} " == *" $REQUESTED_CALLGRAPH "* ]]; then
+        echo "❌ Unknown call graph algorithm: $REQUESTED_CALLGRAPH"
+        echo
+        echo "Available call graph algorithms: ${CALLGRAPH_ALGORITHMS[*]}"
+        echo "Usage: $0 [suite] [callgraph] [clean|--help]"
+        echo
+        echo "For detailed help, run: $0 --help"
+        exit 1
+    fi
+}
+
+# Parse command line arguments
+parse_arguments "$1" "$2"
+
+SUITE=${REQUESTED_SUITE:-"all"}
+CALLGRAPH=${REQUESTED_CALLGRAPH:-"spark"}
+OUTPUT_DIR="target/metrics"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+
+# Handle clean option
+if [ "$CLEAN_FIRST" == "true" ]; then
+    clean_test_data
+    # After cleaning, process all suites by default
+    SUITE="all"
+fi
 
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
@@ -159,12 +219,13 @@ get_suite_name() {
 # Function to execute tests for a specific suite
 execute_suite_tests() {
     local suite_key=$1
+    local callgraph=$2
     local suite_name=$(get_suite_name "$suite_key")
     
-    echo "🔄 Executing $suite_name tests (missing results detected)..."
+    echo "🔄 Executing $suite_name tests with $callgraph call graph (missing results detected)..."
     
-    # Run the specific test executor in batch mode (no server)
-    sbt -batch "project securibench" "testOnly *Securibench${suite_name}Executor" > /tmp/executor_${suite_key}.log 2>&1
+    # Run the specific test executor in batch mode (no server) with call graph configuration
+    sbt -Dsecuribench.callgraph="$callgraph" -batch "project securibench" "testOnly *Securibench${suite_name}Executor" > /tmp/executor_${suite_key}.log 2>&1
     
     if [ $? -ne 0 ]; then
         echo "❌ Failed to execute $suite_name tests"
@@ -195,7 +256,7 @@ compute_suite_metrics() {
         echo "🔄 Auto-executing missing tests..."
         
         # Automatically execute the missing tests
-        if ! execute_suite_tests "$suite_key"; then
+        if ! execute_suite_tests "$suite_key" "$CALLGRAPH"; then
             return 1
         fi
         
@@ -223,7 +284,7 @@ compute_suite_metrics() {
 
 # Function to extract metrics from SBT output and create CSV
 create_csv_report() {
-    local output_file="$OUTPUT_DIR/securibench_metrics_${TIMESTAMP}.csv"
+    local output_file="$OUTPUT_DIR/securibench_metrics_${CALLGRAPH}_${TIMESTAMP}.csv"
     
     echo "📄 Creating CSV report: $output_file"
     
@@ -297,7 +358,7 @@ create_csv_report() {
 # Function to create summary report
 create_summary_report() {
     local csv_file=$1
-    local summary_file="$OUTPUT_DIR/securibench_summary_${TIMESTAMP}.txt"
+    local summary_file="$OUTPUT_DIR/securibench_summary_${CALLGRAPH}_${TIMESTAMP}.txt"
     
     echo "📋 Creating summary report: $summary_file"
     
@@ -365,7 +426,7 @@ create_summary_report() {
 }
 
 # Main script logic
-echo "=== SECURIBENCH METRICS COMPUTATION ==="
+echo "=== SECURIBENCH METRICS COMPUTATION WITH $CALLGRAPH CALL GRAPH ==="
 echo "🔍 Checking test results and auto-executing missing tests..."
 echo
 

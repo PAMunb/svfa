@@ -3,7 +3,7 @@
 ## 🎯 Two-Script Approach
 
 ### **Script 1: Execute Securibench Tests** 
-`./scripts/run-securibench-tests.sh [suite|clean|--help]`
+`./scripts/run-securibench-tests.sh [suite] [callgraph] [clean|--help]`
 
 **Purpose**: Run SVFA analysis on specified test suite(s) and save results to disk (no metrics computation).
 
@@ -17,19 +17,29 @@
 
 **Usage**:
 ```bash
-# Execute all tests
+# Execute all tests with default SPARK call graph
 ./scripts/run-securibench-tests.sh
 ./scripts/run-securibench-tests.sh all
 
-# Execute specific test suite
+# Execute specific test suite with SPARK call graph
 ./scripts/run-securibench-tests.sh inter
 ./scripts/run-securibench-tests.sh basic
 ./scripts/run-securibench-tests.sh session
 # ... (all 12 suites supported)
 
+# Execute with different call graph algorithms
+./scripts/run-securibench-tests.sh inter cha          # CHA call graph
+./scripts/run-securibench-tests.sh basic spark_library # SPARK_LIBRARY call graph
+./scripts/run-securibench-tests.sh all cha            # All suites with CHA
+
 # Clean previous data and execute all tests
 ./scripts/run-securibench-tests.sh clean
 ```
+
+**Call Graph Algorithms**:
+- `spark` (default): SPARK points-to analysis - most precise, slower
+- `cha`: Class Hierarchy Analysis - faster, less precise
+- `spark_library`: SPARK with library support - comprehensive coverage
 
 **Output**:
 ```
@@ -67,7 +77,7 @@ Results: 9 passed, 5 failed
 ---
 
 ### **Script 2: Compute Securibench Metrics**
-`./scripts/compute-securibench-metrics.sh [suite|--help]`
+`./scripts/compute-securibench-metrics.sh [suite] [callgraph] [clean|--help]`
 
 **Purpose**: Compute accuracy metrics for Securibench test suites with **automatic test execution**.
 
@@ -85,24 +95,29 @@ Results: 9 passed, 5 failed
 
 **Usage**:
 ```bash
-# Process all suites (default)
+# Process all suites with default SPARK call graph (default)
 ./scripts/compute-securibench-metrics.sh
 ./scripts/compute-securibench-metrics.sh all
 
-# Process specific suite
+# Process specific suite with SPARK call graph
 ./scripts/compute-securibench-metrics.sh inter
 ./scripts/compute-securibench-metrics.sh basic
 ./scripts/compute-securibench-metrics.sh session
 ./scripts/compute-securibench-metrics.sh aliasing
 # ... (all 12 suites supported)
 
+# Process with different call graph algorithms
+./scripts/compute-securibench-metrics.sh inter cha          # CHA call graph
+./scripts/compute-securibench-metrics.sh basic spark_library # SPARK_LIBRARY call graph
+./scripts/compute-securibench-metrics.sh all cha            # All suites with CHA
+
 # Clean all previous test data and metrics
 ./scripts/compute-securibench-metrics.sh clean
 ```
 
 **Output Files**:
-- `target/metrics/securibench_metrics_YYYYMMDD_HHMMSS.csv` - Detailed CSV data
-- `target/metrics/securibench_summary_YYYYMMDD_HHMMSS.txt` - Summary report
+- `target/metrics/securibench_metrics_[callgraph]_YYYYMMDD_HHMMSS.csv` - Detailed CSV data
+- `target/metrics/securibench_summary_[callgraph]_YYYYMMDD_HHMMSS.txt` - Summary report
 
 **CSV Format**:
 ```csv
