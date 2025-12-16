@@ -9,6 +9,7 @@ Dependencies: Python 3.6+ (standard library only)
 """
 
 import argparse
+import json
 import subprocess
 import sys
 import os
@@ -223,6 +224,31 @@ def get_suite_name(suite_key: str) -> str:
     return suite_key.title().replace('_', '')
 
 
+def count_test_results(results_dir: Path) -> Tuple[int, int, int]:
+    """Count total, passed, and failed tests from JSON result files."""
+    if not results_dir.exists():
+        return 0, 0, 0
+    
+    json_files = list(results_dir.glob("*.json"))
+    total_count = len(json_files)
+    passed_count = 0
+    failed_count = 0
+    
+    for json_file in json_files:
+        try:
+            with open(json_file, 'r') as f:
+                data = json.load(f)
+                if data.get('passed', False):
+                    passed_count += 1
+                else:
+                    failed_count += 1
+        except (json.JSONDecodeError, IOError):
+            # If we can't read the file, count it as failed
+            failed_count += 1
+    
+    return total_count, passed_count, failed_count
+
+
 def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tuple[bool, int]:
     """Execute a specific test suite with given call graph algorithm."""
     suite_name = get_suite_name(suite_key)
@@ -259,14 +285,14 @@ def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tupl
             
             # Count test results
             results_dir = Path(f"target/test-results/securibench/micro/{suite_key}")
-            if results_dir.exists():
-                json_files = list(results_dir.glob("*.json"))
-                test_count = len(json_files)
-                print_info(f"{test_count} tests executed in {duration}s using {callgraph} call graph")
+            total_count, passed_count, failed_count = count_test_results(results_dir)
+            
+            if total_count > 0:
+                print_info(f"{total_count} tests executed in {duration}s using {callgraph} call graph ({passed_count} passed, {failed_count} failed)")
                 print_info("Individual test results show SVFA analysis accuracy")
-                return True, test_count
+                return True, total_count
             else:
-                print_warning("No test results directory found")
+                print_warning("No test results found")
                 return True, 0
         else:
             print_error(f"{suite_name} test execution failed (technical error)")
