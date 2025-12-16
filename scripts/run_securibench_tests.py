@@ -9,6 +9,7 @@ Dependencies: Python 3.6+ (standard library only)
 """
 
 import argparse
+import csv
 import json
 import subprocess
 import sys
@@ -17,7 +18,7 @@ import shutil
 import time
 from pathlib import Path
 from datetime import datetime
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Dict, Any
 
 # Configuration constants
 CALL_GRAPH_ALGORITHMS = ['spark', 'cha', 'spark_library', 'rta', 'vta']
@@ -116,6 +117,7 @@ def show_help() -> None:
     --help, -h          Show this help message
     --clean             Remove all previous test data before execution
     --verbose, -v       Enable verbose output
+    --all-call-graphs   Execute tests with all call graph algorithms and generate combined metrics
 
 {Colors.BOLD}AVAILABLE TEST SUITES:{Colors.RESET}"""
     
@@ -136,17 +138,21 @@ def show_help() -> None:
     {sys.argv[0]} inter vta                 # Execute Inter suite with VTA call graph
     {sys.argv[0]} all cha                   # Execute all suites with CHA call graph
     {sys.argv[0]} --clean                   # Clean previous data and execute all tests
+    {sys.argv[0]} --all-call-graphs         # Execute all suites with all 5 call graph algorithms
+    {sys.argv[0]} --all-call-graphs --clean # Clean data and run comprehensive analysis
     {sys.argv[0]} --help                    # Show this help
 
 {Colors.BOLD}OUTPUT:{Colors.RESET}
     - Test results: target/test-results/securibench/micro/[suite]/
     - JSON files: One per test case with detailed results
     - Execution summary: Console output with timing and pass/fail counts
+    - CSV reports (--all-call-graphs): Detailed and aggregate metrics across all algorithms
 
 {Colors.BOLD}PERFORMANCE:{Colors.RESET}
-    - Total execution time: ~3-5 minutes for all 122 tests
+    - Total execution time: ~3-5 minutes for all 122 tests (single call graph)
+    - --all-call-graphs: ~15-25 minutes (5x longer, all algorithms)
     - Memory usage: High (Soot framework + call graph construction)
-    - Disk usage: ~122 JSON files (~1-2MB total)
+    - Disk usage: ~122 JSON files (~1-2MB total per call graph)
 
 {Colors.BOLD}NEXT STEPS:{Colors.RESET}
     After execution, use compute_securibench_metrics.py to generate:
@@ -312,6 +318,190 @@ def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tupl
         return False, 0
 
 
+def load_test_results_for_callgraph(suite_key: str, callgraph: str) -> List[Dict[str, Any]]:
+    """Load test results for a specific suite and call graph."""
+    results_dir = Path(f"target/test-results/securibench/micro/{suite_key}")
+    results = []
+    
+    if not results_dir.exists():
+        return results
+    
+    for json_file in results_dir.glob("*.json"):
+        try:
+            with open(json_file, 'r') as f:
+                data = json.load(f)
+                # Add call graph information
+                data['callGraph'] = callgraph.upper()
+                results.append(data)
+        except (json.JSONDecodeError, Exception) as e:
+            print_warning(f"⚠️  Could not load {json_file.name}: {e}")
+    
+    return results
+
+
+def generate_detailed_csv(all_results: Dict[str, Dict[str, List[Dict[str, Any]]]], timestamp: str) -> str:
+    """Generate detailed CSV with one row per test per call graph."""
+    filename = f"securibench-all-callgraphs-detailed-{timestamp}.csv"
+    
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = [
+            'Suite', 'CallGraph', 'TestName', 'ExpectedVulnerabilities', 
+            'FoundVulnerabilities', 'Passed', 'ExecutionTimeMs', 'ConflictCount'
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for suite_key, callgraph_results in all_results.items():
+            for callgraph, results in callgraph_results.items():
+                for result in results:
+                    expected = result.get('expectedVulnerabilities', 0)
+                    found = result.get('foundVulnerabilities', 0)
+                    passed = (expected == found)
+                    
+                    writer.writerow({
+                        'Suite': suite_key,
+                        'CallGraph': callgraph.upper(),
+                        'TestName': result.get('testName', 'Unknown'),
+                        'ExpectedVulnerabilities': expected,
+                        'FoundVulnerabilities': found,
+                        'Passed': passed,
+                        'ExecutionTimeMs': result.get('executionTimeMs', 0),
+                        'ConflictCount': len(result.get('conflicts', []))
+                    })
+    
+    return filename
+
+
+def generate_aggregate_csv(all_results: Dict[str, Dict[str, List[Dict[str, Any]]]], timestamp: str) -> str:
+    """Generate aggregate CSV with metrics per suite per call graph."""
+    filename = f"securibench-all-callgraphs-aggregate-{timestamp}.csv"
+    
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = [
+            'Suite', 'CallGraph', 'TotalTests', 'PassedTests', 'FailedTests',
+            'TruePositives', 'FalsePositives', 'FalseNegatives', 'TrueNegatives',
+            'Precision', 'Recall', 'FScore', 'TotalExecutionTimeMs'
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for suite_key, callgraph_results in all_results.items():
+            for callgraph, results in callgraph_results.items():
+                if not results:
+                    continue
+                
+                # Calculate metrics
+                total_tests = len(results)
+                passed_tests = sum(1 for r in results if r.get('expectedVulnerabilities', 0) == r.get('foundVulnerabilities', 0))
+                failed_tests = total_tests - passed_tests
+                
+                # Calculate TP, FP, FN, TN
+                tp = sum(min(r.get('expectedVulnerabilities', 0), r.get('foundVulnerabilities', 0)) for r in results)
+                fp = sum(max(0, r.get('foundVulnerabilities', 0) - r.get('expectedVulnerabilities', 0)) for r in results)
+                fn = sum(max(0, r.get('expectedVulnerabilities', 0) - r.get('foundVulnerabilities', 0)) for r in results)
+                tn = 0  # Not applicable for vulnerability detection
+                
+                # Calculate precision, recall, F-score
+                precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+                recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+                fscore = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
+                
+                total_execution_time = sum(r.get('executionTimeMs', 0) for r in results)
+                
+                writer.writerow({
+                    'Suite': suite_key,
+                    'CallGraph': callgraph.upper(),
+                    'TotalTests': total_tests,
+                    'PassedTests': passed_tests,
+                    'FailedTests': failed_tests,
+                    'TruePositives': tp,
+                    'FalsePositives': fp,
+                    'FalseNegatives': fn,
+                    'TrueNegatives': tn,
+                    'Precision': f"{precision:.3f}",
+                    'Recall': f"{recall:.3f}",
+                    'FScore': f"{fscore:.3f}",
+                    'TotalExecutionTimeMs': total_execution_time
+                })
+    
+    return filename
+
+
+def execute_all_call_graphs(verbose: bool = False) -> int:
+    """Execute tests with all call graph algorithms and generate combined metrics."""
+    print_header("🚀 EXECUTING ALL CALL GRAPH ALGORITHMS")
+    print()
+    print("This will run SVFA analysis on all test suites using all 5 call graph algorithms:")
+    print("CHA → RTA → VTA → SPARK → SPARK_LIBRARY")
+    print()
+    print_warning("⚠️  This process will take significantly longer (5x normal execution time)")
+    print()
+    
+    # Execution order: fastest to slowest
+    execution_order = ['cha', 'rta', 'vta', 'spark', 'spark_library']
+    
+    all_results: Dict[str, Dict[str, List[Dict[str, Any]]]] = {}
+    total_start_time = time.time()
+    
+    # Execute tests for each call graph
+    for i, callgraph in enumerate(execution_order, 1):
+        print_info(f"📊 Step {i}/5: Executing with {callgraph.upper()} call graph algorithm")
+        print_info(f"Description: {CALLGRAPH_DESCRIPTIONS[callgraph]}")
+        print()
+        
+        callgraph_start_time = time.time()
+        
+        # Execute all suites for this call graph
+        for suite_key in TEST_SUITES:
+            suite_name = get_suite_name(suite_key)
+            print(f"  🔄 {suite_name} with {callgraph.upper()}...")
+            
+            success, test_count = execute_suite(suite_key, callgraph, verbose)
+            if not success:
+                print_error(f"❌ Failed to execute {suite_name} with {callgraph.upper()}")
+                print_error("Stopping execution due to failure")
+                return 1
+            
+            # Load results for this suite and call graph
+            if suite_key not in all_results:
+                all_results[suite_key] = {}
+            
+            results = load_test_results_for_callgraph(suite_key, callgraph)
+            all_results[suite_key][callgraph] = results
+            
+            if results:
+                passed = sum(1 for r in results if r.get('expectedVulnerabilities', 0) == r.get('foundVulnerabilities', 0))
+                failed = len(results) - passed
+                print(f"    ✅ {len(results)} tests ({passed} passed, {failed} failed)")
+            else:
+                print_warning(f"    ⚠️  No results found for {suite_name}")
+        
+        callgraph_duration = int(time.time() - callgraph_start_time)
+        print_success(f"✅ {callgraph.upper()} call graph completed in {callgraph_duration}s")
+        print()
+    
+    # Generate timestamp for output files
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    
+    # Generate CSV reports
+    print_info("📋 Generating CSV reports...")
+    
+    detailed_csv = generate_detailed_csv(all_results, timestamp)
+    aggregate_csv = generate_aggregate_csv(all_results, timestamp)
+    
+    total_duration = int(time.time() - total_start_time)
+    
+    print_success("🎉 All call graph algorithms executed successfully!")
+    print()
+    print_info("📊 Generated reports:")
+    print(f"  • Detailed CSV: {detailed_csv}")
+    print(f"  • Aggregate CSV: {aggregate_csv}")
+    print()
+    print_info(f"⏱️  Total execution time: {total_duration}s")
+    
+    return 0
+
+
 def main() -> int:
     """Main entry point."""
     parser = argparse.ArgumentParser(
@@ -329,6 +519,8 @@ def main() -> int:
                        help='Enable verbose output')
     parser.add_argument('--help', '-h', action='store_true',
                        help='Show this help message')
+    parser.add_argument('--all-call-graphs', action='store_true',
+                       help='Execute tests with all call graph algorithms and generate combined metrics')
     
     args = parser.parse_args()
     
@@ -337,12 +529,20 @@ def main() -> int:
         show_help()
         return 0
     
-    # Validate arguments
+    # Handle --all-call-graphs option
+    if args.all_call_graphs:
+        # For --all-call-graphs, we ignore suite and callgraph arguments
+        if args.clean:
+            clean_test_data(args.verbose)
+            print()
+        return execute_all_call_graphs(args.verbose)
+    
+    # Validate arguments (only when not using --all-call-graphs)
     if args.suite not in ['all'] + TEST_SUITES:
         print_error(f"Unknown test suite: {args.suite}")
         print()
         print(f"Available suites: {', '.join(['all'] + TEST_SUITES)}")
-        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help]")
+        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help|--all-call-graphs]")
         print()
         print(f"For detailed help, run: {sys.argv[0]} --help")
         return 1
@@ -351,7 +551,7 @@ def main() -> int:
         print_error(f"Unknown call graph algorithm: {args.callgraph}")
         print()
         print(f"Available call graph algorithms: {', '.join(CALL_GRAPH_ALGORITHMS)}")
-        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help]")
+        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help|--all-call-graphs]")
         print()
         print(f"For detailed help, run: {sys.argv[0]} --help")
         return 1

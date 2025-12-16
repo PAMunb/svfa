@@ -147,6 +147,7 @@ def show_help() -> None:
     --clean             Remove all previous test results and metrics
     --verbose, -v       Enable verbose output
     --csv-only          Only generate CSV report, skip console output
+    --all-call-graphs   Compute metrics for all call graph algorithms and generate combined reports
 
 {Colors.BOLD}AVAILABLE TEST SUITES:{Colors.RESET}"""
     
@@ -167,11 +168,14 @@ def show_help() -> None:
     {sys.argv[0]} inter vta                 # Process Inter suite with VTA call graph
     {sys.argv[0]} all spark_library         # Process all suites with SPARK_LIBRARY
     {sys.argv[0]} --clean                   # Remove all previous test data
+    {sys.argv[0]} --all-call-graphs         # Compute metrics for all suites with all 5 call graph algorithms
+    {sys.argv[0]} --all-call-graphs --clean # Clean data and compute comprehensive metrics
     {sys.argv[0]} --help                    # Show this help
 
 {Colors.BOLD}OUTPUT FILES:{Colors.RESET}
     - CSV report: target/metrics/securibench_metrics_[callgraph]_YYYYMMDD_HHMMSS.csv
     - Summary report: target/metrics/securibench_summary_[callgraph]_YYYYMMDD_HHMMSS.txt
+    - Combined reports (--all-call-graphs): securibench-all-callgraphs-[detailed|aggregate]-YYYYMMDD-HHMMSS.csv
 
 {Colors.BOLD}AUTO-EXECUTION:{Colors.RESET}
     - Automatically detects missing test results
@@ -376,6 +380,144 @@ def create_summary_report(all_metrics: List[SuiteMetrics], callgraph: str, times
     return summary_file
 
 
+def compute_all_call_graphs_metrics(verbose: bool = False) -> int:
+    """Compute metrics for all call graph algorithms and generate combined reports."""
+    print_header("📊 COMPUTING METRICS FOR ALL CALL GRAPH ALGORITHMS")
+    print()
+    print("This will compute metrics for all test suites using all 5 call graph algorithms:")
+    print("CHA → RTA → VTA → SPARK → SPARK_LIBRARY")
+    print()
+    
+    # Execution order: fastest to slowest (same as test execution)
+    execution_order = ['cha', 'rta', 'vta', 'spark', 'spark_library']
+    
+    all_suite_metrics: Dict[str, Dict[str, SuiteMetrics]] = {}
+    total_start_time = time.time()
+    
+    # Process each call graph
+    for i, callgraph in enumerate(execution_order, 1):
+        print_info(f"📈 Step {i}/5: Computing metrics for {callgraph.upper()} call graph algorithm")
+        print()
+        
+        callgraph_start_time = time.time()
+        
+        # Process all suites for this call graph
+        for suite_key in TEST_SUITES:
+            suite_name = get_suite_name(suite_key)
+            
+            # Auto-execute missing tests
+            if not execute_missing_tests(suite_key, callgraph, verbose):
+                print_error(f"❌ Failed to execute missing tests for {suite_name} with {callgraph.upper()}")
+                print_error("Stopping metrics computation due to failure")
+                return 1
+            
+            # Load and compute metrics
+            results = load_test_results(suite_key)
+            if not results:
+                print_warning(f"⚠️  No results found for {suite_name} with {callgraph.upper()}")
+                continue
+            
+            metrics = compute_metrics(results, suite_name)
+            
+            # Store metrics
+            if suite_key not in all_suite_metrics:
+                all_suite_metrics[suite_key] = {}
+            all_suite_metrics[suite_key][callgraph] = metrics
+            
+            passed = sum(1 for r in results if r.passed)
+            failed = len(results) - passed
+            print(f"  ✅ {suite_name}: {len(results)} tests ({passed} passed, {failed} failed)")
+        
+        callgraph_duration = int(time.time() - callgraph_start_time)
+        print_success(f"✅ {callgraph.upper()} metrics computed in {callgraph_duration}s")
+        print()
+    
+    # Generate timestamp for output files
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    
+    # Generate combined CSV reports
+    print_info("📋 Generating combined CSV reports...")
+    
+    detailed_csv = generate_all_callgraphs_detailed_csv(all_suite_metrics, timestamp)
+    aggregate_csv = generate_all_callgraphs_aggregate_csv(all_suite_metrics, timestamp)
+    
+    total_duration = int(time.time() - total_start_time)
+    
+    print_success("🎉 All call graph metrics computed successfully!")
+    print()
+    print_info("📊 Generated reports:")
+    print(f"  • Detailed CSV: {detailed_csv}")
+    print(f"  • Aggregate CSV: {aggregate_csv}")
+    print()
+    print_info(f"⏱️  Total computation time: {total_duration}s")
+    
+    return 0
+
+
+def generate_all_callgraphs_detailed_csv(all_suite_metrics: Dict[str, Dict[str, SuiteMetrics]], timestamp: str) -> str:
+    """Generate detailed CSV with one row per test per call graph."""
+    filename = f"securibench-all-callgraphs-detailed-{timestamp}.csv"
+    
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = [
+            'Suite', 'CallGraph', 'TestName', 'ExpectedVulnerabilities', 
+            'FoundVulnerabilities', 'Passed', 'ExecutionTimeMs'
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for suite_key, callgraph_metrics in all_suite_metrics.items():
+            for callgraph, metrics in callgraph_metrics.items():
+                for result in metrics.results:
+                    writer.writerow({
+                        'Suite': suite_key,
+                        'CallGraph': callgraph.upper(),
+                        'TestName': result.test_name,
+                        'ExpectedVulnerabilities': result.expected,
+                        'FoundVulnerabilities': result.found,
+                        'Passed': result.passed,
+                        'ExecutionTimeMs': getattr(result, 'execution_time_ms', 0)  # May not be available in TestResult
+                    })
+    
+    return filename
+
+
+def generate_all_callgraphs_aggregate_csv(all_suite_metrics: Dict[str, Dict[str, SuiteMetrics]], timestamp: str) -> str:
+    """Generate aggregate CSV with metrics per suite per call graph."""
+    filename = f"securibench-all-callgraphs-aggregate-{timestamp}.csv"
+    
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = [
+            'Suite', 'CallGraph', 'TotalTests', 'PassedTests', 'FailedTests',
+            'TruePositives', 'FalsePositives', 'FalseNegatives', 'TrueNegatives',
+            'Precision', 'Recall', 'FScore'
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        
+        for suite_key, callgraph_metrics in all_suite_metrics.items():
+            for callgraph, metrics in callgraph_metrics.items():
+                passed_tests = sum(1 for r in metrics.results if r.passed)
+                failed_tests = len(metrics.results) - passed_tests
+                
+                writer.writerow({
+                    'Suite': suite_key,
+                    'CallGraph': callgraph.upper(),
+                    'TotalTests': len(metrics.results),
+                    'PassedTests': passed_tests,
+                    'FailedTests': failed_tests,
+                    'TruePositives': metrics.tp,
+                    'FalsePositives': metrics.fp,
+                    'FalseNegatives': metrics.fn,
+                    'TrueNegatives': metrics.tn,
+                    'Precision': f"{metrics.precision:.3f}",
+                    'Recall': f"{metrics.recall:.3f}",
+                    'FScore': f"{metrics.f_score:.3f}"
+                })
+    
+    return filename
+
+
 def main() -> int:
     """Main entry point."""
     parser = argparse.ArgumentParser(
@@ -395,6 +537,8 @@ def main() -> int:
                        help='Only generate CSV report, skip console output')
     parser.add_argument('--help', '-h', action='store_true',
                        help='Show this help message')
+    parser.add_argument('--all-call-graphs', action='store_true',
+                       help='Compute metrics for all call graph algorithms and generate combined reports')
     
     args = parser.parse_args()
     
@@ -403,12 +547,20 @@ def main() -> int:
         show_help()
         return 0
     
-    # Validate arguments
+    # Handle --all-call-graphs option
+    if args.all_call_graphs:
+        # For --all-call-graphs, we ignore suite and callgraph arguments
+        if args.clean:
+            clean_test_data(args.verbose)
+            return 0
+        return compute_all_call_graphs_metrics(args.verbose)
+    
+    # Validate arguments (only when not using --all-call-graphs)
     if args.suite not in ['all'] + TEST_SUITES:
         print_error(f"Unknown test suite: {args.suite}")
         print()
         print(f"Available suites: {', '.join(['all'] + TEST_SUITES)}")
-        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help]")
+        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help|--all-call-graphs]")
         print()
         print(f"For detailed help, run: {sys.argv[0]} --help")
         return 1
@@ -417,7 +569,7 @@ def main() -> int:
         print_error(f"Unknown call graph algorithm: {args.callgraph}")
         print()
         print(f"Available call graph algorithms: {', '.join(CALL_GRAPH_ALGORITHMS)}")
-        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help]")
+        print(f"Usage: {sys.argv[0]} [suite] [callgraph] [--clean|--help|--all-call-graphs]")
         print()
         print(f"For detailed help, run: {sys.argv[0]} --help")
         return 1
