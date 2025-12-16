@@ -294,7 +294,7 @@ def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tupl
             print_success(f"{suite_name} test execution completed (technical success) with {callgraph} call graph")
             
             # Count test results
-            results_dir = Path(f"target/test-results/securibench/micro/{suite_key}")
+            results_dir = Path(f"target/test-results/{callgraph.lower()}/securibench/micro/{suite_key}")
             total_count, passed_count, failed_count = count_test_results(results_dir)
             
             if total_count > 0:
@@ -320,7 +320,8 @@ def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tupl
 
 def load_test_results_for_callgraph(suite_key: str, callgraph: str) -> List[Dict[str, Any]]:
     """Load test results for a specific suite and call graph."""
-    results_dir = Path(f"target/test-results/securibench/micro/{suite_key}")
+    # Results are now saved in call-graph-specific directories
+    results_dir = Path(f"target/test-results/{callgraph.lower()}/securibench/micro/{suite_key}")
     results = []
     
     if not results_dir.exists():
@@ -380,7 +381,7 @@ def generate_aggregate_csv(all_results: Dict[str, Dict[str, List[Dict[str, Any]]
         fieldnames = [
             'Suite', 'CallGraph', 'TotalTests', 'PassedTests', 'FailedTests',
             'TruePositives', 'FalsePositives', 'FalseNegatives', 'TrueNegatives',
-            'Precision', 'Recall', 'FScore', 'TotalExecutionTimeMs'
+            'Precision', 'Recall', 'FScore', 'TotalExecutionTimeMs', 'AvgExecutionTimeMs'
         ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -407,6 +408,7 @@ def generate_aggregate_csv(all_results: Dict[str, Dict[str, List[Dict[str, Any]]
                 fscore = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
                 
                 total_execution_time = sum(r.get('executionTimeMs', 0) for r in results)
+                avg_execution_time = total_execution_time / total_tests if total_tests > 0 else 0
                 
                 writer.writerow({
                     'Suite': suite_key,
@@ -421,7 +423,8 @@ def generate_aggregate_csv(all_results: Dict[str, Dict[str, List[Dict[str, Any]]
                     'Precision': f"{precision:.3f}",
                     'Recall': f"{recall:.3f}",
                     'FScore': f"{fscore:.3f}",
-                    'TotalExecutionTimeMs': total_execution_time
+                    'TotalExecutionTimeMs': total_execution_time,
+                    'AvgExecutionTimeMs': f"{avg_execution_time:.1f}"
                 })
     
     return filename

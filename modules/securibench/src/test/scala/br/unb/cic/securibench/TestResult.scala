@@ -28,7 +28,9 @@ object TestResultStorage {
   mapper.registerModule(DefaultScalaModule)
   
   def getResultsDirectory(packageName: String): File = {
-    val dir = new File(s"target/test-results/${packageName.replace('.', '/')}")
+    // Include call graph algorithm in the directory path to avoid overwriting results
+    val callGraphAlgorithm = SecuribenchConfig.getCallGraphAlgorithm().name.toLowerCase
+    val dir = new File(s"target/test-results/${callGraphAlgorithm}/${packageName.replace('.', '/')}")
     if (!dir.exists()) {
       dir.mkdirs()
     }

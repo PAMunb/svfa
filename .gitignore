@@ -24,3 +24,23 @@ project/project/.bloop
 # Metals (Scala Language Server)
 .metals/
 .bloop/
+
+# Soot output files
+sootOutput/
+
+# Generated CSV reports
+securibench-all-callgraphs-*.csv
+securibench_metrics_*.csv
+securibench_summary_*.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE and build artifacts
+.vscode/
+.scala-build/
+
+# Debug and temporary files
+debug_*.java
+debug_*.scala

@@ -3,10 +3,12 @@ package br.unb.cic.android
 import br.unb.cic.soot.svfa.jimple.JSVFA
 import br.unb.cic.soot.svfa.configuration.AndroidSootConfiguration
 import br.unb.cic.soot.svfa.jimple.{
+  ConfigurableAnalysis,
   FieldSensitive,
   Interprocedural,
   JSVFA,
-  PropagateTaint
+  PropagateTaint,
+  SVFAConfig
 }
 
 import scala.io.Source
@@ -20,13 +22,25 @@ import br.unb.cic.soot.graph._
 import java.nio.file.Paths
 import br.unb.cic.soot.svfa.configuration.AndroidSootConfiguration
 
-class AndroidTaintBenchTest(apk: String)
-    extends JSVFA
+/**
+ * Android TaintBench test with configurable SVFA settings.
+ * 
+ * @param apk The name of the APK file to analyze (without .apk extension)
+ * @param config Optional SVFA configuration (defaults to SVFAConfig.Default)
+ */
+class AndroidTaintBenchTest(
+    apk: String, 
+    config: SVFAConfig = SVFAConfig.Default
+) extends JSVFA
     with TaintBenchSpec
     with AndroidSootConfiguration
     with Interprocedural
     with FieldSensitive
-    with PropagateTaint {
+    with PropagateTaint
+    with ConfigurableAnalysis {
+
+  // Set the configuration
+  setConfig(config)
   def getApkPath(): String =
     readEnvironmentVariable("TAINT_BENCH") + (s"/$apk.apk")
 

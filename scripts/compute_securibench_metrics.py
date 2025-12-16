@@ -30,11 +30,12 @@ from run_securibench_tests import (
 class TestResult:
     """Represents a single test result."""
     
-    def __init__(self, test_name: str, expected: int, found: int, passed: bool):
+    def __init__(self, test_name: str, expected: int, found: int, passed: bool, execution_time_ms: int = 0):
         self.test_name = test_name
         self.expected = expected
         self.found = found
         self.passed = passed
+        self.execution_time_ms = execution_time_ms
     
     @classmethod
     def from_json(cls, json_data: Dict[str, Any]) -> 'TestResult':
@@ -43,12 +44,14 @@ class TestResult:
         found = json_data.get('foundVulnerabilities', 0)
         # Test passes when expected vulnerabilities equals found vulnerabilities
         passed = (expected == found)
+        execution_time_ms = json_data.get('executionTimeMs', 0)
         
         return cls(
             test_name=json_data.get('testName', 'Unknown'),
             expected=expected,
             found=found,
-            passed=passed
+            passed=passed,
+            execution_time_ms=execution_time_ms
         )
 
 
@@ -194,9 +197,10 @@ For detailed documentation, see: USAGE_SCRIPTS.md
     print(help_text)
 
 
-def load_test_results(suite_key: str) -> List[TestResult]:
-    """Load test results from JSON files."""
-    results_dir = Path(f"target/test-results/securibench/micro/{suite_key}")
+def load_test_results(suite_key: str, callgraph: str = "spark") -> List[TestResult]:
+    """Load test results from JSON files for a specific call graph."""
+    # Results are now saved in call-graph-specific directories
+    results_dir = Path(f"target/test-results/{callgraph.lower()}/securibench/micro/{suite_key}")
     results = []
     
     if not results_dir.exists():
@@ -216,7 +220,8 @@ def load_test_results(suite_key: str) -> List[TestResult]:
 
 def execute_missing_tests(suite_key: str, callgraph: str, verbose: bool = False) -> bool:
     """Execute tests for a suite if results are missing."""
-    results_dir = Path(f"target/test-results/securibench/micro/{suite_key}")
+    # Check call-graph-specific directory
+    results_dir = Path(f"target/test-results/{callgraph.lower()}/securibench/micro/{suite_key}")
     
     if not results_dir.exists() or not list(results_dir.glob("*.json")):
         suite_name = get_suite_name(suite_key)
@@ -266,7 +271,7 @@ def compute_suite_metrics(suite_key: str, callgraph: str, verbose: bool = False)
         return None
     
     # Load test results
-    results = load_test_results(suite_key)
+    results = load_test_results(suite_key, callgraph)
     
     if not results:
         print_error(f"No test results found for {suite_name} after execution")
@@ -298,13 +303,18 @@ def create_csv_report(all_metrics: List[SuiteMetrics], callgraph: str, timestamp
         writer.writerow([
             'Suite', 'Test_Count', 'Passed', 'Failed', 
             'TP', 'FP', 'FN', 'TN',
-            'Precision', 'Recall', 'F_Score', 'Accuracy'
+            'Precision', 'Recall', 'F_Score', 'Accuracy',
+            'Total_Execution_Time_Ms', 'Avg_Execution_Time_Ms'
         ])
         
         # Write data for each suite
         for metrics in all_metrics:
             passed_count = sum(1 for r in metrics.results if r.passed)
             failed_count = len(metrics.results) - passed_count
+            
+            # Calculate execution time metrics
+            total_execution_time = sum(r.execution_time_ms for r in metrics.results)
+            avg_execution_time = total_execution_time / len(metrics.results) if metrics.results else 0
             
             writer.writerow([
                 metrics.suite_name,
@@ -318,7 +328,9 @@ def create_csv_report(all_metrics: List[SuiteMetrics], callgraph: str, timestamp
                 f"{metrics.precision:.3f}",
                 f"{metrics.recall:.3f}",
                 f"{metrics.f_score:.3f}",
-                f"{metrics.accuracy:.3f}"
+                f"{metrics.accuracy:.3f}",
+                total_execution_time,
+                f"{avg_execution_time:.1f}"
             ])
     
     return csv_file
@@ -412,7 +424,7 @@ def compute_all_call_graphs_metrics(verbose: bool = False) -> int:
                 return 1
             
             # Load and compute metrics
-            results = load_test_results(suite_key)
+            results = load_test_results(suite_key, callgraph)
             if not results:
                 print_warning(f"⚠️  No results found for {suite_name} with {callgraph.upper()}")
                 continue
@@ -476,7 +488,7 @@ def generate_all_callgraphs_detailed_csv(all_suite_metrics: Dict[str, Dict[str, 
                         'ExpectedVulnerabilities': result.expected,
                         'FoundVulnerabilities': result.found,
                         'Passed': result.passed,
-                        'ExecutionTimeMs': getattr(result, 'execution_time_ms', 0)  # May not be available in TestResult
+                        'ExecutionTimeMs': result.execution_time_ms
                     })
     
     return filename
@@ -490,7 +502,7 @@ def generate_all_callgraphs_aggregate_csv(all_suite_metrics: Dict[str, Dict[str,
         fieldnames = [
             'Suite', 'CallGraph', 'TotalTests', 'PassedTests', 'FailedTests',
             'TruePositives', 'FalsePositives', 'FalseNegatives', 'TrueNegatives',
-            'Precision', 'Recall', 'FScore'
+            'Precision', 'Recall', 'FScore', 'TotalExecutionTimeMs', 'AvgExecutionTimeMs'
         ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -499,6 +511,10 @@ def generate_all_callgraphs_aggregate_csv(all_suite_metrics: Dict[str, Dict[str,
             for callgraph, metrics in callgraph_metrics.items():
                 passed_tests = sum(1 for r in metrics.results if r.passed)
                 failed_tests = len(metrics.results) - passed_tests
+                
+                # Calculate execution time metrics
+                total_execution_time = sum(r.execution_time_ms for r in metrics.results)
+                avg_execution_time = total_execution_time / len(metrics.results) if metrics.results else 0
                 
                 writer.writerow({
                     'Suite': suite_key,
@@ -512,7 +528,9 @@ def generate_all_callgraphs_aggregate_csv(all_suite_metrics: Dict[str, Dict[str,
                     'TrueNegatives': metrics.tn,
                     'Precision': f"{metrics.precision:.3f}",
                     'Recall': f"{metrics.recall:.3f}",
-                    'FScore': f"{metrics.f_score:.3f}"
+                    'FScore': f"{metrics.f_score:.3f}",
+                    'TotalExecutionTimeMs': total_execution_time,
+                    'AvgExecutionTimeMs': f"{avg_execution_time:.1f}"
                 })
     
     return filename

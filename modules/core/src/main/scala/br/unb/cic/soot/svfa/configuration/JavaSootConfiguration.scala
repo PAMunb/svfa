@@ -70,6 +70,8 @@ trait JavaSootConfiguration extends SootConfiguration {
         Options.v().setPhaseOption("cg.spark", "on")
         // Enable RTA mode in SPARK
         Options.v().setPhaseOption("cg.spark", "rta:true")
+        // RTA requires on-fly-cg to be disabled
+        Options.v().setPhaseOption("cg.spark", "on-fly-cg:false")
         // RTA-specific optimizations
         Options.v().setPhaseOption("cg.spark", "cs-demand:false")
         Options.v().setPhaseOption("cg.spark", "string-constants:true")
@@ -79,6 +81,8 @@ trait JavaSootConfiguration extends SootConfiguration {
         Options.v().setPhaseOption("cg.spark", "on")
         // Enable VTA mode in SPARK
         Options.v().setPhaseOption("cg.spark", "vta:true")
+        // VTA requires on-fly-cg to be disabled (similar to RTA)
+        Options.v().setPhaseOption("cg.spark", "on-fly-cg:false")
         // VTA automatically configures internal options, but we add common ones
         Options.v().setPhaseOption("cg.spark", "cs-demand:false")
         Options.v().setPhaseOption("cg.spark", "string-constants:true")
