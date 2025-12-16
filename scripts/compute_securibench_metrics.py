@@ -39,11 +39,16 @@ class TestResult:
     @classmethod
     def from_json(cls, json_data: Dict[str, Any]) -> 'TestResult':
         """Create TestResult from JSON data."""
+        expected = json_data.get('expectedVulnerabilities', 0)
+        found = json_data.get('foundVulnerabilities', 0)
+        # Test passes when expected vulnerabilities equals found vulnerabilities
+        passed = (expected == found)
+        
         return cls(
             test_name=json_data.get('testName', 'Unknown'),
-            expected=json_data.get('expectedVulnerabilities', 0),
-            found=json_data.get('foundVulnerabilities', 0),
-            passed=json_data.get('passed', False)
+            expected=expected,
+            found=found,
+            passed=passed
         )
 
 

@@ -238,7 +238,11 @@ def count_test_results(results_dir: Path) -> Tuple[int, int, int]:
         try:
             with open(json_file, 'r') as f:
                 data = json.load(f)
-                if data.get('passed', False):
+                expected = data.get('expectedVulnerabilities', 0)
+                found = data.get('foundVulnerabilities', 0)
+                
+                # Test passes when expected vulnerabilities equals found vulnerabilities
+                if expected == found:
                     passed_count += 1
                 else:
                     failed_count += 1
