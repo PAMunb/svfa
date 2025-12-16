@@ -169,14 +169,27 @@ Enhanced scripts are available for convenient testing:
 # Core tests (no dependencies)
 ./scripts/run-core-tests.sh
 
-# Security vulnerability analysis  
-./scripts/run-securibench.sh
+# Securibench security vulnerability analysis
+./scripts/run-securibench.sh                    # Traditional approach
+./scripts/run-securibench-tests.sh              # Phase 1: Execute tests
+./scripts/compute-securibench-metrics.sh        # Phase 2: Compute metrics + CSV
 
 # Android malware analysis (requires environment setup)
 ./scripts/run-taintbench.sh --help
 ./scripts/run-taintbench.sh --check-env
 ./scripts/run-taintbench.sh roidsec
 ```
+
+**📋 Securibench Smart Testing:**
+
+The enhanced testing approach provides intelligent analysis capabilities:
+- **Auto-execution**: Missing tests are automatically executed when computing metrics
+- **Separation of concerns**: Expensive test execution vs. fast metrics computation
+- **CSV output**: Ready for analysis in Excel, R, Python, or other tools
+- **Persistent results**: Test results saved to disk for repeated analysis
+- **Flexible reporting**: Generate metrics for all suites or specific ones
+
+See **[Securibench Testing Documentation](USAGE_SCRIPTS.md)** for detailed usage instructions.
 
 ## Installation (Ubuntu/Debian)
 
@@ -263,17 +276,72 @@ To have detailed information about each test category run, [see here.](modules/s
 
 #### Running Securibench Tests
 
-You can run Securibench tests in two ways:
+You can run Securibench tests in several ways:
 
-**1. Using the convenience shell script (Recommended):**
+**1. One-Step Approach (Recommended):**
+```bash
+# Auto-executes missing tests and computes metrics
+./scripts/compute-securibench-metrics.sh
+
+# Get detailed help
+./scripts/compute-securibench-metrics.sh --help
+```
+
+**2. Two-Phase Approach (For batch execution):**
+```bash
+# Phase 1: Execute tests (saves results to disk)
+./scripts/run-securibench-tests.sh              # All suites
+./scripts/run-securibench-tests.sh inter        # Specific suite
+
+# Phase 2: Compute metrics and generate CSV reports (uses cached results)
+./scripts/compute-securibench-metrics.sh        # All suites
+./scripts/compute-securibench-metrics.sh inter  # Specific suite
+```
+
+**3. Clean Previous Data:**
+```bash
+# Remove all previous test results and metrics
+./scripts/compute-securibench-metrics.sh clean
+
+# Clean and execute all tests from scratch
+./scripts/run-securibench-tests.sh clean
+```
+
+**2. Traditional single-phase approach:**
 ```bash
 ./scripts/run-securibench.sh
 ```
 
-**2. Using SBT testOnly command:**
+**3. Using SBT commands:**
 ```bash
+# Run only test execution (no metrics) - RECOMMENDED
+sbt "project securibench" "testOnly *Executor"
+sbt "project securibench" testExecutors
+
+# Run only metrics computation (no test execution)  
+sbt "project securibench" "testOnly *Metrics"
+sbt "project securibench" testMetrics
+
+# Run everything (execution + metrics)
+sbt "project securibench" test
+
+# Legacy approach (deprecated)
 sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
 ```
+
+**📊 Advanced Securibench Analysis:**
+
+The two-phase approach separates expensive test execution from fast metrics computation:
+- **Phase 1** runs SVFA analysis on all test suites (Inter, Basic, etc.) and saves results as JSON files
+- **Phase 2** computes accuracy metrics (TP, FP, FN, Precision, Recall, F-score) and generates CSV reports
+
+This allows you to:
+- Run expensive analysis once, compute metrics multiple times
+- Generate CSV files for external analysis (Excel, R, Python)
+- Compare results across different configurations
+- Debug individual test failures by inspecting JSON result files
+
+For detailed usage instructions, see: **[Securibench Testing Documentation](USAGE_SCRIPTS.md)**
 
 #### Common issues
 From the 47 tests, we have categorized nine (9) issues.
