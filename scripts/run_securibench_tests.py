@@ -334,7 +334,7 @@ def main() -> int:
     # Display execution header
     if args.suite == 'all':
         print_colored(f"=== EXECUTING ALL SECURIBENCH TESTS WITH {args.callgraph.upper()} CALL GRAPH ===", Colors.BOLD)
-        print("This will run SVFA analysis on all test suites using {args.callgraph} call graph and save results to disk.")
+        print(f"This will run SVFA analysis on all test suites using {args.callgraph} call graph and save results to disk.")
     else:
         suite_name = get_suite_name(args.suite)
         print_colored(f"=== EXECUTING {suite_name.upper()} TEST SUITE WITH {args.callgraph.upper()} CALL GRAPH ===", Colors.BOLD)
