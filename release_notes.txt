@@ -28,4 +28,7 @@ v0.6.1
 
 v0.6.2
 - Add DSL rules for Cookie methods and Session methods,
-- Improve traits rules to handle statements types. 
+- Refactor DSL rule actions into standalone architecture,
+- Create several strategies to execute tests, compute and export metrics via command line,
+- Add multiple call graph algorithm support,
+- Modernize configuration system.
