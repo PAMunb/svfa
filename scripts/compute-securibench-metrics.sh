@@ -245,7 +245,7 @@ execute_suite_tests() {
 compute_suite_metrics() {
     local suite_key=$1
     local suite_name=$(get_suite_name "$suite_key")
-    
+
     if [[ -z "$suite_name" ]]; then
         echo "❌ Unknown test suite: $suite_key"
         return 1
@@ -254,7 +254,7 @@ compute_suite_metrics() {
     echo "📊 Computing metrics for $suite_name tests..."
     
     # Check if results exist
-    results_dir="target/test-results/securibench/micro/$suite_key"
+    results_dir="target/test-results/$CALLGRAPH/securibench/micro/$suite_key"
     if [ ! -d "$results_dir" ] || [ -z "$(ls -A "$results_dir" 2>/dev/null)" ]; then
         echo "⚠️  No test results found for $suite_name in $results_dir"
         echo "🔄 Auto-executing missing tests..."
@@ -297,7 +297,7 @@ create_csv_report() {
     
     # Process each suite's results
     for suite_key in "${SUITE_KEYS[@]}"; do
-        results_dir="target/test-results/securibench/micro/$suite_key"
+        results_dir="target/test-results/$CALLGRAPH/securibench/micro/$suite_key"
         
         if [ -d "$results_dir" ] && [ -n "$(ls -A "$results_dir" 2>/dev/null)" ]; then
             echo "Processing $suite_key results..."
