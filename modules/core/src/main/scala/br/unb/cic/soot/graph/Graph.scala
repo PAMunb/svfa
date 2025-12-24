@@ -5,85 +5,63 @@ import soot.SootMethod
 
 import scala.collection.immutable.HashSet
 
-/*
- * This trait define the base type for node classifications.
- * A node can be classified as SourceNode, SinkNode or SimpleNode.
+/**
+ * Represents different types of nodes in the program dependence graph for taint analysis.
  */
 sealed trait NodeType
 
-case object SourceNode extends NodeType { def instance: SourceNode.type = this }
-case object SinkNode extends NodeType { def instance: SinkNode.type = this }
-case object SimpleNode extends NodeType { def instance: SimpleNode.type = this }
+/** A node that introduces taint (e.g., user input, external data sources) */
+case object SourceNode extends NodeType
 
-/*
- * This trait define the abstraction needed to possibility custom node types,
- * acting as a container to hold the node data inside the value attribute.
- * The attribute nodeType hold the node classification as source, sink or simple.
+/** A node that represents a potential vulnerability point (e.g., SQL query, file write) */
+case object SinkNode extends NodeType
+
+/** A regular program statement that propagates taint */
+case object SimpleNode extends NodeType
+
+/**
+ * Represents a program statement node in the SVFA graph.
+ * 
+ * This is the primary node type used in static value flow analysis, containing
+ * all necessary information about a program statement including its source location,
+ * Soot representation, and taint analysis classification.
+ * 
+ * @param className The fully qualified class name containing this statement
+ * @param method The method signature containing this statement  
+ * @param stmt The string representation of the statement (usually Jimple)
+ * @param line The source code line number (or -1 if unknown)
+ * @param nodeType Classification as source, sink, or simple node
+ * @param sootUnit The underlying Soot Unit (optional)
+ * @param sootMethod The underlying Soot Method (optional)
  */
-trait GraphNode {
-  type T
-  val value: T
-  val nodeType: NodeType
-  def unit(): soot.Unit
-  def method(): soot.SootMethod
-  def show(): String
-}
-
-trait LambdaNode extends scala.AnyRef {
-  type T
-  val value: LambdaNode.this.T
-  val nodeType: br.unb.cic.soot.graph.NodeType
-  def show(): _root_.scala.Predef.String
-}
-
-/*
- * Simple class to hold all the information needed about a statement,
- * this value is stored in the value attribute of the GraphNode. For the most cases,
- * it is enough for the analysis, but for some situations, something
- * specific for Jimple or Shimple abstractions can be a better option.
- */
-case class Statement(
+case class GraphNode(
     className: String,
-    method: String,
+    methodSignature: String,
     stmt: String,
     line: Int,
+    nodeType: NodeType,
     sootUnit: soot.Unit = null,
     sootMethod: soot.SootMethod = null
-)
+) {
 
-/*
- * A graph node defined using the GraphNode abstraction specific for statements.
- * Use this class as example to define your own custom nodes.
+  /**
+   * Returns a clean string representation for display purposes.
+   * Removes quotes to avoid issues in DOT format and other outputs.
  */
-case class StatementNode(value: Statement, nodeType: NodeType)
-    extends GraphNode {
-  type T = Statement
-
-  //  override def show(): String = "(" ++ value.method + ": " + value.stmt + " - " + value.line + " <" + nodeType.toString + ">)"
-  override def show(): String = value.stmt.replaceAll("\"", "'")
+  def show(): String = stmt.replaceAll("\"", "'")
+  
+  /**
+   * Returns the underlying Soot Unit for this node.
+   */
+  def unit(): soot.Unit = sootUnit
+  
+  /**
+   * Returns the underlying Soot Method for this node.
+   */
+  def method(): soot.SootMethod = sootMethod
 
   override def toString: String =
-    "Node(" + value.method + "," + value.stmt + "," + "," + nodeType.toString + ")"
-
-  override def equals(o: Any): Boolean = {
-    o match {
-      //      case stmt: StatementNode => stmt.value.toString == value.toString
-      //      case stmt: StatementNode => stmt.value == value && stmt.nodeType == nodeType
-      case stmt: StatementNode =>
-        stmt.value.className.equals(value.className) &&
-        stmt.value.method.equals(value.method) &&
-        stmt.value.stmt.equals(value.stmt) &&
-        stmt.value.line.equals(value.line) &&
-        stmt.nodeType.equals(nodeType)
-      case _ => false
-    }
-  }
-
-  override def hashCode(): Int = 2 * value.hashCode() + nodeType.hashCode()
-
-  override def unit(): soot.Unit = value.sootUnit
-
-  override def method(): SootMethod = value.sootMethod
+    s"GraphNode($methodSignature, $stmt, $nodeType)"
 }
 
 /*
@@ -122,8 +100,12 @@ case class StringLabel(label: String) extends EdgeLabel {
   override val labelType: LabelType = SimpleLabel
 }
 
+/**
+ * Represents a context-sensitive region for interprocedural analysis.
+ * Used to track method call contexts in the SVFA graph.
+ */
 case class ContextSensitiveRegion(
-    statement: Statement,
+    statement: GraphNode,
     calleeMethod: String,
     context: Set[String]
 )
@@ -196,23 +178,7 @@ class Graph() {
   def addEdge(source: GraphNode, target: GraphNode): Unit =
     addEdge(source, target, StringLabel("Normal"))
 
-  def addEdge(source: StatementNode, target: StatementNode): Unit =
-    addEdge(source, target, StringLabel("Normal"))
-
   def addEdge(source: GraphNode, target: GraphNode, label: EdgeLabel): Unit = {
-    if (source == target && !permitedReturnEdge) {
-      return
-    }
-
-    implicit val factory = scalax.collection.edge.LkDiEdge
-    graph.addLEdge(source, target)(label)
-  }
-
-  def addEdge(
-      source: StatementNode,
-      target: StatementNode,
-      label: EdgeLabel
-  ): Unit = {
     if (source == target && !permitedReturnEdge) {
       return
     }
@@ -554,27 +520,37 @@ class Graph() {
   def numberOfNodes(): Int = graph.nodes.size
 
   def numberOfEdges(): Int = graph.edges.size
-  /*
-   * creates a graph node from a sootMethod / sootUnit
+  /**
+   * Creates a graph node from a Soot method and statement.
+   * 
+   * @param method The Soot method containing the statement
+   * @param stmt The Soot unit/statement
+   * @param f Function to determine the node type (source, sink, or simple)
+   * @return A new GraphNode representing this statement
    */
   def createNode(
       method: SootMethod,
       stmt: soot.Unit,
       f: (soot.Unit) => NodeType
-  ): StatementNode =
-    StatementNode(
-      br.unb.cic.soot.graph.Statement(
-        method.getDeclaringClass.toString,
-        method.getSignature,
-        stmt.toString,
-        stmt.getJavaSourceStartLineNumber,
-        stmt,
-        method
-      ),
-      f(stmt)
+  ): GraphNode =
+    GraphNode(
+      className = method.getDeclaringClass.toString,
+      methodSignature = method.getSignature,
+      stmt = stmt.toString,
+      line = stmt.getJavaSourceStartLineNumber,
+      nodeType = f(stmt),
+      sootUnit = stmt,
+      sootMethod = method
     )
 
   def reportConflicts(): scala.collection.Set[List[GraphNode]] = findConflictingPaths()
+
+  /**
+   * Reports unique conflicts by merging duplicate Jimple statements from the same source location.
+   * This is the recommended method for conflict reporting as it eliminates duplicates caused
+   * by Java-to-Jimple translation generating multiple instructions per source line.
+   */
+  def reportUniqueConflicts(): scala.collection.Set[List[GraphNode]] = findUniqueConflictingPaths()
 
   def findConflictingPaths(): scala.collection.Set[List[GraphNode]] = {
     if (fullGraph) {
@@ -597,6 +573,127 @@ class Graph() {
       conflicts.filter(p => p.nonEmpty).toSet
     }
   }
+
+  /**
+   * Finds unique conflicting paths by merging Jimple statements that originate 
+   * from the same Java source location (class, method, line number).
+   * 
+   * This addresses the issue where a single Java line generates multiple Jimple
+   * instructions, leading to duplicate conflict reports. The method groups nodes
+   * by their source location and returns one representative path per unique conflict.
+   * 
+   * @return Set of unique conflict paths with merged source locations
+   */
+  def findUniqueConflictingPaths(): scala.collection.Set[List[GraphNode]] = {
+    val allConflicts = findConflictingPaths()
+    
+    // Group conflicts by their source location signature (class + method + source-to-sink line range)
+    val uniqueConflicts = allConflicts
+      .map(mergeNodesWithSameSourceLocation)
+      .groupBy(getConflictSignature)
+      .values
+      .map(_.head) // Take one representative from each group
+      .toSet
+    
+    uniqueConflicts
+  }
+
+  /**
+   * Merges consecutive nodes in a path that have the same source location
+   * (class, method, line number), keeping only one representative node per location.
+   */
+  private def mergeNodesWithSameSourceLocation(path: List[GraphNode]): List[GraphNode] = {
+    if (path.isEmpty) return path
+    
+    val mergedPath = scala.collection.mutable.ListBuffer[GraphNode]()
+    var currentLocation: Option[SourceLocation] = None
+    
+    path.foreach { node =>
+      val nodeLocation = getSourceLocation(node)
+      
+      if (currentLocation.isEmpty || currentLocation.get != nodeLocation) {
+        // New source location - add this node
+        mergedPath += node
+        currentLocation = Some(nodeLocation)
+      } else {
+        // Same source location as previous node
+        // Keep the more "important" node (source > sink > simple)
+        val lastNode = mergedPath.last
+        if (isMoreImportantNode(node, lastNode)) {
+          mergedPath(mergedPath.length - 1) = node
+        }
+      }
+    }
+    
+    mergedPath.toList
+  }
+
+  /**
+   * Extracts source location information from a graph node.
+   */
+  private def getSourceLocation(node: GraphNode): SourceLocation = {
+    SourceLocation(
+      className = node.className,
+      method = node.methodSignature,
+      line = node.line
+    )
+  }
+
+  /**
+   * Generates a unique signature for a conflict path based on source and sink locations.
+   * This helps identify duplicate conflicts that span the same source locations.
+   */
+  private def getConflictSignature(path: List[GraphNode]): ConflictSignature = {
+    if (path.isEmpty) {
+      return ConflictSignature(SourceLocation("", "", -1), SourceLocation("", "", -1))
+    }
+    
+    val sourceNodes = path.filter(_.nodeType == SourceNode)
+    val sinkNodes = path.filter(_.nodeType == SinkNode)
+    
+    val sourceLocation = if (sourceNodes.nonEmpty) getSourceLocation(sourceNodes.head) 
+                        else getSourceLocation(path.head)
+    val sinkLocation = if (sinkNodes.nonEmpty) getSourceLocation(sinkNodes.last)
+                      else getSourceLocation(path.last)
+    
+    ConflictSignature(sourceLocation, sinkLocation)
+  }
+
+  /**
+   * Determines if one node is more "important" than another for conflict reporting.
+   * Priority: SourceNode > SinkNode > SimpleNode
+   */
+  private def isMoreImportantNode(node1: GraphNode, node2: GraphNode): Boolean = {
+    val priority1 = getNodePriority(node1)
+    val priority2 = getNodePriority(node2)
+    priority1 > priority2
+  }
+
+  /**
+   * Assigns priority values to node types for importance comparison.
+   */
+  private def getNodePriority(node: GraphNode): Int = node.nodeType match {
+    case SourceNode => 3
+    case SinkNode   => 2
+    case SimpleNode => 1
+  }
+
+  /**
+   * Represents a source code location for merging duplicate Jimple statements.
+   */
+  private case class SourceLocation(
+      className: String,
+      method: String, 
+      line: Int
+  )
+
+  /**
+   * Represents a unique conflict signature based on source and sink locations.
+   */
+  private case class ConflictSignature(
+      sourceLocation: SourceLocation,
+      sinkLocation: SourceLocation
+  )
 
   def toDotModel(): String = {
     val s = new StringBuilder
@@ -643,5 +740,7 @@ class Graph() {
   }
 
 }
+
+
 
 

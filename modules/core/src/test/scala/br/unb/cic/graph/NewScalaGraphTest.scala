@@ -1,11 +1,10 @@
 package br.unb.cic.graph
 
 import br.unb.cic.soot.graph.{
+  GraphNode,
   SimpleNode,
   SinkNode,
-  SourceNode,
-  Statement,
-  StatementNode
+  SourceNode
 }
 import org.scalatest.FunSuite
 import soot.Scene
@@ -16,12 +15,15 @@ class NewScalaGraphTest extends FunSuite {
   test("simple graph") {
     val g = new br.unb.cic.soot.graph.Graph()
 
-    val FakeSouce = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSouce = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
     val FakeSink =
-      StatementNode(Statement("BarClass", "BarMethod", "BarStmt", 2), SinkNode)
+      GraphNode(className = "BarClass", methodSignature = "BarMethod", stmt = "BarStmt", line = 2, nodeType = SinkNode)
 
     g.addEdge(FakeSouce, FakeSink)
 
@@ -32,13 +34,19 @@ class NewScalaGraphTest extends FunSuite {
   test("try add duplicate node") {
     val g = new br.unb.cic.soot.graph.Graph()
 
-    val FakeSouce = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSouce = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
-    val FakeSouceCopy = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSouceCopy = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
 
     g.addNode(FakeSouce)
@@ -54,18 +62,24 @@ class NewScalaGraphTest extends FunSuite {
   test("try add duplicate edges") {
     val g = new br.unb.cic.soot.graph.Graph()
 
-    val FakeSouce = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSouce = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
-    val FakeSouceCopy = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSouceCopy = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
     val FakeSink =
-      StatementNode(Statement("BarClass", "BarMethod", "BarStmt", 2), SinkNode)
+      GraphNode(className = "BarClass", methodSignature = "BarMethod", stmt = "BarStmt", line = 2, nodeType = SinkNode)
     val FakeSinkCopy =
-      StatementNode(Statement("BarClass", "BarMethod", "BarStmt", 2), SinkNode)
+      GraphNode(className = "BarClass", methodSignature = "BarMethod", stmt = "BarStmt", line = 2, nodeType = SinkNode)
 
     g.addEdge(FakeSouce, FakeSink)
     assert(g.numberOfNodes() == 2)
@@ -88,18 +102,24 @@ class NewScalaGraphTest extends FunSuite {
   test("try find all paths") {
     val g = new br.unb.cic.soot.graph.Graph()
 
-    val FakeSource = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSource = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
-    val NormalStmt = StatementNode(
-      Statement("NormalClass", "NormalMethod", "NormalStmt", 3),
-      SimpleNode
+    val NormalStmt = GraphNode(
+      className = "NormalClass",
+      methodSignature = "NormalMethod", 
+      stmt = "NormalStmt",
+      line = 3,
+      nodeType = SimpleNode
     )
     val FakeSink =
-      StatementNode(Statement("BarClass", "BarMethod", "BarStmt", 2), SinkNode)
+      GraphNode(className = "BarClass", methodSignature = "BarMethod", stmt = "BarStmt", line = 2, nodeType = SinkNode)
     val FakeSink2 =
-      StatementNode(Statement("BooClass", "BooMethod", "BooStmt", 2), SinkNode)
+      GraphNode(className = "BooClass", methodSignature = "BooMethod", stmt = "BooStmt", line = 2, nodeType = SinkNode)
 
     g.addEdge(FakeSource, NormalStmt)
     assert(g.numberOfNodes() == 2)
@@ -124,12 +144,15 @@ class NewScalaGraphTest extends FunSuite {
   ignore("base") {
     val g = new br.unb.cic.soot.graph.Graph()
 
-    val FakeSouce = StatementNode(
-      Statement("FooClass", "FooMethod", "FooStmt", 1),
-      SourceNode
+    val FakeSouce = GraphNode(
+      className = "FooClass",
+      methodSignature = "FooMethod", 
+      stmt = "FooStmt",
+      line = 1,
+      nodeType = SourceNode
     )
     val FakeSink =
-      StatementNode(Statement("BarClass", "BarMethod", "BarStmt", 2), SinkNode)
+      GraphNode(className = "BarClass", methodSignature = "BarMethod", stmt = "BarStmt", line = 2, nodeType = SinkNode)
 
     g.addEdge(FakeSouce, FakeSink)
 

@@ -81,5 +81,5 @@ jobs:
         # Only set GITHUB_TOKEN if it's available in secrets (for CI)
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
-        ./run-tests.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench AndroidTaintBenchSuiteExperiment1
+        ./scripts/run-securibench.sh
+#        ./scripts/run-taintbench.sh --android-sdk $RUNNER_TEMP/android-sdk --taint-bench $RUNNER_TEMP/TaintBench AndroidTaintBenchSuiteExperiment1

@@ -62,6 +62,30 @@ trait DSL {
       if NamedMethodRule(className: "java.lang.StringBuffer", methodName: "toString")
         then CopyFromMethodCallToLocal()
 
+    rule stringConcat =
+      if NamedMethodRule(className: "java.lang.String", methodName: "concat")
+        then CopyFromMethodCallToLocal()
+
+    rule cookieGetName =
+      if NamedMethodRule(className: "javax.servlet.http.Cookie", methodName: "getName")
+        then CopyFromMethodCallToLocal()
+
+    rule cookieGetValue =
+      if NamedMethodRule(className: "javax.servlet.http.Cookie", methodName: "getValue")
+        then CopyFromMethodCallToLocal()
+
+    rule cookieGetComment =
+      if NamedMethodRule(className: "javax.servlet.http.Cookie", methodName: "getComment")
+        then CopyFromMethodCallToLocal()
+
+    rule setAttributeOfSession =
+      if NamedMethodRule(className: "javax.servlet.http.HttpSession", methodName: "setAttribute")
+        then CopyFromMethodArgumentToBaseObject(from: 1)
+
+    rule getAttributeOfSession =
+      if NamedMethodRule(className: "javax.servlet.http.HttpSession", methodName: "getAttribute")
+        then CopyFromMethodCallToLocal()
+
     rule skipNativeMethods = if NativeRule() then DoNothing()
 
     rule skipMethodsWithoutActiveBody =

@@ -1,39 +1,56 @@
 package br.unb.cic.soot.graph
 
+/**
+ * Represents different types of edges in the program dependence graph.
+ * Used for control flow and data flow analysis in SVFA.
+ */
 sealed trait EdgeType
 
-case object SimpleEdge extends EdgeType { def instance: SimpleEdge.type = this }
-case object TrueEdge extends EdgeType { def instance: TrueEdge.type = this }
-case object FalseEdge extends EdgeType { def instance: FalseEdge.type = this }
-case object LoopEdge extends EdgeType { def instance: LoopEdge.type = this }
-case object DefEdge extends EdgeType { def instance: DefEdge.type = this }
+/** Standard control flow edge */
+case object SimpleEdge extends EdgeType
 
-trait LambdaLabel {
-  type T
-  var value: T
-  val edgeType: EdgeType
-}
+/** Control flow edge for true branch of conditional */
+case object TrueEdge extends EdgeType
+
+/** Control flow edge for false branch of conditional */
+case object FalseEdge extends EdgeType
+
+/** Control flow edge representing loop back-edges */
+case object LoopEdge extends EdgeType
+
+/** Data dependence edge for definition-use relationships */
+case object DefEdge extends EdgeType
 
 object EdgeType {
-  def convert(edge: String): EdgeType = {
-    if (edge.equals(TrueEdge.toString)) {
-      TrueEdge
-    } else if (edge.equals(FalseEdge.toString)) {
-      FalseEdge
-    } else if (edge.equals(LoopEdge.toString)) {
-      LoopEdge
-    } else if (edge.equals(DefEdge.toString)) {
-      DefEdge
-    } else SimpleEdge
+  /**
+   * Converts a string representation to the corresponding EdgeType.
+   * Defaults to SimpleEdge for unrecognized strings.
+   */
+  def convert(edge: String): EdgeType = edge match {
+    case "TrueEdge"   => TrueEdge
+    case "FalseEdge"  => FalseEdge
+    case "LoopEdge"   => LoopEdge
+    case "DefEdge"    => DefEdge
+    case _            => SimpleEdge
   }
 }
 
+/**
+ * Program Dependence Graph label types for edge classification.
+ */
 sealed trait PDGType extends LabelType
 
-case object LoopLabel extends PDGType { def instance: LoopLabel.type = this }
-case object TrueLabel extends PDGType { def instance: TrueLabel.type = this }
-case object FalseLabel extends PDGType { def instance: FalseLabel.type = this }
-case object DefLabel extends PDGType { def instance: DefLabel.type = this }
+/** Label for loop-related edges */
+case object LoopLabel extends PDGType
+
+/** Label for true branch edges */
+case object TrueLabel extends PDGType
+
+/** Label for false branch edges */
+case object FalseLabel extends PDGType
+
+/** Label for definition edges */
+case object DefLabel extends PDGType
 
 case class TrueLabelType(labelT: PDGType) extends EdgeLabel {
   override type T = PDGType
@@ -52,5 +69,7 @@ case class DefLabelType(labelT: PDGType) extends EdgeLabel {
   override var value = labelT
   override val labelType: LabelType = DefLabel
 }
+
+
 
 

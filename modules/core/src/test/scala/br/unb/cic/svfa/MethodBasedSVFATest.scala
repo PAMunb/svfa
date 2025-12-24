@@ -10,13 +10,18 @@ import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
  * @param mainMethod The name of the main method (usually "main")
  * @param sourceMethods Set of method names that should be considered as sources
  * @param sinkMethods Set of method names that should be considered as sinks
+ * @param config Optional SVFA configuration (defaults to SVFAConfig.Default)
  */
 class MethodBasedSVFATest(
   className: String,
   mainMethod: String = "main",
   sourceMethods: Set[String],
-  sinkMethods: Set[String]
+  sinkMethods: Set[String],
+  config: br.unb.cic.soot.svfa.jimple.SVFAConfig = br.unb.cic.soot.svfa.jimple.SVFAConfig.Default
 ) extends JSVFATest {
+
+  // Override the configuration if provided
+  override def svfaConfig: br.unb.cic.soot.svfa.jimple.SVFAConfig = config
 
   override def getClassName(): String = className
   override def getMainMethod(): String = mainMethod
@@ -43,8 +48,15 @@ class MethodBasedSVFATest(
     } else if (sinkMethods.contains(methodName)) {
       SinkNode
     } else {
+      if (sourceMethods.contains(exp.getMethod.getSignature)) {
+        return SourceNode
+      } else if (sinkMethods.contains(exp.getMethod.getSignature)) {
+        return SinkNode
+      }
       SimpleNode
     }
   }
 }
+
+
 

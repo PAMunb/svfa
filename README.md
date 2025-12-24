@@ -24,7 +24,7 @@ This project follows a **modular architecture** with three focused modules:
 Add to your `build.sbt`:
 ```scala
 resolvers += Resolver.githubPackages("PAMunb", "svfa")
-libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.1"
+libraryDependencies += "br.unb.cic" %% "svfa-core" % "0.6.2-SNAPSHOT"
 ```
 
 #### Using svfa-core in Java/Maven Projects
@@ -41,7 +41,7 @@ Add to your `pom.xml`:
 <dependency>
   <groupId>br.unb.cic</groupId>
   <artifactId>svfa-core_2.12</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'br.unb.cic:svfa-core_2.12:0.6.1'
+    implementation 'br.unb.cic:svfa-core_2.12:0.6.2-SNAPSHOT'
 }
 ```
 
@@ -169,14 +169,40 @@ Enhanced scripts are available for convenient testing:
 # Core tests (no dependencies)
 ./scripts/run-core-tests.sh
 
-# Security vulnerability analysis  
-./scripts/run-securibench.sh
+# Securibench security vulnerability analysis
+./scripts/run-securibench.sh                    # Traditional approach
+./scripts/run-securibench-tests.sh [suite] [callgraph]     # Phase 1: Execute tests (Bash)
+./scripts/run_securibench_tests.py [suite] [callgraph]     # Phase 1: Execute tests (Python)
+./scripts/compute-securibench-metrics.sh [suite] [callgraph] # Phase 2: Compute metrics + CSV (Bash)
+./scripts/compute_securibench_metrics.py [suite] [callgraph] # Phase 2: Compute metrics + CSV (Python)
 
 # Android malware analysis (requires environment setup)
 ./scripts/run-taintbench.sh --help
 ./scripts/run-taintbench.sh --check-env
 ./scripts/run-taintbench.sh roidsec
 ```
+
+**📋 Securibench Smart Testing:**
+
+The enhanced testing approach provides intelligent analysis capabilities:
+- **Auto-execution**: Missing tests are automatically executed when computing metrics
+- **Separation of concerns**: Expensive test execution vs. fast metrics computation
+- **CSV output**: Ready for analysis in Excel, R, Python, or other tools
+- **Persistent results**: Test results saved to disk for repeated analysis
+- **Flexible reporting**: Generate metrics for all suites or specific ones
+
+See **[Securibench Testing Documentation](USAGE_SCRIPTS.md)** for detailed usage instructions.
+
+### Python Scripts (Enhanced Alternative)
+
+SVFA now provides Python alternatives to the bash scripts with enhanced maintainability and features:
+
+- **Better Error Handling**: Proper exception handling vs bash error codes
+- **Cross-Platform**: Works identically on Windows, macOS, Linux  
+- **Enhanced Features**: Colored output, verbose mode, better argument parsing
+- **Maintainable**: Structured code, type hints, easier to test and extend
+
+See **[Python Scripts Documentation](PYTHON_SCRIPTS.md)** for detailed information.
 
 ## Installation (Ubuntu/Debian)
 
@@ -239,15 +265,15 @@ The result are presented in a table that contains the following information.
 
 To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.3.0.md) (*computed in June 2023.*)
 
-#### New metrics (v0.6.1)
+#### New metrics (v0.6.2)
 
-> failed: 47, passed: 75 of 122 tests - (61.48%)
+> failed: 46, passed: 76 of 122 tests - (62.3%)
 
 |      Test      | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:--------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|:---------:|
 |    Aliasing    |  10   |    12    |  2/6   | 8  | 1  | 3  |   0.89    |  0.73  |  0.80   |  33.33%   |
 |     Arrays     |  11   |    9     |  5/10  | 5  | 4  | 2  |   0.56    |  0.71  |  0.63   |    50%    |
-|     Basic      |  57   |    60    | 38/42  | 55 | 1  | 4  |   0.98    |  0.93  |  0.95   |  90.48%   |
+|     Basic      |  60   |    60    | 38/42  | 55 | 2  | 2  |   0.96    |  0.96  |  0.96   |  90.48%   |
 |  Collections   |   8   |    15    |  5/14  | 5  | 1  | 8  |   0.83    |  0.38  |  0.52   |  35.71%   |
 | Datastructures |   5   |    5     |  4/6   | 4  | 1  | 1  |   0.80    |  0.80  |  0.80   |  66.67%   |
 |   Factories    |   4   |    3     |  2/3   | 2  | 1  | 0  |   0.67    |  1.00  |  0.80   |  66.67%   |
@@ -257,17 +283,111 @@ To have detailed information about each test category run, [see here.](modules/s
 |      Pred      |   8   |    5     |  6/9   | 5  | 3  | 0  |   0.63    |  1.00  |  0.77   |  66.67%   |
 |   Reflection   |   0   |    4     |  0/4   | 0  | 0  | 4  |   0.00    |  0.00  |  0.00   |    0%     |
 |   Sanitizers   |   2   |    6     |  2/6   | 1  | 0  | 4  |   1.00    |  0.20  |  0.33   |  33.33%   |
-|     TOTAL      |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |  61.48%   |
+|     TOTAL      |  124  |   141    | 76/122 | 96 | 15 | 32 |   0.86    |  0.75  |  0.80   |   62.3%   |
 
-To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.1.md) (*computed in November 2025.*)
+To have detailed information about each test category run, [see here.](modules/securibench/src/docs-metrics/jsvfa/jsvfa-metrics-v0.6.2.md) (*computed in December 2025.*)
 
-##### Common issues
+#### Running Securibench Tests
+
+You can run Securibench tests in several ways:
+
+**1. One-Step Approach (Recommended):**
+```bash
+# Auto-executes missing tests and computes metrics
+./scripts/compute-securibench-metrics.sh
+
+# Get detailed help
+./scripts/compute-securibench-metrics.sh --help
+```
+
+**2. Two-Phase Approach (For batch execution):**
+
+*Bash Scripts (Traditional):*
+```bash
+# Phase 1: Execute tests (saves results to disk)
+./scripts/run-securibench-tests.sh              # All suites with SPARK
+./scripts/run-securibench-tests.sh inter cha    # Inter suite with CHA call graph
+./scripts/run-securibench-tests.sh basic rta    # Basic suite with RTA call graph
+
+# Phase 2: Compute metrics and generate CSV reports (uses cached results)
+./scripts/compute-securibench-metrics.sh        # All suites with SPARK
+./scripts/compute-securibench-metrics.sh inter cha # Inter suite with CHA call graph
+./scripts/compute-securibench-metrics.sh basic rta # Basic suite with RTA call graph
+```
+
+*Python Scripts (Enhanced):*
+```bash
+# Phase 1: Execute tests with enhanced features
+./scripts/run_securibench_tests.py              # All suites with SPARK
+./scripts/run_securibench_tests.py inter cha --verbose    # Inter suite with CHA, verbose output
+./scripts/run_securibench_tests.py basic rta --clean      # Basic suite with RTA, clean first
+
+# Phase 2: Compute metrics with better error handling
+./scripts/compute_securibench_metrics.py        # All suites with SPARK
+./scripts/compute_securibench_metrics.py inter cha --verbose # Inter suite with CHA, verbose
+./scripts/compute_securibench_metrics.py all --csv-only     # All suites, CSV only
+```
+
+**Call Graph Algorithms:**
+- `spark` (default): Most precise, slower analysis
+- `cha`: Fastest, least precise analysis  
+- `spark_library`: Comprehensive library support
+- `rta`: Rapid Type Analysis - fast, moderately precise
+- `vta`: Variable Type Analysis - balanced speed/precision
+
+**3. Clean Previous Data:**
+```bash
+# Remove all previous test results and metrics
+./scripts/compute-securibench-metrics.sh clean
+
+# Clean and execute all tests from scratch
+./scripts/run-securibench-tests.sh clean
+```
+
+**2. Traditional single-phase approach:**
+```bash
+./scripts/run-securibench.sh
+```
+
+**3. Using SBT commands:**
+```bash
+# Run only test execution (no metrics) - RECOMMENDED
+sbt "project securibench" "testOnly *Executor"
+sbt "project securibench" testExecutors
+
+# Run only metrics computation (no test execution)  
+sbt "project securibench" "testOnly *Metrics"
+sbt "project securibench" testMetrics
+
+# Run everything (execution + metrics)
+sbt "project securibench" test
+
+# Legacy approach (deprecated)
+sbt "testOnly br.unb.cic.securibench.deprecated.SecuribenchTestSuite"
+```
+
+**📊 Advanced Securibench Analysis:**
+
+The two-phase approach separates expensive test execution from fast metrics computation:
+- **Phase 1** runs SVFA analysis on all test suites (Inter, Basic, etc.) and saves results as JSON files
+- **Phase 2** computes accuracy metrics (TP, FP, FN, Precision, Recall, F-score) and generates CSV reports
+
+This allows you to:
+- Run expensive analysis once, compute metrics multiple times
+- Generate CSV files for external analysis (Excel, R, Python)
+- Compare results across different configurations
+- Debug individual test failures by inspecting JSON result files
+
+For detailed usage instructions, see: **[Securibench Testing Documentation](USAGE_SCRIPTS.md)**
+
+#### Common issues
 From the 47 tests, we have categorized nine (9) issues.
 
 [i] **Wrong counting**: Some tests from the Securibench benchmark are incorrectly labeled, leading to wrong expected values.
-We have mapped four cases: `(8.51%)`
+We have mapped four cases: `(10.64%)`
 - Aliasing2
 - Aliasing4
+- Basic31
 - Inter4
 - Inter5
 
@@ -281,21 +401,19 @@ We have mapped six cases: `(12.77%)`
 - Arrays10
 
 [iii] Support Class Missing: Some tests use methods from securibench that are not mocked.
-We have mapped seven cases: `(14.89%)`
-- Basic31
-- Basic36
-- Basic38
+We have mapped seven cases: `(6.38%)`
 - Session1
 - Session2
 - Session3
-- Sanitizers5
 
 [iv] Missing Context: The logic for handling context is not entirely flawless, resulting in certain edge cases that lead to bugs such as:
   [a] Nested structures as HashMap, LinkedList, and others,
   [b] Loop statement as "for" or "while",
   [c] Parameters passed in the constructor.
-We have mapped 16 cases: `(34.04%)`
+We have mapped 16 cases: `(38.3%)`
 - Aliasing5
+- Basic36
+- Basic38
 - Basic42
 - Collections3
 - Collections5
@@ -333,9 +451,10 @@ We have mapped three cases: `(6.38%)`
 - Pred7
 
 [viii] Sanitizer method: The current implementation fails to deal with the intermediary method utilized by the sanitizer.
-We have mapped three cases: `(6.38%)`
+We have mapped three cases: `(8.51%)`
 - Sanitizers2
 - Sanitizers4
+- Sanitizers5
 - Sanitizers6
 
 [ix] Flaky
@@ -391,7 +510,7 @@ To have detailed information about each group of tests run, [see here.](modules/
 |     Test     | Found | Expected | Status | TP | FP | FN | Precision | Recall | F-score | Pass Rate |
 |:------------:|:-----:|:--------:|:------:|:--:|:--:|:---|:---------:|:------:|:-------:|----------:|
 | JSVFA v0.3.0 |  102  |   139    | 63/122 | 80 | 11 | 50 |   0.88    |  0.62  |  0.72   |    51.64% | 
-| JSVFA v0.6.1 |  120  |   141    | 75/122 | 95 | 14 | 35 |   0.87    |  0.73  |  0.79   |    61.48% |
+| JSVFA v0.6.2 |  124  |   141    | 76/122 | 96 | 15 | 32 |   0.86    |  0.75  |  0.80   |     62.3% |
 |  Flowdroid   |  98   |   126    | 67/103 | 77 | 9  | 37 |   0.90    |  0.68  |  0.77   |    65.05% |
 |    Joana     |  123  |   138    | 85/122 | 86 | 19 | 34 |   0.82    |  0.72  |  0.77   |    69.67% |
 
@@ -422,9 +541,9 @@ You can run Android tests in several ways:
 
 **1. Using the convenience shell script (Recommended):**
 ```bash
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
-./run-tests.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench roidsec
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench android
+./scripts/run-taintbench.sh --android-sdk /path/to/android/sdk --taint-bench /path/to/taintbench all
 ```
 
 **2. Using environment variables:**

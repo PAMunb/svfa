@@ -2,8 +2,8 @@ package br.unb.cic.soot.svfa.jimple
 
 import java.util
 import br.unb.cic.soot.svfa.jimple.rules.RuleAction
-import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, StatementNode}
-import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser}
+import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, SimpleNode}
+import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser, RuleActions}
 import br.unb.cic.soot.svfa.{SVFA, SourceSinkDef}
 import com.typesafe.scalalogging.LazyLogging
 import soot.jimple._
@@ -17,6 +17,7 @@ import soot.toolkits.scalar.SimpleLocalDefs
 import soot.{ArrayType, Local, Scene, SceneTransformer, SootField, SootMethod, Transform, Value, jimple}
 
 import scala.collection.mutable.ListBuffer
+import scala.collection.JavaConverters._
 
 /** A Jimple based implementation of SVFA.
   */
@@ -27,92 +28,26 @@ abstract class JSVFA
     with ObjectPropagation
     with SourceSinkDef
     with LazyLogging
-    with DSL {
+    with DSL
+    with RuleActions.SVFAContext {
 
   var methods = 0
   val traversedMethods = scala.collection.mutable.Set.empty[SootMethod]
   val allocationSites =
-    scala.collection.mutable.HashMap.empty[soot.Value, StatementNode]
+    scala.collection.mutable.HashMap.empty[soot.Value, GraphNode]
   val arrayStores =
     scala.collection.mutable.HashMap.empty[Local, List[soot.Unit]]
   val languageParser = new LanguageParser(this)
 
   val methodRules = languageParser.evaluate(code())
 
-  /*
-   * Create an edge  from the definition of the local argument
-   * to the definitions of the base object of a method call. In
-   * more details, we should use this rule to address a situation
-   * like:
-   *
-   * - virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
-   *
-   * Where we wanto create an edge from the definitions of r1 to
-   * the definitions of r3.
-   */
-  trait CopyFromMethodArgumentToBaseObject extends RuleAction {
-    def from: Int
+  // Implementation of SVFAContext interface for rule actions
+  override def hasBaseObject(expr: InvokeExpr): Boolean =
+    expr.isInstanceOf[VirtualInvokeExpr] || 
+    expr.isInstanceOf[SpecialInvokeExpr] || 
+    expr.isInstanceOf[InterfaceInvokeExpr]
 
-    def apply(
-        sootMethod: SootMethod,
-        invokeStmt: jimple.Stmt,
-        localDefs: SimpleLocalDefs
-    ): Unit = {
-      var srcArg: Value = null
-      var expr: InvokeExpr = null
-
-      try {
-        srcArg = invokeStmt.getInvokeExpr.getArg(from)
-        expr = invokeStmt.getInvokeExpr
-      } catch {
-        case e: Throwable =>
-          val invokedMethod =
-            if (invokeStmt.getInvokeExpr != null)
-              invokeStmt.getInvokeExpr.getMethod.getName
-            else ""
-          logger.warn("It was not possible to execute \n")
-          logger.warn("the copy from argument to base object rule. \n")
-          logger.warn("Methods: " + sootMethod.getName + " " + invokedMethod);
-          return
-      }
-
-      if (hasBaseObject(expr) ) {
-
-        val base = getBaseObject(expr)
-
-        if (base.isInstanceOf[Local]) {
-          val localBase = base.asInstanceOf[Local]
-
-          // logic: argument definitions -> root allocation sites of base object
-          localDefs
-            .getDefsOfAt(localBase, invokeStmt)
-            .forEach(targetStmt => {
-              val currentNode = createNode(sootMethod, invokeStmt)
-              val targetNode = createNode(sootMethod, targetStmt)
-              updateGraph(currentNode, targetNode)
-            })
-
-          if (srcArg.isInstanceOf[Local]) {
-            val local = srcArg.asInstanceOf[Local]
-            // logic: argument definitions -> base object definitions
-            localDefs
-              .getDefsOfAt(local, invokeStmt)
-              .forEach(sourceStmt => {
-                val sourceNode = createNode(sootMethod, sourceStmt)
-                localDefs
-                  .getDefsOfAt(localBase, invokeStmt)
-                  .forEach(targetStmt => {
-                    val targetNode = createNode(sootMethod, targetStmt)
-                    updateGraph(sourceNode, targetNode)
-                  })
-              })
-          }
-        }
-      }
-    }
-  }
-
-  private def getBaseObject(expr: InvokeExpr) =
+  override def getBaseObject(expr: InvokeExpr): Value =
     if (expr.isInstanceOf[VirtualInvokeExpr])
       expr.asInstanceOf[VirtualInvokeExpr].getBase
     else if (expr.isInstanceOf[SpecialInvokeExpr])
@@ -120,107 +55,28 @@ abstract class JSVFA
     else
       expr.asInstanceOf[InstanceInvokeExpr].getBase
 
-  private def hasBaseObject(expr: InvokeExpr) =
-    (expr.isInstanceOf[VirtualInvokeExpr] || expr
-      .isInstanceOf[SpecialInvokeExpr] || expr
-      .isInstanceOf[InterfaceInvokeExpr])
-
-  /*
-   * Create an edge from a method call to a local.
-   * In more details, we should use this rule to address
-   * a situation like:
-   *
-   * - $r6 = virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
-   *
-   * Where we want to create an edge from the definitions of r3 to
-   * this statement.
+  /**
+   * Applies a rule action with proper context handling.
+   * Handles both individual context-aware actions and composed rule actions.
    */
-  trait CopyFromMethodCallToLocal extends RuleAction {
-    def apply(
-        sootMethod: SootMethod,
-        invokeStmt: jimple.Stmt,
-        localDefs: SimpleLocalDefs
-    ) = {
-      val expr = invokeStmt.getInvokeExpr
-      if (hasBaseObject(expr) && invokeStmt.isInstanceOf[jimple.AssignStmt]) {
-        val base = getBaseObject(expr)
-        val local = invokeStmt.asInstanceOf[jimple.AssignStmt].getLeftOp
-        if (base.isInstanceOf[Local] && local.isInstanceOf[Local]) {
-          val localBase = base.asInstanceOf[Local]
-          localDefs
-            .getDefsOfAt(localBase, invokeStmt)
-            .forEach(source => {
-              val sourceNode = createNode(sootMethod, source)
-              val targetNode = createNode(sootMethod, invokeStmt)
-              updateGraph(sourceNode, targetNode) // add comment
-            })
-        }
-      }
-    }
-  }
-
-  /* Create an edge from the definitions of a local argument
-   * to the assignment statement. In more details, we should use this rule to address
-   * a situation like:
-   * $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
-   */
-  trait CopyFromMethodArgumentToLocal extends RuleAction {
-    def from: Int
-
-    def apply(
-        sootMethod: SootMethod,
-        invokeStmt: jimple.Stmt,
-        localDefs: SimpleLocalDefs
-    ) = {
-      val srcArg = invokeStmt.getInvokeExpr.getArg(from)
-      if (invokeStmt.isInstanceOf[JAssignStmt] && srcArg.isInstanceOf[Local]) {
-        val local = srcArg.asInstanceOf[Local]
-        val targetStmt = invokeStmt.asInstanceOf[jimple.AssignStmt]
-        localDefs
-          .getDefsOfAt(local, targetStmt)
-          .forEach(sourceStmt => {
-            val source = createNode(sootMethod, sourceStmt)
-            val target = createNode(sootMethod, targetStmt)
-            updateGraph(source, target) // add comment
-          })
-      }
-    }
-  }
-
-  /*
-   * Create an edge between the definitions of the actual
-   * arguments of a method call. We should use this rule
-   * to address situations like:
-   *
-   * - System.arraycopy(l1, _, l2, _)
-   *
-   * Where we wanto to create an edge from the definitions of
-   * l1 to the definitions of l2.
-   */
-  trait CopyBetweenArgs extends RuleAction {
-    def from: Int
-    def target: Int
-
-    def apply(
-        sootMethod: SootMethod,
-        invokeStmt: jimple.Stmt,
-        localDefs: SimpleLocalDefs
-    ) = {
-      val srcArg = invokeStmt.getInvokeExpr.getArg(from)
-      val destArg = invokeStmt.getInvokeExpr.getArg(target)
-      if (srcArg.isInstanceOf[Local] && destArg.isInstanceOf[Local]) {
-        localDefs
-          .getDefsOfAt(srcArg.asInstanceOf[Local], invokeStmt)
-          .forEach(sourceStmt => {
-            val sourceNode = createNode(sootMethod, sourceStmt)
-            localDefs
-              .getDefsOfAt(destArg.asInstanceOf[Local], invokeStmt)
-              .forEach(targetStmt => {
-                val targetNode = createNode(sootMethod, targetStmt)
-                updateGraph(sourceNode, targetNode) // add comment
-              })
-          })
-      }
+  private def applyRuleWithContext(
+      rule: RuleAction,
+      caller: SootMethod,
+      stmt: jimple.Stmt,
+      defs: SimpleLocalDefs
+  ): Unit = {
+    rule match {
+      case contextAware: RuleActions.ContextAwareRuleAction =>
+        // Direct context-aware rule action
+        contextAware.applyWithContext(caller, stmt, defs, this)
+        
+      case composed: rules.ComposedRuleAction =>
+        // Composed rule action - apply each action with context
+        composed.actions.foreach(action => applyRuleWithContext(action, caller, stmt, defs))
+        
+      case _ =>
+        // Regular rule action (e.g., DoNothing)
+        rule.apply(caller, stmt, defs)
     }
   }
 
@@ -273,36 +129,131 @@ abstract class JSVFA
     }
   }
 
+  /**
+   * Traverses a method to perform static value flow analysis.
+   * 
+   * This is the main entry point for analyzing a method's body. It:
+   * 1. Checks if the method should be analyzed (not phantom, not already traversed)
+   * 2. Sets up the control flow graph and local definitions analysis
+   * 3. Processes each statement in the method body according to its type
+   * 
+   * @param method The method to analyze
+   * @param forceNewTraversal If true, re-analyzes even if already traversed
+   */
   def traverse(method: SootMethod, forceNewTraversal: Boolean = false): Unit = {
-    if (
-      (!forceNewTraversal) && (method.isPhantom || traversedMethods.contains(
-        method
-      ))
-    ) {
+    // Skip analysis if method is not suitable or already processed
+    if (shouldSkipMethod(method, forceNewTraversal)) {
       return
     }
 
+    // Mark method as traversed to prevent infinite recursion
     traversedMethods.add(method)
 
-    val body = method.retrieveActiveBody()
-
-    val graph = new ExceptionalUnitGraph(body)
-    val defs = new SimpleLocalDefs(graph)
-//    println(body)
-    body.getUnits.forEach(unit => {
-      val v = Statement.convert(unit)
-
-      v match {
-        case AssignStmt(base) => traverse(AssignStmt(base), method, defs)
-        case InvokeStmt(base) => traverse(InvokeStmt(base), method, defs)
-        case _ if analyze(unit) == SinkNode =>
-          traverseSinkStatement(v, method, defs)
-        case _ =>
-      }
-    })
+    try {
+      // Set up analysis infrastructure
+      val analysisContext = setupMethodAnalysis(method)
+      
+      // Process each statement in the method body
+      processMethodStatements(method, analysisContext)
+      
+    } catch {
+      case e: Exception =>
+        logger.warn(s"Failed to traverse method ${method.getName}: ${e.getMessage}")
+    }
   }
 
-  def traverse(
+  /**
+   * Determines whether a method should be skipped during analysis.
+   */
+  private def shouldSkipMethod(method: SootMethod, forceNewTraversal: Boolean): Boolean = {
+    !forceNewTraversal && (method.isPhantom || traversedMethods.contains(method))
+  }
+
+  /**
+   * Sets up the analysis context for a method (control flow graph, local definitions).
+   */
+  private def setupMethodAnalysis(method: SootMethod): MethodAnalysisContext = {
+    val body = method.retrieveActiveBody()
+    val controlFlowGraph = new ExceptionalUnitGraph(body)
+    val localDefinitions = new SimpleLocalDefs(controlFlowGraph)
+    
+    MethodAnalysisContext(body, controlFlowGraph, localDefinitions)
+  }
+
+  /**
+   * Processes all statements in a method body according to their types.
+   */
+  private def processMethodStatements(method: SootMethod, context: MethodAnalysisContext): Unit = {
+    context.body.getUnits.asScala.foreach { unit =>
+      val statement = Statement.convert(unit)
+
+      processStatement(statement, unit, method, context.localDefinitions)
+    }
+  }
+
+  /**
+   * Processes a single statement based on its type.
+   */
+  private def processStatement(
+      statement: Statement, 
+      unit: soot.Unit, 
+      method: SootMethod, 
+      defs: SimpleLocalDefs
+  ): Unit = {
+    statement match {
+        case assignStmt: AssignStmt => 
+          // Handle assignment statements (p = q, p = obj.field, etc.)
+          processAssignment(assignStmt, method, defs)
+          
+        case invokeStmt: InvokeStmt => 
+          // Handle method invocations without assignment
+          processInvocation(invokeStmt, method, defs)
+          
+        case _ if analyze(unit) == SinkNode =>
+          // Handle sink statements (potential vulnerability points)
+          processSink(statement, method, defs)
+        
+        case _ =>
+        // Other statement types don't require special handling
+        logger.debug(s"Skipping statement type: ${statement.getClass.getSimpleName}")
+  }
+  }
+
+  /**
+   * Context object containing analysis infrastructure for a method.
+   */
+  private case class MethodAnalysisContext(
+      body: soot.Body,
+      controlFlowGraph: ExceptionalUnitGraph,
+      localDefinitions: SimpleLocalDefs
+  )
+
+  
+
+  /**
+   * Processes an assignment statement and applies appropriate SVFA rules based on the
+   * left-hand side (LHS) and right-hand side (RHS) operand types.
+   * 
+   * This method handles the core assignment patterns in static value flow analysis:
+   * - Load operations: reading from fields, arrays, or method calls
+   * - Store operations: writing to fields or arrays  
+   * - Copy operations: variable-to-variable assignments
+   * - Source detection: identifying taint sources
+   */
+  /**
+   * Processes an assignment statement and applies appropriate SVFA rules based on the
+   * left-hand side (LHS) and right-hand side (RHS) operand types.
+   * 
+   * This method handles the core assignment patterns in static value flow analysis:
+   * - Load operations: reading from fields, arrays, or method calls into locals
+   * - Store operations: writing from locals to fields, arrays, or other locations
+   * - Copy operations: variable-to-variable assignments and expressions
+   * - Source detection: identifying taint sources in assignments
+   * 
+   * The tuple pattern matching directly mirrors the assignment structure (LHS = RHS)
+   * and provides efficient dispatch to the appropriate analysis rules.
+   */
+  private def processAssignment(
       assignStmt: AssignStmt,
       method: SootMethod,
       defs: SimpleLocalDefs
@@ -311,60 +262,117 @@ abstract class JSVFA
     val right = assignStmt.stmt.getRightOp
 
     (left, right) match {
-      case (p: Local, q: InstanceFieldRef) =>
-        loadRule(assignStmt.stmt, q, method, defs)
-      case (p: Local, q: StaticFieldRef) => loadRule(assignStmt.stmt, q, method)
-      case (p: Local, q: ArrayRef) => // p = q[i]
-        loadArrayRule(assignStmt.stmt, q, method, defs)
-      case (p: Local, q: InvokeExpr) =>
-        invokeRule(assignStmt, q, method, defs) // p = myObject.method() : call a method and assign its return value to a local variable
-      case (p: Local, q: Local) => copyRule(assignStmt.stmt, q, method, defs)
-      case (p: Local, _) =>
+      // ═══════════════════════════════════════════════════════════════
+      // LOAD OPERATIONS: Assignments TO local variables (LHS = Local)
+      // ═══════════════════════════════════════════════════════════════
+      
+      case (local: Local, fieldRef: InstanceFieldRef) =>
+        // p = obj.field - Load from instance field
+        loadRule(assignStmt.stmt, fieldRef, method, defs)
+        
+      case (local: Local, staticRef: StaticFieldRef) =>
+        // p = ClassName.staticField - Load from static field
+        loadRule(assignStmt.stmt, staticRef, method)
+        
+      case (local: Local, arrayRef: ArrayRef) =>
+        // p = array[index] - Load from array element
+        loadArrayRule(assignStmt.stmt, arrayRef, method, defs)
+        
+      case (local: Local, invokeExpr: InvokeExpr) =>
+        // p = obj.method(args) - Method call with return value assignment
+        invokeRule(assignStmt, invokeExpr, method, defs)
+        
+      case (local: Local, sourceLocal: Local) =>
+        // p = q - Simple variable copy
+        copyRule(assignStmt.stmt, sourceLocal, method, defs)
+        
+      case (local: Local, _) =>
+        // p = expression - Arithmetic, casts, constants, etc.
         copyRuleInvolvingExpressions(assignStmt.stmt, method, defs)
-      case (p: InstanceFieldRef, _: Local) =>
-        storeRule(
-          assignStmt.stmt,
-          p,
-          method,
-          defs
-        ) // update 'edge' FROM stmt where right value was instanced TO current stmt
-      case (_: StaticFieldRef, _: Local) =>
+
+      // ═══════════════════════════════════════════════════════════════
+      // STORE OPERATIONS: Assignments FROM locals to other locations
+      // ═══════════════════════════════════════════════════════════════
+      
+      case (fieldRef: InstanceFieldRef, local: Local) =>
+        // obj.field = p - Store to instance field
+        storeRule(assignStmt.stmt, fieldRef, method, defs)
+        
+      case (fieldRef: InstanceFieldRef, constant: Constant) =>
+        // obj.field = constant - Check if this creates a taint source
+        handleConstantFieldAssignment(assignStmt, method)
+        
+      case (staticRef: StaticFieldRef, local: Local) =>
+        // ClassName.staticField = p - Store to static field
         storeRule(assignStmt.stmt, method, defs)
-      case (p: JArrayRef, _) => // p[i] = q
-        storeArrayRule(
-          assignStmt,
-          method,
-          defs
-        ) // create 'edge(s)' FROM the stmt where the variable on the right was defined TO the current stmt
-      case _ =>
+        
+      case (arrayRef: JArrayRef, _) =>
+        // array[index] = value - Store to array element (any RHS type)
+        storeArrayRule(assignStmt, method, defs)
+
+      // ═══════════════════════════════════════════════════════════════
+      // UNHANDLED CASES: Log for debugging and future extension
+      // ═══════════════════════════════════════════════════════════════
+      
+      case (lhs, rhs) =>
+        logger.debug(s"Unhandled assignment: ${lhs.getClass.getSimpleName} = ${rhs.getClass.getSimpleName} in ${method.getName}")
     }
   }
 
-  def traverse(
+  /**
+   * Handles assignment of constants to instance fields, checking if this represents
+   * a source node in the taint analysis.
+   * 
+   * This is a specialized helper for processAssignment when dealing with:
+   * obj.field = "tainted_constant" or obj.field = 42
+   */
+  private def handleConstantFieldAssignment(assignStmt: AssignStmt, method: SootMethod): Unit = {
+    if (analyze(assignStmt.stmt) == SourceNode) {
+      svg.addNode(createNode(method, assignStmt.stmt))
+    }
+  }
+
+  /**
+   * Processes a method invocation statement without return value assignment.
+   * 
+   * Examples: obj.method(), System.out.println(x)
+   */
+  private def processInvocation(
       stmt: InvokeStmt,
       method: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
-    val exp = stmt.stmt.getInvokeExpr
-    invokeRule(stmt, exp, method, defs)
+    val invokeExpr = stmt.stmt.getInvokeExpr
+    invokeRule(stmt, invokeExpr, method, defs)
   }
 
-  def traverseSinkStatement(
+  /**
+   * Processes a sink statement (potential vulnerability point) by analyzing
+   * all variables and fields used in the statement.
+   * 
+   * Sink statements are where tainted data might cause security issues,
+   * such as SQL injection, XSS, or information disclosure.
+   */
+  private def processSink(
       statement: Statement,
       method: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
-    statement.base.getUseBoxes.forEach(box => {
-      box match {
-        case local: Local => copyRule(statement.base, local, method, defs)
+    statement.base.getUseBoxes.asScala.foreach { box =>
+      box.getValue match {
+        case local: Local => 
+          // Handle local variable usage in sink
+          copyRule(statement.base, local, method, defs)
+          
         case fieldRef: InstanceFieldRef =>
+          // Handle field access in sink
           loadRule(statement.base, fieldRef, method, defs)
+          
         case _ =>
-        // TODO:
-        //   we have to think about other cases here.
-        //   e.g: a reference to a parameter
+          // TODO: Handle other cases like parameters, static fields, etc.
+          logger.debug(s"Unhandled sink operand type: ${box.getValue.getClass.getSimpleName}")
       }
-    })
+    }
   }
 
   /**
@@ -379,6 +387,19 @@ abstract class JSVFA
    * this.method()
    * this.method(q)
    */
+  /**
+   * Handles method invocation by traversing the call graph to find potential callees.
+   * 
+   * This method implements a bounded call graph traversal to balance precision and performance:
+   * - If no call graph edges exist, falls back to the declared method from the invoke expression
+   * - If edges exist, traverses up to MAX_CALL_DEPTH edges to handle polymorphic calls
+   * - Prevents infinite recursion by tracking visited methods and avoiding self-calls
+   * 
+   * @param callStmt The statement containing the method call
+   * @param exp The invoke expression with method details
+   * @param caller The method containing this call site
+   * @param defs Local definitions for data flow analysis
+   */
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
@@ -386,34 +407,90 @@ abstract class JSVFA
       defs: SimpleLocalDefs
   ): Unit = {
     val callGraph = Scene.v().getCallGraph
-    val edges = callGraph.edgesOutOf(callStmt.base)
+    val callGraphEdges = callGraph.edgesOutOf(callStmt.base)
 
-    // Track visited callees to avoid infinite recursion
-    val visited = scala.collection.mutable.Set[SootMethod]()
-    val maxDepth = 2
-
-    if (!edges.hasNext) {
-      // No outgoing edges, fallback to direct method from expression if not recursive
-      val callee = exp.getMethod
-      if (callee != null && callee != caller) {
-        invokeRule(callStmt, exp, caller, callee, defs)
-      }
+    if (callGraphEdges.hasNext) {
+      processCallGraphEdges(callStmt, exp, caller, defs, callGraphEdges)
     } else {
-      // There are outgoing edges, traverse them up to maxDepth
-      var depth = 0
-      while (edges.hasNext && depth < maxDepth) {
-        val edge = edges.next()
-        val callee = edge.getTgt.method()
-        // Only process if callee is not the same as caller and not already visited
-        if (callee != null && callee != caller && !visited.contains(callee)) {
-          visited += callee
-          invokeRule(callStmt, exp, caller, callee, defs)
-        }
-        depth += 1
-      }
+      processFallbackMethod(callStmt, exp, caller, defs)
     }
   }
 
+  /**
+   * Processes method calls using call graph edges for precise analysis.
+   * Limits traversal depth to prevent performance issues with deep call chains.
+   */
+  private def processCallGraphEdges(
+      callStmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      defs: SimpleLocalDefs,
+      edges: java.util.Iterator[soot.jimple.toolkits.callgraph.Edge]
+  ): Unit = {
+    val visited = scala.collection.mutable.Set[SootMethod]()
+    
+    edges.asScala
+      .take(MAX_CALL_DEPTH)
+      .map(_.getTgt.method())
+      .filter(isValidCallee(_, caller, visited))
+      .foreach { callee =>
+          visited += callee
+          invokeRule(callStmt, exp, caller, callee, defs)
+        }
+  }
+
+  /**
+   * Fallback method when no call graph edges are available.
+   * Uses the statically declared method from the invoke expression.
+   */
+  private def processFallbackMethod(
+      callStmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      defs: SimpleLocalDefs
+  ): Unit = {
+    val declaredMethod = exp.getMethod
+    if (isValidCallee(declaredMethod, caller)) {
+      invokeRule(callStmt, exp, caller, declaredMethod, defs)
+      }
+    }
+
+  /**
+   * Validates whether a method is a suitable callee for analysis.
+   * 
+   * @param callee The potential target method
+   * @param caller The calling method
+   * @param visited Set of already visited methods (optional, for recursion prevention)
+   * @return true if the callee should be analyzed
+   */
+  private def isValidCallee(
+      callee: SootMethod, 
+      caller: SootMethod, 
+      visited: scala.collection.mutable.Set[SootMethod] = scala.collection.mutable.Set.empty
+  ): Boolean = {
+    callee != null && 
+    callee != caller && 
+    !visited.contains(callee)
+  }
+
+  /** Maximum number of call graph edges to traverse per call site to prevent performance issues */
+  private val MAX_CALL_DEPTH = 2
+
+  /**
+   * Processes a method invocation with a specific callee, handling taint flow analysis
+   * across method boundaries.
+   * 
+   * This method implements interprocedural analysis by:
+   * 1. Handling special cases (sinks, sources, method rules)
+   * 2. Creating data flow edges between caller and callee
+   * 3. Recursively analyzing the callee method body
+   * 
+   * @param callStmt The statement containing the method call
+   * @param exp The invoke expression with method details  
+   * @param caller The method containing this call site
+   * @param callee The target method being invoked
+   * @param defs Local definitions for data flow analysis
+   */
   private def invokeRule(
       callStmt: Statement,
       exp: InvokeExpr,
@@ -421,88 +498,151 @@ abstract class JSVFA
       callee: SootMethod,
       defs: SimpleLocalDefs
   ): Unit = {
-
+    // Guard against null callees
     if (callee == null) {
+      logger.debug(s"Skipping null callee for call in ${caller.getName}")
       return
     }
 
-    if (analyze(callStmt.base) == SinkNode) {
-      defsToCallOfSinkMethod(
-        callStmt,
-        exp,
-        caller,
-        defs
-      ) // update 'edge(s)' FROM "declaration stmt(s) for args" TO "call-site stmt" (current stmt)
-      return // TODO: we are not exploring the body of a sink method.
-      //       For this reason, we only find one path in the
-      //       FieldSample test case, instead of two.
+    // Handle special node types first
+    handleSpecialNodeTypes(callStmt, exp, caller, defs) match {
+      case Some(_) => return // Early exit for sinks and handled method rules
+      case None => // Continue with interprocedural analysis
     }
 
-    if (analyze(callStmt.base) == SourceNode) {
-      val source = createNode(
-        caller,
-        callStmt.base
-      ) // create a 'node' from stmt that calls the source method (call-site stmt)
-      svg.addNode(source)
+    // Skip interprocedural analysis if configured for intraprocedural only
+    if (intraprocedural()) {
+      logger.debug(s"Skipping interprocedural analysis for ${callee.getName} (intraprocedural mode)")
+      return
     }
 
-    for (r <- methodRules) {
-      if (r.check(callee)) {
-        r.apply(caller, callStmt.base.asInstanceOf[jimple.Stmt], defs)
-        return
-      }
-    }
-
-    if (intraprocedural()) return
-
-    var pmtCount = 0
-    val body = callee.retrieveActiveBody()
-    val g = new ExceptionalUnitGraph(body)
-    val calleeDefs = new SimpleLocalDefs(g)
-
-    body.getUnits.forEach(s => {
-      if (isThisInitStmt(exp, s)) { // this := @this: className
-        defsToThisObject(
-          callStmt,
-          caller,
-          defs,
-          s,
-          exp,
-          callee
-        ) // create 'Edge' FROM the stmt where the object that calls the method was instanced TO the this definition in callee method
-      } else if (isParameterInitStmt(exp, pmtCount, s)) { // <variable> := @parameter#: <variable-type>
-        defsToFormalArgs(
-          callStmt,
-          caller,
-          defs,
-          s,
-          exp,
-          callee,
-          pmtCount
-        ) // create an 'edge' FROM stmt(s) where the variable is defined TO stmt where the variable is loaded
-        pmtCount = pmtCount + 1
-      } else if (isAssignReturnLocalStmt(callStmt.base, s)) { // return "<variable>"
-        defsToCallSite(
-          caller,
-          callee,
-          calleeDefs,
-          callStmt.base,
-          s,
-          callStmt,
-          defs,
-          exp
-        ) // create an 'edge' FROM the stmt where the return variable is defined TO "call site stmt"
-      } else if (isReturnStringStmt(callStmt.base, s)) { // return "<string>"
-        stringToCallSite(
-          caller,
-          callee,
-          callStmt.base,
-          s
-        ) // create an 'edge' FROM "return string stmt" TO "call site stmt"
-      }
-    })
-
+    // Perform interprocedural analysis
+    performInterproceduralAnalysis(callStmt, exp, caller, callee, defs)
+    
+    // Recursively analyze the callee method
     traverse(callee)
+  }
+
+  /**
+   * Handles special node types (sinks, sources) and method rules.
+   * 
+   * @return Some(Unit) if processing should stop, None if it should continue
+   */
+  private def handleSpecialNodeTypes(
+      callStmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      defs: SimpleLocalDefs
+  ): Option[Unit] = {
+    val nodeType = analyze(callStmt.base)
+    
+    nodeType match {
+      case SinkNode =>
+        // Handle sink methods - create edges from arguments to call site
+        defsToCallOfSinkMethod(callStmt, exp, caller, defs)
+        // TODO: Consider exploring sink method bodies to find additional paths
+        // Currently skipped to avoid potential performance issues
+        Some(())
+        
+      case SourceNode =>
+        // Handle source methods - add source node to graph
+        val sourceNode = createNode(caller, callStmt.base)
+        svg.addNode(sourceNode)
+        None // Continue processing
+        
+      case _ =>
+        // Check for applicable method rules (e.g., HttpSession.setAttribute)
+        methodRules.find(_.check(exp.getMethod)) match {
+          case Some(rule) =>
+            // Apply rule with SVFA context
+            applyRuleWithContext(rule, caller, callStmt.base.asInstanceOf[jimple.Stmt], defs)
+            Some(()) // Rule handled the call, stop processing
+          case None =>
+            None // No special handling needed, continue
+      }
+    }
+  }
+
+  /**
+   * Performs interprocedural analysis by creating data flow edges between
+   * caller and callee for parameters, return values, and object references.
+   */
+  private def performInterproceduralAnalysis(
+      callStmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      callee: SootMethod,
+      defs: SimpleLocalDefs
+  ): Unit = {
+    // Skip phantom methods (e.g., servlet API methods without implementation)
+    if (callee.isPhantom) {
+      return
+    }
+    
+    // Try to force load the method body if it's not available
+    if (!callee.hasActiveBody) {
+      try {
+        callee.retrieveActiveBody()
+      } catch {
+        case _: Exception => 
+          // If we can't retrieve the body, skip this method
+          return
+      }
+    }
+    
+    try {
+    val body = callee.retrieveActiveBody()
+      val calleeGraph = new ExceptionalUnitGraph(body)
+      val calleeDefs = new SimpleLocalDefs(calleeGraph)
+      
+      processCalleeStatements(callStmt, exp, caller, callee, defs, calleeDefs, body)
+      
+    } catch {
+      case e: Exception =>
+        // Only log warnings for non-phantom methods that we expect to be able to analyze
+        if (!callee.isPhantom && callee.hasActiveBody) {
+          logger.warn(s"Failed to analyze callee ${callee.getName}: ${e.getMessage}")
+        }
+    }
+  }
+
+  /**
+   * Processes statements in the callee method body to create appropriate data flow edges.
+   */
+  private def processCalleeStatements(
+      callStmt: Statement,
+      exp: InvokeExpr,
+      caller: SootMethod,
+      callee: SootMethod,
+      callerDefs: SimpleLocalDefs,
+      calleeDefs: SimpleLocalDefs,
+      calleeBody: soot.Body
+  ): Unit = {
+    var parameterCount = 0
+    
+    calleeBody.getUnits.asScala.foreach { stmt =>
+      stmt match {
+        case s if isThisInitStmt(exp, s) =>
+          // Handle 'this' parameter: this := @this: ClassName
+          defsToThisObject(callStmt, caller, callerDefs, s, exp, callee)
+          
+        case s if isParameterInitStmt(exp, parameterCount, s) =>
+          // Handle method parameters: param := @parameter#: Type
+          defsToFormalArgs(callStmt, caller, callerDefs, s, exp, callee, parameterCount)
+          parameterCount += 1
+          
+        case s if isAssignReturnLocalStmt(callStmt.base, s) =>
+          // Handle return statements with local variables: return localVar
+          defsToCallSite(caller, callee, calleeDefs, callStmt.base, s, callStmt, callerDefs, exp)
+          
+        case s if isReturnStringStmt(callStmt.base, s) =>
+          // Handle return statements with string constants: return "string"
+          stringToCallSite(caller, callee, callStmt.base, s)
+          
+        case _ =>
+          // Other statements don't need special interprocedural handling
+      }
+    }
   }
 
   private def applyPhantomMethodCallRule(
@@ -562,12 +702,20 @@ abstract class JSVFA
       method: SootMethod,
       defs: SimpleLocalDefs
   ) = {
-    stmt.getRightOp.getUseBoxes.forEach(box => {
-      if (box.getValue.isInstanceOf[Local]) {
-        val local = box.getValue.asInstanceOf[Local]
-        copyRule(stmt, local, method, defs)
+
+    if(stmt.getRightOp.getUseBoxes.isEmpty) {
+      if(analyze(stmt).equals(SourceNode)) {
+        createNode(method, stmt)
       }
-    })
+    }
+    else {
+      stmt.getRightOp.getUseBoxes.forEach(box => {
+        if (box.getValue.isInstanceOf[Local]) {
+          val local = box.getValue.asInstanceOf[Local]
+          copyRule(stmt, local, method, defs)
+        }
+      })
+    }
   }
 
   /*
@@ -1125,7 +1273,7 @@ abstract class JSVFA
   /*
    * creates a graph node from a sootMethod / sootUnit
    */
-  def createNode(method: SootMethod, stmt: soot.Unit): StatementNode =
+  override def createNode(method: SootMethod, stmt: soot.Unit): GraphNode =
     svg.createNode(method, stmt, analyze)
 
   def createCSOpenLabel(
@@ -1134,13 +1282,14 @@ abstract class JSVFA
       callee: SootMethod,
       context: Set[String]
   ): CallSiteLabel = {
-    val statement = br.unb.cic.soot.graph.Statement(
-      method.getDeclaringClass.toString,
-      method.getSignature,
-      stmt.toString,
-      stmt.getJavaSourceStartLineNumber,
-      stmt,
-      method
+    val statement = br.unb.cic.soot.graph.GraphNode(
+      className = method.getDeclaringClass.toString,
+      methodSignature = method.getSignature,
+      stmt = stmt.toString,
+      line = stmt.getJavaSourceStartLineNumber,
+      nodeType = SimpleNode, // Context labels are typically for simple nodes
+      sootUnit = stmt,
+      sootMethod = method
     )
     CallSiteLabel(
       ContextSensitiveRegion(statement, callee.toString, context),
@@ -1154,13 +1303,14 @@ abstract class JSVFA
       callee: SootMethod,
       context: Set[String]
   ): CallSiteLabel = {
-    val statement = br.unb.cic.soot.graph.Statement(
-      method.getDeclaringClass.toString,
-      method.getSignature,
-      stmt.toString,
-      stmt.getJavaSourceStartLineNumber,
-      stmt,
-      method
+    val statement = br.unb.cic.soot.graph.GraphNode(
+      className = method.getDeclaringClass.toString,
+      methodSignature = method.getSignature,
+      stmt = stmt.toString,
+      line = stmt.getJavaSourceStartLineNumber,
+      nodeType = SimpleNode, // Context labels are typically for simple nodes
+      sootUnit = stmt,
+      sootMethod = method
     )
     CallSiteLabel(
       ContextSensitiveRegion(statement, callee.toString, context),
@@ -1243,7 +1393,7 @@ abstract class JSVFA
       if (n.isInstanceOf[AllocNode]) {
         val allocationNode = n.asInstanceOf[AllocNode]
 
-        var stmt: StatementNode = null
+        var stmt: GraphNode = null
 
         if (allocationNode.getNewExpr.isInstanceOf[NewExpr]) {
           if (
@@ -1348,15 +1498,22 @@ abstract class JSVFA
   //   * the types of the nodes.
   //   */
 
-  def containsNodeDF(node: StatementNode): StatementNode = {
+  def containsNodeDF(node: GraphNode): GraphNode = {
     for (n <- svg.edges()) {
-      var auxNodeFrom = n.from.asInstanceOf[StatementNode]
-      var auxNodeTo = n.to.asInstanceOf[StatementNode]
-      if (auxNodeFrom.equals(node)) return n.from.asInstanceOf[StatementNode]
-      if (auxNodeTo.equals(node)) return n.to.asInstanceOf[StatementNode]
+      var auxNodeFrom = n.from.asInstanceOf[GraphNode]
+      var auxNodeTo = n.to.asInstanceOf[GraphNode]
+      if (auxNodeFrom.equals(node)) return n.from.asInstanceOf[GraphNode]
+      if (auxNodeTo.equals(node)) return n.to.asInstanceOf[GraphNode]
     }
     return null
   }
+  override def updateGraph(
+      source: GraphNode,
+      target: GraphNode
+  ): Boolean = {
+    updateGraph(source, target, forceNewEdge = false)
+  }
+
   def updateGraph(
       source: GraphNode,
       target: GraphNode,
@@ -1365,8 +1522,8 @@ abstract class JSVFA
     var res = false
     if (!runInFullSparsenessMode() || true) {
       addNodeAndEdgeDF(
-        source.asInstanceOf[StatementNode],
-        target.asInstanceOf[StatementNode]
+        source.asInstanceOf[GraphNode],
+        target.asInstanceOf[GraphNode]
       )
 
       res = true
@@ -1374,7 +1531,7 @@ abstract class JSVFA
     return res
   }
 
-  def addNodeAndEdgeDF(from: StatementNode, to: StatementNode): Unit = {
+  def addNodeAndEdgeDF(from: GraphNode, to: GraphNode): Unit = {
     var auxNodeFrom = containsNodeDF(from)
     var auxNodeTo = containsNodeDF(to)
     if (auxNodeFrom != null) {

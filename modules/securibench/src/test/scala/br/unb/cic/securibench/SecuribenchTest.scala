@@ -2,11 +2,25 @@ package br.unb.cic.securibench
 
 import br.unb.cic.soot.JSVFATest
 import br.unb.cic.soot.graph._
+import br.unb.cic.soot.svfa.jimple.SVFAConfig
 import soot.jimple.{AssignStmt, InvokeExpr, InvokeStmt}
 
-class SecuribenchTest(var className: String = "", var mainMethod: String = "")
-    extends JSVFATest
+/**
+ * Securibench test class with configurable SVFA settings.
+ * 
+ * @param className The fully qualified name of the class to analyze
+ * @param mainMethod The name of the main method (usually "doGet")
+ * @param config Optional SVFA configuration (defaults to command-line/environment configuration)
+ */
+class SecuribenchTest(
+    var className: String = "", 
+    var mainMethod: String = "",
+    config: SVFAConfig = SecuribenchConfig.getConfiguration()
+) extends JSVFATest
     with SecuribenchSpec {
+
+  // Override the configuration with command-line/environment settings
+  override def svfaConfig: SVFAConfig = config
   override def getClassName(): String = className
 
   override def getMainMethod(): String = mainMethod

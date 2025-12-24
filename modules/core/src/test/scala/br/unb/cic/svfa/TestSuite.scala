@@ -323,6 +323,26 @@ class TestSuite extends FunSuite with BeforeAndAfter {
     assert(svfa.reportConflictsSVG().size == 1)
   }
 
+  test("in the class Basic22 we should detect 1 conflict") {
+    val svfa = new MethodBasedSVFATest(
+      className = "samples.basic.Basic22",
+      sourceMethods = Set("source"),
+      sinkMethods = Set("<java.io.File: void <init>(java.lang.String)>")
+    )
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
+  test("in the class Basic22Concat we should detect 1 conflict using String.concat()") {
+    val svfa = new MethodBasedSVFATest(
+      className = "samples.basic.Basic22Concat",
+      sourceMethods = Set("source"),
+      sinkMethods = Set("<java.io.File: void <init>(java.lang.String)>")
+    )
+    svfa.buildSparseValueFlowGraph()
+    assert(svfa.reportConflictsSVG().size == 1)
+  }
+
   ignore("in the class FieldSample04 we should not detect any conflict because the contained tainted object and the tainted field was override") {
     val svfa = new MethodBasedSVFATest(
       className = "samples.fields.FieldSample04",

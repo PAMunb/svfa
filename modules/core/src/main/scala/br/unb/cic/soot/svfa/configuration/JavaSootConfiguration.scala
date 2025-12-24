@@ -11,6 +11,8 @@ sealed trait CG
 case object CHA extends CG
 case object SPARK_LIBRARY extends CG
 case object SPARK extends CG
+case object RTA extends CG
+case object VTA extends CG
 
 /** Base class for all implementations of SVFA algorithms.
   */
@@ -53,12 +55,38 @@ trait JavaSootConfiguration extends SootConfiguration {
       case CHA => Options.v().setPhaseOption("cg.cha", "on")
       case SPARK => {
         Options.v().setPhaseOption("cg.spark", "on")
-        Options.v().setPhaseOption("cg.spark", "cs-demand:true")
+        // Disable on-demand analysis to ensure complete call graph construction
+        Options.v().setPhaseOption("cg.spark", "cs-demand:false")
         Options.v().setPhaseOption("cg.spark", "string-constants:true")
+        // Add more aggressive options for better interprocedural coverage
+        Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
+        Options.v().setPhaseOption("cg.spark", "simple-edges-bidirectional:false")
       }
       case SPARK_LIBRARY => {
         Options.v().setPhaseOption("cg.spark", "on")
         Options.v().setPhaseOption("cg", "library:any-subtype")
+      }
+      case RTA => {
+        Options.v().setPhaseOption("cg.spark", "on")
+        // Enable RTA mode in SPARK
+        Options.v().setPhaseOption("cg.spark", "rta:true")
+        // RTA requires on-fly-cg to be disabled
+        Options.v().setPhaseOption("cg.spark", "on-fly-cg:false")
+        // RTA-specific optimizations
+        Options.v().setPhaseOption("cg.spark", "cs-demand:false")
+        Options.v().setPhaseOption("cg.spark", "string-constants:true")
+        Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
+      }
+      case VTA => {
+        Options.v().setPhaseOption("cg.spark", "on")
+        // Enable VTA mode in SPARK
+        Options.v().setPhaseOption("cg.spark", "vta:true")
+        // VTA requires on-fly-cg to be disabled (similar to RTA)
+        Options.v().setPhaseOption("cg.spark", "on-fly-cg:false")
+        // VTA automatically configures internal options, but we add common ones
+        Options.v().setPhaseOption("cg.spark", "cs-demand:false")
+        Options.v().setPhaseOption("cg.spark", "string-constants:true")
+        Options.v().setPhaseOption("cg.spark", "simulate-natives:true")
       }
     }
   }

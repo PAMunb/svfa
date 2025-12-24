@@ -1,6 +1,6 @@
 package br.unb.cic.soot.svfa.report
 
-import br.unb.cic.soot.graph.{GraphNode, SimpleNode, SinkNode, SourceNode, Statement}
+import br.unb.cic.soot.graph.{GraphNode, SimpleNode, SinkNode, SourceNode}
 import ujson.{Arr, Num, Obj, Str, write}
 
 import java.io.{BufferedWriter, FileWriter}
@@ -45,32 +45,31 @@ trait ReportFormat {
 
   private def generateJsonFormat(node: GraphNode, id: Int = -1) = {
 
-    val stmt = node.value.asInstanceOf[Statement]
-    val method = stmt.sootMethod
+    val method = node.sootMethod
 
     node.nodeType match {
       case SourceNode | SinkNode =>
         Obj(
           "statement" -> Str(""),
-          "methodName" -> Str(method.getDeclaration),
-          "className" -> Str(stmt.className),
-          "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
+          "methodName" -> Str(if (method != null) method.getDeclaration else node.methodSignature),
+          "className" -> Str(node.className),
+          "lineNo" -> Num(if (node.sootUnit != null) node.sootUnit.getJavaSourceStartLineNumber else node.line),
           "targetName" -> Str(""),
           "targetNo" -> Num(0),
           "IRs" -> Arr(
             Obj(
               "type" -> Str("Jimple"),
-              "IRstatement" -> Str(stmt.stmt)
+              "IRstatement" -> Str(node.stmt)
             )
           )
         )
       case SimpleNode =>
         Obj(
           "statement" -> Str(""),
-          "methodName" -> Str(method.getDeclaration),
-          "className" -> Str(stmt.className),
-          "lineNo" -> Num(stmt.sootUnit.getJavaSourceStartLineNumber),
-          "IRstatement" -> Str(stmt.stmt),
+          "methodName" -> Str(if (method != null) method.getDeclaration else node.methodSignature),
+          "className" -> Str(node.className),
+          "lineNo" -> Num(if (node.sootUnit != null) node.sootUnit.getJavaSourceStartLineNumber else node.line),
+          "IRstatement" -> Str(node.stmt),
           "ID" -> Num(id)
         )
       case _ =>
