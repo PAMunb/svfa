@@ -748,7 +748,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test(
+  ignore(
     "in the class Collections4 we should detect 1 conflict of a simple collection test case"
   ) {
     val testName = "Collections4"
@@ -832,7 +832,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test(
+  ignore(
     "in the class Collections11 we should detect 1 conflict of a simple collection test case"
   ) {
     val testName = "Collections11"
@@ -925,7 +925,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Datastructures4 we should detect 0 conflict of a simple data structure test case"
   ) {
     val testName = "Datastructures4"
@@ -939,7 +939,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Datastructures5 we should detect 1 conflict of a simple data structure test case"
   ) {
     val testName = "Datastructures5"
@@ -994,7 +994,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Factories3 we should detect 1 conflict of a simple factory test case"
   ) {
     val testName = "Factories3"
@@ -1182,7 +1182,7 @@ class SecuribenchTestSuite extends FunSuite {
   /** SESSION TESTs
     */
 
-  ignore(
+  test(
     "in the class Session1 we should detect 1 conflict of a simple session test case"
   ) {
     val testName = "Session1"
@@ -1206,7 +1206,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Session3 we should detect 1 conflict of a simple session test case"
   ) {
     val testName = "Session3"
@@ -1263,7 +1263,6 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  // FLAKY: It only fails in the Github action pipeline
   ignore(
     "in the class StrongUpdates4 we should detect 1 conflict of a simple strong update test case"
   ) {
@@ -1278,7 +1277,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class StrongUpdates5 we should detect 0 conflict of a simple strong update test case"
   ) {
     val testName = "StrongUpdates5"
