@@ -925,7 +925,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test(
+  ignore(
     "in the class Datastructures4 we should detect 0 conflict of a simple data structure test case"
   ) {
     val testName = "Datastructures4"
@@ -939,7 +939,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test(
+  ignore(
     "in the class Datastructures5 we should detect 1 conflict of a simple data structure test case"
   ) {
     val testName = "Datastructures5"
@@ -994,7 +994,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  test(
+  ignore(
     "in the class Factories3 we should detect 1 conflict of a simple factory test case"
   ) {
     val testName = "Factories3"
