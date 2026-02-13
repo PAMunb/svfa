@@ -925,7 +925,7 @@ class SecuribenchTestSuite extends FunSuite {
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
 
-  ignore(
+  test(
     "in the class Datastructures4 we should detect 0 conflict of a simple data structure test case"
   ) {
     val testName = "Datastructures4"
@@ -936,8 +936,21 @@ class SecuribenchTestSuite extends FunSuite {
       "doGet"
     )
     svfa.buildSparseValueFlowGraph()
+    println(svfa.svgToDotModel())
     assert(svfa.reportConflictsSVG().size == expectedConflicts)
   }
+
+  /**
+   * WHY IS IT FAILING?
+   *
+   * The current implementation does not have a sound approach
+   * to handle context. It can not manage context for nested cases.
+   *
+   * i.e: String str = c1.next.str
+   *
+   * To fix that problem, the logic that creates the Open/Close labels
+   * must be enriched.
+   */
 
   ignore(
     "in the class Datastructures5 we should detect 1 conflict of a simple data structure test case"
