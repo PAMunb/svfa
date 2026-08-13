@@ -1498,15 +1498,6 @@ abstract class JSVFA
   //   * the types of the nodes.
   //   */
 
-  def containsNodeDF(node: GraphNode): GraphNode = {
-    for (n <- svg.edges()) {
-      var auxNodeFrom = n.from.asInstanceOf[GraphNode]
-      var auxNodeTo = n.to.asInstanceOf[GraphNode]
-      if (auxNodeFrom.equals(node)) return n.from.asInstanceOf[GraphNode]
-      if (auxNodeTo.equals(node)) return n.to.asInstanceOf[GraphNode]
-    }
-    return null
-  }
   override def updateGraph(
       source: GraphNode,
       target: GraphNode
@@ -1521,32 +1512,11 @@ abstract class JSVFA
   ): Boolean = {
     var res = false
     if (!runInFullSparsenessMode() || true) {
-      addNodeAndEdgeDF(
-        source.asInstanceOf[GraphNode],
-        target.asInstanceOf[GraphNode]
-      )
+      svg.addEdge(source, target)
 
       res = true
     }
     return res
-  }
-
-  def addNodeAndEdgeDF(from: GraphNode, to: GraphNode): Unit = {
-    var auxNodeFrom = containsNodeDF(from)
-    var auxNodeTo = containsNodeDF(to)
-    if (auxNodeFrom != null) {
-      if (auxNodeTo != null) {
-        svg.addEdge(auxNodeFrom, auxNodeTo)
-      } else {
-        svg.addEdge(auxNodeFrom, to)
-      }
-    } else {
-      if (auxNodeTo != null) {
-        svg.addEdge(from, auxNodeTo)
-      } else {
-        svg.addEdge(from, to)
-      }
-    }
   }
 
 }
