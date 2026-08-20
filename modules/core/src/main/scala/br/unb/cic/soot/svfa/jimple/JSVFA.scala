@@ -37,6 +37,9 @@ abstract class JSVFA
     scala.collection.mutable.HashMap.empty[soot.Value, GraphNode]
   val arrayStores =
     scala.collection.mutable.HashMap.empty[Local, List[soot.Unit]]
+  val instanceFieldStoreIndex =
+    scala.collection.mutable.HashMap
+      .empty[SootField, scala.collection.mutable.HashSet[GraphNode]]
   val languageParser = new LanguageParser(this)
 
   val methodRules = languageParser.evaluate(code())
@@ -300,7 +303,7 @@ abstract class JSVFA
         
       case (fieldRef: InstanceFieldRef, constant: Constant) =>
         // obj.field = constant - Check if this creates a taint source
-        handleConstantFieldAssignment(assignStmt, method)
+        handleConstantFieldAssignment(assignStmt, fieldRef, method)
         
       case (staticRef: StaticFieldRef, local: Local) =>
         // ClassName.staticField = p - Store to static field
@@ -326,9 +329,12 @@ abstract class JSVFA
    * This is a specialized helper for processAssignment when dealing with:
    * obj.field = "tainted_constant" or obj.field = 42
    */
-  private def handleConstantFieldAssignment(assignStmt: AssignStmt, method: SootMethod): Unit = {
+  private def handleConstantFieldAssignment(assignStmt: AssignStmt, fieldRef: InstanceFieldRef, method: SootMethod): Unit = {
     if (analyze(assignStmt.stmt) == SourceNode) {
-      svg.addNode(createNode(method, assignStmt.stmt))
+      val node = createNode(method, assignStmt.stmt)
+      svg.addNode(node)
+      instanceFieldStoreIndex
+        .getOrElseUpdate(fieldRef.getField, scala.collection.mutable.HashSet.empty) += node
     }
   }
 
@@ -929,6 +935,8 @@ abstract class JSVFA
               source,
               target
             ) // update 'edge' FROM stmt where right value was instanced TO current stmt
+            instanceFieldStoreIndex
+              .getOrElseUpdate(fieldRef.getField, scala.collection.mutable.HashSet.empty) += target
           })
         //          })
         //        }
@@ -1437,30 +1445,22 @@ abstract class JSVFA
 
   def findFieldStores(local: Local, field: SootField): ListBuffer[GraphNode] = {
     val res: ListBuffer[GraphNode] = new ListBuffer[GraphNode]()
-    for (node <- svg.nodes()) {
-      if (node.unit().isInstanceOf[soot.jimple.AssignStmt]) {
-        val assignment = node.unit().asInstanceOf[soot.jimple.AssignStmt]
-        if (assignment.getLeftOp.isInstanceOf[InstanceFieldRef]) {
-          val base = assignment.getLeftOp
-            .asInstanceOf[InstanceFieldRef]
-            .getBase
-            .asInstanceOf[Local]
-          if (
-            pointsToAnalysis
-              .reachingObjects(base)
-              .hasNonEmptyIntersection(
-                pointsToAnalysis.reachingObjects(local)
-              ) || areThisFromSameClass(base, local)
-          ) {
-            if (
-              field.equals(
-                assignment.getLeftOp.asInstanceOf[InstanceFieldRef].getField
-              )
-            ) {
-              res += createNode(node.method(), node.unit())
-            }
-          }
-        }
+    val candidates =
+      instanceFieldStoreIndex.getOrElse(field, scala.collection.mutable.HashSet.empty)
+    for (node <- candidates) {
+      val assignment = node.unit().asInstanceOf[soot.jimple.AssignStmt]
+      val base = assignment.getLeftOp
+        .asInstanceOf[InstanceFieldRef]
+        .getBase
+        .asInstanceOf[Local]
+      if (
+        pointsToAnalysis
+          .reachingObjects(base)
+          .hasNonEmptyIntersection(
+            pointsToAnalysis.reachingObjects(local)
+          ) || areThisFromSameClass(base, local)
+      ) {
+        res += createNode(node.method(), node.unit())
       }
     }
     return res
