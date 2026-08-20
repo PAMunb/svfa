@@ -392,7 +392,6 @@ abstract class JSVFA
    * 
    * This method implements a bounded call graph traversal to balance precision and performance:
    * - If no call graph edges exist, falls back to the declared method from the invoke expression
-   * - If edges exist, traverses up to MAX_CALL_DEPTH edges to handle polymorphic calls
    * - Prevents infinite recursion by tracking visited methods and avoiding self-calls
    * 
    * @param callStmt The statement containing the method call
@@ -430,7 +429,6 @@ abstract class JSVFA
     val visited = scala.collection.mutable.Set[SootMethod]()
     
     edges.asScala
-      .take(MAX_CALL_DEPTH)
       .map(_.getTgt.method())
       .filter(isValidCallee(_, caller, visited))
       .foreach { callee =>
@@ -472,9 +470,6 @@ abstract class JSVFA
     callee != caller && 
     !visited.contains(callee)
   }
-
-  /** Maximum number of call graph edges to traverse per call site to prevent performance issues */
-  private val MAX_CALL_DEPTH = 2
 
   /**
    * Processes a method invocation with a specific callee, handling taint flow analysis
