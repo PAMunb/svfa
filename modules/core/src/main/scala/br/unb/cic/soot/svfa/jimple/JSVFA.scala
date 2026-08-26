@@ -1477,13 +1477,22 @@ abstract class JSVFA
         .asInstanceOf[InstanceFieldRef]
         .getBase
         .asInstanceOf[Local]
-      if (
-        pointsToAnalysis
-          .reachingObjects(base)
-          .hasNonEmptyIntersection(
-            pointsToAnalysis.reachingObjects(local)
-          ) || areThisFromSameClass(base, local)
-      ) {
+      val ptsBase = pointsToAnalysis.reachingObjects(base)
+      val ptsLocal = pointsToAnalysis.reachingObjects(local)
+      // An empty points-to set means Spark had no allocation site to offer
+      // for that local (e.g. it traces back to an unmodeled/opaque call,
+      // or — as in `StrongUpdates4` — to the analyzed method's own `this`,
+      // whose allocation site lives in an unmodeled test harness), not
+      // "this local provably points to nothing". Treating it as a real
+      // empty set here made `hasNonEmptyIntersection` reject `base`/`local`
+      // pairs with no real evidence of being different objects — including
+      // the degenerate case where `base` and `local` are the very same
+      // `Local` instance. Same reasoning as `isValidContext`'s
+      // `PointsToSet` handling in Graph.scala, applied here to this
+      // alias check instead.
+      val maybeAlias =
+        ptsBase.isEmpty || ptsLocal.isEmpty || ptsBase.hasNonEmptyIntersection(ptsLocal)
+      if (maybeAlias || areThisFromSameClass(base, local)) {
         res += createNode(node.method(), node.unit())
       }
     }
