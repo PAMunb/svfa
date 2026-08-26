@@ -546,10 +546,15 @@ abstract class JSVFA
         Some(())
         
       case SourceNode =>
-        // Handle source methods - add source node to graph
+        // Handle source methods - add source node to graph. Mirrors the
+        // SinkNode case above: a source is a black box by definition (its
+        // signature is in sourceList), so nothing inside whatever CHA
+        // resolved for this call should refine that classification, and
+        // continuing to traverse risks wandering into unrelated code the
+        // call graph happened to resolve to.
         val sourceNode = createNode(caller, callStmt.base)
         svg.addNode(sourceNode)
-        None // Continue processing
+        Some(())
         
       case _ =>
         // Check for applicable method rules (e.g., HttpSession.setAttribute)
