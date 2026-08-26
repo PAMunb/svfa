@@ -66,6 +66,26 @@ trait DSL {
       if NamedMethodRule(className: "java.lang.String", methodName: "concat")
         then CopyFromMethodCallToLocal()
 
+    rule stringToUpperCase =
+      if NamedMethodRule(className: "java.lang.String", methodName: "toUpperCase")
+        then CopyFromMethodCallToLocal()
+
+    rule stringToLowerCase =
+      if NamedMethodRule(className: "java.lang.String", methodName: "toLowerCase")
+        then CopyFromMethodCallToLocal()
+
+    rule stringTrim =
+      if NamedMethodRule(className: "java.lang.String", methodName: "trim")
+        then CopyFromMethodCallToLocal()
+
+    rule stringReplace =
+      if NamedMethodRule(className: "java.lang.String", methodName: "replace")
+        then CopyFromMethodCallToLocal()
+
+    rule stringSubstring =
+      if NamedMethodRule(className: "java.lang.String", methodName: "substring")
+        then CopyFromMethodCallToLocal()
+
     rule cookieGetName =
       if NamedMethodRule(className: "javax.servlet.http.Cookie", methodName: "getName")
         then CopyFromMethodCallToLocal()
