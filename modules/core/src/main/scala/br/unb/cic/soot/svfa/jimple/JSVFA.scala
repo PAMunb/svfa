@@ -1,7 +1,7 @@
 package br.unb.cic.soot.svfa.jimple
 
 import java.util
-import br.unb.cic.soot.svfa.jimple.rules.RuleAction
+import br.unb.cic.soot.svfa.jimple.rules.{MissingActiveBodyRule, RuleAction}
 import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, SimpleNode}
 import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser, RuleActions}
 import br.unb.cic.soot.svfa.{SVFA, SourceSinkDef}
@@ -506,7 +506,7 @@ abstract class JSVFA
     }
 
     // Handle special node types first
-    handleSpecialNodeTypes(callStmt, exp, caller, defs) match {
+    handleSpecialNodeTypes(callStmt, exp, caller, callee, defs) match {
       case Some(_) => return // Early exit for sinks and handled method rules
       case None => // Continue with interprocedural analysis
     }
@@ -533,6 +533,7 @@ abstract class JSVFA
       callStmt: Statement,
       exp: InvokeExpr,
       caller: SootMethod,
+      callee: SootMethod,
       defs: SimpleLocalDefs
   ): Option[Unit] = {
     val nodeType = analyze(callStmt.base)
@@ -557,8 +558,26 @@ abstract class JSVFA
         Some(())
         
       case _ =>
-        // Check for applicable method rules (e.g., HttpSession.setAttribute)
-        methodRules.find(_.check(exp.getMethod)) match {
+        // Check for applicable method rules (e.g., HttpSession.setAttribute,
+        // native methods, methods without a body). `MissingActiveBodyRule`
+        // is checked against `callee` (the method the call graph actually
+        // resolved) rather than `exp.getMethod` (the method declared at the
+        // call site) — for any polymorphic call (interface or abstract
+        // superclass method), `exp.getMethod` is *always* abstract/bodyless
+        // regardless of which concrete implementation the call graph
+        // resolved, so checking it here silently discarded every
+        // polymorphic call's interprocedural flow, unconditionally. Every
+        // other rule kind (named-method identity, native) keeps matching on
+        // `exp.getMethod`: those rules exist to recognize *which API was
+        // called at the source* (e.g. `HttpSession.setAttribute`), which is
+        // a property of the call site, not of whichever concrete class
+        // happens to implement it — swapping those to `callee` too would
+        // risk the rule no longer matching when the callee resolves to some
+        // unrelated implementing class.
+        methodRules.find {
+          case rule: MissingActiveBodyRule => callee != null && rule.check(callee)
+          case rule                        => rule.check(exp.getMethod)
+        } match {
           case Some(rule) =>
             // Apply rule with SVFA context
             applyRuleWithContext(rule, caller, callStmt.base.asInstanceOf[jimple.Stmt], defs)
