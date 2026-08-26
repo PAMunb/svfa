@@ -48,7 +48,7 @@ case class GraphNode(
    * Returns a clean string representation for display purposes.
    * Removes quotes to avoid issues in DOT format and other outputs.
  */
-  def show(): String = stmt.replaceAll("\"", "'")
+  def show(): String = stmt.replace("\"", "'")
   
   /**
    * Returns the underlying Soot Unit for this node.
