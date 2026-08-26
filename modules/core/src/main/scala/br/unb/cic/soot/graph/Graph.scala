@@ -378,6 +378,23 @@ class Graph() {
     s"${n.className}|${n.methodSignature}|${n.line}|${n.stmt}"
 
   /**
+   * Stable, content-based ordering key for an edge label — same rationale
+   * as `stableKey`. Needed because `svg` is a multigraph (`LkDiEdge`: the
+   * label participates in edge identity), so two nodes can be connected
+   * by more than one edge — e.g. a plain `StringLabel("Normal")` copy edge
+   * alongside a `CallSiteLabel` open/close pair. `context` is deliberately
+   * excluded: it is a live `soot.PointsToSet` reference with no stable
+   * string form, and statement + callee method + open/close already
+   * disambiguate any two `CallSiteLabel`s that matter for traversal order.
+   */
+  private def stableLabelKey(label: EdgeLabel): String = label match {
+    case s: StringLabel => s"Str|${s.label}"
+    case c: CallSiteLabel =>
+      s"CS|${c.labelType}|${stableKey(c.value.statement)}|${c.value.calleeMethod}"
+    case other => other.getClass.getName
+  }
+
+  /**
    * Deterministic shortest path between `source` and `target`, found by
    * expanding BFS frontiers from both ends simultaneously and stopping at
    * the first node reached from both sides. Ignores edge validity
@@ -517,6 +534,28 @@ class Graph() {
    * fully-built candidate afterward via `isValidPath`, same as before;
    * embedding that check as incremental pruning is a later refinement.
    */
+  /**
+   * Same fallback as before, but the call-site/context validity checks
+   * (`isValidCallSitesAndContext`/`isValidContext`) are now embedded as
+   * incremental pruning instead of validating a fully-built candidate
+   * afterward: the running points-to intersection is threaded through the
+   * search and re-checked on every context-bearing edge, and a branch is
+   * abandoned the instant that intersection goes empty — sound and
+   * complete, because it is *the same linear scan* `isValidContext`
+   * performs on a finished path, just interrupted at the first failure
+   * instead of run afterward, so it can never prune a branch the final
+   * check would still have accepted. The call-site open/close nesting
+   * check is still evaluated as a whole once a candidate reaches
+   * `target` — it isn't a simple running intersection, so embedding it as
+   * incremental pruning risks silently changing its already-subtle,
+   * asymmetric matching semantics.
+   *
+   * Candidates are now (node, edge label) pairs rather than just nodes,
+   * since `svg` is a multigraph and different parallel edges between the
+   * same two nodes can carry different (or no) context — `stableLabelKey`
+   * orders those deterministically, the same rationale as `stableKey` for
+   * nodes.
+   */
   private def findPathInSlice(
       source: GraphNode,
       target: GraphNode
@@ -526,18 +565,38 @@ class Graph() {
     val slice = backwardSlice(target)
     if (!slice.contains(source)) return None
 
-    case class Frame(node: GraphNode, pending: List[GraphNode])
+    case class Frame(
+        node: GraphNode,
+        anchor: Option[soot.PointsToSet],
+        csOpen: List[CallSiteLabel],
+        csClose: List[CallSiteLabel],
+        csInOrder: List[CallSiteLabel],
+        pending: List[(GraphNode, EdgeLabel)]
+    )
 
-    def candidatesFrom(node: GraphNode, visited: Set[GraphNode]): List[GraphNode] =
-      gNode(node).diSuccessors
+    def candidatesFrom(
+        node: GraphNode,
+        visited: Set[GraphNode]
+    ): List[(GraphNode, EdgeLabel)] = {
+      val neighbors = gNode(node).diSuccessors
         .map(_.toOuter)
         .filter(n => slice.contains(n) && !visited(n))
         .toList
         .sortBy(stableKey)
+      neighbors.flatMap(next =>
+        gNode(node)
+          .outgoingTo(gNode(next))
+          .map(_.toOuter.label.asInstanceOf[EdgeLabel])
+          .toList
+          .sortBy(stableLabelKey)
+          .map(label => (next, label))
+      )
+    }
 
     var path = List(source)
     var visited = Set(source)
-    var stack = List(Frame(source, candidatesFrom(source, visited)))
+    var stack =
+      List(Frame(source, None, List(), List(), List(), candidatesFrom(source, visited)))
     var result: Option[List[GraphNode]] = None
 
     while (result.isEmpty && stack.nonEmpty) {
@@ -549,18 +608,47 @@ class Graph() {
           path = path.tail
           visited = visited - top.node
 
-        case next :: rest =>
-          stack = top.copy(pending = rest) :: stack.tail
+        case (next, label) :: restPending =>
+          stack = top.copy(pending = restPending) :: stack.tail
 
-          if (next == target) {
-            val candidate = (next :: path).reverse
-            if (isValidPath(source, target, candidate)) {
-              result = Some(candidate)
+          var branchAnchor = top.anchor
+          var branchOpen = top.csOpen
+          var branchClose = top.csClose
+          var branchInOrder = top.csInOrder
+          var pruned = false
+
+          label match {
+            case l: CallSiteLabel =>
+              branchInOrder = branchInOrder ++ List(l)
+              if (l.labelType == CallSiteOpenLabel) branchOpen = branchOpen ++ List(l)
+              else branchClose = branchClose ++ List(l)
+
+              l.value.context.foreach(pts => {
+                branchAnchor match {
+                  case None    => branchAnchor = Some(pts)
+                  case Some(a) => if (!a.hasNonEmptyIntersection(pts)) pruned = true
+                }
+              })
+            case _ => // neutral: neither narrows nor validates the context
+          }
+
+          if (!pruned) {
+            if (next == target) {
+              if (isValidCallSitesAndContext(branchOpen, branchClose, branchInOrder)) {
+                result = Some((next :: path).reverse)
+              }
+            } else {
+              visited = visited + next
+              path = next :: path
+              stack = Frame(
+                next,
+                branchAnchor,
+                branchOpen,
+                branchClose,
+                branchInOrder,
+                candidatesFrom(next, visited)
+              ) :: stack
             }
-          } else {
-            visited = visited + next
-            path = next :: path
-            stack = Frame(next, candidatesFrom(next, visited)) :: stack
           }
       }
     }
@@ -614,13 +702,15 @@ class Graph() {
   def isValidPath(path: graph.Path): Boolean = {
     var csOpen = List.empty[CallSiteLabel]
     var csClose = List.empty[CallSiteLabel]
+    var csInOrder = List.empty[CallSiteLabel]
 
-    // Filter the labels by type
+    // Filter the labels by type, keeping both the split-by-type lists
+    // (needed for open/close nesting) and the real path-order list
+    // (needed for context anchoring — see isValidContext).
     path.edges.foreach(edge => {
-      val label = edge.toOuter.label
-
-      label match {
+      edge.toOuter.label match {
         case l: CallSiteLabel => {
+          csInOrder = csInOrder ++ List(l)
           if (l.labelType == CallSiteOpenLabel)
             csOpen = csOpen ++ List(l)
           else
@@ -630,14 +720,31 @@ class Graph() {
       }
     })
 
-    // check if there path has only one context
-    if (!isValidContext(csOpen, csClose)) {
+    isValidCallSitesAndContext(csOpen, csClose, csInOrder)
+  }
+
+  /**
+   * Core call-site validity check: given the open/close call-site labels
+   * accumulated along a candidate path — split by type for the nesting
+   * check, and in real path order for the context check — decides whether
+   * they are consistent with a single real flow. Shared by `isValidPath`
+   * (validates a complete `graph.Path`) and `findPathInSlice` (applies the
+   * same check incrementally while searching, pruning as soon as it can no
+   * longer succeed).
+   */
+  private def isValidCallSitesAndContext(
+      csOpen: List[CallSiteLabel],
+      csClose: List[CallSiteLabel],
+      csInOrder: List[CallSiteLabel]
+  ): Boolean = {
+    // check if the path has only one context
+    if (!isValidContext(csInOrder)) {
       return false
     }
 
     // Get all the cs) without a (cs
     val unopenedCS = getUnmatchedCallSites(csClose, csOpen)
-    // Get all the cs) without a (cs
+    // Get all the (cs without a cs)
     val unclosedCS = getUnmatchedCallSites(csOpen, csClose)
 
     // verify if the unopened and unclosed call-sites are not for the same method
@@ -652,10 +759,7 @@ class Graph() {
         })
     })
 
-    val validCS =
-      unopenedCS.isEmpty || unclosedCS.isEmpty || matchedUnopenedUnclosedCSCalleeMethod.isEmpty
-
-    return validCS
+    unopenedCS.isEmpty || unclosedCS.isEmpty || matchedUnopenedUnclosedCSCalleeMethod.isEmpty
   }
 
   /**
@@ -666,17 +770,14 @@ class Graph() {
    * narrow nor validate the running intersection, since they carry no
    * object-identity information one way or the other.
    *
-   * This replaces an earlier "pick one arbitrary allocation site per edge,
-   * require exact equality across the whole path" heuristic that rejected
-   * real flows whenever two unrelated edges happened to pick different
-   * (but still overlapping, in their full sets) representatives.
+   * `csInOrder` must be in real path order (source to sink), not grouped
+   * by open/close — the anchor is the *first* context-bearing edge
+   * actually encountered along the flow. This is what makes the check
+   * embeddable as incremental pruning in `findPathInSlice`: it is exactly
+   * the same left-to-right scan, just interruptible at the first failure
+   * instead of always run to completion on a finished path.
    */
-  def isValidContext(
-      csOpen: List[CallSiteLabel],
-      csClose: List[CallSiteLabel]
-  ): Boolean = {
-    val csOpenAndClose = csOpen ++ csClose
-
+  private def isValidContext(csInOrder: List[CallSiteLabel]): Boolean = {
     // Anchor on the first edge that carries a points-to set, then require
     // every other edge's points-to set to share at least one possible
     // object with it — via Soot's own native PointsToSet intersection, not
@@ -685,7 +786,7 @@ class Graph() {
     // they carry no object-identity information either way.
     var anchor: Option[soot.PointsToSet] = None
     var valid = true
-    csOpenAndClose.foreach(label => {
+    csInOrder.foreach(label => {
       if (valid) {
         label.value.context.foreach(pts => {
           anchor match {
