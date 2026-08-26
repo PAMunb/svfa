@@ -535,6 +535,24 @@ class Graph() {
    * embedding that check as incremental pruning is a later refinement.
    */
   /**
+   * Upper bound on how many (node, candidate-edge) steps
+   * `findPathInSlice` will take before giving up and reporting no path.
+   * `findPath` only ever reaches this fallback after the cheap
+   * `findShortestPathBidirectional` attempt already failed (no path, or
+   * an invalid one) — the fast path handles the overwhelming majority of
+   * (source, sink) pairs on its own. This search is deterministic and
+   * sound (never reports a false positive) with or without the budget;
+   * the budget only trades a vanishingly rare false negative — giving up
+   * on a real but deeply-buried valid path — for a hard bound on runtime.
+   * Search restricted to CHA specifically has no context-based pruning at
+   * all (CHA never resolves points-to sets), so on a densely
+   * interconnected slice this is the only thing standing between a rare
+   * validity-mismatch and the search silently running for a very long
+   * time exploring simple paths that never turn out valid.
+   */
+  private val FindPathInSliceStepBudget = 200000
+
+  /**
    * Same fallback as before, but the call-site/context validity checks
    * (`isValidCallSitesAndContext`/`isValidContext`) are now embedded as
    * incremental pruning instead of validating a fully-built candidate
@@ -598,8 +616,10 @@ class Graph() {
     var stack =
       List(Frame(source, None, List(), List(), List(), candidatesFrom(source, visited)))
     var result: Option[List[GraphNode]] = None
+    var steps = 0
 
-    while (result.isEmpty && stack.nonEmpty) {
+    while (result.isEmpty && stack.nonEmpty && steps < FindPathInSliceStepBudget) {
+      steps += 1
       val top = stack.head
       top.pending match {
         case Nil =>
