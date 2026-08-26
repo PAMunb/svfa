@@ -103,11 +103,18 @@ case class StringLabel(label: String) extends EdgeLabel {
 /**
  * Represents a context-sensitive region for interprocedural analysis.
  * Used to track method call contexts in the SVFA graph.
+ *
+ * `context` is a *reference* to the call's base local's already-solved
+ * points-to set (from Soot/Spark's PAG) — never materialized into a Scala
+ * collection here. `isValidContext` uses `PointsToSet.hasNonEmptyIntersection`
+ * (Soot's own native set operation) to decide path validity, instead of
+ * comparing an arbitrary single representative for equality, or paying the
+ * O(points-to-set size) cost of copying it into a Scala Set.
  */
 case class ContextSensitiveRegion(
     statement: GraphNode,
     calleeMethod: String,
-    context: Set[String]
+    context: Option[soot.PointsToSet]
 )
 
 case class CallSiteLabel(
@@ -481,27 +488,45 @@ class Graph() {
     return validCS
   }
 
+  /**
+   * A candidate path is valid if some single allocation site could explain
+   * every hop along it — i.e. the allocation-site sets (points-to sets) of
+   * all its context-sensitive edges have a non-empty intersection. Edges
+   * with no allocation-site info (empty context) are neutral: they neither
+   * narrow nor validate the running intersection, since they carry no
+   * object-identity information one way or the other.
+   *
+   * This replaces an earlier "pick one arbitrary allocation site per edge,
+   * require exact equality across the whole path" heuristic that rejected
+   * real flows whenever two unrelated edges happened to pick different
+   * (but still overlapping, in their full sets) representatives.
+   */
   def isValidContext(
       csOpen: List[CallSiteLabel],
       csClose: List[CallSiteLabel]
   ): Boolean = {
-    var cs: Set[String] = Set()
-
     val csOpenAndClose = csOpen ++ csClose
 
-    /**
-    TO-DO: Implement a better way to calculate the right csOpen and Close
-    because the right one can lead to a bug in some edges cases. 
-    */
-
-
-    csOpenAndClose.foreach(open => {
-      if (open.value.context.nonEmpty) {
-        cs = cs + open.value.context.head
+    // Anchor on the first edge that carries a points-to set, then require
+    // every other edge's points-to set to share at least one possible
+    // object with it — via Soot's own native PointsToSet intersection, not
+    // by materializing/copying either set into a Scala collection. Edges
+    // with no points-to info (None) are neutral: CHA never has one, and
+    // they carry no object-identity information either way.
+    var anchor: Option[soot.PointsToSet] = None
+    var valid = true
+    csOpenAndClose.foreach(label => {
+      if (valid) {
+        label.value.context.foreach(pts => {
+          anchor match {
+            case None    => anchor = Some(pts)
+            case Some(a) => if (!a.hasNonEmptyIntersection(pts)) valid = false
+          }
+        })
       }
     })
 
-    cs.size <= 1
+    valid
   }
 
   def nodes(): scala.collection.Set[GraphNode] =
@@ -718,15 +743,14 @@ class Graph() {
       var l = e.label
       val label: String = e.label match {
         case c: CallSiteLabel => {
+          // Display only: `context` is now a live PointsToSet reference,
+          // not enumerable cheaply — just note presence.
+          val contextLabel = if (c.value.context.nonEmpty) "pts" else ""
           if (c.labelType == CallSiteOpenLabel) {
-            s"""[label="CS([${if (c.value.context.nonEmpty)
-                c.value.context.head}]"]"""
+            s"""[label="CS([$contextLabel]"]"""
           } else {
-            s"""[label="CS)[${if (c.value.context.nonEmpty)
-                c.value.context.head}]"]"""
+            s"""[label="CS)[$contextLabel]"]"""
           }
-//          if (c.labelType == CallSiteOpenLabel) { s"""[label="CS(${c.value.statement.stmt} [${c.value.context.head}]"]""" }
-//          else { s"""[label="CS)${c.value.statement.stmt} [${c.value.context.head}]"]""" }
         }
         case c: TrueLabelType  => { "[penwidth=3][label=\"T\"]" }
         case c: FalseLabelType => { "[penwidth=3][label=\"F\"]" }

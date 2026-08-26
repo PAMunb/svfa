@@ -1026,31 +1026,25 @@ abstract class JSVFA
     val target = createNode(caller, callStmt)
     val local = retStmt.asInstanceOf[ReturnStmt].getOp.asInstanceOf[Local]
 
-    val allocationSites = getAllocationSites(exp)
+    // One edge per (source,target) instead of one edge per allocation site —
+    // the label carries a *reference* to the already-solved points-to set
+    // (O(1), never materialized here) so `isValidContext` (Graph.scala) can
+    // validate paths via `PointsToSet.hasNonEmptyIntersection` instead of
+    // comparing an arbitrarily-sampled representative for equality.
+    val basePointsToSet = getBasePointsToSet(exp)
 
     calleeDefs
       .getDefsOfAt(local, retStmt)
       .forEach(sourceStmt => {
         val source = createNode(callee, sourceStmt)
 
-        if (allocationSites.nonEmpty) {
-          allocationSites.foreach(al => {
-            val csCloseLabel =
-              createCSCloseLabel(caller, callStmt, callee, Set(al.show()))
-            svg.addEdge(
-              source,
-              target,
-              csCloseLabel
-            ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
-          })
-        } else {
-          val csCloseLabel = createCSCloseLabel(caller, callStmt, callee, Set())
-          svg.addEdge(
-            source,
-            target,
-            csCloseLabel
-          ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
-        }
+        val csCloseLabel =
+          createCSCloseLabel(caller, callStmt, callee, basePointsToSet)
+        svg.addEdge(
+          source,
+          target,
+          csCloseLabel
+        ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
 
         // CASE 2
         if (local.getType.isInstanceOf[ArrayType]) {
@@ -1058,7 +1052,7 @@ abstract class JSVFA
           stores.foreach(sourceStmt => {
             val source = createNode(callee, sourceStmt)
             val csCloseLabel =
-              createCSCloseLabel(caller, callStmt, callee, Set())
+              createCSCloseLabel(caller, callStmt, callee, None)
             svg.addEdge(source, target, csCloseLabel) // add comment
           })
         }
@@ -1120,7 +1114,7 @@ abstract class JSVFA
           .forEach(sourceStmt => {
             val source = createNode(caller, sourceStmt)
             val csOpenLabel =
-              createCSOpenLabel(caller, callStatement.base, callee, Set())
+              createCSOpenLabel(caller, callStatement.base, callee, None)
             svg.addEdge(
               source,
               target,
@@ -1152,32 +1146,22 @@ abstract class JSVFA
 
     val local = exp.getArg(pmtCount).asInstanceOf[Local]
 
-    val allocationSites = getAllocationSites(exp)
+    // See defsToCallSite above: a reference to the already-solved points-to
+    // set, not a materialized/stringified sample.
+    val basePointsToSet = getBasePointsToSet(exp)
 
     defs
       .getDefsOfAt(local, stmt.base)
       .forEach(sourceStmt => {
         val source = createNode(caller, sourceStmt)
 
-        if (allocationSites.nonEmpty) {
-          allocationSites.foreach(al => {
-            val csOpenLabel =
-              createCSOpenLabel(caller, stmt.base, callee, Set(al.show())) //
-            svg.addEdge(
-              source,
-              target,
-              csOpenLabel
-            ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
-          })
-        } else {
-          val csOpenLabel =
-            createCSOpenLabel(caller, stmt.base, callee, Set()) //
-          svg.addEdge(
-            source,
-            target,
-            csOpenLabel
-          ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
-        }
+        val csOpenLabel =
+          createCSOpenLabel(caller, stmt.base, callee, basePointsToSet)
+        svg.addEdge(
+          source,
+          target,
+          csOpenLabel
+        ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
       })
   }
 
@@ -1308,7 +1292,7 @@ abstract class JSVFA
       method: SootMethod,
       stmt: soot.Unit,
       callee: SootMethod,
-      context: Set[String]
+      context: Option[soot.PointsToSet]
   ): CallSiteLabel = {
     val statement = br.unb.cic.soot.graph.GraphNode(
       className = method.getDeclaringClass.toString,
@@ -1329,7 +1313,7 @@ abstract class JSVFA
       method: SootMethod,
       stmt: soot.Unit,
       callee: SootMethod,
-      context: Set[String]
+      context: Option[soot.PointsToSet]
   ): CallSiteLabel = {
     val statement = br.unb.cic.soot.graph.GraphNode(
       className = method.getDeclaringClass.toString,
