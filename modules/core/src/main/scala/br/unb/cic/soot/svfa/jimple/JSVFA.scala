@@ -1192,6 +1192,31 @@ abstract class JSVFA
     case _ => ListBuffer[GraphNode]()
   }
 
+  /**
+   * Points-to set of a call's base local, as a live reference into the
+   * already-solved PAG — never materialized into GraphNodes/strings. Not
+   * wired into any call site yet.
+   */
+  private def getBasePointsToSet(invokeExpr: InvokeExpr): Option[soot.PointsToSet] =
+    invokeExpr match {
+      case exp: VirtualInvokeExpr =>
+        exp.getBase match {
+          case base: Local => getPointsToSet(base)
+          case _           => None
+        }
+      case _ => None
+    }
+
+  private def getPointsToSet(local: Local): Option[soot.PointsToSet] = {
+    val pta =
+      if (pointsToAnalysis.isInstanceOf[PAG]) pointsToAnalysis.asInstanceOf[PAG]
+      else if (pointsToAnalysis.isInstanceOf[DemandCSPointsTo])
+        pointsToAnalysis.asInstanceOf[DemandCSPointsTo].getPAG
+      else null
+
+    if (pta == null) None else Some(pta.reachingObjects(local))
+  }
+
   private def getAllocationSites(base: Local): ListBuffer[GraphNode] =
     findAllocationSites(base, false) match {
       case v if v.isEmpty => findAllocationSites(base)
