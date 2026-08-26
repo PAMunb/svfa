@@ -478,37 +478,62 @@ class Graph() {
       return List(fastPath.get)
     }
 
-    val pathBuilder = graph.newPathBuilder(gNode(source))
-    val paths =
-      findPaths(source, target, HashSet[GraphNode](), pathBuilder, List())
+    val paths = findPaths(source, target, HashSet[GraphNode]())
     val validPaths = paths.filter(path => isValidPath(path))
     return validPaths.map(path => path.nodes.map(node => node.toOuter).toList)
   }
 
+  /**
+   * Exhaustive (within a single DFS branch's worth of backtracking),
+   * deterministic fallback used by `findPath` when the fast bidirectional
+   * shortest path doesn't exist or doesn't validate. Fixes two bugs the
+   * previous version had: the `foreach` below used to `return` on the
+   * first unvisited neighbor unconditionally, so a dead end there never
+   * backtracked to try the next sibling — now it only returns when that
+   * branch actually found something, otherwise it keeps trying siblings.
+   * Neighbor order is sorted by `stableKey` instead of Set iteration
+   * order, for the same determinism reason as `findShortestPathBidirectional`.
+   *
+   * Builds the final `graph.Path` once, from the confirmed node sequence,
+   * instead of mutating a shared `graph.PathBuilder` across sibling
+   * attempts — that mutable builder is only ever touched here for an
+   * already-confirmed path, so backtracking never has to "undo" anything
+   * on it.
+   */
   def findPaths(
       source: GraphNode,
       target: GraphNode,
-      visited: HashSet[GraphNode],
-      currentPath: graph.PathBuilder,
-      paths: List[graph.Path]
-  ): List[graph.Path] = {
-    // TODO: find some optimal way to travel in graph
-    val adjacencyList = gNode(source).diSuccessors.map(_node => _node.toOuter)
+      visited: HashSet[GraphNode]
+  ): List[graph.Path] =
+    findPathNodeList(source, target, visited) match {
+      case Some(nodes) =>
+        val builder = graph.newPathBuilder(gNode(nodes.head))
+        nodes.tail.foreach(n => builder += gNode(n))
+        List(builder.result)
+      case None => List()
+    }
+
+  private def findPathNodeList(
+      source: GraphNode,
+      target: GraphNode,
+      visited: HashSet[GraphNode]
+  ): Option[List[GraphNode]] = {
+    val adjacencyList =
+      gNode(source).diSuccessors.map(_node => _node.toOuter).toList.sortBy(stableKey)
+
     if (adjacencyList.contains(target)) {
-      currentPath += gNode(target)
-      //      return paths ++ List(currentPath.result)
-      return List(currentPath.result)
+      return Some(List(source, target))
     }
 
     adjacencyList.foreach(next => {
       if (!visited(next)) {
-        var nextPath = currentPath
-        nextPath += gNode(next)
-        return findPaths(next, target, visited + next, nextPath, paths)
+        findPathNodeList(next, target, visited + next) match {
+          case Some(rest) => return Some(source :: rest)
+          case None       => // dead end, try the next neighbor
+        }
       }
     })
-    return List()
-
+    None
   }
 
   def getUnmatchedCallSites(
