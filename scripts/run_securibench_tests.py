@@ -22,6 +22,16 @@ from typing import List, Optional, Tuple, Dict, Any
 
 # Configuration constants
 CALL_GRAPH_ALGORITHMS = ['spark', 'cha', 'spark_library', 'rta', 'vta']
+
+# Default JVM heap for the sbt process running the analysis. This overrides
+# SBT_OPTS at subprocess-invocation time: the shell environment may already
+# export a smaller SBT_OPTS (e.g. "-Xmx4G" in a dotfile), and sbt's launcher
+# script only auto-adds its own default heap when it finds no -Xmx/-Xms
+# anywhere (java args, JAVA_TOOL_OPTIONS, JDK_JAVA_OPTIONS, or SBT_OPTS) -- so
+# a smaller SBT_OPTS from the environment silently wins over any -J-Xmx flag
+# passed on the command line otherwise. RTA/VTA/SPARK can build much larger
+# call graphs than CHA and are prone to GC-thrashing/OOM on a small heap.
+DEFAULT_SBT_HEAP_OPTS = '-Xms2G -Xmx12G -Xss4M'
 TEST_SUITES = [
     'inter', 'basic', 'aliasing', 'arrays', 'collections', 
     'datastructures', 'factories', 'pred', 'reflection', 
@@ -151,7 +161,10 @@ def show_help() -> None:
 {Colors.BOLD}PERFORMANCE:{Colors.RESET}
     - Total execution time: ~3-5 minutes for all 122 tests (single call graph)
     - --all-call-graphs: ~15-25 minutes (5x longer, all algorithms)
-    - Memory usage: High (Soot framework + call graph construction)
+    - Memory usage: High (Soot framework + call graph construction). RTA/VTA/SPARK can build
+      much larger call graphs than CHA and are prone to GC-thrashing/OOM on a small heap --
+      the script sets SBT_OPTS to "{DEFAULT_SBT_HEAP_OPTS}" by default (overriding any smaller
+      SBT_OPTS from the shell).
     - Disk usage: ~122 JSON files (~1-2MB total per call graph)
 
 {Colors.BOLD}NEXT STEPS:{Colors.RESET}
@@ -262,11 +275,11 @@ def count_test_results(results_dir: Path) -> Tuple[int, int, int]:
 def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tuple[bool, int]:
     """Execute a specific test suite with given call graph algorithm."""
     suite_name = get_suite_name(suite_key)
-    
+
     print_header(f"Executing {suite_name} tests (securibench.micro.{suite_key}) with {callgraph} call graph")
-    
+
     start_time = time.time()
-    
+
     # Build SBT command
     cmd = [
         'sbt',
@@ -274,17 +287,26 @@ def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tupl
         'project securibench',
         f'testOnly *Securibench{suite_name}Executor'
     ]
-    
+
+    # Override SBT_OPTS for this subprocess so our heap setting actually wins.
+    # sbt's launcher only auto-adds its own default heap when no -Xmx/-Xms is
+    # found anywhere it checks (java args, JAVA_TOOL_OPTIONS, JDK_JAVA_OPTIONS,
+    # SBT_OPTS) -- a smaller SBT_OPTS inherited from the calling shell would
+    # otherwise silently take precedence over anything we pass here.
+    env = os.environ.copy()
+    env['SBT_OPTS'] = DEFAULT_SBT_HEAP_OPTS
+
     if verbose:
-        print_info(f"Executing: {' '.join(cmd)}")
-    
+        print_info(f"Executing: {' '.join(cmd)} (SBT_OPTS={DEFAULT_SBT_HEAP_OPTS})")
+
     try:
         # Execute SBT command
         result = subprocess.run(
             cmd,
             capture_output=not verbose,
             text=True,
-            timeout=3600  # 1 hour timeout
+            timeout=3600,  # 1 hour timeout
+            env=env
         )
         
         end_time = time.time()
@@ -524,14 +546,14 @@ def main() -> int:
                        help='Show this help message')
     parser.add_argument('--all-call-graphs', action='store_true',
                        help='Execute tests with all call graph algorithms and generate combined metrics')
-    
+
     args = parser.parse_args()
-    
+
     # Handle help
     if args.help:
         show_help()
         return 0
-    
+
     # Handle --all-call-graphs option
     if args.all_call_graphs:
         # For --all-call-graphs, we ignore suite and callgraph arguments
@@ -595,7 +617,7 @@ def main() -> int:
     else:
         print_info(f"Starting test execution for {get_suite_name(args.suite)} suite...")
         print()
-        
+
         success, test_count = execute_suite(args.suite, args.callgraph, args.verbose)
         if success:
             total_tests = test_count
