@@ -1,7 +1,7 @@
 package br.unb.cic.soot.svfa.jimple
 
 import java.util
-import br.unb.cic.soot.svfa.jimple.rules.RuleAction
+import br.unb.cic.soot.svfa.jimple.rules.{MissingActiveBodyRule, RuleAction}
 import br.unb.cic.soot.graph.{CallSiteCloseLabel, CallSiteLabel, CallSiteOpenLabel, ContextSensitiveRegion, GraphNode, SinkNode, SourceNode, SimpleNode}
 import br.unb.cic.soot.svfa.jimple.dsl.{DSL, LanguageParser, RuleActions}
 import br.unb.cic.soot.svfa.{SVFA, SourceSinkDef}
@@ -37,6 +37,9 @@ abstract class JSVFA
     scala.collection.mutable.HashMap.empty[soot.Value, GraphNode]
   val arrayStores =
     scala.collection.mutable.HashMap.empty[Local, List[soot.Unit]]
+  val instanceFieldStoreIndex =
+    scala.collection.mutable.HashMap
+      .empty[SootField, scala.collection.mutable.HashSet[GraphNode]]
   val languageParser = new LanguageParser(this)
 
   val methodRules = languageParser.evaluate(code())
@@ -300,7 +303,7 @@ abstract class JSVFA
         
       case (fieldRef: InstanceFieldRef, constant: Constant) =>
         // obj.field = constant - Check if this creates a taint source
-        handleConstantFieldAssignment(assignStmt, method)
+        handleConstantFieldAssignment(assignStmt, fieldRef, method)
         
       case (staticRef: StaticFieldRef, local: Local) =>
         // ClassName.staticField = p - Store to static field
@@ -326,9 +329,12 @@ abstract class JSVFA
    * This is a specialized helper for processAssignment when dealing with:
    * obj.field = "tainted_constant" or obj.field = 42
    */
-  private def handleConstantFieldAssignment(assignStmt: AssignStmt, method: SootMethod): Unit = {
+  private def handleConstantFieldAssignment(assignStmt: AssignStmt, fieldRef: InstanceFieldRef, method: SootMethod): Unit = {
     if (analyze(assignStmt.stmt) == SourceNode) {
-      svg.addNode(createNode(method, assignStmt.stmt))
+      val node = createNode(method, assignStmt.stmt)
+      svg.addNode(node)
+      instanceFieldStoreIndex
+        .getOrElseUpdate(fieldRef.getField, scala.collection.mutable.HashSet.empty) += node
     }
   }
 
@@ -392,7 +398,6 @@ abstract class JSVFA
    * 
    * This method implements a bounded call graph traversal to balance precision and performance:
    * - If no call graph edges exist, falls back to the declared method from the invoke expression
-   * - If edges exist, traverses up to MAX_CALL_DEPTH edges to handle polymorphic calls
    * - Prevents infinite recursion by tracking visited methods and avoiding self-calls
    * 
    * @param callStmt The statement containing the method call
@@ -430,7 +435,6 @@ abstract class JSVFA
     val visited = scala.collection.mutable.Set[SootMethod]()
     
     edges.asScala
-      .take(MAX_CALL_DEPTH)
       .map(_.getTgt.method())
       .filter(isValidCallee(_, caller, visited))
       .foreach { callee =>
@@ -473,9 +477,6 @@ abstract class JSVFA
     !visited.contains(callee)
   }
 
-  /** Maximum number of call graph edges to traverse per call site to prevent performance issues */
-  private val MAX_CALL_DEPTH = 2
-
   /**
    * Processes a method invocation with a specific callee, handling taint flow analysis
    * across method boundaries.
@@ -505,7 +506,7 @@ abstract class JSVFA
     }
 
     // Handle special node types first
-    handleSpecialNodeTypes(callStmt, exp, caller, defs) match {
+    handleSpecialNodeTypes(callStmt, exp, caller, callee, defs) match {
       case Some(_) => return // Early exit for sinks and handled method rules
       case None => // Continue with interprocedural analysis
     }
@@ -532,6 +533,7 @@ abstract class JSVFA
       callStmt: Statement,
       exp: InvokeExpr,
       caller: SootMethod,
+      callee: SootMethod,
       defs: SimpleLocalDefs
   ): Option[Unit] = {
     val nodeType = analyze(callStmt.base)
@@ -545,14 +547,37 @@ abstract class JSVFA
         Some(())
         
       case SourceNode =>
-        // Handle source methods - add source node to graph
+        // Handle source methods - add source node to graph. Mirrors the
+        // SinkNode case above: a source is a black box by definition (its
+        // signature is in sourceList), so nothing inside whatever CHA
+        // resolved for this call should refine that classification, and
+        // continuing to traverse risks wandering into unrelated code the
+        // call graph happened to resolve to.
         val sourceNode = createNode(caller, callStmt.base)
         svg.addNode(sourceNode)
-        None // Continue processing
+        Some(())
         
       case _ =>
-        // Check for applicable method rules (e.g., HttpSession.setAttribute)
-        methodRules.find(_.check(exp.getMethod)) match {
+        // Check for applicable method rules (e.g., HttpSession.setAttribute,
+        // native methods, methods without a body). `MissingActiveBodyRule`
+        // is checked against `callee` (the method the call graph actually
+        // resolved) rather than `exp.getMethod` (the method declared at the
+        // call site) — for any polymorphic call (interface or abstract
+        // superclass method), `exp.getMethod` is *always* abstract/bodyless
+        // regardless of which concrete implementation the call graph
+        // resolved, so checking it here silently discarded every
+        // polymorphic call's interprocedural flow, unconditionally. Every
+        // other rule kind (named-method identity, native) keeps matching on
+        // `exp.getMethod`: those rules exist to recognize *which API was
+        // called at the source* (e.g. `HttpSession.setAttribute`), which is
+        // a property of the call site, not of whichever concrete class
+        // happens to implement it — swapping those to `callee` too would
+        // risk the rule no longer matching when the callee resolves to some
+        // unrelated implementing class.
+        methodRules.find {
+          case rule: MissingActiveBodyRule => callee != null && rule.check(callee)
+          case rule                        => rule.check(exp.getMethod)
+        } match {
           case Some(rule) =>
             // Apply rule with SVFA context
             applyRuleWithContext(rule, caller, callStmt.base.asInstanceOf[jimple.Stmt], defs)
@@ -934,6 +959,8 @@ abstract class JSVFA
               source,
               target
             ) // update 'edge' FROM stmt where right value was instanced TO current stmt
+            instanceFieldStoreIndex
+              .getOrElseUpdate(fieldRef.getField, scala.collection.mutable.HashSet.empty) += target
           })
         //          })
         //        }
@@ -1023,31 +1050,25 @@ abstract class JSVFA
     val target = createNode(caller, callStmt)
     val local = retStmt.asInstanceOf[ReturnStmt].getOp.asInstanceOf[Local]
 
-    val allocationSites = getAllocationSites(exp)
+    // One edge per (source,target) instead of one edge per allocation site —
+    // the label carries a *reference* to the already-solved points-to set
+    // (O(1), never materialized here) so `isValidContext` (Graph.scala) can
+    // validate paths via `PointsToSet.hasNonEmptyIntersection` instead of
+    // comparing an arbitrarily-sampled representative for equality.
+    val basePointsToSet = getBasePointsToSet(exp)
 
     calleeDefs
       .getDefsOfAt(local, retStmt)
       .forEach(sourceStmt => {
         val source = createNode(callee, sourceStmt)
 
-        if (allocationSites.nonEmpty) {
-          allocationSites.foreach(al => {
-            val csCloseLabel =
-              createCSCloseLabel(caller, callStmt, callee, Set(al.show()))
-            svg.addEdge(
-              source,
-              target,
-              csCloseLabel
-            ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
-          })
-        } else {
-          val csCloseLabel = createCSCloseLabel(caller, callStmt, callee, Set())
-          svg.addEdge(
-            source,
-            target,
-            csCloseLabel
-          ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
-        }
+        val csCloseLabel =
+          createCSCloseLabel(caller, callStmt, callee, basePointsToSet)
+        svg.addEdge(
+          source,
+          target,
+          csCloseLabel
+        ) // create an EDGE FROM "definition stmt from return variable " TO "call site stmt"
 
         // CASE 2
         if (local.getType.isInstanceOf[ArrayType]) {
@@ -1055,7 +1076,7 @@ abstract class JSVFA
           stores.foreach(sourceStmt => {
             val source = createNode(callee, sourceStmt)
             val csCloseLabel =
-              createCSCloseLabel(caller, callStmt, callee, Set())
+              createCSCloseLabel(caller, callStmt, callee, None)
             svg.addEdge(source, target, csCloseLabel) // add comment
           })
         }
@@ -1117,7 +1138,7 @@ abstract class JSVFA
           .forEach(sourceStmt => {
             val source = createNode(caller, sourceStmt)
             val csOpenLabel =
-              createCSOpenLabel(caller, callStatement.base, callee, Set())
+              createCSOpenLabel(caller, callStatement.base, callee, None)
             svg.addEdge(
               source,
               target,
@@ -1149,32 +1170,22 @@ abstract class JSVFA
 
     val local = exp.getArg(pmtCount).asInstanceOf[Local]
 
-    val allocationSites = getAllocationSites(exp)
+    // See defsToCallSite above: a reference to the already-solved points-to
+    // set, not a materialized/stringified sample.
+    val basePointsToSet = getBasePointsToSet(exp)
 
     defs
       .getDefsOfAt(local, stmt.base)
       .forEach(sourceStmt => {
         val source = createNode(caller, sourceStmt)
 
-        if (allocationSites.nonEmpty) {
-          allocationSites.foreach(al => {
-            val csOpenLabel =
-              createCSOpenLabel(caller, stmt.base, callee, Set(al.show())) //
-            svg.addEdge(
-              source,
-              target,
-              csOpenLabel
-            ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
-          })
-        } else {
-          val csOpenLabel =
-            createCSOpenLabel(caller, stmt.base, callee, Set()) //
-          svg.addEdge(
-            source,
-            target,
-            csOpenLabel
-          ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
-        }
+        val csOpenLabel =
+          createCSOpenLabel(caller, stmt.base, callee, basePointsToSet)
+        svg.addEdge(
+          source,
+          target,
+          csOpenLabel
+        ) // creates an 'edge' FROM stmt where the variable is defined TO stmt where the variable is loaded
       })
   }
 
@@ -1187,6 +1198,46 @@ abstract class JSVFA
         case _           => ListBuffer[GraphNode]()
       }
     case _ => ListBuffer[GraphNode]()
+  }
+
+  /**
+   * Points-to set of a call's base local, as a live reference into the
+   * already-solved PAG — never materialized into GraphNodes/strings. Not
+   * wired into any call site yet.
+   */
+  private def getBasePointsToSet(invokeExpr: InvokeExpr): Option[soot.PointsToSet] =
+    invokeExpr match {
+      case exp: VirtualInvokeExpr =>
+        exp.getBase match {
+          case base: Local => getPointsToSet(base)
+          case _           => None
+        }
+      case _ => None
+    }
+
+  private def getPointsToSet(local: Local): Option[soot.PointsToSet] = {
+    val pta =
+      if (pointsToAnalysis.isInstanceOf[PAG]) pointsToAnalysis.asInstanceOf[PAG]
+      else if (pointsToAnalysis.isInstanceOf[DemandCSPointsTo])
+        pointsToAnalysis.asInstanceOf[DemandCSPointsTo].getPAG
+      else null
+
+    if (pta == null) None
+    else {
+      // An empty PointsToSet means Spark had no allocation site to offer
+      // for this local — typically because it traces back to an
+      // unmodeled/opaque call (an interface method with no body, or the
+      // "this" receiver of a library method once library internals are
+      // involved). That is "no information", not "provably points to
+      // nothing" — treating it as a real (if empty) set made
+      // `isValidContext` (Graph.scala) compare two empty sets and call
+      // `hasNonEmptyIntersection` false, silently rejecting every flow
+      // whose context happened to be unresolvable this way. Normalizing
+      // empty to `None` makes those edges neutral in the validity check,
+      // the same as CHA's "no points-to analysis at all" case already is.
+      val pts = pta.reachingObjects(local)
+      if (pts.isEmpty) None else Some(pts)
+    }
   }
 
   private def getAllocationSites(base: Local): ListBuffer[GraphNode] =
@@ -1280,7 +1331,7 @@ abstract class JSVFA
       method: SootMethod,
       stmt: soot.Unit,
       callee: SootMethod,
-      context: Set[String]
+      context: Option[soot.PointsToSet]
   ): CallSiteLabel = {
     val statement = br.unb.cic.soot.graph.GraphNode(
       className = method.getDeclaringClass.toString,
@@ -1301,7 +1352,7 @@ abstract class JSVFA
       method: SootMethod,
       stmt: soot.Unit,
       callee: SootMethod,
-      context: Set[String]
+      context: Option[soot.PointsToSet]
   ): CallSiteLabel = {
     val statement = br.unb.cic.soot.graph.GraphNode(
       className = method.getDeclaringClass.toString,
@@ -1442,30 +1493,31 @@ abstract class JSVFA
 
   def findFieldStores(local: Local, field: SootField): ListBuffer[GraphNode] = {
     val res: ListBuffer[GraphNode] = new ListBuffer[GraphNode]()
-    for (node <- svg.nodes()) {
-      if (node.unit().isInstanceOf[soot.jimple.AssignStmt]) {
-        val assignment = node.unit().asInstanceOf[soot.jimple.AssignStmt]
-        if (assignment.getLeftOp.isInstanceOf[InstanceFieldRef]) {
-          val base = assignment.getLeftOp
-            .asInstanceOf[InstanceFieldRef]
-            .getBase
-            .asInstanceOf[Local]
-          if (
-            pointsToAnalysis
-              .reachingObjects(base)
-              .hasNonEmptyIntersection(
-                pointsToAnalysis.reachingObjects(local)
-              ) || areThisFromSameClass(base, local)
-          ) {
-            if (
-              field.equals(
-                assignment.getLeftOp.asInstanceOf[InstanceFieldRef].getField
-              )
-            ) {
-              res += createNode(node.method(), node.unit())
-            }
-          }
-        }
+    val candidates =
+      instanceFieldStoreIndex.getOrElse(field, scala.collection.mutable.HashSet.empty)
+    for (node <- candidates) {
+      val assignment = node.unit().asInstanceOf[soot.jimple.AssignStmt]
+      val base = assignment.getLeftOp
+        .asInstanceOf[InstanceFieldRef]
+        .getBase
+        .asInstanceOf[Local]
+      val ptsBase = pointsToAnalysis.reachingObjects(base)
+      val ptsLocal = pointsToAnalysis.reachingObjects(local)
+      // An empty points-to set means Spark had no allocation site to offer
+      // for that local (e.g. it traces back to an unmodeled/opaque call,
+      // or — as in `StrongUpdates4` — to the analyzed method's own `this`,
+      // whose allocation site lives in an unmodeled test harness), not
+      // "this local provably points to nothing". Treating it as a real
+      // empty set here made `hasNonEmptyIntersection` reject `base`/`local`
+      // pairs with no real evidence of being different objects — including
+      // the degenerate case where `base` and `local` are the very same
+      // `Local` instance. Same reasoning as `isValidContext`'s
+      // `PointsToSet` handling in Graph.scala, applied here to this
+      // alias check instead.
+      val maybeAlias =
+        ptsBase.isEmpty || ptsLocal.isEmpty || ptsBase.hasNonEmptyIntersection(ptsLocal)
+      if (maybeAlias || areThisFromSameClass(base, local)) {
+        res += createNode(node.method(), node.unit())
       }
     }
     return res
@@ -1498,15 +1550,6 @@ abstract class JSVFA
   //   * the types of the nodes.
   //   */
 
-  def containsNodeDF(node: GraphNode): GraphNode = {
-    for (n <- svg.edges()) {
-      var auxNodeFrom = n.from.asInstanceOf[GraphNode]
-      var auxNodeTo = n.to.asInstanceOf[GraphNode]
-      if (auxNodeFrom.equals(node)) return n.from.asInstanceOf[GraphNode]
-      if (auxNodeTo.equals(node)) return n.to.asInstanceOf[GraphNode]
-    }
-    return null
-  }
   override def updateGraph(
       source: GraphNode,
       target: GraphNode
@@ -1521,32 +1564,11 @@ abstract class JSVFA
   ): Boolean = {
     var res = false
     if (!runInFullSparsenessMode() || true) {
-      addNodeAndEdgeDF(
-        source.asInstanceOf[GraphNode],
-        target.asInstanceOf[GraphNode]
-      )
+      svg.addEdge(source, target)
 
       res = true
     }
     return res
-  }
-
-  def addNodeAndEdgeDF(from: GraphNode, to: GraphNode): Unit = {
-    var auxNodeFrom = containsNodeDF(from)
-    var auxNodeTo = containsNodeDF(to)
-    if (auxNodeFrom != null) {
-      if (auxNodeTo != null) {
-        svg.addEdge(auxNodeFrom, auxNodeTo)
-      } else {
-        svg.addEdge(auxNodeFrom, to)
-      }
-    } else {
-      if (auxNodeTo != null) {
-        svg.addEdge(from, auxNodeTo)
-      } else {
-        svg.addEdge(from, to)
-      }
-    }
   }
 
 }
