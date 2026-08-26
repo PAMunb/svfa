@@ -1198,7 +1198,22 @@ abstract class JSVFA
         pointsToAnalysis.asInstanceOf[DemandCSPointsTo].getPAG
       else null
 
-    if (pta == null) None else Some(pta.reachingObjects(local))
+    if (pta == null) None
+    else {
+      // An empty PointsToSet means Spark had no allocation site to offer
+      // for this local — typically because it traces back to an
+      // unmodeled/opaque call (an interface method with no body, or the
+      // "this" receiver of a library method once library internals are
+      // involved). That is "no information", not "provably points to
+      // nothing" — treating it as a real (if empty) set made
+      // `isValidContext` (Graph.scala) compare two empty sets and call
+      // `hasNonEmptyIntersection` false, silently rejecting every flow
+      // whose context happened to be unresolvable this way. Normalizing
+      // empty to `None` makes those edges neutral in the validity check,
+      // the same as CHA's "no points-to analysis at all" case already is.
+      val pts = pta.reachingObjects(local)
+      if (pts.isEmpty) None else Some(pts)
+    }
   }
 
   private def getAllocationSites(base: Local): ListBuffer[GraphNode] =
