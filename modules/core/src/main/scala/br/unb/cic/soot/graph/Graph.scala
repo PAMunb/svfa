@@ -368,14 +368,114 @@ class Graph() {
     return isValidPath(gPath.get)
   }
 
-  def findPath(source: GraphNode, target: GraphNode): List[List[GraphNode]] = {
-    val fastPath = gNode(source).pathTo(gNode(target))
-    val findAllConflictPaths = false
+  /**
+   * Stable, content-based ordering key for a node — never depends on JVM
+   * object identity (unlike `GraphNode`'s case-class-derived `hashCode`,
+   * which embeds `soot.Unit`/`soot.SootMethod` identity hashes). Used to
+   * make traversal order in `findPath` reproducible across runs.
+   */
+  private def stableKey(n: GraphNode): String =
+    s"${n.className}|${n.methodSignature}|${n.line}|${n.stmt}"
 
-    if (
-      !findAllConflictPaths && fastPath.isDefined && isValidPath(fastPath.get)
+  /**
+   * Deterministic shortest path between `source` and `target`, found by
+   * expanding BFS frontiers from both ends simultaneously and stopping at
+   * the first node reached from both sides. Ignores edge validity
+   * entirely — it is the cheap, common-case-fast first attempt `findPath`
+   * makes before falling back to the exhaustive `findPaths` below for the
+   * rarer case where the graph-theoretic shortest path isn't a *valid*
+   * flow.
+   *
+   * Neighbor expansion is sorted by `stableKey`, so the same graph always
+   * yields the same path regardless of the underlying Set's
+   * hash-iteration order — replacing the old `gNode(source).pathTo(...)`
+   * (scala-graph's own path search), confirmed non-deterministic in
+   * practice: the exact same source/sink pair returned a 6-node direct
+   * path in one run and a spurious 251-node detour through unrelated code
+   * in another.
+   */
+  def findShortestPathBidirectional(
+      source: GraphNode,
+      target: GraphNode
+  ): Option[List[GraphNode]] = {
+    if (source == target) return Some(List(source))
+
+    val forwardParent = scala.collection.mutable.Map[GraphNode, GraphNode]()
+    val backwardParent = scala.collection.mutable.Map[GraphNode, GraphNode]()
+    val forwardVisited = scala.collection.mutable.Set[GraphNode](source)
+    val backwardVisited = scala.collection.mutable.Set[GraphNode](target)
+    var forwardFrontier = List(source)
+    var backwardFrontier = List(target)
+    var meetingNode: Option[GraphNode] = None
+
+    def sortedNeighbors(n: GraphNode, forward: Boolean): List[GraphNode] = {
+      val neighbors =
+        if (forward) gNode(n).diSuccessors.map(_.toOuter)
+        else gNode(n).diPredecessors.map(_.toOuter)
+      neighbors.toList.sortBy(stableKey)
+    }
+
+    while (
+      meetingNode.isEmpty && forwardFrontier.nonEmpty && backwardFrontier.nonEmpty
     ) {
-      return List(fastPath.get.nodes.map(node => node.toOuter).toList)
+      if (forwardFrontier.size <= backwardFrontier.size) {
+        val nextFrontier = scala.collection.mutable.ListBuffer[GraphNode]()
+        forwardFrontier.foreach(n => {
+          sortedNeighbors(n, forward = true).foreach(next => {
+            if (!forwardVisited(next)) {
+              forwardVisited += next
+              forwardParent(next) = n
+              nextFrontier += next
+              if (meetingNode.isEmpty && backwardVisited(next)) {
+                meetingNode = Some(next)
+              }
+            }
+          })
+        })
+        forwardFrontier = nextFrontier.toList
+      } else {
+        val nextFrontier = scala.collection.mutable.ListBuffer[GraphNode]()
+        backwardFrontier.foreach(n => {
+          sortedNeighbors(n, forward = false).foreach(next => {
+            if (!backwardVisited(next)) {
+              backwardVisited += next
+              backwardParent(next) = n
+              nextFrontier += next
+              if (meetingNode.isEmpty && forwardVisited(next)) {
+                meetingNode = Some(next)
+              }
+            }
+          })
+        })
+        backwardFrontier = nextFrontier.toList
+      }
+    }
+
+    def walkBack(
+        node: GraphNode,
+        parent: scala.collection.mutable.Map[GraphNode, GraphNode]
+    ): List[GraphNode] = {
+      var path = List(node)
+      var current = node
+      while (parent.contains(current)) {
+        current = parent(current)
+        path = current :: path
+      }
+      path
+    }
+
+    meetingNode.map(m => {
+      val forwardPart = walkBack(m, forwardParent) // source .. m
+      val backwardPart = walkBack(m, backwardParent).reverse.tail // (m+1) .. target
+      forwardPart ++ backwardPart
+    })
+  }
+
+  def findPath(source: GraphNode, target: GraphNode): List[List[GraphNode]] = {
+    val fastPath = findShortestPathBidirectional(source, target)
+
+    if (fastPath.isDefined && isValidPath(source, target, fastPath.get)) {
+      return List(fastPath.get)
     }
 
     val pathBuilder = graph.newPathBuilder(gNode(source))
