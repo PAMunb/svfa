@@ -128,6 +128,9 @@ def show_help() -> None:
     --clean             Remove all previous test data before execution
     --verbose, -v       Enable verbose output
     --all-call-graphs   Execute tests with all call graph algorithms and generate combined metrics
+    --heap OPTS         JVM heap options passed to sbt (default: "{DEFAULT_SBT_HEAP_OPTS}").
+                        Overrides any SBT_OPTS set in the shell -- RTA/VTA/SPARK can build much
+                        larger call graphs than CHA and may thrash on GC or OOM on a small heap.
 
 {Colors.BOLD}AVAILABLE TEST SUITES:{Colors.RESET}"""
     
@@ -150,6 +153,7 @@ def show_help() -> None:
     {sys.argv[0]} --clean                   # Clean previous data and execute all tests
     {sys.argv[0]} --all-call-graphs         # Execute all suites with all 5 call graph algorithms
     {sys.argv[0]} --all-call-graphs --clean # Clean data and run comprehensive analysis
+    {sys.argv[0]} basic rta --heap "-Xms4G -Xmx24G -Xss4M"  # RTA with a bigger heap
     {sys.argv[0]} --help                    # Show this help
 
 {Colors.BOLD}OUTPUT:{Colors.RESET}
@@ -164,7 +168,7 @@ def show_help() -> None:
     - Memory usage: High (Soot framework + call graph construction). RTA/VTA/SPARK can build
       much larger call graphs than CHA and are prone to GC-thrashing/OOM on a small heap --
       the script sets SBT_OPTS to "{DEFAULT_SBT_HEAP_OPTS}" by default (overriding any smaller
-      SBT_OPTS from the shell).
+      SBT_OPTS from the shell); use --heap to raise it further if a run is stuck in GC.
     - Disk usage: ~122 JSON files (~1-2MB total per call graph)
 
 {Colors.BOLD}NEXT STEPS:{Colors.RESET}
@@ -272,7 +276,8 @@ def count_test_results(results_dir: Path) -> Tuple[int, int, int]:
     return total_count, passed_count, failed_count
 
 
-def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tuple[bool, int]:
+def execute_suite(suite_key: str, callgraph: str, verbose: bool = False,
+                   sbt_heap_opts: str = DEFAULT_SBT_HEAP_OPTS) -> Tuple[bool, int]:
     """Execute a specific test suite with given call graph algorithm."""
     suite_name = get_suite_name(suite_key)
 
@@ -294,10 +299,10 @@ def execute_suite(suite_key: str, callgraph: str, verbose: bool = False) -> Tupl
     # SBT_OPTS) -- a smaller SBT_OPTS inherited from the calling shell would
     # otherwise silently take precedence over anything we pass here.
     env = os.environ.copy()
-    env['SBT_OPTS'] = DEFAULT_SBT_HEAP_OPTS
+    env['SBT_OPTS'] = sbt_heap_opts
 
     if verbose:
-        print_info(f"Executing: {' '.join(cmd)} (SBT_OPTS={DEFAULT_SBT_HEAP_OPTS})")
+        print_info(f"Executing: {' '.join(cmd)} (SBT_OPTS={sbt_heap_opts})")
 
     try:
         # Execute SBT command
@@ -452,7 +457,8 @@ def generate_aggregate_csv(all_results: Dict[str, Dict[str, List[Dict[str, Any]]
     return filename
 
 
-def execute_all_call_graphs(verbose: bool = False) -> int:
+def execute_all_call_graphs(verbose: bool = False,
+                             sbt_heap_opts: str = DEFAULT_SBT_HEAP_OPTS) -> int:
     """Execute tests with all call graph algorithms and generate combined metrics."""
     print_header("🚀 EXECUTING ALL CALL GRAPH ALGORITHMS")
     print()
@@ -481,7 +487,7 @@ def execute_all_call_graphs(verbose: bool = False) -> int:
             suite_name = get_suite_name(suite_key)
             print(f"  🔄 {suite_name} with {callgraph.upper()}...")
             
-            success, test_count = execute_suite(suite_key, callgraph, verbose)
+            success, test_count = execute_suite(suite_key, callgraph, verbose, sbt_heap_opts)
             if not success:
                 print_error(f"❌ Failed to execute {suite_name} with {callgraph.upper()}")
                 print_error("Stopping execution due to failure")
@@ -546,6 +552,12 @@ def main() -> int:
                        help='Show this help message')
     parser.add_argument('--all-call-graphs', action='store_true',
                        help='Execute tests with all call graph algorithms and generate combined metrics')
+    parser.add_argument('--heap', default=DEFAULT_SBT_HEAP_OPTS,
+                       help=f'JVM heap options passed to sbt via SBT_OPTS, overriding any SBT_OPTS '
+                            f'already set in the shell (default: "{DEFAULT_SBT_HEAP_OPTS}"). '
+                            f'RTA/VTA/SPARK can build much larger call graphs than CHA and may '
+                            f'thrash on GC or OOM with a small heap -- bump this if that happens, '
+                            f'e.g. --heap "-Xms4G -Xmx24G -Xss4M"')
 
     args = parser.parse_args()
 
@@ -560,7 +572,7 @@ def main() -> int:
         if args.clean:
             clean_test_data(args.verbose)
             print()
-        return execute_all_call_graphs(args.verbose)
+        return execute_all_call_graphs(args.verbose, args.heap)
     
     # Validate arguments (only when not using --all-call-graphs)
     if args.suite not in ['all'] + TEST_SUITES:
@@ -608,7 +620,7 @@ def main() -> int:
         print()
         
         for suite_key in TEST_SUITES:
-            success, test_count = execute_suite(suite_key, args.callgraph, args.verbose)
+            success, test_count = execute_suite(suite_key, args.callgraph, args.verbose, args.heap)
             if success:
                 total_tests += test_count
             else:
@@ -618,7 +630,7 @@ def main() -> int:
         print_info(f"Starting test execution for {get_suite_name(args.suite)} suite...")
         print()
 
-        success, test_count = execute_suite(args.suite, args.callgraph, args.verbose)
+        success, test_count = execute_suite(args.suite, args.callgraph, args.verbose, args.heap)
         if success:
             total_tests = test_count
         else:
