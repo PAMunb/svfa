@@ -471,6 +471,103 @@ class Graph() {
     })
   }
 
+  private val backwardSliceCache =
+    scala.collection.mutable.Map[GraphNode, Set[GraphNode]]()
+
+  /**
+   * Every node with a directed path to `target` (`target` included),
+   * found by a plain BFS over `diPredecessors` — purely structural, no
+   * validity check involved. Restricting `findPathInSlice`'s search to
+   * this slice can never exclude a real source-to-target flow (any such
+   * flow only ever passes through nodes that can reach `target`), and
+   * shrinks the search space from the whole `svg` down to just the
+   * portion that matters for this sink. Memoized per target:
+   * `findConflictingPaths` calls `findPath` once per (source, sink) pair,
+   * and many sources typically share the same sink.
+   */
+  private def backwardSlice(target: GraphNode): Set[GraphNode] = {
+    backwardSliceCache.getOrElseUpdate(target, {
+      val visited = scala.collection.mutable.Set[GraphNode](target)
+      var frontier = List(target)
+      while (frontier.nonEmpty) {
+        val next = scala.collection.mutable.ListBuffer[GraphNode]()
+        frontier.foreach(n => {
+          gNode(n).diPredecessors.foreach(p => {
+            val outer = p.toOuter
+            if (!visited(outer)) {
+              visited += outer
+              next += outer
+            }
+          })
+        })
+        frontier = next.toList
+      }
+      visited.toSet
+    })
+  }
+
+  /**
+   * Deterministic fallback used by `findPath` when the fast bidirectional
+   * shortest path doesn't exist or doesn't validate — replacing the old
+   * `findPaths`. Two changes from that version: the search is restricted
+   * to `backwardSlice(target)` instead of the whole graph, and it is
+   * iterative (explicit stack) rather than recursive, since `svg` can
+   * have tens of thousands of nodes — deep enough to risk a
+   * `StackOverflowError` with a naive recursive DFS. Still validates a
+   * fully-built candidate afterward via `isValidPath`, same as before;
+   * embedding that check as incremental pruning is a later refinement.
+   */
+  private def findPathInSlice(
+      source: GraphNode,
+      target: GraphNode
+  ): Option[List[GraphNode]] = {
+    if (source == target) return Some(List(source))
+
+    val slice = backwardSlice(target)
+    if (!slice.contains(source)) return None
+
+    case class Frame(node: GraphNode, pending: List[GraphNode])
+
+    def candidatesFrom(node: GraphNode, visited: Set[GraphNode]): List[GraphNode] =
+      gNode(node).diSuccessors
+        .map(_.toOuter)
+        .filter(n => slice.contains(n) && !visited(n))
+        .toList
+        .sortBy(stableKey)
+
+    var path = List(source)
+    var visited = Set(source)
+    var stack = List(Frame(source, candidatesFrom(source, visited)))
+    var result: Option[List[GraphNode]] = None
+
+    while (result.isEmpty && stack.nonEmpty) {
+      val top = stack.head
+      top.pending match {
+        case Nil =>
+          // No candidates left from this node — backtrack.
+          stack = stack.tail
+          path = path.tail
+          visited = visited - top.node
+
+        case next :: rest =>
+          stack = top.copy(pending = rest) :: stack.tail
+
+          if (next == target) {
+            val candidate = (next :: path).reverse
+            if (isValidPath(source, target, candidate)) {
+              result = Some(candidate)
+            }
+          } else {
+            visited = visited + next
+            path = next :: path
+            stack = Frame(next, candidatesFrom(next, visited)) :: stack
+          }
+      }
+    }
+
+    result
+  }
+
   def findPath(source: GraphNode, target: GraphNode): List[List[GraphNode]] = {
     val fastPath = findShortestPathBidirectional(source, target)
 
@@ -478,62 +575,10 @@ class Graph() {
       return List(fastPath.get)
     }
 
-    val paths = findPaths(source, target, HashSet[GraphNode]())
-    val validPaths = paths.filter(path => isValidPath(path))
-    return validPaths.map(path => path.nodes.map(node => node.toOuter).toList)
-  }
-
-  /**
-   * Exhaustive (within a single DFS branch's worth of backtracking),
-   * deterministic fallback used by `findPath` when the fast bidirectional
-   * shortest path doesn't exist or doesn't validate. Fixes two bugs the
-   * previous version had: the `foreach` below used to `return` on the
-   * first unvisited neighbor unconditionally, so a dead end there never
-   * backtracked to try the next sibling — now it only returns when that
-   * branch actually found something, otherwise it keeps trying siblings.
-   * Neighbor order is sorted by `stableKey` instead of Set iteration
-   * order, for the same determinism reason as `findShortestPathBidirectional`.
-   *
-   * Builds the final `graph.Path` once, from the confirmed node sequence,
-   * instead of mutating a shared `graph.PathBuilder` across sibling
-   * attempts — that mutable builder is only ever touched here for an
-   * already-confirmed path, so backtracking never has to "undo" anything
-   * on it.
-   */
-  def findPaths(
-      source: GraphNode,
-      target: GraphNode,
-      visited: HashSet[GraphNode]
-  ): List[graph.Path] =
-    findPathNodeList(source, target, visited) match {
-      case Some(nodes) =>
-        val builder = graph.newPathBuilder(gNode(nodes.head))
-        nodes.tail.foreach(n => builder += gNode(n))
-        List(builder.result)
-      case None => List()
+    findPathInSlice(source, target) match {
+      case Some(p) => List(p)
+      case None    => List()
     }
-
-  private def findPathNodeList(
-      source: GraphNode,
-      target: GraphNode,
-      visited: HashSet[GraphNode]
-  ): Option[List[GraphNode]] = {
-    val adjacencyList =
-      gNode(source).diSuccessors.map(_node => _node.toOuter).toList.sortBy(stableKey)
-
-    if (adjacencyList.contains(target)) {
-      return Some(List(source, target))
-    }
-
-    adjacencyList.foreach(next => {
-      if (!visited(next)) {
-        findPathNodeList(next, target, visited + next) match {
-          case Some(rest) => return Some(source :: rest)
-          case None       => // dead end, try the next neighbor
-        }
-      }
-    })
-    None
   }
 
   def getUnmatchedCallSites(
